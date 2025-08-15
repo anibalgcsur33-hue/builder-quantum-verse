@@ -4,94 +4,78 @@
 
 @layer base {
   /**
-   * Tailwind CSS theme
-   * tailwind.config.ts expects the following color variables to be expressed as HSL values.
-   * A different format will require also updating the theme in tailwind.config.ts.
-  */
+   * BlueEyeHomes Metaverse Real Estate Dark Theme
+   * Using HSL format for consistent color handling with Tailwind
+   */
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    /* BlueEyeHomes Brand Colors */
+    --blue-dark: 215 31% 8%;
+    --neon-teal: 180 91% 50%;
+    --neon-emerald: 162 100% 46%;
+    --white-90: 0 0% 100%;
+    
+    /* Base theme - Dark by default */
+    --background: 215 31% 8%;
+    --foreground: 0 0% 90%;
 
-    --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    --card: 215 31% 8%;
+    --card-foreground: 0 0% 90%;
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
+    --popover: 215 31% 8%;
+    --popover-foreground: 0 0% 90%;
 
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
+    --primary: 180 91% 50%;
+    --primary-foreground: 215 31% 8%;
 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    --secondary: 215 31% 12%;
+    --secondary-foreground: 0 0% 90%;
 
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+    --muted: 215 31% 12%;
+    --muted-foreground: 0 0% 70%;
 
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    --accent: 162 100% 46%;
+    --accent-foreground: 215 31% 8%;
 
     --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive-foreground: 0 0% 98%;
 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+    --border: 215 31% 15%;
+    --input: 215 31% 15%;
+    --ring: 180 91% 50%;
 
-    --radius: 0.5rem;
+    --radius: 16px;
 
-    --sidebar-background: 0 0% 98%;
-
-    --sidebar-foreground: 240 5.3% 26.1%;
-
-    --sidebar-primary: 240 5.9% 10%;
-
-    --sidebar-primary-foreground: 0 0% 98%;
-
-    --sidebar-accent: 240 4.8% 95.9%;
-
-    --sidebar-accent-foreground: 240 5.9% 10%;
-
-    --sidebar-border: 220 13% 91%;
-
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    --sidebar-background: 215 31% 8%;
+    --sidebar-foreground: 0 0% 90%;
+    --sidebar-primary: 180 91% 50%;
+    --sidebar-primary-foreground: 215 31% 8%;
+    --sidebar-accent: 215 31% 12%;
+    --sidebar-accent-foreground: 0 0% 90%;
+    --sidebar-border: 215 31% 15%;
+    --sidebar-ring: 180 91% 50%;
   }
 
+  /* Ensure dark theme always */
   .dark {
-    --background: 222.2 84% 4.9%;
-    --foreground: 210 40% 98%;
-
-    --card: 222.2 84% 4.9%;
-    --card-foreground: 210 40% 98%;
-
-    --popover: 222.2 84% 4.9%;
-    --popover-foreground: 210 40% 98%;
-
-    --primary: 210 40% 98%;
-    --primary-foreground: 222.2 47.4% 11.2%;
-
-    --secondary: 217.2 32.6% 17.5%;
-    --secondary-foreground: 210 40% 98%;
-
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
-
-    --accent: 217.2 32.6% 17.5%;
-    --accent-foreground: 210 40% 98%;
-
+    --background: 215 31% 8%;
+    --foreground: 0 0% 90%;
+    --card: 215 31% 8%;
+    --card-foreground: 0 0% 90%;
+    --popover: 215 31% 8%;
+    --popover-foreground: 0 0% 90%;
+    --primary: 180 91% 50%;
+    --primary-foreground: 215 31% 8%;
+    --secondary: 215 31% 12%;
+    --secondary-foreground: 0 0% 90%;
+    --muted: 215 31% 12%;
+    --muted-foreground: 0 0% 70%;
+    --accent: 162 100% 46%;
+    --accent-foreground: 215 31% 8%;
     --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
-
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 212.7 26.8% 83.9%;
-    --sidebar-background: 240 5.9% 10%;
-    --sidebar-foreground: 240 4.8% 95.9%;
-    --sidebar-primary: 224.3 76.3% 48%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 240 3.7% 15.9%;
-    --sidebar-accent-foreground: 240 4.8% 95.9%;
-    --sidebar-border: 240 3.7% 15.9%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 215 31% 15%;
+    --input: 215 31% 15%;
+    --ring: 180 91% 50%;
   }
 }
 
@@ -100,7 +84,169 @@
     @apply border-border;
   }
 
+  html {
+    @apply dark;
+  }
+
   body {
-    @apply bg-background text-foreground;
+    @apply bg-blue-dark text-white/90 font-geometric;
+    background: #0A0F1A;
+    overflow-x: hidden;
+  }
+
+  /* Typography */
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-bold;
+  }
+
+  /* Glassmorphism utilities */
+  .glass {
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+  }
+
+  .glass-card {
+    @apply glass rounded-xl shadow-glass;
+  }
+
+  /* Neon glow effects */
+  .neon-glow-teal {
+    box-shadow: 0 0 20px rgba(14, 231, 231, 0.3);
+  }
+
+  .neon-glow-emerald {
+    box-shadow: 0 0 20px rgba(0, 231, 167, 0.3);
+  }
+
+  /* Hover glow effects */
+  .hover-glow-teal {
+    transition: all 0.3s ease;
+  }
+
+  .hover-glow-teal:hover {
+    box-shadow: 0 0 30px rgba(14, 231, 231, 0.5), 0 0 60px rgba(14, 231, 231, 0.2);
+    transform: translateY(-2px);
+  }
+
+  .hover-glow-emerald {
+    transition: all 0.3s ease;
+  }
+
+  .hover-glow-emerald:hover {
+    box-shadow: 0 0 30px rgba(0, 231, 167, 0.5), 0 0 60px rgba(0, 231, 167, 0.2);
+    transform: translateY(-2px);
+  }
+
+  /* Button styles */
+  .btn-primary {
+    @apply bg-neon-teal text-blue-dark font-semibold px-8 py-4 rounded-full hover-glow-teal;
+    transition: all 0.3s ease;
+  }
+
+  .btn-secondary {
+    @apply glass-card text-white/90 font-semibold px-8 py-4 rounded-full hover-glow-teal;
+    transition: all 0.3s ease;
+  }
+
+  /* Animations respect user preference */
+  @media (prefers-reduced-motion: reduce) {
+    .animate-float,
+    .animate-glow,
+    .animate-slide-up,
+    .animate-fade-in,
+    .hover-glow-teal,
+    .hover-glow-emerald {
+      animation: none !important;
+      transition: none !important;
+      transform: none !important;
+    }
+  }
+
+  /* Video styling */
+  video {
+    object-fit: cover;
+  }
+
+  /* Lazy loading images */
+  img[loading="lazy"] {
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+
+  img[loading="lazy"].loaded {
+    opacity: 1;
+  }
+
+  /* Scrollbar styling */
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.05);
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: rgba(14, 231, 231, 0.3);
+    border-radius: 4px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: rgba(14, 231, 231, 0.5);
+  }
+
+  /* Focus styles for accessibility */
+  :focus-visible {
+    outline: 2px solid hsl(var(--neon-teal));
+    outline-offset: 2px;
+  }
+
+  /* High contrast mode support */
+  @media (forced-colors: active) {
+    .glass {
+      background: transparent;
+      border: 1px solid;
+    }
+  }
+}
+
+@layer components {
+  /* Section spacing */
+  .section-padding {
+    @apply py-20 lg:py-32;
+  }
+
+  .container-padding {
+    @apply px-4 sm:px-6 lg:px-8;
+  }
+
+  /* Grid layouts */
+  .grid-properties {
+    @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8;
+  }
+
+  .grid-testimonials {
+    @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6;
+  }
+
+  /* Text styles */
+  .heading-xl {
+    @apply text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold leading-tight;
+  }
+
+  .heading-lg {
+    @apply text-3xl sm:text-4xl lg:text-5xl font-bold leading-tight;
+  }
+
+  .heading-md {
+    @apply text-2xl sm:text-3xl lg:text-4xl font-bold leading-tight;
+  }
+
+  .text-gradient {
+    background: linear-gradient(135deg, #0EE7E7, #00E7A7);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
   }
 }
