@@ -917,11 +917,11 @@ export default function Index() {
                 <Link to="/comunidad" className="block text-white/60 hover:text-neon-teal transition-colors">
                   Comunidad
                 </Link>
-                <Link to="/metaverso" className="block text-white/60 hover:text-neon-teal transition-colors">
-                  Metaverso
+                <Link to="/mapa-metaverso" className="block text-white/60 hover:text-neon-teal transition-colors">
+                  Mapa Metaverso
                 </Link>
-                <Link to="/mapa-canarias" className="block text-white/60 hover:text-neon-teal transition-colors">
-                  Mapa 3D
+                <Link to="/criptomonedas-token" className="block text-white/60 hover:text-neon-teal transition-colors">
+                  Token BlueEye
                 </Link>
               </div>
             </div>
