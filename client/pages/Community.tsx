@@ -189,7 +189,9 @@ export default function Community() {
   ];
 
   return (
-    <div className="min-h-screen bg-blue-dark text-white/90 pt-20">
+    <div className="min-h-screen bg-blue-dark text-white/90">
+      <Header isScrolled={isScrolled} />
+      <div className="pt-20 lg:pt-24">
       <div className="container mx-auto container-padding">
         {/* Header */}
         <div className="text-center mb-12">
@@ -627,6 +629,7 @@ export default function Community() {
             </div>
           </div>
         )}
+      </div>
       </div>
     </div>
   );
