@@ -522,7 +522,7 @@ export default function AIConcierge() {
             Villa €1.5M Tenerife
           </button>
           <button className="text-xs text-neon-teal hover:text-neon-emerald transition-colors">
-            Apartamento ROI >8%
+            Apartamento ROI &gt;8%
           </button>
           <button className="text-xs text-neon-teal hover:text-neon-emerald transition-colors">
             Ático vista mar
