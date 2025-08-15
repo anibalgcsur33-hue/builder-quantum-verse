@@ -469,6 +469,19 @@ Perfecta para residencia habitual o como inversión en el mercado de alquiler va
                   </div>
                 )}
               </div>
+
+              {/* Financial Simulator */}
+              <div className="mt-8">
+                <FinancialSimulator
+                  property={{
+                    price: property.price,
+                    location: property.location,
+                    sqm: property.sqm,
+                    bedrooms: property.bedrooms,
+                    category: property.category
+                  }}
+                />
+              </div>
             </div>
           </div>
 
