@@ -26,21 +26,15 @@ export default function Header({
           {/* Logo */}
           <Link
             to="/"
-            className="flex items-center space-x-2 group transition-all duration-300 hover:scale-105"
+            className="flex items-center group transition-all duration-300 hover:scale-105"
           >
             <div className="relative">
-              <div className="w-10 h-10 lg:w-12 lg:h-12 rounded-xl bg-gradient-to-br from-neon-teal via-neon-emerald to-blue-600 p-2 shadow-lg shadow-neon-teal/30 group-hover:shadow-neon-teal/50 transition-all duration-300">
-                <Eye className="w-full h-full text-white" />
-              </div>
-              <div className="absolute inset-0 rounded-xl bg-gradient-to-br from-neon-teal via-neon-emerald to-blue-600 opacity-0 group-hover:opacity-20 blur-xl transition-all duration-300"></div>
-            </div>
-            <div className="flex flex-col">
-              <span className="text-white font-bold text-lg lg:text-xl tracking-tight group-hover:text-neon-teal transition-colors duration-300">
-                BlueEye
-              </span>
-              <span className="text-neon-teal text-xs lg:text-sm font-medium -mt-1">
-                Homes
-              </span>
+              <img
+                src="https://cdn.builder.io/api/v1/image/assets%2Fb022b0ef6eaa47cba6348b0a48fcb095%2Fca2673d707a04c138fbacd2f23aa41ea?format=webp&width=800"
+                alt="BlueEye Homes Logo"
+                className="h-12 lg:h-14 w-auto object-contain group-hover:drop-shadow-lg transition-all duration-300"
+              />
+              <div className="absolute inset-0 rounded-xl bg-gradient-to-br from-neon-teal via-neon-emerald to-blue-600 opacity-0 group-hover:opacity-10 blur-xl transition-all duration-300"></div>
             </div>
           </Link>
 
