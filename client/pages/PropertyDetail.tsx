@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
+import AIChatbot from '../components/AIChatbot';
 import { 
   ArrowLeft,
   Heart,
