@@ -218,7 +218,9 @@ export default function MetaverseMap() {
   };
 
   return (
-    <div className={`${isFullscreen ? 'fixed inset-0 z-50' : 'min-h-screen pt-20'} bg-blue-dark text-white/90`}>
+    <div className={`${isFullscreen ? 'fixed inset-0 z-50' : 'min-h-screen'} bg-blue-dark text-white/90`}>
+      {!isFullscreen && <Header isScrolled={isScrolled} />}
+      <div className={!isFullscreen ? 'pt-20 lg:pt-24' : ''}>
       <div className="container mx-auto container-padding h-full">
         {/* Header */}
         <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-6 mb-8">
@@ -596,6 +598,10 @@ export default function MetaverseMap() {
           perspective: 1000px;
         }
       `}</style>
+      </div>
+
+      {/* Live Social Proof Notifications */}
+      {!isFullscreen && <LiveSocialProof />}
     </div>
   );
 }
