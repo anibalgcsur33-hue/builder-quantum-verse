@@ -27,15 +27,78 @@ const App = () => (
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Index />} />
+
+          {/* Properties Routes */}
+          <Route path="/propiedades" element={<Properties />} />
+          <Route path="/property/:id" element={<PropertyDetail />} />
+          <Route path="/property/:id/vr" element={<PropertyDetail />} />
+
+          {/* Property Categories */}
           <Route
-            path="/propiedades"
+            path="/propiedades/comprar"
             element={
               <PlaceholderPage
-                title="Explorar Propiedades"
-                description="Descubre inmuebles únicos en el metaverso inmobiliario con tours VR y pagos en criptomonedas."
+                title="Propiedades en Venta"
+                description="Explora inmuebles disponibles para compra en Canarias y España."
               />
             }
           />
+          <Route
+            path="/propiedades/alquilar"
+            element={
+              <PlaceholderPage
+                title="Propiedades en Alquiler"
+                description="Encuentra alquileres vacacionales y de larga temporada."
+              />
+            }
+          />
+          <Route
+            path="/propiedades/alquilar/vacacional"
+            element={
+              <PlaceholderPage
+                title="Alquiler Vacacional"
+                description="Propiedades para alquiler vacacional en destinos únicos."
+              />
+            }
+          />
+          <Route
+            path="/propiedades/alquilar/larga-temporada"
+            element={
+              <PlaceholderPage
+                title="Alquiler Larga Temporada"
+                description="Propiedades para alquiler de larga duración."
+              />
+            }
+          />
+          <Route
+            path="/propiedades/obra-nueva"
+            element={
+              <PlaceholderPage
+                title="Obra Nueva"
+                description="Proyectos inmobiliarios nuevos y en construcción."
+              />
+            }
+          />
+          <Route
+            path="/propiedades/verificadas"
+            element={
+              <PlaceholderPage
+                title="Propiedades Verificadas"
+                description="Inmuebles con sello registral y verificación completa."
+              />
+            }
+          />
+
+          {/* Community */}
+          <Route path="/comunidad" element={<Community />} />
+
+          {/* Marketplace Routes */}
+          <Route path="/marketplace/reformas" element={<Reformas />} />
+          <Route path="/marketplace/seguros" element={<Seguros />} />
+          <Route path="/marketplace/servicios-legales" element={<ServiciosLegales />} />
+          <Route path="/marketplace/mobiliario" element={<Mobiliario />} />
+
+          {/* Other Routes */}
           <Route
             path="/tour-vr"
             element={
@@ -46,20 +109,20 @@ const App = () => (
             }
           />
           <Route
-            path="/mapa-3d"
+            path="/mapa-canarias"
             element={
               <PlaceholderPage
-                title="Mapa 3D Interactivo"
-                description="Explora Canarias y España en nuestro mapa tridimensional con filtros avanzados."
+                title="Mapa 3D Canarias"
+                description="Explora las Islas Canarias en nuestro mapa tridimensional interactivo."
               />
             }
           />
           <Route
-            path="/comunidad"
+            path="/como-funciona"
             element={
               <PlaceholderPage
-                title="Comunidad Metaverso"
-                description="Únete a la primera comunidad inmobiliaria del metaverso y conecta con otros usuarios."
+                title="Cómo Funciona"
+                description="Descubre cómo funciona el proceso de compra en BlueEyeHomes."
               />
             }
           />
@@ -82,20 +145,20 @@ const App = () => (
             }
           />
           <Route
-            path="/property/:slug"
-            element={
-              <PlaceholderPage
-                title="Detalle de Propiedad"
-                description="Tour virtual detallado de la propiedad con información completa y opciones de compra."
-              />
-            }
-          />
-          <Route
             path="/privacidad"
             element={
               <PlaceholderPage
                 title="Política de Privacidad"
                 description="Información sobre cómo protegemos y utilizamos tus datos personales."
+              />
+            }
+          />
+          <Route
+            path="/terminos"
+            element={
+              <PlaceholderPage
+                title="Términos y Condiciones"
+                description="Términos de uso de la plataforma BlueEyeHomes."
               />
             }
           />
@@ -108,6 +171,7 @@ const App = () => (
               />
             }
           />
+
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
