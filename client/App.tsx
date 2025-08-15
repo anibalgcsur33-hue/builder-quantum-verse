@@ -98,6 +98,20 @@ const App = () => (
           {/* Community */}
           <Route path="/comunidad" element={<Community />} />
 
+          {/* Authentication Routes */}
+          <Route path="/auth/login" element={<Login />} />
+          <Route path="/auth/register" element={<Register />} />
+
+          {/* User Routes */}
+          <Route path="/perfil" element={<Profile />} />
+          <Route path="/agency/dashboard" element={<AgencyDashboard />} />
+
+          {/* Crypto and Token */}
+          <Route path="/criptomonedas-token" element={<CryptoToken />} />
+
+          {/* Metaverse Map */}
+          <Route path="/mapa-metaverso" element={<MetaverseMap />} />
+
           {/* Marketplace Routes */}
           <Route path="/marketplace/reformas" element={<Reformas />} />
           <Route path="/marketplace/seguros" element={<Seguros />} />
