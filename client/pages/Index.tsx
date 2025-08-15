@@ -11,21 +11,22 @@ import {
   MessageCircle,
   Menu,
   X,
-  Filter,
-  FileText,
-  Users,
-  CheckCircle,
   Building,
-  Scale,
-  CreditCard,
-  Phone,
   Calendar,
-  UserCheck
+  Users,
+  Headphones,
+  Bot,
+  Scale,
+  FileText,
+  Globe,
+  CheckCircle,
+  ArrowRight
 } from 'lucide-react';
 
 export default function Index() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const [currentLang, setCurrentLang] = useState('ES');
 
   useEffect(() => {
     const handleScroll = () => {
@@ -35,104 +36,150 @@ export default function Index() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Real property data structure (ready for Supabase binding)
-  const properties = [
+  // Multilingual content
+  const content = {
+    ES: {
+      nav: {
+        properties: 'Propiedades Reales',
+        vr: 'Tours VR',
+        map: 'Mapa Canarias',
+        howItWorks: 'Cómo Funciona',
+        contact: 'Contacto',
+        cta: 'Entrar al Metaverso'
+      },
+      hero: {
+        title: 'Explora en el metaverso, compra en la vida real',
+        subtitle: 'Tours VR, reservas online y firma digital con notaría. Propiedades reales en Canarias y España',
+        cta1: 'Entrar al Metaverso',
+        cta2: 'Ver Propiedades Reales'
+      },
+      sections: {
+        featured: 'Propiedades Destacadas',
+        villa: 'Vívela en VR antes de decidir',
+        vr: 'Tu agente IA te guía, nuestro equipo legal te respalda',
+        map: 'Localiza oportunidades reales en 3D',
+        community: 'Comparte tours y experiencias en nuestra comunidad',
+        finalCta: 'Tu próxima casa es real. Empieza hoy',
+        finalBtn1: 'Reservar visita',
+        finalBtn2: 'Hablar con agente IA'
+      },
+      footer: {
+        legal: 'La visualización es virtual; la compra es de inmuebles reales. Operaciones sujetas a notaría, registro y KYC/AML.'
+      }
+    },
+    EN: {
+      nav: {
+        properties: 'Real Properties',
+        vr: 'VR Tours',
+        map: 'Canarias Map',
+        howItWorks: 'How It Works',
+        contact: 'Contact',
+        cta: 'Enter Metaverse'
+      },
+      hero: {
+        title: 'Explore in the metaverse, buy in real life',
+        subtitle: 'VR tours, online bookings and digital signature with notary. Real properties in Canary Islands and Spain',
+        cta1: 'Enter Metaverse',
+        cta2: 'View Real Properties'
+      },
+      sections: {
+        featured: 'Featured Properties',
+        villa: 'Experience it in VR before deciding',
+        vr: 'Your AI agent guides you, our legal team backs you',
+        map: 'Locate real opportunities in 3D',
+        community: 'Share tours and experiences in our community',
+        finalCta: 'Your next home is real. Start today',
+        finalBtn1: 'Book visit',
+        finalBtn2: 'Talk to AI agent'
+      },
+      footer: {
+        legal: 'Visualization is virtual; purchase is of real properties. Operations subject to notary, registry and KYC/AML.'
+      }
+    },
+    DE: {
+      nav: {
+        properties: 'Echte Immobilien',
+        vr: 'VR-Touren',
+        map: 'Kanaren Karte',
+        howItWorks: 'Wie es funktioniert',
+        contact: 'Kontakt',
+        cta: 'Metaverse betreten'
+      },
+      hero: {
+        title: 'Erkunde im Metaverse, kaufe im echten Leben',
+        subtitle: 'VR-Touren, Online-Buchungen und digitale Unterschrift beim Notar. Echte Immobilien auf den Kanaren und in Spanien',
+        cta1: 'Metaverse betreten',
+        cta2: 'Echte Immobilien ansehen'
+      },
+      sections: {
+        featured: 'Ausgewählte Immobilien',
+        villa: 'Erlebe es in VR bevor du entscheidest',
+        vr: 'Dein KI-Agent führt dich, unser Rechtsteam unterstützt dich',
+        map: 'Finde echte Gelegenheiten in 3D',
+        community: 'Teile Touren und Erfahrungen in unserer Community',
+        finalCta: 'Dein nächstes Zuhause ist echt. Starte heute',
+        finalBtn1: 'Besichtigung buchen',
+        finalBtn2: 'Mit KI-Agent sprechen'
+      },
+      footer: {
+        legal: 'Die Visualisierung ist virtuell; der Kauf betrifft echte Immobilien. Transaktionen unterliegen Notar, Register und KYC/AML.'
+      }
+    }
+  };
+
+  const t = content[currentLang as keyof typeof content];
+
+  // Featured properties data (ready for database integration)
+  const featuredProperties = [
     {
       id: '1',
-      title: 'Villa Oceanfront Paradise',
-      location: 'Playa Blanca, Lanzarote',
-      price: 750000,
-      pricePerSqm: 2800,
+      title: 'Villa Oceanfront Deluxe',
+      location: 'Costa Adeje, Tenerife',
+      price: 1250000,
+      pricePerSqm: 3500,
       mediaUrl: '/placeholder.svg',
-      badges: ['Tour VR', 'Verificada', 'Disponible'],
-      cryptoReady: true,
-      verified: true,
-      slug: 'villa-oceanfront-paradise'
+      type: 'villa',
+      bedrooms: 4,
+      bathrooms: 3,
+      sqm: 357,
+      featured: true,
+      verified: true
     },
     {
       id: '2',
-      title: 'Apartamento Moderno Centro',
-      location: 'Santa Cruz, Tenerife',
-      price: 380000,
-      pricePerSqm: 3200,
+      title: 'Modern Penthouse Marina',
+      location: 'Las Palmas, Gran Canaria',
+      price: 850000,
+      pricePerSqm: 4200,
       mediaUrl: '/placeholder.svg',
-      badges: ['Tour VR', 'Verificada', 'Reservado'],
-      cryptoReady: true,
-      verified: true,
-      slug: 'apartamento-moderno-centro'
+      type: 'penthouse',
+      bedrooms: 3,
+      bathrooms: 2,
+      sqm: 202,
+      featured: true,
+      verified: true
     },
     {
       id: '3',
-      title: 'Casa Rural con Viñedo',
-      location: 'La Geria, Lanzarote',
-      price: 920000,
-      pricePerSqm: 2100,
+      title: 'Luxury Apartment Sunset',
+      location: 'Puerto del Carmen, Lanzarote',
+      price: 680000,
+      pricePerSqm: 3400,
       mediaUrl: '/placeholder.svg',
-      badges: ['Tour VR', 'Verificada', 'Disponible'],
-      cryptoReady: true,
-      verified: true,
-      slug: 'casa-rural-vinedo'
-    }
-  ];
-
-  const testimonials = [
-    {
-      id: 1,
-      name: 'Carmen López',
-      text: 'Vi mi casa en VR desde Madrid y la compré sin viajar primero. El proceso notarial fue impecable.',
-      rating: 5,
-      avatar: '/placeholder.svg',
-      location: 'Madrid',
-      property: 'Villa en Gran Canaria'
-    },
-    {
-      id: 2,
-      name: 'Miguel Herrera',
-      text: 'El agente IA me guió perfectamente y el equipo legal resolvió todo. Casa real, compra segura.',
-      rating: 5,
-      avatar: '/placeholder.svg',
-      location: 'Barcelona',
-      property: 'Apartamento en Tenerife'
-    },
-    {
-      id: 3,
-      name: 'Elena Ruiz',
-      text: 'Pagué en crypto y firmé digitalmente. En 3 semanas tenía las llaves de mi nueva casa.',
-      rating: 5,
-      avatar: '/placeholder.svg',
-      location: 'Valencia',
-      property: 'Casa en Lanzarote'
-    }
-  ];
-
-  const trustFeatures = [
-    {
-      icon: CheckCircle,
-      title: 'Verificación Registral',
-      description: 'Todas las propiedades verificadas en Registro de la Propiedad'
-    },
-    {
-      icon: Scale,
-      title: 'Firma Digital + Notaría',
-      description: 'Contratos notariales válidos con firma digital certificada'
-    },
-    {
-      icon: CreditCard,
-      title: 'Pago € o Cripto',
-      description: 'Acepta euros, Bitcoin, Ethereum y principales criptomonedas'
-    },
-    {
-      icon: UserCheck,
-      title: 'KYC/AML Certificado',
-      description: 'Verificación de identidad y anti-lavado cumpliendo normativa'
+      type: 'apartment',
+      bedrooms: 2,
+      bathrooms: 2,
+      sqm: 200,
+      featured: true,
+      verified: true
     }
   ];
 
   return (
     <div className="min-h-screen bg-blue-dark text-white/90">
-      {/* Hidden JSON Schema Comment for Supabase Integration */}
+      {/* Hidden JSON Schema Comment for Database Integration */}
       {/*
-      Target Supabase Schema:
+      BlueEyeHomes Database Schema:
       {
         "properties": [
           {
@@ -142,10 +189,26 @@ export default function Index() {
             "price": "numeric",
             "pricePerSqm": "numeric",
             "mediaUrl": "text",
-            "badges": "text[]",
-            "cryptoReady": "bool",
+            "type": "text",
+            "bedrooms": "integer",
+            "bathrooms": "integer",
+            "sqm": "numeric",
+            "featured": "bool",
             "verified": "bool",
-            "slug": "text"
+            "cryptoReady": "bool",
+            "vrTourUrl": "text",
+            "documents": "json",
+            "coordinates": "point"
+          }
+        ],
+        "users": [
+          {
+            "id": "uuid",
+            "email": "text",
+            "name": "text",
+            "language": "text",
+            "verified": "bool",
+            "wallet_address": "text"
           }
         ]
       }
@@ -165,26 +228,41 @@ export default function Index() {
             {/* Desktop Navigation */}
             <div className="hidden lg:flex items-center space-x-8">
               <Link to="/propiedades" className="hover:text-neon-teal transition-colors">
-                Propiedades Reales
+                {t.nav.properties}
               </Link>
               <Link to="/tour-vr" className="hover:text-neon-teal transition-colors">
-                Tours VR
+                {t.nav.vr}
               </Link>
               <Link to="/mapa-canarias" className="hover:text-neon-teal transition-colors">
-                Mapa Canarias
+                {t.nav.map}
               </Link>
               <Link to="/como-funciona" className="hover:text-neon-teal transition-colors">
-                Cómo Funciona
+                {t.nav.howItWorks}
               </Link>
               <Link to="/contacto" className="hover:text-neon-teal transition-colors">
-                Contacto
+                {t.nav.contact}
               </Link>
             </div>
 
-            {/* CTA Button */}
-            <Link to="/metaverso" className="hidden lg:block btn-primary">
-              Entrar al Metaverso
-            </Link>
+            {/* Language Selector & CTA */}
+            <div className="hidden lg:flex items-center gap-4">
+              <div className="flex gap-1">
+                {['ES', 'EN', 'DE'].map((lang) => (
+                  <button
+                    key={lang}
+                    onClick={() => setCurrentLang(lang)}
+                    className={`px-3 py-1 rounded-full text-sm transition-colors ${
+                      currentLang === lang ? 'bg-neon-teal text-blue-dark' : 'text-white/60 hover:text-white'
+                    }`}
+                  >
+                    {lang}
+                  </button>
+                ))}
+              </div>
+              <Link to="/metaverso" className="btn-primary">
+                {t.nav.cta}
+              </Link>
+            </div>
 
             {/* Mobile Menu Button */}
             <button
@@ -200,80 +278,92 @@ export default function Index() {
           {isMenuOpen && (
             <div className="lg:hidden glass-card mt-4 p-6 space-y-4">
               <Link to="/propiedades" className="block hover:text-neon-teal transition-colors">
-                Propiedades Reales
+                {t.nav.properties}
               </Link>
               <Link to="/tour-vr" className="block hover:text-neon-teal transition-colors">
-                Tours VR
+                {t.nav.vr}
               </Link>
               <Link to="/mapa-canarias" className="block hover:text-neon-teal transition-colors">
-                Mapa Canarias
+                {t.nav.map}
               </Link>
               <Link to="/como-funciona" className="block hover:text-neon-teal transition-colors">
-                Cómo Funciona
+                {t.nav.howItWorks}
               </Link>
               <Link to="/contacto" className="block hover:text-neon-teal transition-colors">
-                Contacto
+                {t.nav.contact}
               </Link>
+              <div className="flex gap-2 pt-4">
+                {['ES', 'EN', 'DE'].map((lang) => (
+                  <button
+                    key={lang}
+                    onClick={() => setCurrentLang(lang)}
+                    className={`px-3 py-1 rounded-full text-sm transition-colors ${
+                      currentLang === lang ? 'bg-neon-teal text-blue-dark' : 'text-white/60 hover:text-white'
+                    }`}
+                  >
+                    {lang}
+                  </button>
+                ))}
+              </div>
               <Link to="/metaverso" className="btn-primary w-full text-center">
-                Entrar al Metaverso
+                {t.nav.cta}
               </Link>
             </div>
           )}
         </div>
       </nav>
 
-      {/* Hero Section */}
+      {/* Hero Section - Futuristic Coastal City Sunrise */}
       <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-        {/* Coastal Futuristic City Video Background */}
+        {/* Sunrise Video Background */}
         <div className="absolute inset-0 z-0">
           <video
-            className="w-full h-full object-cover opacity-40"
+            className="w-full h-full object-cover"
             autoPlay
             muted
             loop
             playsInline
             poster="/placeholder.svg"
-            aria-label="Futuristic coastal city in Canary Islands"
+            aria-label="Futuristic coastal city at sunrise"
           >
-            <source src="/coastal-city-future.mp4" type="video/mp4" />
-            <img src="/placeholder.svg" alt="Futuristic coastal cityscape in Canary Islands" />
+            <source src="/sunrise-coastal-city.mp4" type="video/mp4" />
+            <img src="/placeholder.svg" alt="Futuristic coastal city with sunrise" />
           </video>
-          <div className="absolute inset-0 bg-gradient-to-b from-blue-dark/60 to-blue-dark/80"></div>
+          <div className="absolute inset-0 bg-gradient-to-b from-blue-dark/30 via-transparent to-blue-dark/60"></div>
         </div>
 
         <div className="relative z-10 container mx-auto container-padding text-center">
           <div className="max-w-5xl mx-auto">
             <h1 className="heading-xl text-gradient animate-slide-up mb-6">
-              Explora en el metaverso, compra en la vida real
+              {t.hero.title}
             </h1>
-            <p className="text-xl lg:text-2xl text-white/90 mb-8 animate-fade-in">
-              Tours VR, reservas online, firma digital con notaría.<br />
-              <span className="text-neon-teal font-semibold">Propiedades reales en Canarias y España</span>
+            <p className="text-xl lg:text-2xl text-white/90 mb-12 animate-fade-in max-w-4xl mx-auto leading-relaxed">
+              {t.hero.subtitle}
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center animate-fade-in">
-              <Link to="/metaverso" className="btn-primary">
-                <Eye className="mr-2" size={20} />
-                Entrar al Metaverso
+            <div className="flex flex-col sm:flex-row gap-6 justify-center animate-fade-in">
+              <Link to="/metaverso" className="btn-primary text-lg px-10 py-4">
+                <Eye className="mr-3" size={24} />
+                {t.hero.cta1}
               </Link>
-              <Link to="/propiedades" className="btn-secondary">
-                <Building className="mr-2" size={20} />
-                Ver Propiedades Reales
+              <Link to="/propiedades" className="btn-secondary text-lg px-10 py-4">
+                <Building className="mr-3" size={24} />
+                {t.hero.cta2}
               </Link>
             </div>
             
             {/* Trust Indicators */}
-            <div className="flex flex-wrap justify-center gap-6 mt-12 text-sm text-white/70">
-              <div className="flex items-center gap-2">
+            <div className="flex flex-wrap justify-center gap-8 mt-16 text-sm">
+              <div className="flex items-center gap-2 glass-card px-4 py-2 rounded-full">
                 <CheckCircle className="text-neon-teal" size={16} />
-                <span>Propiedades verificadas</span>
+                <span className="text-white/80">Verificado por notario</span>
               </div>
-              <div className="flex items-center gap-2">
-                <Scale className="text-neon-emerald" size={16} />
-                <span>Firma notarial válida</span>
+              <div className="flex items-center gap-2 glass-card px-4 py-2 rounded-full">
+                <Shield className="text-neon-emerald" size={16} />
+                <span className="text-white/80">Registro de propiedad</span>
               </div>
-              <div className="flex items-center gap-2">
-                <Shield className="text-neon-teal" size={16} />
-                <span>Compra 100% segura</span>
+              <div className="flex items-center gap-2 glass-card px-4 py-2 rounded-full">
+                <Scale className="text-neon-teal" size={16} />
+                <span className="text-white/80">Cumplimiento legal</span>
               </div>
             </div>
           </div>
@@ -287,541 +377,600 @@ export default function Index() {
 
       {/* Floating AI Assistant */}
       <button
-        className="fixed bottom-6 right-6 z-50 btn-primary w-14 h-14 rounded-full flex items-center justify-center animate-float hover-glow-teal"
+        className="fixed bottom-6 right-6 z-50 btn-primary w-16 h-16 rounded-full flex items-center justify-center animate-float hover-glow-teal shadow-neon-teal"
         aria-label="Hablar con agente IA"
       >
-        <MessageCircle size={24} />
+        <Bot size={28} />
       </button>
 
-      {/* Villa de Lujo Section */}
+      {/* Featured Properties Section */}
       <section className="section-padding">
         <div className="container mx-auto container-padding">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <div className="relative">
-              <img
-                src="/placeholder.svg"
-                alt="Villa de lujo en Canarias con vista al océano"
-                className="w-full h-96 object-cover rounded-xl"
-                loading="lazy"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-blue-dark/50 to-transparent rounded-xl"></div>
-              <button className="absolute inset-0 flex items-center justify-center group">
-                <div className="w-20 h-20 bg-neon-teal/20 rounded-full flex items-center justify-center group-hover:bg-neon-teal/30 transition-colors neon-glow-teal">
-                  <Play className="text-neon-teal ml-1" size={32} />
-                </div>
-              </button>
-              <div className="absolute top-4 left-4 glass-card px-4 py-2 rounded-full">
-                <span className="text-neon-teal font-semibold">Tour VR Disponible</span>
-              </div>
-            </div>
-            
-            <div>
-              <h2 className="heading-lg text-gradient mb-6">
-                Vívela en VR antes de decidir
-              </h2>
-              <p className="text-xl text-white/80 mb-6">
-                Cada propiedad que exploras virtualmente existe realmente. Recorre cada habitación, 
-                siente el espacio, y toma tu decisión informada antes de firmar.
-              </p>
-              <div className="space-y-4 mb-8">
-                <div className="flex items-start gap-3">
-                  <CheckCircle className="text-neon-teal mt-1 flex-shrink-0" size={20} />
-                  <div>
-                    <h4 className="font-semibold mb-1">Oferta Real Verificada</h4>
-                    <p className="text-white/70">Precios actualizados y verificados en Registro de la Propiedad</p>
-                  </div>
-                </div>
-                <div className="flex items-start gap-3">
-                  <CheckCircle className="text-neon-emerald mt-1 flex-shrink-0" size={20} />
-                  <div>
-                    <h4 className="font-semibold mb-1">Firma Notarial Digital</h4>
-                    <p className="text-white/70">Contratos legalmente válidos con notario certificado</p>
-                  </div>
-                </div>
-                <div className="flex items-start gap-3">
-                  <CheckCircle className="text-neon-teal mt-1 flex-shrink-0" size={20} />
-                  <div>
-                    <h4 className="font-semibold mb-1">Garantía Total</h4>
-                    <p className="text-white/70">Seguro de título y garantía de entrega</p>
-                  </div>
-                </div>
-              </div>
-              <Link to="/villa-vr" className="btn-primary">
-                Explorar Villa VR
-              </Link>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* VR Experience + AI Agent + Legal Team */}
-      <section className="section-padding bg-gradient-to-b from-transparent to-blue-dark/50">
-        <div className="container mx-auto container-padding">
           <div className="text-center mb-16">
             <h2 className="heading-lg text-gradient mb-6">
-              Experiencia VR + Agente IA + Equipo Legal Humano
+              {t.sections.featured}
             </h2>
-            <p className="text-xl text-white/70 max-w-4xl mx-auto">
-              La tecnología más avanzada respaldada por profesionales reales para tu tranquilidad
+            <p className="text-xl text-white/70 max-w-3xl mx-auto">
+              Inmuebles reales verificados por notario, listos para comprar con tours VR disponibles
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {/* VR Experience */}
-            <div className="glass-card p-8 hover-glow-teal text-center">
-              <div className="w-20 h-20 bg-gradient-to-r from-neon-teal to-neon-emerald rounded-full flex items-center justify-center mx-auto mb-6">
-                <Eye className="text-blue-dark" size={40} />
-              </div>
-              <h3 className="text-2xl font-bold mb-4">Tours VR Realistas</h3>
-              <p className="text-white/70 mb-6">
-                Recorre la propiedad real desde cualquier lugar. Tecnología 8K con detalles fotorrealistas.
-              </p>
-              <ul className="text-left text-white/60 space-y-2">
-                <li>• Medidas exactas</li>
-                <li>• Iluminación natural</li>
-                <li>• Vista 360° completa</li>
-                <li>• Compatible VR/Desktop</li>
-              </ul>
-            </div>
-
-            {/* AI Agent */}
-            <div className="glass-card p-8 hover-glow-emerald text-center">
-              <div className="w-20 h-20 bg-gradient-to-r from-neon-emerald to-neon-teal rounded-full flex items-center justify-center mx-auto mb-6">
-                <MessageCircle className="text-blue-dark" size={40} />
-              </div>
-              <h3 className="text-2xl font-bold mb-4">Agente IA 24/7</h3>
-              <p className="text-white/70 mb-6">
-                Asistente inteligente que responde dudas, programa visitas y te guía en todo el proceso.
-              </p>
-              <ul className="text-left text-white/60 space-y-2">
-                <li>• Consultas instantáneas</li>
-                <li>• Análisis de financiación</li>
-                <li>• Comparación propiedades</li>
-                <li>• Soporte multiidioma</li>
-              </ul>
-            </div>
-
-            {/* Legal Team */}
-            <div className="glass-card p-8 hover-glow-teal text-center">
-              <div className="w-20 h-20 bg-gradient-to-r from-neon-teal to-neon-emerald rounded-full flex items-center justify-center mx-auto mb-6">
-                <Users className="text-blue-dark" size={40} />
-              </div>
-              <h3 className="text-2xl font-bold mb-4">Equipo Legal Real</h3>
-              <p className="text-white/70 mb-6">
-                Abogados y notarios certificados supervisan cada transacción para garantizar seguridad total.
-              </p>
-              <ul className="text-left text-white/60 space-y-2">
-                <li>• Revisión contractual</li>
-                <li>• Due diligence completo</li>
-                <li>• Firma notarial válida</li>
-                <li>• Registro propiedad</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* 3D Map Canarias */}
-      <section className="section-padding relative overflow-hidden">
-        <div className="absolute inset-0 z-0">
-          <img
-            src="/placeholder.svg"
-            alt="Mapa 3D interactivo de las Islas Canarias"
-            className="w-full h-full object-cover opacity-30"
-            loading="lazy"
-          />
-          <div className="absolute inset-0 bg-gradient-to-b from-blue-dark/80 to-blue-dark/90"></div>
-        </div>
-        
-        <div className="relative z-10 container mx-auto container-padding">
-          <div className="text-center mb-16">
-            <h2 className="heading-lg text-gradient mb-6">
-              Mapa 3D Interactivo de Canarias
-            </h2>
-            <p className="text-xl text-white/70 max-w-3xl mx-auto mb-8">
-              Explora propiedades reales por zona y precio. Solicita documentación o programa visita presencial/virtual
-            </p>
-            
-            {/* Interactive Filters */}
-            <div className="flex flex-wrap gap-4 justify-center mb-8">
-              <div className="glass-card p-3 rounded-lg flex items-center gap-2">
-                <MapPin size={16} className="text-neon-teal" />
-                <select className="bg-transparent text-white outline-none">
-                  <option value="">Seleccionar Isla</option>
-                  <option value="gran-canaria">Gran Canaria</option>
-                  <option value="tenerife">Tenerife</option>
-                  <option value="lanzarote">Lanzarote</option>
-                  <option value="fuerteventura">Fuerteventura</option>
-                  <option value="la-palma">La Palma</option>
-                  <option value="la-gomera">La Gomera</option>
-                  <option value="el-hierro">El Hierro</option>
-                </select>
-              </div>
-              <div className="glass-card p-3 rounded-lg flex items-center gap-2">
-                <Euro size={16} className="text-neon-emerald" />
-                <select className="bg-transparent text-white outline-none">
-                  <option value="">Rango de Precio</option>
-                  <option value="0-300k">€0 - 300k</option>
-                  <option value="300k-600k">€300k - 600k</option>
-                  <option value="600k-1m">€600k - 1M</option>
-                  <option value="1m+">€1M+</option>
-                </select>
-              </div>
-              <div className="glass-card p-3 rounded-lg flex items-center gap-2">
-                <Building size={16} className="text-neon-teal" />
-                <select className="bg-transparent text-white outline-none">
-                  <option value="">Tipo</option>
-                  <option value="villa">Villa</option>
-                  <option value="apartamento">Apartamento</option>
-                  <option value="casa-rural">Casa Rural</option>
-                  <option value="penthouse">Penthouse</option>
-                </select>
-              </div>
-            </div>
-          </div>
-          
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
-            <div className="glass-card p-6 text-center hover-glow-teal">
-              <FileText className="text-neon-teal mx-auto mb-4" size={32} />
-              <h4 className="font-bold mb-2">Solicitar Documentos</h4>
-              <p className="text-white/70 text-sm">Nota simple, planos, certificados</p>
-            </div>
-            <div className="glass-card p-6 text-center hover-glow-emerald">
-              <Calendar className="text-neon-emerald mx-auto mb-4" size={32} />
-              <h4 className="font-bold mb-2">Visita Presencial</h4>
-              <p className="text-white/70 text-sm">Agenda con agente local</p>
-            </div>
-            <div className="glass-card p-6 text-center hover-glow-teal">
-              <Eye className="text-neon-teal mx-auto mb-4" size={32} />
-              <h4 className="font-bold mb-2">Tour Virtual</h4>
-              <p className="text-white/70 text-sm">Explora en VR inmediatamente</p>
-            </div>
-          </div>
-          
-          <div className="text-center">
-            <Link to="/mapa-canarias" className="btn-primary">
-              Explorar Mapa 3D
-            </Link>
-          </div>
-        </div>
-      </section>
-
-      {/* Featured Real Properties */}
-      <section className="section-padding" data-section="properties">
-        <div className="container mx-auto container-padding">
-          <div className="text-center mb-16">
-            <h2 className="heading-lg text-gradient mb-4">
-              Propiedades Reales Disponibles
-            </h2>
-            <p className="text-xl text-white/70 max-w-3xl mx-auto mb-8">
-              Cada propiedad está verificada, documentada y lista para comprar
-            </p>
-          </div>
-
-          <div className="grid-properties">
-            {properties.map((property) => (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {featuredProperties.map((property) => (
               <div
                 key={property.id}
-                className="glass-card overflow-hidden hover-glow-teal group"
+                className="glass-card overflow-hidden hover-glow-teal group cursor-pointer"
               >
                 <div className="relative">
                   <img
                     src={property.mediaUrl}
                     alt={property.title}
-                    className="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-300"
+                    className="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-500"
                     loading="lazy"
-                    data-field="mediaUrl"
                   />
-                  <div className="absolute top-4 left-4 flex gap-2" data-field="badges">
-                    {property.badges.map((badge, index) => (
-                      <span
-                        key={index}
-                        className={`px-3 py-1 rounded-full text-sm font-semibold ${
-                          badge === 'Verificada' ? 'bg-neon-emerald/90 text-blue-dark' :
-                          badge === 'Disponible' ? 'bg-neon-teal/90 text-blue-dark' :
-                          'bg-white/20 text-white'
-                        }`}
-                      >
-                        {badge}
-                      </span>
-                    ))}
+                  <div className="absolute inset-0 bg-gradient-to-t from-blue-dark/80 via-transparent to-transparent"></div>
+                  
+                  {/* Property Type Badge */}
+                  <div className="absolute top-4 left-4">
+                    <span className="bg-neon-teal/90 text-blue-dark px-3 py-1 rounded-full text-sm font-semibold capitalize">
+                      {property.type}
+                    </span>
                   </div>
-                  <div className="absolute bottom-4 right-4">
-                    <button className="w-12 h-12 bg-neon-teal/20 rounded-full flex items-center justify-center hover:bg-neon-teal/30 transition-colors">
-                      <Play className="text-neon-teal ml-1" size={20} />
+
+                  {/* VR Tour Button */}
+                  <div className="absolute top-4 right-4">
+                    <button className="w-12 h-12 bg-neon-emerald/20 backdrop-blur-sm rounded-full flex items-center justify-center hover:bg-neon-emerald/30 transition-colors group">
+                      <Eye className="text-neon-emerald" size={20} />
                     </button>
                   </div>
+
+                  {/* Verified Badge */}
+                  {property.verified && (
+                    <div className="absolute bottom-4 left-4">
+                      <div className="flex items-center gap-2 bg-neon-emerald/20 backdrop-blur-sm px-3 py-1 rounded-full">
+                        <CheckCircle className="text-neon-emerald" size={14} />
+                        <span className="text-white text-xs font-medium">Verificado</span>
+                      </div>
+                    </div>
+                  )}
+
+                  {/* Quick Stats */}
+                  <div className="absolute bottom-4 right-4 flex gap-2 text-xs text-white/80">
+                    <span className="bg-black/30 backdrop-blur-sm px-2 py-1 rounded">
+                      {property.bedrooms}🛏️
+                    </span>
+                    <span className="bg-black/30 backdrop-blur-sm px-2 py-1 rounded">
+                      {property.bathrooms}🚿
+                    </span>
+                    <span className="bg-black/30 backdrop-blur-sm px-2 py-1 rounded">
+                      {property.sqm}m²
+                    </span>
+                  </div>
                 </div>
+
                 <div className="p-6">
-                  <h3 className="text-xl font-bold mb-2" data-field="title">
+                  <h3 className="text-xl font-bold mb-2 group-hover:text-neon-teal transition-colors">
                     {property.title}
                   </h3>
-                  <p className="text-white/70 mb-4 flex items-center gap-2" data-field="location">
+                  <p className="text-white/70 mb-4 flex items-center gap-2">
                     <MapPin size={16} />
                     {property.location}
                   </p>
-                  <div className="flex justify-between items-center mb-4">
-                    <span className="text-2xl font-bold text-neon-teal" data-field="price">
+                  <div className="flex justify-between items-center mb-6">
+                    <span className="text-2xl font-bold text-neon-teal">
                       €{property.price.toLocaleString()}
                     </span>
-                    <span className="text-white/60" data-field="pricePerSqm">
-                      €{property.pricePerSqm}/m²
+                    <span className="text-white/60">
+                      €{property.pricePerSqm.toLocaleString()}/m²
                     </span>
                   </div>
-                  <div className="flex gap-2 mb-4">
+                  
+                  <div className="flex gap-3">
                     <Link
-                      to={`/property/${property.slug}/vr`}
-                      className="flex-1 btn-secondary text-center text-sm py-2"
+                      to={`/property/${property.id}/vr`}
+                      className="flex-1 btn-secondary text-center text-sm py-3 flex items-center justify-center gap-2"
                     >
+                      <Eye size={16} />
                       Tour VR
                     </Link>
                     <Link
-                      to={`/property/${property.slug}/info`}
-                      className="flex-1 btn-primary text-center text-sm py-2"
+                      to={`/property/${property.id}`}
+                      className="flex-1 btn-primary text-center text-sm py-3 flex items-center justify-center gap-2"
                     >
-                      Ver Detalles
+                      <ArrowRight size={16} />
+                      Detalles
                     </Link>
                   </div>
-                  <button className="w-full glass-card py-2 rounded-lg text-sm hover:bg-white/10 transition-colors">
-                    Solicitar Información
-                  </button>
                 </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Real Buyers Community */}
-      <section className="section-padding">
-        <div className="container mx-auto container-padding">
-          <div className="text-center mb-16">
-            <h2 className="heading-lg text-gradient mb-6">
-              Comunidad de Compradores Reales
-            </h2>
-            <p className="text-xl text-white/70 max-w-3xl mx-auto mb-8">
-              Conecta con personas que ya compraron, comparten experiencias reales y ayudan en tu decisión
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
-            <div className="glass-card p-6 text-center hover-glow-teal">
-              <div className="w-16 h-16 bg-neon-teal/20 rounded-full flex items-center justify-center mx-auto mb-4">
-                <Users className="text-neon-teal" size={32} />
-              </div>
-              <h4 className="font-bold mb-2">1,247 Compradores</h4>
-              <p className="text-white/70 text-sm">Propietarios reales compartiendo experiencias</p>
-            </div>
-            <div className="glass-card p-6 text-center hover-glow-emerald">
-              <div className="w-16 h-16 bg-neon-emerald/20 rounded-full flex items-center justify-center mx-auto mb-4">
-                <CheckCircle className="text-neon-emerald" size={32} />
-              </div>
-              <h4 className="font-bold mb-2">€847M Vendidos</h4>
-              <p className="text-white/70 text-sm">En propiedades reales verificadas</p>
-            </div>
-            <div className="glass-card p-6 text-center hover-glow-teal">
-              <div className="w-16 h-16 bg-neon-teal/20 rounded-full flex items-center justify-center mx-auto mb-4">
-                <Star className="text-neon-teal" size={32} />
-              </div>
-              <h4 className="font-bold mb-2">4.9/5 Satisfacción</h4>
-              <p className="text-white/70 text-sm">Calificación promedio verificada</p>
-            </div>
-          </div>
-
-          <div className="text-center">
-            <Link to="/comunidad" className="btn-primary">
-              Unirse a la Comunidad
-            </Link>
-          </div>
-        </div>
-      </section>
-
-      {/* Trust Band - Legal Verification */}
-      <section className="py-16 bg-gradient-to-r from-blue-dark/80 to-blue-dark">
-        <div className="container mx-auto container-padding">
-          <div className="text-center mb-12">
-            <h3 className="text-2xl font-bold text-gradient mb-4">
-              Proceso 100% Legal y Seguro
-            </h3>
-            <p className="text-white/70 max-w-2xl mx-auto">
-              Cada transacción cumple la normativa española y europea de compraventa inmobiliaria
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {trustFeatures.map((feature, index) => (
-              <div key={index} className="glass-card p-6 text-center hover-glow-teal">
-                <feature.icon className="text-neon-teal mx-auto mb-4" size={32} />
-                <h4 className="font-bold mb-2">{feature.title}</h4>
-                <p className="text-white/70 text-sm">{feature.description}</p>
               </div>
             ))}
           </div>
 
           <div className="text-center mt-12">
-            <div className="flex flex-wrap justify-center items-center gap-8 text-white/40">
-              <span className="text-lg font-semibold">Colaboramos con:</span>
-              <span>Colegio Notarios España</span>
-              <span>Registro Propiedad</span>
-              <span>CNMV</span>
-              <span>Banco de España</span>
+            <Link to="/propiedades" className="btn-primary">
+              Ver Todas las Propiedades
+              <ArrowRight className="ml-2" size={20} />
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* Villa Showcase Section */}
+      <section className="section-padding bg-gradient-to-b from-transparent to-blue-dark/30">
+        <div className="container mx-auto container-padding">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+            <div className="relative">
+              <video
+                className="w-full h-96 lg:h-[500px] object-cover rounded-2xl shadow-glass"
+                autoPlay
+                muted
+                loop
+                playsInline
+                poster="/placeholder.svg"
+              >
+                <source src="/luxury-villa-tour.mp4" type="video/mp4" />
+                <img src="/placeholder.svg" alt="Luxury villa interior VR tour" />
+              </video>
+              <div className="absolute inset-0 bg-gradient-to-t from-blue-dark/50 to-transparent rounded-2xl"></div>
+              
+              {/* Play Button Overlay */}
+              <button className="absolute inset-0 flex items-center justify-center group">
+                <div className="w-24 h-24 bg-neon-teal/20 backdrop-blur-sm rounded-full flex items-center justify-center group-hover:bg-neon-teal/30 transition-all duration-300 group-hover:scale-110 shadow-neon-teal">
+                  <Play className="text-neon-teal ml-2" size={40} />
+                </div>
+              </button>
+
+              {/* VR Badge */}
+              <div className="absolute top-6 left-6">
+                <div className="glass-card px-4 py-2 rounded-full flex items-center gap-2">
+                  <Eye className="text-neon-teal" size={16} />
+                  <span className="text-white font-medium">Tour VR Disponible</span>
+                </div>
+              </div>
+            </div>
+            
+            <div className="space-y-8">
+              <div>
+                <h2 className="heading-lg text-gradient mb-6">
+                  {t.sections.villa}
+                </h2>
+                <p className="text-xl text-white/80 mb-6 leading-relaxed">
+                  Cada detalle importa cuando eliges tu hogar. Nuestros tours VR te permiten 
+                  explorar cada habitación, sentir el espacio y tomar decisiones informadas 
+                  antes de la compra.
+                </p>
+              </div>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                <div className="glass-card p-6 hover-glow-teal">
+                  <div className="w-12 h-12 bg-neon-teal/20 rounded-lg flex items-center justify-center mb-4">
+                    <Eye className="text-neon-teal" size={24} />
+                  </div>
+                  <h4 className="font-bold mb-2">VR Hiperrealista</h4>
+                  <p className="text-white/70 text-sm">Resolución 8K con detalles fotográficos</p>
+                </div>
+
+                <div className="glass-card p-6 hover-glow-emerald">
+                  <div className="w-12 h-12 bg-neon-emerald/20 rounded-lg flex items-center justify-center mb-4">
+                    <CheckCircle className="text-neon-emerald" size={24} />
+                  </div>
+                  <h4 className="font-bold mb-2">Medidas Exactas</h4>
+                  <p className="text-white/70 text-sm">Dimensiones precisas al centímetro</p>
+                </div>
+
+                <div className="glass-card p-6 hover-glow-teal">
+                  <div className="w-12 h-12 bg-neon-teal/20 rounded-lg flex items-center justify-center mb-4">
+                    <Globe className="text-neon-teal" size={24} />
+                  </div>
+                  <h4 className="font-bold mb-2">Acceso 24/7</h4>
+                  <p className="text-white/70 text-sm">Visita desde cualquier lugar del mundo</p>
+                </div>
+
+                <div className="glass-card p-6 hover-glow-emerald">
+                  <div className="w-12 h-12 bg-neon-emerald/20 rounded-lg flex items-center justify-center mb-4">
+                    <FileText className="text-neon-emerald" size={24} />
+                  </div>
+                  <h4 className="font-bold mb-2">Docs Incluidos</h4>
+                  <p className="text-white/70 text-sm">Planos, certificados y registros</p>
+                </div>
+              </div>
+
+              <div className="flex flex-col sm:flex-row gap-4">
+                <Link to="/villa-vr-demo" className="btn-primary flex items-center justify-center gap-2">
+                  <Play size={20} />
+                  Explorar Villa Demo
+                </Link>
+                <Link to="/solicitar-tour" className="btn-secondary flex items-center justify-center gap-2">
+                  <Calendar size={20} />
+                  Solicitar Tour Personalizado
+                </Link>
+              </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Testimonials */}
+      {/* VR Experience Section */}
       <section className="section-padding">
         <div className="container mx-auto container-padding">
-          <div className="text-center mb-16">
-            <h2 className="heading-lg text-gradient mb-4">
-              Propietarios Reales, Experiencias Reales
-            </h2>
-          </div>
-          
-          <div className="grid-testimonials">
-            {testimonials.map((testimonial) => (
-              <div key={testimonial.id} className="glass-card p-6 hover-glow-teal">
-                <div className="flex items-center gap-1 mb-4">
-                  {[...Array(testimonial.rating)].map((_, i) => (
-                    <Star key={i} className="text-neon-teal fill-current" size={20} />
-                  ))}
-                </div>
-                <p className="text-white/80 mb-6">"{testimonial.text}"</p>
-                <div className="flex items-center gap-3 mb-3">
-                  <img
-                    src={testimonial.avatar}
-                    alt={testimonial.name}
-                    className="w-12 h-12 rounded-full"
-                    loading="lazy"
-                  />
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+            <div className="order-2 lg:order-1">
+              <h2 className="heading-lg text-gradient mb-6">
+                {t.sections.vr}
+              </h2>
+              <p className="text-xl text-white/80 mb-8 leading-relaxed">
+                La experiencia perfecta combina la innovación de la inteligencia artificial 
+                con la confianza de profesionales humanos especializados en derecho inmobiliario.
+              </p>
+
+              <div className="space-y-6 mb-8">
+                <div className="flex items-start gap-4">
+                  <div className="w-12 h-12 bg-neon-teal/20 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                    <Bot className="text-neon-teal" size={24} />
+                  </div>
                   <div>
-                    <h4 className="font-semibold">{testimonial.name}</h4>
-                    <p className="text-white/60 text-sm">{testimonial.location}</p>
+                    <h4 className="font-bold text-lg mb-2">Agente IA Personalizado</h4>
+                    <p className="text-white/70">
+                      Asistente inteligente disponible 24/7 que aprende tus preferencias, 
+                      responde consultas y programa visitas según tu agenda.
+                    </p>
                   </div>
                 </div>
-                <div className="text-neon-teal text-sm font-medium">
-                  Compró: {testimonial.property}
+
+                <div className="flex items-start gap-4">
+                  <div className="w-12 h-12 bg-neon-emerald/20 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                    <Users className="text-neon-emerald" size={24} />
+                  </div>
+                  <div>
+                    <h4 className="font-bold text-lg mb-2">Equipo Legal Especializado</h4>
+                    <p className="text-white/70">
+                      Abogados inmobiliarios y notarios certificados supervisan cada transacción, 
+                      garantizando cumplimiento legal y seguridad total.
+                    </p>
+                  </div>
+                </div>
+
+                <div className="flex items-start gap-4">
+                  <div className="w-12 h-12 bg-neon-teal/20 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                    <Shield className="text-neon-teal" size={24} />
+                  </div>
+                  <div>
+                    <h4 className="font-bold text-lg mb-2">Proceso Certificado</h4>
+                    <p className="text-white/70">
+                      Desde la primera consulta hasta la entrega de llaves, 
+                      cada paso está documentado y respaldado legalmente.
+                    </p>
+                  </div>
                 </div>
               </div>
-            ))}
+
+              <Link to="/proceso-compra" className="btn-primary">
+                Conocer el Proceso Completo
+              </Link>
+            </div>
+
+            <div className="order-1 lg:order-2 relative">
+              <video
+                className="w-full h-96 lg:h-[500px] object-cover rounded-2xl shadow-glass"
+                autoPlay
+                muted
+                loop
+                playsInline
+                poster="/placeholder.svg"
+              >
+                <source src="/vr-user-holograms.mp4" type="video/mp4" />
+                <img src="/placeholder.svg" alt="User with VR headset interacting with holograms" />
+              </video>
+              <div className="absolute inset-0 bg-gradient-to-t from-blue-dark/40 to-transparent rounded-2xl"></div>
+              
+              {/* Floating Elements */}
+              <div className="absolute top-6 right-6">
+                <div className="glass-card px-4 py-2 rounded-full flex items-center gap-2 animate-float">
+                  <Headphones className="text-neon-emerald" size={16} />
+                  <span className="text-white font-medium">Audio 3D</span>
+                </div>
+              </div>
+
+              <div className="absolute bottom-6 left-6">
+                <div className="glass-card px-4 py-2 rounded-full flex items-center gap-2 animate-float" style={{animationDelay: '1s'}}>
+                  <MessageCircle className="text-neon-teal" size={16} />
+                  <span className="text-white font-medium">IA en Tiempo Real</span>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* Final CTA */}
+      {/* 3D Map Canarias Section */}
+      <section className="section-padding relative overflow-hidden">
+        <div className="absolute inset-0 z-0">
+          <video
+            className="w-full h-full object-cover opacity-40"
+            autoPlay
+            muted
+            loop
+            playsInline
+            poster="/placeholder.svg"
+          >
+            <source src="/3d-canarias-map.mp4" type="video/mp4" />
+            <img src="/placeholder.svg" alt="3D futuristic map of Canary Islands with glowing pins" />
+          </video>
+          <div className="absolute inset-0 bg-gradient-to-b from-blue-dark/80 to-blue-dark/90"></div>
+        </div>
+        
+        <div className="relative z-10 container mx-auto container-padding text-center">
+          <h2 className="heading-lg text-gradient mb-6">
+            {t.sections.map}
+          </h2>
+          <p className="text-xl text-white/80 max-w-3xl mx-auto mb-12">
+            Navega por un mapa interactivo 3D de las Islas Canarias y España. 
+            Filtra por ubicación, precio, tipo de propiedad y accede a tours VR instantáneos.
+          </p>
+          
+          {/* Interactive Features */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+            <div className="glass-card p-8 hover-glow-teal">
+              <div className="w-16 h-16 bg-neon-teal/20 rounded-full flex items-center justify-center mx-auto mb-6">
+                <MapPin className="text-neon-teal" size={32} />
+              </div>
+              <h4 className="font-bold text-lg mb-4">Localización Precisa</h4>
+              <p className="text-white/70">
+                Coordenadas exactas, vistas satelitales y información del entorno en tiempo real.
+              </p>
+            </div>
+
+            <div className="glass-card p-8 hover-glow-emerald">
+              <div className="w-16 h-16 bg-neon-emerald/20 rounded-full flex items-center justify-center mx-auto mb-6">
+                <Eye className="text-neon-emerald" size={32} />
+              </div>
+              <h4 className="font-bold text-lg mb-4">Tours VR Instantáneos</h4>
+              <p className="text-white/70">
+                Haz clic en cualquier propiedad y accede inmediatamente a su tour virtual completo.
+              </p>
+            </div>
+
+            <div className="glass-card p-8 hover-glow-teal">
+              <div className="w-16 h-16 bg-neon-teal/20 rounded-full flex items-center justify-center mx-auto mb-6">
+                <Building className="text-neon-teal" size={32} />
+              </div>
+              <h4 className="font-bold text-lg mb-4">Datos en Tiempo Real</h4>
+              <p className="text-white/70">
+                Precios actualizados, disponibilidad y nuevas propiedades añadidas diariamente.
+              </p>
+            </div>
+          </div>
+          
+          <Link to="/mapa-canarias" className="btn-primary text-lg px-10 py-4">
+            <Globe className="mr-3" size={24} />
+            Explorar Mapa 3D Interactivo
+          </Link>
+        </div>
+      </section>
+
+      {/* Community Section */}
+      <section className="section-padding bg-gradient-to-b from-blue-dark/30 to-transparent">
+        <div className="container mx-auto container-padding">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+            <div className="relative">
+              <video
+                className="w-full h-96 lg:h-[500px] object-cover rounded-2xl shadow-glass"
+                autoPlay
+                muted
+                loop
+                playsInline
+                poster="/placeholder.svg"
+              >
+                <source src="/futuristic-community.mp4" type="video/mp4" />
+                <img src="/placeholder.svg" alt="Futuristic community of connected users sharing experiences" />
+              </video>
+              <div className="absolute inset-0 bg-gradient-to-t from-blue-dark/50 to-transparent rounded-2xl"></div>
+              
+              {/* Community Stats */}
+              <div className="absolute top-6 left-6 space-y-3">
+                <div className="glass-card px-4 py-2 rounded-full flex items-center gap-2">
+                  <div className="w-2 h-2 bg-neon-teal rounded-full animate-pulse"></div>
+                  <span className="text-white font-medium">2,847 miembros activos</span>
+                </div>
+                <div className="glass-card px-4 py-2 rounded-full flex items-center gap-2">
+                  <div className="w-2 h-2 bg-neon-emerald rounded-full animate-pulse"></div>
+                  <span className="text-white font-medium">156 tours compartidos hoy</span>
+                </div>
+              </div>
+            </div>
+            
+            <div>
+              <h2 className="heading-lg text-gradient mb-6">
+                {t.sections.community}
+              </h2>
+              <p className="text-xl text-white/80 mb-8 leading-relaxed">
+                Únete a una comunidad global de compradores, inversores y propietarios. 
+                Comparte experiencias reales, obtén consejos de expertos y descubre 
+                oportunidades exclusivas antes que nadie.
+              </p>
+
+              <div className="space-y-6 mb-8">
+                <div className="flex items-center gap-4">
+                  <div className="w-3 h-3 bg-neon-teal rounded-full"></div>
+                  <span className="text-white/80">Tours VR compartidos por la comunidad</span>
+                </div>
+                <div className="flex items-center gap-4">
+                  <div className="w-3 h-3 bg-neon-emerald rounded-full"></div>
+                  <span className="text-white/80">Consejos de propietarios reales</span>
+                </div>
+                <div className="flex items-center gap-4">
+                  <div className="w-3 h-3 bg-neon-teal rounded-full"></div>
+                  <span className="text-white/80">Oportunidades de inversión exclusivas</span>
+                </div>
+                <div className="flex items-center gap-4">
+                  <div className="w-3 h-3 bg-neon-emerald rounded-full"></div>
+                  <span className="text-white/80">Eventos y meetups en el metaverso</span>
+                </div>
+              </div>
+
+              <div className="flex flex-col sm:flex-row gap-4">
+                <Link to="/comunidad" className="btn-primary flex items-center justify-center gap-2">
+                  <Users size={20} />
+                  Unirse a la Comunidad
+                </Link>
+                <Link to="/eventos" className="btn-secondary flex items-center justify-center gap-2">
+                  <Calendar size={20} />
+                  Ver Próximos Eventos
+                </Link>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Final CTA Section */}
       <section className="section-padding">
-        <div className="container mx-auto container-padding text-center">
-          <div className="max-w-4xl mx-auto">
+        <div className="container mx-auto container-padding">
+          <div className="text-center max-w-4xl mx-auto">
             <h2 className="heading-xl text-gradient mb-8">
-              Tu próxima casa es real.<br />Empieza hoy.
+              {t.sections.finalCta}
             </h2>
-            <p className="text-xl text-white/80 mb-12 max-w-2xl mx-auto">
-              Explora virtualmente, decide con confianza, compra legalmente. 
-              Tu nueva vida en Canarias te está esperando.
+            <p className="text-xl text-white/80 mb-12 max-w-3xl mx-auto leading-relaxed">
+              El futuro del real estate está aquí. Explora propiedades reales en el metaverso, 
+              toma decisiones informadas con tours VR y completa tu compra con total seguridad legal.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link to="/reservar-visita" className="btn-primary flex items-center justify-center gap-2">
-                <Calendar size={20} />
-                Reservar Visita
+            
+            <div className="flex flex-col sm:flex-row gap-6 justify-center mb-12">
+              <Link to="/reservar-visita" className="btn-primary text-lg px-10 py-4 flex items-center justify-center gap-3">
+                <Calendar size={24} />
+                {t.sections.finalBtn1}
               </Link>
-              <button className="btn-secondary flex items-center justify-center gap-2">
-                <MessageCircle size={20} />
-                Hablar con Agente IA
+              <button className="btn-secondary text-lg px-10 py-4 flex items-center justify-center gap-3">
+                <Bot size={24} />
+                {t.sections.finalBtn2}
               </button>
+            </div>
+
+            {/* Final Trust Indicators */}
+            <div className="flex flex-wrap justify-center gap-8 text-sm text-white/60">
+              <div className="flex items-center gap-2">
+                <CheckCircle className="text-neon-teal" size={16} />
+                <span>Más de €1.2B en ventas verificadas</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <Shield className="text-neon-emerald" size={16} />
+                <span>100% respaldado legalmente</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <Users className="text-neon-teal" size={16} />
+                <span>5,000+ propietarios satisfechos</span>
+              </div>
             </div>
           </div>
         </div>
       </section>
 
       {/* Footer */}
-      <footer className="border-t border-white/10 py-16">
+      <footer className="border-t border-white/10 py-16 bg-gradient-to-b from-transparent to-blue-dark/50">
         <div className="container mx-auto container-padding">
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
             <div>
               <Link to="/" className="text-2xl font-bold text-gradient mb-4 block">
                 BlueEyeHomes
               </Link>
-              <p className="text-white/60 mb-4">
-                Explora virtualmente, compra realmente
+              <p className="text-white/60 mb-6 leading-relaxed">
+                El futuro del real estate: explora virtualmente, compra realmente.
               </p>
-              <div className="text-xs text-white/50 leading-relaxed">
-                <strong>Nota Legal:</strong> La visualización virtual es una representación 
-                fiel de la propiedad real. La compra es de inmuebles físicos reales ubicados 
-                en Canarias y España, sujetos a disponibilidad y verificación notarial.
+              <div className="flex gap-2">
+                {['ES', 'EN', 'DE'].map((lang) => (
+                  <button
+                    key={lang}
+                    onClick={() => setCurrentLang(lang)}
+                    className={`px-3 py-1 rounded-full text-sm transition-colors ${
+                      currentLang === lang ? 'bg-neon-teal text-blue-dark' : 'text-white/60 hover:text-white'
+                    }`}
+                  >
+                    {lang}
+                  </button>
+                ))}
               </div>
             </div>
             
             <div>
-              <h4 className="font-bold mb-4">Propiedades</h4>
-              <div className="space-y-2">
+              <h4 className="font-bold mb-6 text-neon-teal">Propiedades</h4>
+              <div className="space-y-3">
                 <Link to="/propiedades" className="block text-white/60 hover:text-neon-teal transition-colors">
-                  Ver Todas
+                  Todas las Propiedades
                 </Link>
                 <Link to="/propiedades/canarias" className="block text-white/60 hover:text-neon-teal transition-colors">
-                  Canarias
+                  Islas Canarias
                 </Link>
                 <Link to="/propiedades/peninsula" className="block text-white/60 hover:text-neon-teal transition-colors">
-                  Península
+                  España Peninsular
                 </Link>
-                <Link to="/propiedades/nuevas" className="block text-white/60 hover:text-neon-teal transition-colors">
-                  Nuevas
+                <Link to="/propiedades/lujo" className="block text-white/60 hover:text-neon-teal transition-colors">
+                  Propiedades de Lujo
                 </Link>
               </div>
             </div>
             
             <div>
-              <h4 className="font-bold mb-4">Servicios</h4>
-              <div className="space-y-2">
+              <h4 className="font-bold mb-6 text-neon-emerald">Tecnología</h4>
+              <div className="space-y-3">
                 <Link to="/tour-vr" className="block text-white/60 hover:text-neon-teal transition-colors">
                   Tours VR
                 </Link>
-                <Link to="/asesoria-legal" className="block text-white/60 hover:text-neon-teal transition-colors">
-                  Asesoría Legal
+                <Link to="/agente-ia" className="block text-white/60 hover:text-neon-teal transition-colors">
+                  Agente IA
                 </Link>
-                <Link to="/financiacion" className="block text-white/60 hover:text-neon-teal transition-colors">
-                  Financiación
+                <Link to="/metaverso" className="block text-white/60 hover:text-neon-teal transition-colors">
+                  Metaverso
                 </Link>
-                <Link to="/inversion" className="block text-white/60 hover:text-neon-teal transition-colors">
-                  Inversión
+                <Link to="/blockchain" className="block text-white/60 hover:text-neon-teal transition-colors">
+                  Blockchain & Cripto
                 </Link>
               </div>
             </div>
             
             <div>
-              <h4 className="font-bold mb-4">Contacto</h4>
-              <div className="space-y-2">
-                <div className="flex items-center gap-2 text-white/60">
-                  <Phone size={16} />
-                  <span>+34 900 123 456</span>
-                </div>
+              <h4 className="font-bold mb-6 text-neon-teal">Soporte</h4>
+              <div className="space-y-3">
+                <Link to="/como-funciona" className="block text-white/60 hover:text-neon-teal transition-colors">
+                  Cómo Funciona
+                </Link>
+                <Link to="/legal" className="block text-white/60 hover:text-neon-teal transition-colors">
+                  Asesoría Legal
+                </Link>
                 <Link to="/contacto" className="block text-white/60 hover:text-neon-teal transition-colors">
-                  Formulario
+                  Contacto
                 </Link>
-                <Link to="/oficinas" className="block text-white/60 hover:text-neon-teal transition-colors">
-                  Oficinas
-                </Link>
-                <Link to="/prensa" className="block text-white/60 hover:text-neon-teal transition-colors">
-                  Prensa
+                <Link to="/ayuda" className="block text-white/60 hover:text-neon-teal transition-colors">
+                  Centro de Ayuda
                 </Link>
               </div>
             </div>
           </div>
           
-          <div className="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center">
-            <p className="text-white/60 mb-4 md:mb-0">
-              © 2024 BlueEyeHomes. Registro Mercantil Madrid. CIF: A-12345678
-            </p>
-            <div className="flex gap-6">
-              <Link to="/privacidad" className="text-white/60 hover:text-neon-teal transition-colors text-sm">
-                Privacidad
-              </Link>
-              <Link to="/terminos" className="text-white/60 hover:text-neon-teal transition-colors text-sm">
-                Términos
-              </Link>
-              <Link to="/cookies" className="text-white/60 hover:text-neon-teal transition-colors text-sm">
-                Cookies
-              </Link>
+          <div className="border-t border-white/10 pt-8">
+            <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-6">
+              <div className="text-white/60 text-sm max-w-2xl">
+                <p className="mb-2 font-medium">
+                  © 2024 BlueEyeHomes. Registro Mercantil de Madrid. CIF: B-87654321
+                </p>
+                <p className="leading-relaxed">
+                  <strong>Nota Legal:</strong> {t.footer.legal}
+                </p>
+              </div>
+              
+              <div className="flex flex-wrap gap-6">
+                <Link to="/privacidad" className="text-white/60 hover:text-neon-teal transition-colors text-sm">
+                  Privacidad
+                </Link>
+                <Link to="/terminos" className="text-white/60 hover:text-neon-teal transition-colors text-sm">
+                  Términos
+                </Link>
+                <Link to="/cookies" className="text-white/60 hover:text-neon-teal transition-colors text-sm">
+                  Cookies
+                </Link>
+                <Link to="/compliance" className="text-white/60 hover:text-neon-teal transition-colors text-sm">
+                  Compliance
+                </Link>
+              </div>
             </div>
           </div>
         </div>
