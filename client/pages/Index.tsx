@@ -376,13 +376,8 @@ export default function Index() {
         </div>
       </section>
 
-      {/* Floating AI Assistant */}
-      <button
-        className="fixed bottom-6 right-6 z-50 btn-primary w-16 h-16 rounded-full flex items-center justify-center animate-float hover-glow-teal shadow-neon-teal"
-        aria-label="Hablar con agente IA"
-      >
-        <Bot size={28} />
-      </button>
+      {/* AI Chatbot */}
+      <AIChatbot context="home" />
 
       {/* Featured Properties Section */}
       <section className="section-padding">
