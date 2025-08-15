@@ -584,10 +584,8 @@ Perfecta para residencia habitual o como inversión en el mercado de alquiler va
         </div>
       </div>
 
-      {/* Floating AI Assistant */}
-      <button className="fixed bottom-6 right-6 z-50 btn-primary w-16 h-16 rounded-full flex items-center justify-center animate-float hover-glow-teal shadow-neon-teal">
-        <Bot size={28} />
-      </button>
+      {/* AI Chatbot */}
+      <AIChatbot context="property" propertyId={id} />
 
       {/* Gallery Modal */}
       {isGalleryOpen && (
