@@ -1,14 +1,14 @@
-import { useState } from 'react';
-import { Link } from 'react-router-dom';
-import { 
-  Hammer, 
-  Star, 
-  MapPin, 
-  Phone, 
-  Mail, 
-  Clock, 
-  Euro, 
-  CheckCircle, 
+import { useState } from "react";
+import { Link } from "react-router-dom";
+import {
+  Hammer,
+  Star,
+  MapPin,
+  Phone,
+  Mail,
+  Clock,
+  Euro,
+  CheckCircle,
   ArrowRight,
   Filter,
   Search,
@@ -16,106 +16,142 @@ import {
   Users,
   Calendar,
   ImageIcon,
-  Quote
-} from 'lucide-react';
+  Quote,
+} from "lucide-react";
 
 export default function Reformas() {
-  const [selectedCategory, setSelectedCategory] = useState('all');
-  const [priceRange, setPriceRange] = useState('');
-  const [location, setLocation] = useState('');
+  const [selectedCategory, setSelectedCategory] = useState("all");
+  const [priceRange, setPriceRange] = useState("");
+  const [location, setLocation] = useState("");
 
   const categories = [
-    { id: 'all', label: 'Todos los servicios', count: 67 },
-    { id: 'cocinas', label: 'Cocinas', count: 23 },
-    { id: 'banos', label: 'Baños', count: 19 },
-    { id: 'integrales', label: 'Reformas integrales', count: 15 },
-    { id: 'exteriores', label: 'Exteriores y jardines', count: 10 }
+    { id: "all", label: "Todos los servicios", count: 67 },
+    { id: "cocinas", label: "Cocinas", count: 23 },
+    { id: "banos", label: "Baños", count: 19 },
+    { id: "integrales", label: "Reformas integrales", count: 15 },
+    { id: "exteriores", label: "Exteriores y jardines", count: 10 },
   ];
 
   const companies = [
     {
       id: 1,
-      name: 'Reformas Canarias Pro',
-      specialization: 'Reformas integrales de lujo',
-      location: 'Tenerife',
+      name: "Reformas Canarias Pro",
+      specialization: "Reformas integrales de lujo",
+      location: "Tenerife",
       rating: 4.9,
       reviews: 127,
-      priceRange: '€€€',
-      certifications: ['ISO 9001', 'Garantía 5 años'],
-      images: ['/placeholder.svg', '/placeholder.svg', '/placeholder.svg'],
-      description: 'Especialistas en reformas de alto standing con más de 15 años de experiencia en propiedades de lujo.',
-      services: ['Reformas integrales', 'Cocinas de diseño', 'Baños premium', 'Domótica'],
+      priceRange: "€€€",
+      certifications: ["ISO 9001", "Garantía 5 años"],
+      images: ["/placeholder.svg", "/placeholder.svg", "/placeholder.svg"],
+      description:
+        "Especialistas en reformas de alto standing con más de 15 años de experiencia en propiedades de lujo.",
+      services: [
+        "Reformas integrales",
+        "Cocinas de diseño",
+        "Baños premium",
+        "Domótica",
+      ],
       portfolio: [
-        { title: 'Villa Costa Adeje', before: '/placeholder.svg', after: '/placeholder.svg' },
-        { title: 'Penthouse Las Palmas', before: '/placeholder.svg', after: '/placeholder.svg' }
+        {
+          title: "Villa Costa Adeje",
+          before: "/placeholder.svg",
+          after: "/placeholder.svg",
+        },
+        {
+          title: "Penthouse Las Palmas",
+          before: "/placeholder.svg",
+          after: "/placeholder.svg",
+        },
       ],
       contact: {
-        phone: '+34 922 345 678',
-        email: 'info@reformascanariaspro.com',
-        website: 'www.reformascanariaspro.com'
+        phone: "+34 922 345 678",
+        email: "info@reformascanariaspro.com",
+        website: "www.reformascanariaspro.com",
       },
-      responseTime: '2 horas',
+      responseTime: "2 horas",
       startingPrice: 25000,
-      verified: true
+      verified: true,
     },
     {
       id: 2,
-      name: 'Diseño & Obra Atlántico',
-      specialization: 'Cocinas y baños modernos',
-      location: 'Gran Canaria',
+      name: "Diseño & Obra Atlántico",
+      specialization: "Cocinas y baños modernos",
+      location: "Gran Canaria",
       rating: 4.7,
       reviews: 89,
-      priceRange: '€€',
-      certifications: ['Certificado AENOR', 'Eco-friendly'],
-      images: ['/placeholder.svg', '/placeholder.svg'],
-      description: 'Diseño contemporáneo y funcionalidad en cada proyecto. Especialistas en espacios modernos.',
-      services: ['Cocinas modernas', 'Baños contemporáneos', 'Interiorismo', 'Reformas parciales'],
+      priceRange: "€€",
+      certifications: ["Certificado AENOR", "Eco-friendly"],
+      images: ["/placeholder.svg", "/placeholder.svg"],
+      description:
+        "Diseño contemporáneo y funcionalidad en cada proyecto. Especialistas en espacios modernos.",
+      services: [
+        "Cocinas modernas",
+        "Baños contemporáneos",
+        "Interiorismo",
+        "Reformas parciales",
+      ],
       portfolio: [
-        { title: 'Apartamento Vegueta', before: '/placeholder.svg', after: '/placeholder.svg' }
+        {
+          title: "Apartamento Vegueta",
+          before: "/placeholder.svg",
+          after: "/placeholder.svg",
+        },
       ],
       contact: {
-        phone: '+34 928 456 789',
-        email: 'contacto@disenoobra.com',
-        website: 'www.disenoobra.com'
+        phone: "+34 928 456 789",
+        email: "contacto@disenoobra.com",
+        website: "www.disenoobra.com",
       },
-      responseTime: '4 horas',
+      responseTime: "4 horas",
       startingPrice: 12000,
-      verified: true
+      verified: true,
     },
     {
       id: 3,
-      name: 'EcoReformas Sostenibles',
-      specialization: 'Reformas ecológicas y sostenibles',
-      location: 'Lanzarote',
+      name: "EcoReformas Sostenibles",
+      specialization: "Reformas ecológicas y sostenibles",
+      location: "Lanzarote",
       rating: 4.8,
       reviews: 56,
-      priceRange: '€€',
-      certifications: ['LEED Certified', 'Passivhaus'],
-      images: ['/placeholder.svg', '/placeholder.svg', '/placeholder.svg'],
-      description: 'Reformas comprometidas con el medio ambiente utilizando materiales sostenibles y técnicas eficientes.',
-      services: ['Eficiencia energética', 'Materiales sostenibles', 'Paneles solares', 'Aislamiento ecológico'],
+      priceRange: "€€",
+      certifications: ["LEED Certified", "Passivhaus"],
+      images: ["/placeholder.svg", "/placeholder.svg", "/placeholder.svg"],
+      description:
+        "Reformas comprometidas con el medio ambiente utilizando materiales sostenibles y técnicas eficientes.",
+      services: [
+        "Eficiencia energética",
+        "Materiales sostenibles",
+        "Paneles solares",
+        "Aislamiento ecológico",
+      ],
       portfolio: [
-        { title: 'Casa Rural Mancha Blanca', before: '/placeholder.svg', after: '/placeholder.svg' }
+        {
+          title: "Casa Rural Mancha Blanca",
+          before: "/placeholder.svg",
+          after: "/placeholder.svg",
+        },
       ],
       contact: {
-        phone: '+34 928 567 890',
-        email: 'info@ecoreformas.com',
-        website: 'www.ecoreformas.com'
+        phone: "+34 928 567 890",
+        email: "info@ecoreformas.com",
+        website: "www.ecoreformas.com",
       },
-      responseTime: '6 horas',
+      responseTime: "6 horas",
       startingPrice: 18000,
-      verified: true
-    }
+      verified: true,
+    },
   ];
 
-  const filteredCompanies = companies.filter(company => {
-    if (selectedCategory !== 'all') {
-      return company.services.some(service => 
-        service.toLowerCase().includes(selectedCategory.toLowerCase()) ||
-        selectedCategory === 'integrales' && service.includes('integral') ||
-        selectedCategory === 'cocinas' && service.includes('Cocinas') ||
-        selectedCategory === 'banos' && service.includes('Baños') ||
-        selectedCategory === 'exteriores' && (service.includes('jardín') || service.includes('exterior'))
+  const filteredCompanies = companies.filter((company) => {
+    if (selectedCategory !== "all") {
+      return company.services.some(
+        (service) =>
+          service.toLowerCase().includes(selectedCategory.toLowerCase()) ||
+          (selectedCategory === "integrales" && service.includes("integral")) ||
+          (selectedCategory === "cocinas" && service.includes("Cocinas")) ||
+          (selectedCategory === "banos" && service.includes("Baños")) ||
+          (selectedCategory === "exteriores" &&
+            (service.includes("jardín") || service.includes("exterior"))),
       );
     }
     return true;
@@ -133,8 +169,9 @@ export default function Reformas() {
             </h1>
           </div>
           <p className="text-xl text-white/70 max-w-3xl mx-auto">
-            Conecta con profesionales verificados para reformar tu nueva propiedad. 
-            Empresas certificadas con experiencia en inmuebles de BlueEyeHomes.
+            Conecta con profesionales verificados para reformar tu nueva
+            propiedad. Empresas certificadas con experiencia en inmuebles de
+            BlueEyeHomes.
           </p>
         </div>
 
@@ -166,14 +203,17 @@ export default function Reformas() {
         <div className="glass-card p-6 rounded-xl mb-8">
           <div className="flex flex-col lg:flex-row gap-4">
             <div className="relative flex-1">
-              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-white/40" size={20} />
+              <Search
+                className="absolute left-3 top-1/2 transform -translate-y-1/2 text-white/40"
+                size={20}
+              />
               <input
                 type="text"
                 placeholder="Buscar empresa o servicio..."
                 className="w-full bg-white/5 border border-white/10 rounded-lg pl-10 pr-4 py-3 text-white placeholder-white/40 focus:outline-none focus:border-neon-teal"
               />
             </div>
-            <select 
+            <select
               value={location}
               onChange={(e) => setLocation(e.target.value)}
               className="bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-neon-teal"
@@ -184,7 +224,7 @@ export default function Reformas() {
               <option value="lanzarote">Lanzarote</option>
               <option value="fuerteventura">Fuerteventura</option>
             </select>
-            <select 
+            <select
               value={priceRange}
               onChange={(e) => setPriceRange(e.target.value)}
               className="bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-neon-teal"
@@ -205,8 +245,8 @@ export default function Reformas() {
               onClick={() => setSelectedCategory(category.id)}
               className={`px-4 py-2 rounded-full transition-colors ${
                 selectedCategory === category.id
-                  ? 'bg-neon-teal text-blue-dark font-semibold'
-                  : 'glass-card text-white/70 hover:text-white hover:bg-white/10'
+                  ? "bg-neon-teal text-blue-dark font-semibold"
+                  : "glass-card text-white/70 hover:text-white hover:bg-white/10"
               }`}
             >
               {category.label} ({category.count})
@@ -217,7 +257,10 @@ export default function Reformas() {
         {/* Companies Grid */}
         <div className="space-y-8 mb-16">
           {filteredCompanies.map((company) => (
-            <div key={company.id} className="glass-card p-8 rounded-xl hover-glow-teal">
+            <div
+              key={company.id}
+              className="glass-card p-8 rounded-xl hover-glow-teal"
+            >
               <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
                 {/* Company Images */}
                 <div className="space-y-4">
@@ -246,10 +289,15 @@ export default function Reformas() {
                         <div className="flex items-center gap-3 mb-2">
                           <h3 className="text-2xl font-bold">{company.name}</h3>
                           {company.verified && (
-                            <CheckCircle className="text-neon-emerald" size={24} />
+                            <CheckCircle
+                              className="text-neon-emerald"
+                              size={24}
+                            />
                           )}
                         </div>
-                        <p className="text-white/70 mb-2">{company.specialization}</p>
+                        <p className="text-white/70 mb-2">
+                          {company.specialization}
+                        </p>
                         <div className="flex items-center gap-4 text-sm text-white/60">
                           <div className="flex items-center gap-1">
                             <MapPin size={16} />
@@ -260,14 +308,18 @@ export default function Reformas() {
                             <span>{company.rating}</span>
                             <span>({company.reviews} reseñas)</span>
                           </div>
-                          <span className="text-neon-emerald font-medium">{company.priceRange}</span>
+                          <span className="text-neon-emerald font-medium">
+                            {company.priceRange}
+                          </span>
                         </div>
                       </div>
                       <div className="text-right">
                         <div className="text-2xl font-bold text-neon-teal mb-1">
                           Desde €{company.startingPrice.toLocaleString()}
                         </div>
-                        <div className="text-white/60 text-sm">Precio orientativo</div>
+                        <div className="text-white/60 text-sm">
+                          Precio orientativo
+                        </div>
                       </div>
                     </div>
 
@@ -275,7 +327,9 @@ export default function Reformas() {
 
                     {/* Services */}
                     <div className="mb-4">
-                      <h4 className="font-bold mb-2">Servicios especializados:</h4>
+                      <h4 className="font-bold mb-2">
+                        Servicios especializados:
+                      </h4>
                       <div className="flex flex-wrap gap-2">
                         {company.services.map((service, index) => (
                           <span
@@ -307,19 +361,36 @@ export default function Reformas() {
                     {/* Contact Info */}
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
                       <div className="glass-card p-4 rounded-lg text-center">
-                        <Clock className="text-neon-teal mx-auto mb-2" size={20} />
-                        <div className="text-sm text-white/60">Respuesta en</div>
-                        <div className="font-medium">{company.responseTime}</div>
+                        <Clock
+                          className="text-neon-teal mx-auto mb-2"
+                          size={20}
+                        />
+                        <div className="text-sm text-white/60">
+                          Respuesta en
+                        </div>
+                        <div className="font-medium">
+                          {company.responseTime}
+                        </div>
                       </div>
                       <div className="glass-card p-4 rounded-lg text-center">
-                        <Phone className="text-neon-emerald mx-auto mb-2" size={20} />
+                        <Phone
+                          className="text-neon-emerald mx-auto mb-2"
+                          size={20}
+                        />
                         <div className="text-sm text-white/60">Teléfono</div>
-                        <div className="font-medium text-sm">{company.contact.phone}</div>
+                        <div className="font-medium text-sm">
+                          {company.contact.phone}
+                        </div>
                       </div>
                       <div className="glass-card p-4 rounded-lg text-center">
-                        <Mail className="text-neon-teal mx-auto mb-2" size={20} />
+                        <Mail
+                          className="text-neon-teal mx-auto mb-2"
+                          size={20}
+                        />
                         <div className="text-sm text-white/60">Email</div>
-                        <div className="font-medium text-sm">{company.contact.email}</div>
+                        <div className="font-medium text-sm">
+                          {company.contact.email}
+                        </div>
                       </div>
                     </div>
 
@@ -355,7 +426,9 @@ export default function Reformas() {
                         <h5 className="font-medium mb-3">{project.title}</h5>
                         <div className="grid grid-cols-2 gap-3">
                           <div>
-                            <div className="text-sm text-white/60 mb-1">Antes</div>
+                            <div className="text-sm text-white/60 mb-1">
+                              Antes
+                            </div>
                             <img
                               src={project.before}
                               alt={`${project.title} - Antes`}
@@ -363,7 +436,9 @@ export default function Reformas() {
                             />
                           </div>
                           <div>
-                            <div className="text-sm text-white/60 mb-1">Después</div>
+                            <div className="text-sm text-white/60 mb-1">
+                              Después
+                            </div>
                             <img
                               src={project.after}
                               alt={`${project.title} - Después`}
@@ -386,13 +461,11 @@ export default function Reformas() {
             ¿Eres una empresa de reformas?
           </h2>
           <p className="text-xl text-white/70 mb-8 max-w-2xl mx-auto">
-            Únete a nuestro marketplace y conecta con propietarios de BlueEyeHomes 
-            que buscan servicios de reforma de calidad.
+            Únete a nuestro marketplace y conecta con propietarios de
+            BlueEyeHomes que buscan servicios de reforma de calidad.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <button className="btn-primary">
-              Registrar mi empresa
-            </button>
+            <button className="btn-primary">Registrar mi empresa</button>
             <Link to="/marketplace" className="btn-secondary">
               Ver otros servicios
             </Link>

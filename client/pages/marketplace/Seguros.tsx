@@ -1,12 +1,12 @@
-import { useState } from 'react';
-import { Link } from 'react-router-dom';
-import { 
-  Shield, 
-  Star, 
-  Phone, 
-  Mail, 
-  Euro, 
-  CheckCircle, 
+import { useState } from "react";
+import { Link } from "react-router-dom";
+import {
+  Shield,
+  Star,
+  Phone,
+  Mail,
+  Euro,
+  CheckCircle,
   ArrowRight,
   Search,
   Award,
@@ -16,109 +16,111 @@ import {
   Home,
   Car,
   Heart,
-  Zap
-} from 'lucide-react';
+  Zap,
+} from "lucide-react";
 
 export default function Seguros() {
-  const [selectedType, setSelectedType] = useState('all');
+  const [selectedType, setSelectedType] = useState("all");
 
   const insuranceTypes = [
-    { id: 'all', label: 'Todos los seguros', count: 12 },
-    { id: 'hogar', label: 'Seguro de hogar', count: 4 },
-    { id: 'vida', label: 'Seguro de vida', count: 3 },
-    { id: 'comunidades', label: 'Comunidades', count: 2 },
-    { id: 'responsabilidad', label: 'Responsabilidad civil', count: 3 }
+    { id: "all", label: "Todos los seguros", count: 12 },
+    { id: "hogar", label: "Seguro de hogar", count: 4 },
+    { id: "vida", label: "Seguro de vida", count: 3 },
+    { id: "comunidades", label: "Comunidades", count: 2 },
+    { id: "responsabilidad", label: "Responsabilidad civil", count: 3 },
   ];
 
   const companies = [
     {
       id: 1,
-      name: 'Seguros Canarias Premium',
-      specialization: 'Seguros de hogar y vida para propiedades de lujo',
+      name: "Seguros Canarias Premium",
+      specialization: "Seguros de hogar y vida para propiedades de lujo",
       rating: 4.9,
       reviews: 284,
-      responseTime: '1 hora',
-      coverage: ['Hogar', 'Vida', 'Responsabilidad Civil'],
+      responseTime: "1 hora",
+      coverage: ["Hogar", "Vida", "Responsabilidad Civil"],
       features: [
-        'Cobertura hasta €5M',
-        'Peritaje 24h',
-        'Franquicia €0',
-        'Asistencia legal incluida'
+        "Cobertura hasta €5M",
+        "Peritaje 24h",
+        "Franquicia €0",
+        "Asistencia legal incluida",
       ],
       discounts: [
-        '20% descuento clientes BlueEyeHomes',
-        '15% descuento múltiples pólizas',
-        'Sin carencias'
+        "20% descuento clientes BlueEyeHomes",
+        "15% descuento múltiples pólizas",
+        "Sin carencias",
       ],
       contact: {
-        phone: '+34 922 888 999',
-        email: 'premium@seguroscanarias.com'
+        phone: "+34 922 888 999",
+        email: "premium@seguroscanarias.com",
       },
       verified: true,
-      logo: '/placeholder.svg'
+      logo: "/placeholder.svg",
     },
     {
       id: 2,
-      name: 'Atlántico Seguros Integrales',
-      specialization: 'Seguros para comunidades y administradores',
+      name: "Atlántico Seguros Integrales",
+      specialization: "Seguros para comunidades y administradores",
       rating: 4.7,
       reviews: 156,
-      responseTime: '2 horas',
-      coverage: ['Comunidades', 'Responsabilidad Civil', 'Multirriesgo'],
+      responseTime: "2 horas",
+      coverage: ["Comunidades", "Responsabilidad Civil", "Multirriesgo"],
       features: [
-        'Gestión digital completa',
-        'Cobertura daños por agua',
-        'Responsabilidad administrador',
-        'Asistencia técnica 24h'
+        "Gestión digital completa",
+        "Cobertura daños por agua",
+        "Responsabilidad administrador",
+        "Asistencia técnica 24h",
       ],
       discounts: [
-        '25% descuento nuevas comunidades',
-        'Gestión gratuita primer año',
-        'Peritaje sin coste'
+        "25% descuento nuevas comunidades",
+        "Gestión gratuita primer año",
+        "Peritaje sin coste",
       ],
       contact: {
-        phone: '+34 928 777 888',
-        email: 'comunidades@atlanticoseguros.com'
+        phone: "+34 928 777 888",
+        email: "comunidades@atlanticoseguros.com",
       },
       verified: true,
-      logo: '/placeholder.svg'
+      logo: "/placeholder.svg",
     },
     {
       id: 3,
-      name: 'VidaSecure Canarias',
-      specialization: 'Seguros de vida y ahorro vinculados a hipotecas',
+      name: "VidaSecure Canarias",
+      specialization: "Seguros de vida y ahorro vinculados a hipotecas",
       rating: 4.8,
       reviews: 97,
-      responseTime: '30 minutos',
-      coverage: ['Vida', 'Ahorro', 'Inversión'],
+      responseTime: "30 minutos",
+      coverage: ["Vida", "Ahorro", "Inversión"],
       features: [
-        'Vinculación hipotecaria',
-        'Planes de ahorro',
-        'Cobertura internacional',
-        'Gestión online'
+        "Vinculación hipotecaria",
+        "Planes de ahorro",
+        "Cobertura internacional",
+        "Gestión online",
       ],
       discounts: [
-        '30% descuento primer año',
-        'Sin revisión médica hasta €300k',
-        'Bonificación sin siniestros'
+        "30% descuento primer año",
+        "Sin revisión médica hasta €300k",
+        "Bonificación sin siniestros",
       ],
       contact: {
-        phone: '+34 922 666 777',
-        email: 'info@vidasecure.com'
+        phone: "+34 922 666 777",
+        email: "info@vidasecure.com",
       },
       verified: true,
-      logo: '/placeholder.svg'
-    }
+      logo: "/placeholder.svg",
+    },
   ];
 
-  const filteredCompanies = companies.filter(company => {
-    if (selectedType === 'all') return true;
-    return company.coverage.some(coverage => 
-      coverage.toLowerCase().includes(selectedType) ||
-      (selectedType === 'hogar' && coverage === 'Hogar') ||
-      (selectedType === 'vida' && coverage === 'Vida') ||
-      (selectedType === 'comunidades' && coverage === 'Comunidades') ||
-      (selectedType === 'responsabilidad' && coverage.includes('Responsabilidad'))
+  const filteredCompanies = companies.filter((company) => {
+    if (selectedType === "all") return true;
+    return company.coverage.some(
+      (coverage) =>
+        coverage.toLowerCase().includes(selectedType) ||
+        (selectedType === "hogar" && coverage === "Hogar") ||
+        (selectedType === "vida" && coverage === "Vida") ||
+        (selectedType === "comunidades" && coverage === "Comunidades") ||
+        (selectedType === "responsabilidad" &&
+          coverage.includes("Responsabilidad")),
     );
   });
 
@@ -129,13 +131,12 @@ export default function Seguros() {
         <div className="text-center mb-12">
           <div className="flex items-center justify-center gap-3 mb-6">
             <Shield className="text-neon-teal" size={48} />
-            <h1 className="heading-lg text-gradient">
-              Marketplace de Seguros
-            </h1>
+            <h1 className="heading-lg text-gradient">Marketplace de Seguros</h1>
           </div>
           <p className="text-xl text-white/70 max-w-3xl mx-auto">
-            Protege tu inversión inmobiliaria con seguros especializados. 
-            Compañías de confianza con condiciones exclusivas para clientes BlueEyeHomes.
+            Protege tu inversión inmobiliaria con seguros especializados.
+            Compañías de confianza con condiciones exclusivas para clientes
+            BlueEyeHomes.
           </p>
         </div>
 
@@ -167,7 +168,10 @@ export default function Seguros() {
         <div className="glass-card p-6 rounded-xl mb-8">
           <div className="flex flex-col lg:flex-row gap-4">
             <div className="relative flex-1">
-              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-white/40" size={20} />
+              <Search
+                className="absolute left-3 top-1/2 transform -translate-y-1/2 text-white/40"
+                size={20}
+              />
               <input
                 type="text"
                 placeholder="Buscar tipo de seguro o compañía..."
@@ -189,8 +193,8 @@ export default function Seguros() {
               onClick={() => setSelectedType(type.id)}
               className={`px-4 py-2 rounded-full transition-colors ${
                 selectedType === type.id
-                  ? 'bg-neon-teal text-blue-dark font-semibold'
-                  : 'glass-card text-white/70 hover:text-white hover:bg-white/10'
+                  ? "bg-neon-teal text-blue-dark font-semibold"
+                  : "glass-card text-white/70 hover:text-white hover:bg-white/10"
               }`}
             >
               {type.label} ({type.count})
@@ -201,7 +205,10 @@ export default function Seguros() {
         {/* Companies Grid */}
         <div className="space-y-8 mb-16">
           {filteredCompanies.map((company) => (
-            <div key={company.id} className="glass-card p-8 rounded-xl hover-glow-teal">
+            <div
+              key={company.id}
+              className="glass-card p-8 rounded-xl hover-glow-teal"
+            >
               <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
                 {/* Company Logo */}
                 <div className="flex flex-col items-center text-center">
@@ -213,7 +220,9 @@ export default function Seguros() {
                   <div className="flex items-center gap-1 text-neon-teal mb-2">
                     <Star size={16} fill="currentColor" />
                     <span className="font-bold">{company.rating}</span>
-                    <span className="text-white/60 text-sm">({company.reviews})</span>
+                    <span className="text-white/60 text-sm">
+                      ({company.reviews})
+                    </span>
                   </div>
                   {company.verified && (
                     <div className="flex items-center gap-1 text-neon-emerald text-sm">
@@ -227,8 +236,10 @@ export default function Seguros() {
                 <div className="lg:col-span-3 space-y-6">
                   <div>
                     <h3 className="text-2xl font-bold mb-2">{company.name}</h3>
-                    <p className="text-white/70 mb-4">{company.specialization}</p>
-                    
+                    <p className="text-white/70 mb-4">
+                      {company.specialization}
+                    </p>
+
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                       {/* Coverage */}
                       <div>
@@ -263,12 +274,19 @@ export default function Seguros() {
 
                   {/* Features */}
                   <div>
-                    <h4 className="font-bold mb-3">Características principales:</h4>
+                    <h4 className="font-bold mb-3">
+                      Características principales:
+                    </h4>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                       {company.features.map((feature, index) => (
                         <div key={index} className="flex items-center gap-2">
-                          <CheckCircle className="text-neon-teal flex-shrink-0" size={16} />
-                          <span className="text-white/80 text-sm">{feature}</span>
+                          <CheckCircle
+                            className="text-neon-teal flex-shrink-0"
+                            size={16}
+                          />
+                          <span className="text-white/80 text-sm">
+                            {feature}
+                          </span>
                         </div>
                       ))}
                     </div>
@@ -276,10 +294,15 @@ export default function Seguros() {
 
                   {/* Discounts */}
                   <div>
-                    <h4 className="font-bold mb-3 text-neon-emerald">Ofertas exclusivas:</h4>
+                    <h4 className="font-bold mb-3 text-neon-emerald">
+                      Ofertas exclusivas:
+                    </h4>
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
                       {company.discounts.map((discount, index) => (
-                        <div key={index} className="glass-card p-3 rounded-lg text-center">
+                        <div
+                          key={index}
+                          className="glass-card p-3 rounded-lg text-center"
+                        >
                           <div className="text-neon-emerald font-semibold text-sm">
                             {discount}
                           </div>
@@ -328,7 +351,9 @@ export default function Seguros() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
             <div>
-              <label className="block text-white/70 mb-2">Tipo de propiedad</label>
+              <label className="block text-white/70 mb-2">
+                Tipo de propiedad
+              </label>
               <select className="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-neon-teal">
                 <option value="">Seleccionar</option>
                 <option value="villa">Villa</option>
@@ -339,7 +364,9 @@ export default function Seguros() {
             </div>
 
             <div>
-              <label className="block text-white/70 mb-2">Valor de la propiedad</label>
+              <label className="block text-white/70 mb-2">
+                Valor de la propiedad
+              </label>
               <input
                 type="number"
                 placeholder="€"
@@ -383,13 +410,11 @@ export default function Seguros() {
             ¿Representas una compañía de seguros?
           </h2>
           <p className="text-xl text-white/70 mb-8 max-w-2xl mx-auto">
-            Únete a nuestro marketplace y ofrece productos especializados 
-            para propietarios de inmuebles de lujo.
+            Únete a nuestro marketplace y ofrece productos especializados para
+            propietarios de inmuebles de lujo.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <button className="btn-primary">
-              Registrar compañía
-            </button>
+            <button className="btn-primary">Registrar compañía</button>
             <Link to="/marketplace" className="btn-secondary">
               Ver otros servicios
             </Link>

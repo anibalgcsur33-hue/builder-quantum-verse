@@ -1,37 +1,37 @@
-import { useState, useEffect, useRef } from 'react';
-import { 
-  Bot, 
-  Send, 
-  Sparkles, 
-  Search, 
-  FileText, 
-  Download, 
-  Eye, 
-  Filter, 
-  MapPin, 
-  Euro, 
-  Bed, 
-  Bath, 
-  Square, 
-  TrendingUp, 
-  Calendar, 
-  Star, 
-  CheckCircle, 
-  Clock, 
-  X, 
-  Mic, 
+import { useState, useEffect, useRef } from "react";
+import {
+  Bot,
+  Send,
+  Sparkles,
+  Search,
+  FileText,
+  Download,
+  Eye,
+  Filter,
+  MapPin,
+  Euro,
+  Bed,
+  Bath,
+  Square,
+  TrendingUp,
+  Calendar,
+  Star,
+  CheckCircle,
+  Clock,
+  X,
+  Mic,
   MicOff,
   Volume2,
   VolumeX,
   Zap,
   Target,
   Brain,
-  Wand2
-} from 'lucide-react';
+  Wand2,
+} from "lucide-react";
 
 interface Message {
   id: string;
-  type: 'user' | 'ai';
+  type: "user" | "ai";
   content: string;
   timestamp: Date;
   propertyResults?: PropertyMatch[];
@@ -70,7 +70,7 @@ interface SearchCriteria {
 export default function AIConcierge() {
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState<Message[]>([]);
-  const [inputValue, setInputValue] = useState('');
+  const [inputValue, setInputValue] = useState("");
   const [isTyping, setIsTyping] = useState(false);
   const [isListening, setIsListening] = useState(false);
   const [audioEnabled, setAudioEnabled] = useState(true);
@@ -80,50 +80,64 @@ export default function AIConcierge() {
   // Sample property database
   const propertyDatabase: PropertyMatch[] = [
     {
-      id: '1',
-      title: 'Ático Premium Ocean View',
-      location: 'Costa Adeje, Tenerife',
+      id: "1",
+      title: "Ático Premium Ocean View",
+      location: "Costa Adeje, Tenerife",
       price: 1950000,
       bedrooms: 3,
       bathrooms: 2,
       sqm: 180,
       roi: 8.2,
       matchScore: 95,
-      reasons: ['Vista al mar panorámica', 'ROI superior al 8%', 'Ubicación premium Tenerife', 'Ático exclusivo'],
-      image: '/placeholder.svg',
+      reasons: [
+        "Vista al mar panorámica",
+        "ROI superior al 8%",
+        "Ubicación premium Tenerife",
+        "Ático exclusivo",
+      ],
+      image: "/placeholder.svg",
       seaView: true,
-      verified: true
+      verified: true,
     },
     {
-      id: '2',
-      title: 'Penthouse Marina Elite',
-      location: 'Puerto de la Cruz, Tenerife',
+      id: "2",
+      title: "Penthouse Marina Elite",
+      location: "Puerto de la Cruz, Tenerife",
       price: 2200000,
       bedrooms: 4,
       bathrooms: 3,
       sqm: 220,
       roi: 7.8,
       matchScore: 88,
-      reasons: ['Ático de lujo', 'Vistas al océano', 'ROI atractivo', 'Zona exclusiva'],
-      image: '/placeholder.svg',
+      reasons: [
+        "Ático de lujo",
+        "Vistas al océano",
+        "ROI atractivo",
+        "Zona exclusiva",
+      ],
+      image: "/placeholder.svg",
       seaView: true,
-      verified: true
+      verified: true,
     },
     {
-      id: '3',
-      title: 'Ático Sunset Paradise',
-      location: 'Los Cristianos, Tenerife',
+      id: "3",
+      title: "Ático Sunset Paradise",
+      location: "Los Cristianos, Tenerife",
       price: 1750000,
       bedrooms: 3,
       bathrooms: 2,
       sqm: 165,
       roi: 9.1,
       matchScore: 92,
-      reasons: ['ROI excepcional 9.1%', 'Vista al mar directa', 'Ubicación turística premium'],
-      image: '/placeholder.svg',
+      reasons: [
+        "ROI excepcional 9.1%",
+        "Vista al mar directa",
+        "Ubicación turística premium",
+      ],
+      image: "/placeholder.svg",
       seaView: true,
-      verified: true
-    }
+      verified: true,
+    },
   ];
 
   useEffect(() => {
@@ -135,61 +149,77 @@ export default function AIConcierge() {
       // Welcome message
       addAIMessage(
         "¡Hola! Soy tu Concierge Inmobiliario IA. Puedo ayudarte a encontrar la propiedad perfecta. " +
-        "Por ejemplo, puedes decirme: 'Quiero un ático de 2M€ en Tenerife, vistas al mar, ROI >7%' y " +
-        "buscaré, filtraré y crearé un dossier personalizado para ti."
+          "Por ejemplo, puedes decirme: 'Quiero un ático de 2M€ en Tenerife, vistas al mar, ROI >7%' y " +
+          "buscaré, filtraré y crearé un dossier personalizado para ti.",
       );
     }
   }, [isOpen]);
 
   const scrollToBottom = () => {
-    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   };
 
   const addUserMessage = (content: string) => {
     const message: Message = {
       id: Date.now().toString(),
-      type: 'user',
+      type: "user",
       content,
-      timestamp: new Date()
+      timestamp: new Date(),
     };
-    setMessages(prev => [...prev, message]);
+    setMessages((prev) => [...prev, message]);
   };
 
-  const addAIMessage = (content: string, propertyResults?: PropertyMatch[], dossierGenerated?: boolean) => {
+  const addAIMessage = (
+    content: string,
+    propertyResults?: PropertyMatch[],
+    dossierGenerated?: boolean,
+  ) => {
     const message: Message = {
       id: Date.now().toString(),
-      type: 'ai',
+      type: "ai",
       content,
       timestamp: new Date(),
       propertyResults,
       dossierGenerated,
-      audioUrl: audioEnabled ? `/api/tts/${encodeURIComponent(content)}` : undefined
+      audioUrl: audioEnabled
+        ? `/api/tts/${encodeURIComponent(content)}`
+        : undefined,
     };
-    setMessages(prev => [...prev, message]);
+    setMessages((prev) => [...prev, message]);
   };
 
   const parseCriteria = (query: string): SearchCriteria => {
     const criteria: SearchCriteria = {};
-    
+
     // Extract price range
     const priceMatch = query.match(/(\d+(?:\.\d+)?)\s*(?:m|M|millones?)?€?/);
     if (priceMatch) {
-      const price = parseFloat(priceMatch[1]) * (priceMatch[0].includes('M') || priceMatch[0].includes('millones') ? 1000000 : 1);
+      const price =
+        parseFloat(priceMatch[1]) *
+        (priceMatch[0].includes("M") || priceMatch[0].includes("millones")
+          ? 1000000
+          : 1);
       criteria.priceRange = { min: price * 0.8, max: price * 1.2 };
     }
 
     // Extract location
-    if (query.toLowerCase().includes('tenerife')) criteria.location = 'Tenerife';
-    if (query.toLowerCase().includes('gran canaria')) criteria.location = 'Gran Canaria';
-    if (query.toLowerCase().includes('lanzarote')) criteria.location = 'Lanzarote';
+    if (query.toLowerCase().includes("tenerife"))
+      criteria.location = "Tenerife";
+    if (query.toLowerCase().includes("gran canaria"))
+      criteria.location = "Gran Canaria";
+    if (query.toLowerCase().includes("lanzarote"))
+      criteria.location = "Lanzarote";
 
     // Extract property type
-    if (query.toLowerCase().includes('ático')) criteria.propertyType = 'ático';
-    if (query.toLowerCase().includes('villa')) criteria.propertyType = 'villa';
-    if (query.toLowerCase().includes('apartamento')) criteria.propertyType = 'apartamento';
+    if (query.toLowerCase().includes("ático")) criteria.propertyType = "ático";
+    if (query.toLowerCase().includes("villa")) criteria.propertyType = "villa";
+    if (query.toLowerCase().includes("apartamento"))
+      criteria.propertyType = "apartamento";
 
     // Extract bedrooms
-    const bedroomMatch = query.match(/(\d+)\s*(?:habitaciones?|dormitorios?|bedrooms?)/i);
+    const bedroomMatch = query.match(
+      /(\d+)\s*(?:habitaciones?|dormitorios?|bedrooms?)/i,
+    );
     if (bedroomMatch) criteria.bedrooms = parseInt(bedroomMatch[1]);
 
     // Extract ROI
@@ -198,91 +228,111 @@ export default function AIConcierge() {
 
     // Extract features
     criteria.features = [];
-    if (query.toLowerCase().includes('vista al mar') || query.toLowerCase().includes('vistas al mar')) {
+    if (
+      query.toLowerCase().includes("vista al mar") ||
+      query.toLowerCase().includes("vistas al mar")
+    ) {
       criteria.seaView = true;
-      criteria.features.push('Vista al mar');
+      criteria.features.push("Vista al mar");
     }
-    if (query.toLowerCase().includes('piscina')) criteria.features.push('Piscina');
-    if (query.toLowerCase().includes('garaje')) criteria.features.push('Garaje');
+    if (query.toLowerCase().includes("piscina"))
+      criteria.features.push("Piscina");
+    if (query.toLowerCase().includes("garaje"))
+      criteria.features.push("Garaje");
 
     return criteria;
   };
 
   const searchProperties = (criteria: SearchCriteria): PropertyMatch[] => {
-    return propertyDatabase.filter(property => {
-      // Location filter
-      if (criteria.location && !property.location.includes(criteria.location)) return false;
-      
-      // Price range filter
-      if (criteria.priceRange) {
-        if (property.price < criteria.priceRange.min || property.price > criteria.priceRange.max) return false;
-      }
-      
-      // Bedrooms filter
-      if (criteria.bedrooms && property.bedrooms !== criteria.bedrooms) return false;
-      
-      // ROI filter
-      if (criteria.roiMin && property.roi < criteria.roiMin) return false;
-      
-      // Sea view filter
-      if (criteria.seaView && !property.seaView) return false;
-      
-      // Property type filter
-      if (criteria.propertyType && !property.title.toLowerCase().includes(criteria.propertyType)) return false;
-      
-      return true;
-    }).sort((a, b) => b.matchScore - a.matchScore);
+    return propertyDatabase
+      .filter((property) => {
+        // Location filter
+        if (criteria.location && !property.location.includes(criteria.location))
+          return false;
+
+        // Price range filter
+        if (criteria.priceRange) {
+          if (
+            property.price < criteria.priceRange.min ||
+            property.price > criteria.priceRange.max
+          )
+            return false;
+        }
+
+        // Bedrooms filter
+        if (criteria.bedrooms && property.bedrooms !== criteria.bedrooms)
+          return false;
+
+        // ROI filter
+        if (criteria.roiMin && property.roi < criteria.roiMin) return false;
+
+        // Sea view filter
+        if (criteria.seaView && !property.seaView) return false;
+
+        // Property type filter
+        if (
+          criteria.propertyType &&
+          !property.title.toLowerCase().includes(criteria.propertyType)
+        )
+          return false;
+
+        return true;
+      })
+      .sort((a, b) => b.matchScore - a.matchScore);
   };
 
   const processAIQuery = async (query: string) => {
     setIsTyping(true);
     setIsProcessingSearch(true);
-    
+
     // Simulate AI processing time
-    await new Promise(resolve => setTimeout(resolve, 2000));
-    
+    await new Promise((resolve) => setTimeout(resolve, 2000));
+
     const criteria = parseCriteria(query);
     const results = searchProperties(criteria);
-    
+
     setIsProcessingSearch(false);
-    
+
     if (results.length > 0) {
-      const responseText = `He encontrado ${results.length} propiedades que coinciden con tus criterios. ` +
+      const responseText =
+        `He encontrado ${results.length} propiedades que coinciden con tus criterios. ` +
         `Las he ordenado por compatibilidad con tu búsqueda. La mejor opción tiene un match del ${results[0].matchScore}%. ` +
         `¿Te gustaría que genere un dossier completo con estas propiedades?`;
-      
+
       addAIMessage(responseText, results);
     } else {
-      const responseText = `No he encontrado propiedades que coincidan exactamente con tus criterios. ` +
+      const responseText =
+        `No he encontrado propiedades que coincidan exactamente con tus criterios. ` +
         `Te recomiendo ajustar algunos parámetros como el presupuesto o la ubicación. ` +
         `¿Te gustaría que busque opciones similares?`;
-      
+
       addAIMessage(responseText);
     }
-    
+
     setIsTyping(false);
   };
 
   const generateDossier = async (properties: PropertyMatch[]) => {
     setIsTyping(true);
-    
-    await new Promise(resolve => setTimeout(resolve, 3000));
-    
-    const responseText = `¡Perfecto! He generado un dossier completo con las ${properties.length} propiedades seleccionadas. ` +
+
+    await new Promise((resolve) => setTimeout(resolve, 3000));
+
+    const responseText =
+      `¡Perfecto! He generado un dossier completo con las ${properties.length} propiedades seleccionadas. ` +
       `Incluye análisis financiero detallado, comparativas de ROI, documentación legal y cronograma de visitas. ` +
       `El dossier está listo para descargar.`;
-    
+
     addAIMessage(responseText, undefined, true);
     setIsTyping(false);
   };
 
   const handleSendMessage = async () => {
     if (!inputValue.trim()) return;
-    
+
     const userQuery = inputValue.trim();
-    setInputValue('');
+    setInputValue("");
     addUserMessage(userQuery);
-    
+
     // Process the query
     await processAIQuery(userQuery);
   };
@@ -292,16 +342,18 @@ export default function AIConcierge() {
     // Simulate voice recognition
     setTimeout(() => {
       setIsListening(false);
-      setInputValue("Quiero un ático de 2 millones en Tenerife con vistas al mar y ROI mayor a 7%");
+      setInputValue(
+        "Quiero un ático de 2 millones en Tenerife con vistas al mar y ROI mayor a 7%",
+      );
     }, 3000);
   };
 
   const formatCurrency = (amount: number) => {
-    return new Intl.NumberFormat('es-ES', {
-      style: 'currency',
-      currency: 'EUR',
+    return new Intl.NumberFormat("es-ES", {
+      style: "currency",
+      currency: "EUR",
       minimumFractionDigits: 0,
-      maximumFractionDigits: 0
+      maximumFractionDigits: 0,
     }).format(amount);
   };
 
@@ -333,17 +385,23 @@ export default function AIConcierge() {
                 IA Concierge
                 <Sparkles className="w-4 h-4 text-neon-teal animate-pulse" />
               </h3>
-              <p className="text-xs text-white/60">Búsqueda inteligente avanzada</p>
+              <p className="text-xs text-white/60">
+                Búsqueda inteligente avanzada
+              </p>
             </div>
           </div>
           <div className="flex items-center space-x-2">
             <button
               onClick={() => setAudioEnabled(!audioEnabled)}
               className={`p-2 rounded-lg transition-colors ${
-                audioEnabled ? 'text-neon-teal' : 'text-white/40'
+                audioEnabled ? "text-neon-teal" : "text-white/40"
               }`}
             >
-              {audioEnabled ? <Volume2 className="w-4 h-4" /> : <VolumeX className="w-4 h-4" />}
+              {audioEnabled ? (
+                <Volume2 className="w-4 h-4" />
+              ) : (
+                <VolumeX className="w-4 h-4" />
+              )}
             </button>
             <button
               onClick={() => setIsOpen(false)}
@@ -353,11 +411,13 @@ export default function AIConcierge() {
             </button>
           </div>
         </div>
-        
+
         {isProcessingSearch && (
           <div className="mt-3 flex items-center space-x-2 text-neon-teal">
             <Target className="w-4 h-4 animate-spin" />
-            <span className="text-sm">Analizando criterios y buscando propiedades...</span>
+            <span className="text-sm">
+              Analizando criterios y buscando propiedades...
+            </span>
           </div>
         )}
       </div>
@@ -365,57 +425,84 @@ export default function AIConcierge() {
       {/* Messages */}
       <div className="flex-1 overflow-y-auto p-4 space-y-4">
         {messages.map((message) => (
-          <div key={message.id} className={`flex ${message.type === 'user' ? 'justify-end' : 'justify-start'}`}>
-            <div className={`max-w-[80%] p-3 rounded-2xl ${
-              message.type === 'user' 
-                ? 'bg-neon-teal text-blue-dark' 
-                : 'glass border border-white/10'
-            }`}>
+          <div
+            key={message.id}
+            className={`flex ${message.type === "user" ? "justify-end" : "justify-start"}`}
+          >
+            <div
+              className={`max-w-[80%] p-3 rounded-2xl ${
+                message.type === "user"
+                  ? "bg-neon-teal text-blue-dark"
+                  : "glass border border-white/10"
+              }`}
+            >
               <p className="text-sm">{message.content}</p>
-              
+
               {/* Property Results */}
               {message.propertyResults && (
                 <div className="mt-4 space-y-3">
                   {message.propertyResults.map((property) => (
-                    <div key={property.id} className="glass-card p-3 rounded-xl border border-neon-teal/20">
+                    <div
+                      key={property.id}
+                      className="glass-card p-3 rounded-xl border border-neon-teal/20"
+                    >
                       <div className="flex justify-between items-start mb-2">
-                        <h4 className="font-bold text-white text-sm">{property.title}</h4>
+                        <h4 className="font-bold text-white text-sm">
+                          {property.title}
+                        </h4>
                         <div className="flex items-center space-x-1">
                           <Star className="w-3 h-3 text-yellow-400" />
-                          <span className="text-xs text-yellow-400">{property.matchScore}%</span>
+                          <span className="text-xs text-yellow-400">
+                            {property.matchScore}%
+                          </span>
                         </div>
                       </div>
-                      
-                      <p className="text-xs text-white/70 mb-2">{property.location}</p>
-                      
+
+                      <p className="text-xs text-white/70 mb-2">
+                        {property.location}
+                      </p>
+
                       <div className="grid grid-cols-2 gap-2 text-xs mb-2">
                         <div className="flex items-center space-x-1">
                           <Euro className="w-3 h-3 text-neon-teal" />
-                          <span className="text-white">{formatCurrency(property.price)}</span>
+                          <span className="text-white">
+                            {formatCurrency(property.price)}
+                          </span>
                         </div>
                         <div className="flex items-center space-x-1">
                           <TrendingUp className="w-3 h-3 text-green-400" />
-                          <span className="text-green-400">{property.roi}% ROI</span>
+                          <span className="text-green-400">
+                            {property.roi}% ROI
+                          </span>
                         </div>
                         <div className="flex items-center space-x-1">
                           <Bed className="w-3 h-3 text-white/60" />
-                          <span className="text-white/80">{property.bedrooms} dorm</span>
+                          <span className="text-white/80">
+                            {property.bedrooms} dorm
+                          </span>
                         </div>
                         <div className="flex items-center space-x-1">
                           <Square className="w-3 h-3 text-white/60" />
-                          <span className="text-white/80">{property.sqm}m²</span>
+                          <span className="text-white/80">
+                            {property.sqm}m²
+                          </span>
                         </div>
                       </div>
-                      
+
                       <div className="space-y-1">
                         {property.reasons.slice(0, 2).map((reason, index) => (
-                          <div key={index} className="flex items-center space-x-1">
+                          <div
+                            key={index}
+                            className="flex items-center space-x-1"
+                          >
                             <CheckCircle className="w-3 h-3 text-green-400" />
-                            <span className="text-xs text-white/80">{reason}</span>
+                            <span className="text-xs text-white/80">
+                              {reason}
+                            </span>
                           </div>
                         ))}
                       </div>
-                      
+
                       <div className="flex justify-between items-center mt-3">
                         <button className="text-xs text-neon-teal hover:text-neon-emerald transition-colors flex items-center gap-1">
                           <Eye className="w-3 h-3" />
@@ -424,13 +511,15 @@ export default function AIConcierge() {
                         {property.verified && (
                           <div className="flex items-center space-x-1">
                             <CheckCircle className="w-3 h-3 text-green-400" />
-                            <span className="text-xs text-green-400">Verificada</span>
+                            <span className="text-xs text-green-400">
+                              Verificada
+                            </span>
                           </div>
                         )}
                       </div>
                     </div>
                   ))}
-                  
+
                   <button
                     onClick={() => generateDossier(message.propertyResults!)}
                     className="w-full btn-primary text-sm py-2 flex items-center justify-center gap-2 mt-3"
@@ -440,16 +529,19 @@ export default function AIConcierge() {
                   </button>
                 </div>
               )}
-              
+
               {/* Dossier Generated */}
               {message.dossierGenerated && (
                 <div className="mt-4 glass-card p-3 rounded-xl border border-green-500/30 bg-green-500/10">
                   <div className="flex items-center space-x-2 mb-2">
                     <FileText className="w-4 h-4 text-green-400" />
-                    <span className="text-sm font-bold text-green-400">Dossier Generado</span>
+                    <span className="text-sm font-bold text-green-400">
+                      Dossier Generado
+                    </span>
                   </div>
                   <p className="text-xs text-white/80 mb-3">
-                    Documento completo con análisis financiero, comparativas y cronograma de visitas
+                    Documento completo con análisis financiero, comparativas y
+                    cronograma de visitas
                   </p>
                   <button className="w-full btn-secondary text-sm py-2 flex items-center justify-center gap-2">
                     <Download className="w-4 h-4" />
@@ -457,10 +549,13 @@ export default function AIConcierge() {
                   </button>
                 </div>
               )}
-              
+
               <div className="flex justify-between items-center mt-2">
                 <span className="text-xs text-white/40">
-                  {message.timestamp.toLocaleTimeString('es-ES', { hour: '2-digit', minute: '2-digit' })}
+                  {message.timestamp.toLocaleTimeString("es-ES", {
+                    hour: "2-digit",
+                    minute: "2-digit",
+                  })}
                 </span>
                 {message.audioUrl && audioEnabled && (
                   <button className="text-xs text-neon-teal hover:text-neon-emerald transition-colors">
@@ -471,19 +566,25 @@ export default function AIConcierge() {
             </div>
           </div>
         ))}
-        
+
         {isTyping && (
           <div className="flex justify-start">
             <div className="glass border border-white/10 p-3 rounded-2xl">
               <div className="flex space-x-1">
                 <div className="w-2 h-2 bg-neon-teal rounded-full animate-pulse"></div>
-                <div className="w-2 h-2 bg-neon-teal rounded-full animate-pulse" style={{ animationDelay: '0.2s' }}></div>
-                <div className="w-2 h-2 bg-neon-teal rounded-full animate-pulse" style={{ animationDelay: '0.4s' }}></div>
+                <div
+                  className="w-2 h-2 bg-neon-teal rounded-full animate-pulse"
+                  style={{ animationDelay: "0.2s" }}
+                ></div>
+                <div
+                  className="w-2 h-2 bg-neon-teal rounded-full animate-pulse"
+                  style={{ animationDelay: "0.4s" }}
+                ></div>
               </div>
             </div>
           </div>
         )}
-        
+
         <div ref={messagesEndRef} />
       </div>
 
@@ -495,17 +596,23 @@ export default function AIConcierge() {
               type="text"
               value={inputValue}
               onChange={(e) => setInputValue(e.target.value)}
-              onKeyPress={(e) => e.key === 'Enter' && handleSendMessage()}
+              onKeyPress={(e) => e.key === "Enter" && handleSendMessage()}
               placeholder="Ej: Ático 2M€ en Tenerife, vista mar, ROI >7%"
               className="w-full bg-white/10 border border-white/20 rounded-xl px-4 py-3 text-white placeholder-white/40 text-sm focus:outline-none focus:border-neon-teal pr-10"
             />
             <button
               onClick={startVoiceRecognition}
               className={`absolute right-3 top-1/2 transform -translate-y-1/2 transition-colors ${
-                isListening ? 'text-red-400 animate-pulse' : 'text-white/60 hover:text-neon-teal'
+                isListening
+                  ? "text-red-400 animate-pulse"
+                  : "text-white/60 hover:text-neon-teal"
               }`}
             >
-              {isListening ? <Mic className="w-4 h-4" /> : <MicOff className="w-4 h-4" />}
+              {isListening ? (
+                <Mic className="w-4 h-4" />
+              ) : (
+                <MicOff className="w-4 h-4" />
+              )}
             </button>
           </div>
           <button
@@ -516,7 +623,7 @@ export default function AIConcierge() {
             <Send className="w-4 h-4" />
           </button>
         </div>
-        
+
         <div className="flex justify-center mt-2 space-x-4">
           <button className="text-xs text-neon-teal hover:text-neon-emerald transition-colors">
             Villa €1.5M Tenerife

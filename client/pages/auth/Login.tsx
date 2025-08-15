@@ -1,34 +1,34 @@
-import { useState } from 'react';
-import { Link } from 'react-router-dom';
-import { 
-  Mail, 
-  Lock, 
-  Eye, 
-  EyeOff, 
-  LogIn, 
+import { useState } from "react";
+import { Link } from "react-router-dom";
+import {
+  Mail,
+  Lock,
+  Eye,
+  EyeOff,
+  LogIn,
   ArrowLeft,
   Chrome,
   Github,
   Shield,
-  CheckCircle
-} from 'lucide-react';
+  CheckCircle,
+} from "lucide-react";
 
 export default function Login() {
   const [showPassword, setShowPassword] = useState(false);
   const [formData, setFormData] = useState({
-    email: '',
-    password: '',
-    rememberMe: false
+    email: "",
+    password: "",
+    rememberMe: false,
   });
   const [isLoading, setIsLoading] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsLoading(true);
-    
+
     // Simulate login process
     setTimeout(() => {
-      console.log('Login attempt:', formData);
+      console.log("Login attempt:", formData);
       setIsLoading(false);
       // Here you would typically handle the actual authentication
     }, 2000);
@@ -36,9 +36,9 @@ export default function Login() {
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value, type, checked } = e.target;
-    setFormData(prev => ({
+    setFormData((prev) => ({
       ...prev,
-      [name]: type === 'checkbox' ? checked : value
+      [name]: type === "checkbox" ? checked : value,
     }));
   };
 
@@ -46,8 +46,8 @@ export default function Login() {
     <div className="min-h-screen bg-blue-dark flex items-center justify-center p-4">
       <div className="w-full max-w-md">
         {/* Back to Home */}
-        <Link 
-          to="/" 
+        <Link
+          to="/"
           className="inline-flex items-center gap-2 text-white/60 hover:text-neon-teal transition-colors mb-8"
         >
           <ArrowLeft size={20} />
@@ -58,12 +58,16 @@ export default function Login() {
         <div className="glass-card p-8 rounded-2xl">
           {/* Header */}
           <div className="text-center mb-8">
-            <Link to="/" className="text-3xl font-bold text-gradient mb-4 block">
+            <Link
+              to="/"
+              className="text-3xl font-bold text-gradient mb-4 block"
+            >
               BlueEyeHomes
             </Link>
             <h1 className="text-2xl font-bold mb-2">Iniciar Sesión</h1>
             <p className="text-white/70">
-              Accede a tu cuenta para gestionar propiedades y participar en la comunidad
+              Accede a tu cuenta para gestionar propiedades y participar en la
+              comunidad
             </p>
           </div>
 
@@ -82,7 +86,9 @@ export default function Login() {
           {/* Divider */}
           <div className="flex items-center my-6">
             <div className="flex-1 border-t border-white/10"></div>
-            <span className="mx-4 text-white/60 text-sm">o continúa con email</span>
+            <span className="mx-4 text-white/60 text-sm">
+              o continúa con email
+            </span>
             <div className="flex-1 border-t border-white/10"></div>
           </div>
 
@@ -90,11 +96,17 @@ export default function Login() {
           <form onSubmit={handleSubmit} className="space-y-6">
             {/* Email Field */}
             <div>
-              <label htmlFor="email" className="block text-white/80 font-medium mb-2">
+              <label
+                htmlFor="email"
+                className="block text-white/80 font-medium mb-2"
+              >
                 Email
               </label>
               <div className="relative">
-                <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 text-white/40" size={20} />
+                <Mail
+                  className="absolute left-3 top-1/2 transform -translate-y-1/2 text-white/40"
+                  size={20}
+                />
                 <input
                   type="email"
                   id="email"
@@ -110,13 +122,19 @@ export default function Login() {
 
             {/* Password Field */}
             <div>
-              <label htmlFor="password" className="block text-white/80 font-medium mb-2">
+              <label
+                htmlFor="password"
+                className="block text-white/80 font-medium mb-2"
+              >
                 Contraseña
               </label>
               <div className="relative">
-                <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 text-white/40" size={20} />
+                <Lock
+                  className="absolute left-3 top-1/2 transform -translate-y-1/2 text-white/40"
+                  size={20}
+                />
                 <input
-                  type={showPassword ? 'text' : 'password'}
+                  type={showPassword ? "text" : "password"}
                   id="password"
                   name="password"
                   value={formData.password}
@@ -147,8 +165,8 @@ export default function Login() {
                 />
                 <span className="text-white/70 text-sm">Recordarme</span>
               </label>
-              <Link 
-                to="/auth/forgot-password" 
+              <Link
+                to="/auth/forgot-password"
                 className="text-neon-teal hover:text-neon-emerald transition-colors text-sm"
               >
                 ¿Olvidaste tu contraseña?
@@ -166,16 +184,16 @@ export default function Login() {
               ) : (
                 <LogIn size={20} />
               )}
-              {isLoading ? 'Iniciando sesión...' : 'Iniciar Sesión'}
+              {isLoading ? "Iniciando sesión..." : "Iniciar Sesión"}
             </button>
           </form>
 
           {/* Register Link */}
           <div className="text-center mt-6 pt-6 border-t border-white/10">
             <p className="text-white/70">
-              ¿No tienes una cuenta?{' '}
-              <Link 
-                to="/auth/register" 
+              ¿No tienes una cuenta?{" "}
+              <Link
+                to="/auth/register"
                 className="text-neon-teal hover:text-neon-emerald transition-colors font-medium"
               >
                 Regístrate gratis
@@ -186,11 +204,17 @@ export default function Login() {
           {/* Security Note */}
           <div className="mt-6 p-4 bg-neon-teal/10 border border-neon-teal/20 rounded-lg">
             <div className="flex items-start gap-3">
-              <Shield className="text-neon-teal flex-shrink-0 mt-0.5" size={16} />
+              <Shield
+                className="text-neon-teal flex-shrink-0 mt-0.5"
+                size={16}
+              />
               <div className="text-sm">
-                <p className="text-white/90 font-medium mb-1">Conexión segura</p>
+                <p className="text-white/90 font-medium mb-1">
+                  Conexión segura
+                </p>
                 <p className="text-white/70">
-                  Todos los datos están encriptados y protegidos con estándares bancarios.
+                  Todos los datos están encriptados y protegidos con estándares
+                  bancarios.
                 </p>
               </div>
             </div>

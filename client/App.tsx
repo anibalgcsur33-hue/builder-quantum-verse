@@ -115,7 +115,10 @@ const App = () => (
           {/* Marketplace Routes */}
           <Route path="/marketplace/reformas" element={<Reformas />} />
           <Route path="/marketplace/seguros" element={<Seguros />} />
-          <Route path="/marketplace/servicios-legales" element={<ServiciosLegales />} />
+          <Route
+            path="/marketplace/servicios-legales"
+            element={<ServiciosLegales />}
+          />
           <Route path="/marketplace/mobiliario" element={<Mobiliario />} />
 
           {/* Other Routes */}

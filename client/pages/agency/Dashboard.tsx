@@ -1,13 +1,13 @@
-import { useState } from 'react';
-import { Link } from 'react-router-dom';
-import { 
-  Building, 
-  Plus, 
-  Edit, 
-  Trash2, 
-  Eye, 
-  BarChart3, 
-  Users, 
+import { useState } from "react";
+import { Link } from "react-router-dom";
+import {
+  Building,
+  Plus,
+  Edit,
+  Trash2,
+  Eye,
+  BarChart3,
+  Users,
   Calendar,
   TrendingUp,
   MapPin,
@@ -20,132 +20,160 @@ import {
   Upload,
   Filter,
   Search,
-  MoreHorizontal
-} from 'lucide-react';
+  MoreHorizontal,
+} from "lucide-react";
 
 export default function AgencyDashboard() {
-  const [activeTab, setActiveTab] = useState('properties');
+  const [activeTab, setActiveTab] = useState("properties");
   const [selectedProperties, setSelectedProperties] = useState<number[]>([]);
 
   // Sample agency data
   const agencyInfo = {
-    name: 'Inmobiliaria Atlántico Premium',
-    license: 'API-2024-001234',
+    name: "Inmobiliaria Atlántico Premium",
+    license: "API-2024-001234",
     properties: 47,
     totalViews: 15420,
     totalLeads: 234,
     rating: 4.8,
-    reviews: 156
+    reviews: 156,
   };
 
   const properties = [
     {
       id: 1,
-      title: 'Villa Moderna Oceanfront',
-      location: 'Costa Adeje, Tenerife',
+      title: "Villa Moderna Oceanfront",
+      location: "Costa Adeje, Tenerife",
       price: 1250000,
-      type: 'Villa',
-      status: 'Activo',
+      type: "Villa",
+      status: "Activo",
       views: 1247,
       leads: 23,
       vrTour: true,
       images: 15,
       featured: true,
-      published: '2024-01-15',
-      lastUpdated: '2024-01-20'
+      published: "2024-01-15",
+      lastUpdated: "2024-01-20",
     },
     {
       id: 2,
-      title: 'Penthouse Marina Exclusive',
-      location: 'Las Palmas, Gran Canaria',
+      title: "Penthouse Marina Exclusive",
+      location: "Las Palmas, Gran Canaria",
       price: 850000,
-      type: 'Penthouse',
-      status: 'Reservado',
+      type: "Penthouse",
+      status: "Reservado",
       views: 892,
       leads: 18,
       vrTour: true,
       images: 12,
       featured: false,
-      published: '2024-01-10',
-      lastUpdated: '2024-01-22'
+      published: "2024-01-10",
+      lastUpdated: "2024-01-22",
     },
     {
       id: 3,
-      title: 'Casa Rural con Viñedo',
-      location: 'La Geria, Lanzarote',
+      title: "Casa Rural con Viñedo",
+      location: "La Geria, Lanzarote",
       price: 680000,
-      type: 'Casa Rural',
-      status: 'Borrador',
+      type: "Casa Rural",
+      status: "Borrador",
       views: 0,
       leads: 0,
       vrTour: false,
       images: 8,
       featured: false,
       published: null,
-      lastUpdated: '2024-01-23'
-    }
+      lastUpdated: "2024-01-23",
+    },
   ];
 
   const stats = [
-    { label: 'Propiedades activas', value: 34, icon: Building, color: 'text-neon-teal', change: '+12%' },
-    { label: 'Visualizaciones totales', value: 15420, icon: Eye, color: 'text-neon-emerald', change: '+28%' },
-    { label: 'Leads generados', value: 234, icon: Users, color: 'text-neon-teal', change: '+15%' },
-    { label: 'Ingresos estimados', value: '€2.1M', icon: Euro, color: 'text-neon-emerald', change: '+22%' }
+    {
+      label: "Propiedades activas",
+      value: 34,
+      icon: Building,
+      color: "text-neon-teal",
+      change: "+12%",
+    },
+    {
+      label: "Visualizaciones totales",
+      value: 15420,
+      icon: Eye,
+      color: "text-neon-emerald",
+      change: "+28%",
+    },
+    {
+      label: "Leads generados",
+      value: 234,
+      icon: Users,
+      color: "text-neon-teal",
+      change: "+15%",
+    },
+    {
+      label: "Ingresos estimados",
+      value: "€2.1M",
+      icon: Euro,
+      color: "text-neon-emerald",
+      change: "+22%",
+    },
   ];
 
   const recentActivity = [
     {
       id: 1,
-      type: 'new_lead',
-      message: 'Nuevo lead para Villa Moderna Oceanfront',
-      time: '2024-01-23T14:30:00',
-      propertyId: 1
+      type: "new_lead",
+      message: "Nuevo lead para Villa Moderna Oceanfront",
+      time: "2024-01-23T14:30:00",
+      propertyId: 1,
     },
     {
       id: 2,
-      type: 'property_viewed',
-      message: 'Penthouse Marina Exclusive vista 15 veces',
-      time: '2024-01-23T10:15:00',
-      propertyId: 2
+      type: "property_viewed",
+      message: "Penthouse Marina Exclusive vista 15 veces",
+      time: "2024-01-23T10:15:00",
+      propertyId: 2,
     },
     {
       id: 3,
-      type: 'vr_tour_completed',
-      message: 'Tour VR completado en Villa Moderna',
-      time: '2024-01-22T16:45:00',
-      propertyId: 1
-    }
+      type: "vr_tour_completed",
+      message: "Tour VR completado en Villa Moderna",
+      time: "2024-01-22T16:45:00",
+      propertyId: 1,
+    },
   ];
 
   const tabs = [
-    { id: 'properties', label: 'Mis Propiedades', icon: Building },
-    { id: 'analytics', label: 'Analíticas', icon: BarChart3 },
-    { id: 'leads', label: 'Leads', icon: Users },
-    { id: 'calendar', label: 'Calendario', icon: Calendar }
+    { id: "properties", label: "Mis Propiedades", icon: Building },
+    { id: "analytics", label: "Analíticas", icon: BarChart3 },
+    { id: "leads", label: "Leads", icon: Users },
+    { id: "calendar", label: "Calendario", icon: Calendar },
   ];
 
   const handleSelectProperty = (propertyId: number) => {
-    setSelectedProperties(prev => 
-      prev.includes(propertyId) 
-        ? prev.filter(id => id !== propertyId)
-        : [...prev, propertyId]
+    setSelectedProperties((prev) =>
+      prev.includes(propertyId)
+        ? prev.filter((id) => id !== propertyId)
+        : [...prev, propertyId],
     );
   };
 
   const handleSelectAll = () => {
     setSelectedProperties(
-      selectedProperties.length === properties.length 
-        ? [] 
-        : properties.map(p => p.id)
+      selectedProperties.length === properties.length
+        ? []
+        : properties.map((p) => p.id),
     );
   };
 
   const getStatusColor = (status: string) => {
     switch (status) {
-      case 'Activo': return 'text-neon-emerald bg-neon-emerald/20';
-      case 'Reservado': return 'text-yellow-400 bg-yellow-400/20';
-      case 'Borrador': return 'text-white/60 bg-white/10';
-      default: return 'text-white/60 bg-white/10';
+      case "Activo":
+        return "text-neon-emerald bg-neon-emerald/20";
+      case "Reservado":
+        return "text-yellow-400 bg-yellow-400/20";
+      case "Borrador":
+        return "text-white/60 bg-white/10";
+      default:
+        return "text-white/60 bg-white/10";
     }
   };
 
@@ -155,7 +183,9 @@ export default function AgencyDashboard() {
         {/* Header */}
         <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-6 mb-8">
           <div>
-            <h1 className="text-3xl font-bold text-gradient mb-2">Panel de Gestión</h1>
+            <h1 className="text-3xl font-bold text-gradient mb-2">
+              Panel de Gestión
+            </h1>
             <div className="flex items-center gap-4 text-white/70">
               <span>{agencyInfo.name}</span>
               <span>•</span>
@@ -163,7 +193,10 @@ export default function AgencyDashboard() {
             </div>
           </div>
           <div className="flex gap-3">
-            <Link to="/agency/property/new" className="btn-primary flex items-center gap-2">
+            <Link
+              to="/agency/property/new"
+              className="btn-primary flex items-center gap-2"
+            >
               <Plus size={20} />
               Nueva Propiedad
             </Link>
@@ -182,7 +215,9 @@ export default function AgencyDashboard() {
               <div key={index} className="glass-card p-6 hover-glow-teal">
                 <div className="flex items-center justify-between mb-4">
                   <IconComponent className={stat.color} size={24} />
-                  <span className="text-neon-emerald text-sm font-medium">{stat.change}</span>
+                  <span className="text-neon-emerald text-sm font-medium">
+                    {stat.change}
+                  </span>
                 </div>
                 <div className="text-2xl font-bold mb-2">{stat.value}</div>
                 <div className="text-white/60 text-sm">{stat.label}</div>
@@ -196,18 +231,27 @@ export default function AgencyDashboard() {
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-6">
               <div className="text-center">
-                <div className="text-3xl font-bold text-neon-teal mb-1">{agencyInfo.rating}</div>
+                <div className="text-3xl font-bold text-neon-teal mb-1">
+                  {agencyInfo.rating}
+                </div>
                 <div className="flex items-center gap-1 mb-1">
                   {[...Array(5)].map((_, i) => (
-                    <Star key={i} className="text-neon-teal fill-current" size={16} />
+                    <Star
+                      key={i}
+                      className="text-neon-teal fill-current"
+                      size={16}
+                    />
                   ))}
                 </div>
-                <div className="text-white/60 text-sm">{agencyInfo.reviews} reseñas</div>
+                <div className="text-white/60 text-sm">
+                  {agencyInfo.reviews} reseñas
+                </div>
               </div>
               <div className="border-l border-white/10 pl-6">
                 <h3 className="font-bold mb-2">Rendimiento de la agencia</h3>
                 <p className="text-white/70 text-sm">
-                  Tu agencia está posicionada en el top 10% de inmobiliarias en Canarias
+                  Tu agencia está posicionada en el top 10% de inmobiliarias en
+                  Canarias
                 </p>
               </div>
             </div>
@@ -229,9 +273,9 @@ export default function AgencyDashboard() {
                 key={tab.id}
                 onClick={() => setActiveTab(tab.id)}
                 className={`flex items-center gap-2 px-6 py-4 rounded-lg transition-colors ${
-                  activeTab === tab.id 
-                    ? 'bg-neon-teal text-blue-dark font-semibold' 
-                    : 'text-white/70 hover:text-white hover:bg-white/5'
+                  activeTab === tab.id
+                    ? "bg-neon-teal text-blue-dark font-semibold"
+                    : "text-white/70 hover:text-white hover:bg-white/5"
                 }`}
               >
                 <IconComponent size={20} />
@@ -242,14 +286,17 @@ export default function AgencyDashboard() {
         </div>
 
         {/* Tab Content */}
-        {activeTab === 'properties' && (
+        {activeTab === "properties" && (
           <div className="space-y-6">
             {/* Filters and Actions */}
             <div className="glass-card p-6 rounded-xl">
               <div className="flex flex-col lg:flex-row gap-4 items-center justify-between">
                 <div className="flex gap-4 flex-1">
                   <div className="relative flex-1 max-w-md">
-                    <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-white/40" size={20} />
+                    <Search
+                      className="absolute left-3 top-1/2 transform -translate-y-1/2 text-white/40"
+                      size={20}
+                    />
                     <input
                       type="text"
                       placeholder="Buscar propiedades..."
@@ -283,7 +330,9 @@ export default function AgencyDashboard() {
             <div className="glass-card rounded-xl overflow-hidden">
               <div className="p-6 border-b border-white/10">
                 <div className="flex items-center justify-between">
-                  <h2 className="text-xl font-bold">Mis Propiedades ({properties.length})</h2>
+                  <h2 className="text-xl font-bold">
+                    Mis Propiedades ({properties.length})
+                  </h2>
                   <label className="flex items-center gap-2 cursor-pointer">
                     <input
                       type="checkbox"
@@ -291,7 +340,9 @@ export default function AgencyDashboard() {
                       onChange={handleSelectAll}
                       className="w-4 h-4 rounded border-white/20 bg-white/5 text-neon-teal focus:ring-neon-teal"
                     />
-                    <span className="text-sm text-white/70">Seleccionar todas</span>
+                    <span className="text-sm text-white/70">
+                      Seleccionar todas
+                    </span>
                   </label>
                 </div>
               </div>
@@ -310,7 +361,10 @@ export default function AgencyDashboard() {
                   </thead>
                   <tbody>
                     {properties.map((property) => (
-                      <tr key={property.id} className="border-t border-white/10 hover:bg-white/5">
+                      <tr
+                        key={property.id}
+                        className="border-t border-white/10 hover:bg-white/5"
+                      >
                         <td className="p-4">
                           <div className="flex items-center gap-4">
                             <input
@@ -329,7 +383,10 @@ export default function AgencyDashboard() {
                                 {property.featured && (
                                   <>
                                     <span>•</span>
-                                    <Star className="text-neon-teal fill-current" size={14} />
+                                    <Star
+                                      className="text-neon-teal fill-current"
+                                      size={14}
+                                    />
                                   </>
                                 )}
                               </div>
@@ -337,7 +394,9 @@ export default function AgencyDashboard() {
                           </div>
                         </td>
                         <td className="p-4">
-                          <span className={`px-3 py-1 rounded-full text-sm font-medium ${getStatusColor(property.status)}`}>
+                          <span
+                            className={`px-3 py-1 rounded-full text-sm font-medium ${getStatusColor(property.status)}`}
+                          >
                             {property.status}
                           </span>
                         </td>
@@ -405,7 +464,7 @@ export default function AgencyDashboard() {
           </div>
         )}
 
-        {activeTab === 'analytics' && (
+        {activeTab === "analytics" && (
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
             {/* Performance Chart */}
             <div className="glass-card p-6 rounded-xl">
@@ -424,16 +483,23 @@ export default function AgencyDashboard() {
               <h3 className="text-xl font-bold mb-6">Propiedades Más Vistas</h3>
               <div className="space-y-4">
                 {properties.slice(0, 3).map((property, index) => (
-                  <div key={property.id} className="flex items-center gap-4 p-3 bg-white/5 rounded-lg">
+                  <div
+                    key={property.id}
+                    className="flex items-center gap-4 p-3 bg-white/5 rounded-lg"
+                  >
                     <div className="w-8 h-8 bg-neon-teal/20 rounded-full flex items-center justify-center text-neon-teal font-bold">
                       {index + 1}
                     </div>
                     <div className="flex-1">
                       <h4 className="font-medium">{property.title}</h4>
-                      <p className="text-white/60 text-sm">{property.views} vistas • {property.leads} leads</p>
+                      <p className="text-white/60 text-sm">
+                        {property.views} vistas • {property.leads} leads
+                      </p>
                     </div>
                     <div className="text-right">
-                      <div className="text-neon-teal font-bold">€{property.price.toLocaleString()}</div>
+                      <div className="text-neon-teal font-bold">
+                        €{property.price.toLocaleString()}
+                      </div>
                     </div>
                   </div>
                 ))}
@@ -445,12 +511,15 @@ export default function AgencyDashboard() {
               <h3 className="text-xl font-bold mb-6">Actividad Reciente</h3>
               <div className="space-y-4">
                 {recentActivity.map((activity) => (
-                  <div key={activity.id} className="flex items-center gap-4 p-3 bg-white/5 rounded-lg">
+                  <div
+                    key={activity.id}
+                    className="flex items-center gap-4 p-3 bg-white/5 rounded-lg"
+                  >
                     <div className="w-2 h-2 bg-neon-teal rounded-full"></div>
                     <div className="flex-1">
                       <p className="text-white/90">{activity.message}</p>
                       <p className="text-white/60 text-sm">
-                        {new Date(activity.time).toLocaleString('es-ES')}
+                        {new Date(activity.time).toLocaleString("es-ES")}
                       </p>
                     </div>
                   </div>
@@ -460,29 +529,29 @@ export default function AgencyDashboard() {
           </div>
         )}
 
-        {activeTab === 'leads' && (
+        {activeTab === "leads" && (
           <div className="glass-card p-8 rounded-xl">
             <h2 className="text-2xl font-bold mb-6">Gestión de Leads</h2>
             <div className="text-center py-16">
               <Users className="mx-auto mb-4 text-white/40" size={64} />
               <h3 className="text-xl font-bold mb-2">Sistema de Leads</h3>
               <p className="text-white/70 max-w-md mx-auto">
-                Aquí podrás gestionar todos los leads generados por tus propiedades, 
-                seguir su estado y establecer comunicación directa.
+                Aquí podrás gestionar todos los leads generados por tus
+                propiedades, seguir su estado y establecer comunicación directa.
               </p>
             </div>
           </div>
         )}
 
-        {activeTab === 'calendar' && (
+        {activeTab === "calendar" && (
           <div className="glass-card p-8 rounded-xl">
             <h2 className="text-2xl font-bold mb-6">Calendario de Visitas</h2>
             <div className="text-center py-16">
               <Calendar className="mx-auto mb-4 text-white/40" size={64} />
               <h3 className="text-xl font-bold mb-2">Calendario Integrado</h3>
               <p className="text-white/70 max-w-md mx-auto">
-                Gestiona visitas presenciales y virtuales, programa citas con clientes 
-                y mantén tu agenda organizada.
+                Gestiona visitas presenciales y virtuales, programa citas con
+                clientes y mantén tu agenda organizada.
               </p>
             </div>
           </div>

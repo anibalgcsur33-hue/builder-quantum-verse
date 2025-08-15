@@ -1,11 +1,11 @@
-import { useState, useEffect } from 'react';
-import { useParams, Link } from 'react-router-dom';
-import Header from '../components/Header';
-import AIChatbot from '../components/AIChatbot';
-import FinancialSimulator from '../components/FinancialSimulator';
-import NFTReservation from '../components/NFTReservation';
-import DigitalTwin from '../components/DigitalTwin';
-import { 
+import { useState, useEffect } from "react";
+import { useParams, Link } from "react-router-dom";
+import Header from "../components/Header";
+import AIChatbot from "../components/AIChatbot";
+import FinancialSimulator from "../components/FinancialSimulator";
+import NFTReservation from "../components/NFTReservation";
+import DigitalTwin from "../components/DigitalTwin";
+import {
   ArrowLeft,
   Heart,
   Share2,
@@ -35,99 +35,107 @@ import {
   Car,
   Shield,
   Phone,
-  Mail
-} from 'lucide-react';
+  Mail,
+} from "lucide-react";
 
 export default function PropertyDetail() {
   const { id } = useParams();
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [isGalleryOpen, setIsGalleryOpen] = useState(false);
   const [isSaved, setIsSaved] = useState(false);
-  const [activeTab, setActiveTab] = useState('overview');
+  const [activeTab, setActiveTab] = useState("overview");
   const [isScrolled, setIsScrolled] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50);
     };
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   // Sample property data - in real app, fetch based on ID
   const property = {
     id: id,
-    title: 'Villa Moderna Oceanfront',
-    location: 'Costa Adeje, Tenerife',
+    title: "Villa Moderna Oceanfront",
+    location: "Costa Adeje, Tenerife",
     price: 1250000,
     pricePerSqm: 3500,
-    category: 'Villa',
+    category: "Villa",
     bedrooms: 4,
     bathrooms: 3,
     sqm: 357,
     plotSize: 850,
     yearBuilt: 2021,
     images: [
-      '/placeholder.svg',
-      '/placeholder.svg', 
-      '/placeholder.svg',
-      '/placeholder.svg',
-      '/placeholder.svg',
-      '/placeholder.svg'
+      "/placeholder.svg",
+      "/placeholder.svg",
+      "/placeholder.svg",
+      "/placeholder.svg",
+      "/placeholder.svg",
+      "/placeholder.svg",
     ],
-    vrTourUrl: '/vr-tour/villa-oceanfront',
+    vrTourUrl: "/vr-tour/villa-oceanfront",
     verified: true,
     featured: true,
-    availableFrom: '2024-02-01',
-    energyRating: 'A',
+    availableFrom: "2024-02-01",
+    energyRating: "A",
     coordinates: { lat: 28.0916, lng: -16.7281 },
     description: `Espectacular villa de lujo con vistas panorámicas al océano Atlántico. Esta propiedad única combina el diseño moderno con la tranquilidad de vivir frente al mar.
 
 La villa cuenta con amplios espacios interiores y exteriores, acabados de primera calidad y una ubicación privilegiada en una de las zonas más exclusivas de Tenerife.
 
 Perfecta para residencia habitual o como inversión en el mercado de alquiler vacacional de lujo.`,
-    
+
     features: [
-      'Piscina infinity con vistas al océano',
-      'Cocina moderna totalmente equipada',
-      'Sistema domótico completo',
-      'Terraza de 120m² con jacuzzi',
-      'Garaje para 2 vehículos',
-      'Jardín mediterráneo privado',
-      'Aire acondicionado en todas las habitaciones',
-      'Paneles solares y sistema sostenible'
+      "Piscina infinity con vistas al océano",
+      "Cocina moderna totalmente equipada",
+      "Sistema domótico completo",
+      "Terraza de 120m² con jacuzzi",
+      "Garaje para 2 vehículos",
+      "Jardín mediterráneo privado",
+      "Aire acondicionado en todas las habitaciones",
+      "Paneles solares y sistema sostenible",
     ],
-    
+
     amenities: [
-      { icon: Wifi, label: 'Fibra 1GB' },
-      { icon: Car, label: 'Garaje 2 plazas' },
-      { icon: Shield, label: 'Seguridad 24h' },
-      { icon: Zap, label: 'Domótica' }
+      { icon: Wifi, label: "Fibra 1GB" },
+      { icon: Car, label: "Garaje 2 plazas" },
+      { icon: Shield, label: "Seguridad 24h" },
+      { icon: Zap, label: "Domótica" },
     ],
-    
+
     agent: {
-      name: 'Carmen Silva',
-      phone: '+34 922 123 456',
-      email: 'carmen.silva@blueeyehomes.com',
-      avatar: '/placeholder.svg',
-      specialization: 'Propiedades de lujo en Tenerife',
+      name: "Carmen Silva",
+      phone: "+34 922 123 456",
+      email: "carmen.silva@blueeyehomes.com",
+      avatar: "/placeholder.svg",
+      specialization: "Propiedades de lujo en Tenerife",
       rating: 4.9,
-      sales: 127
+      sales: 127,
     },
-    
+
     documents: [
-      { type: 'Nota Simple', status: 'Disponible' },
-      { type: 'Certificado Energético', status: 'Disponible' },
-      { type: 'Planos Arquitectónicos', status: 'Disponible' },
-      { type: 'IBI último año', status: 'Disponible' }
+      { type: "Nota Simple", status: "Disponible" },
+      { type: "Certificado Energético", status: "Disponible" },
+      { type: "Planos Arquitectónicos", status: "Disponible" },
+      { type: "IBI último año", status: "Disponible" },
     ],
-    
+
     nearbyPlaces: [
-      { name: 'Playa del Duque', distance: '0.3 km', type: 'Playa' },
-      { name: 'Centro Comercial Plaza del Duque', distance: '0.5 km', type: 'Comercio' },
-      { name: 'Hospital Hospiten Sur', distance: '2.1 km', type: 'Sanidad' },
-      { name: 'Aeropuerto Tenerife Sur', distance: '15 km', type: 'Transporte' }
-    ]
+      { name: "Playa del Duque", distance: "0.3 km", type: "Playa" },
+      {
+        name: "Centro Comercial Plaza del Duque",
+        distance: "0.5 km",
+        type: "Comercio",
+      },
+      { name: "Hospital Hospiten Sur", distance: "2.1 km", type: "Sanidad" },
+      {
+        name: "Aeropuerto Tenerife Sur",
+        distance: "15 km",
+        type: "Transporte",
+      },
+    ],
   };
 
   const nextImage = () => {
@@ -135,24 +143,26 @@ Perfecta para residencia habitual o como inversión en el mercado de alquiler va
   };
 
   const prevImage = () => {
-    setCurrentImageIndex((prev) => (prev - 1 + property.images.length) % property.images.length);
+    setCurrentImageIndex(
+      (prev) => (prev - 1 + property.images.length) % property.images.length,
+    );
   };
 
   const handleGeneratePDF = () => {
     // Generate PDF dossier functionality
-    console.log('Generating PDF dossier for property:', property.id);
+    console.log("Generating PDF dossier for property:", property.id);
   };
 
   const handlePublishAbroad = () => {
     // Publish to foreign portals functionality
-    console.log('Publishing to foreign portals:', property.id);
+    console.log("Publishing to foreign portals:", property.id);
   };
 
   const tabs = [
-    { id: 'overview', label: 'Descripción', icon: FileText },
-    { id: 'features', label: 'Características', icon: CheckCircle },
-    { id: 'location', label: 'Ubicación', icon: MapPin },
-    { id: 'documents', label: 'Documentos', icon: Download }
+    { id: "overview", label: "Descripción", icon: FileText },
+    { id: "features", label: "Características", icon: CheckCircle },
+    { id: "location", label: "Ubicación", icon: MapPin },
+    { id: "documents", label: "Documentos", icon: Download },
   ];
 
   return (
@@ -160,8 +170,8 @@ Perfecta para residencia habitual o como inversión en el mercado de alquiler va
       <Header isScrolled={isScrolled} />
       <div className="container mx-auto container-padding pt-20 lg:pt-24">
         {/* Back Navigation */}
-        <Link 
-          to="/propiedades" 
+        <Link
+          to="/propiedades"
           className="inline-flex items-center gap-2 text-white/60 hover:text-neon-teal transition-colors mb-6"
         >
           <ArrowLeft size={20} />
@@ -177,7 +187,7 @@ Perfecta para residencia habitual o como inversión en el mercado de alquiler va
               className="w-full h-full object-cover"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-blue-dark/50 to-transparent"></div>
-            
+
             {/* Image Counter */}
             <div className="absolute top-4 left-4 glass-card px-3 py-1 rounded-full">
               <span className="text-white font-medium">
@@ -190,15 +200,17 @@ Perfecta para residencia habitual o como inversión en el mercado de alquiler va
               <button
                 onClick={() => setIsSaved(!isSaved)}
                 className={`w-12 h-12 backdrop-blur-sm rounded-full flex items-center justify-center transition-colors ${
-                  isSaved ? 'bg-neon-teal/30 text-neon-teal' : 'bg-black/20 text-white hover:bg-black/30'
+                  isSaved
+                    ? "bg-neon-teal/30 text-neon-teal"
+                    : "bg-black/20 text-white hover:bg-black/30"
                 }`}
               >
-                <Heart size={20} fill={isSaved ? 'currentColor' : 'none'} />
+                <Heart size={20} fill={isSaved ? "currentColor" : "none"} />
               </button>
               <button className="w-12 h-12 bg-black/20 backdrop-blur-sm rounded-full flex items-center justify-center text-white hover:bg-black/30 transition-colors">
                 <Share2 size={20} />
               </button>
-              <button 
+              <button
                 onClick={() => setIsGalleryOpen(true)}
                 className="w-12 h-12 bg-black/20 backdrop-blur-sm rounded-full flex items-center justify-center text-white hover:bg-black/30 transition-colors"
               >
@@ -208,7 +220,7 @@ Perfecta para residencia habitual o como inversión en el mercado de alquiler va
 
             {/* VR Tour Button */}
             <div className="absolute bottom-6 left-6">
-              <Link 
+              <Link
                 to={property.vrTourUrl}
                 className="btn-primary flex items-center gap-2"
               >
@@ -218,13 +230,13 @@ Perfecta para residencia habitual o como inversión en el mercado de alquiler va
             </div>
 
             {/* Navigation Arrows */}
-            <button 
+            <button
               onClick={prevImage}
               className="absolute left-4 top-1/2 transform -translate-y-1/2 w-12 h-12 bg-black/20 backdrop-blur-sm rounded-full flex items-center justify-center text-white hover:bg-black/30 transition-colors"
             >
               <ChevronLeft size={24} />
             </button>
-            <button 
+            <button
               onClick={nextImage}
               className="absolute right-4 top-1/2 transform -translate-y-1/2 w-12 h-12 bg-black/20 backdrop-blur-sm rounded-full flex items-center justify-center text-white hover:bg-black/30 transition-colors"
             >
@@ -239,10 +251,16 @@ Perfecta para residencia habitual o como inversión en el mercado de alquiler va
                 key={index}
                 onClick={() => setCurrentImageIndex(index)}
                 className={`relative flex-shrink-0 w-20 h-20 rounded-lg overflow-hidden border-2 transition-colors ${
-                  index === currentImageIndex ? 'border-neon-teal' : 'border-white/20 hover:border-white/40'
+                  index === currentImageIndex
+                    ? "border-neon-teal"
+                    : "border-white/20 hover:border-white/40"
                 }`}
               >
-                <img src={image} alt={`Thumbnail ${index + 1}`} className="w-full h-full object-cover" />
+                <img
+                  src={image}
+                  alt={`Thumbnail ${index + 1}`}
+                  className="w-full h-full object-cover"
+                />
               </button>
             ))}
           </div>
@@ -271,11 +289,11 @@ Perfecta para residencia habitual o como inversión en el mercado de alquiler va
                   </span>
                 )}
               </div>
-              
+
               <h1 className="text-3xl lg:text-4xl font-bold text-gradient mb-4">
                 {property.title}
               </h1>
-              
+
               <div className="flex items-center gap-2 text-white/70 mb-6">
                 <MapPin size={20} />
                 <span className="text-lg">{property.location}</span>
@@ -315,9 +333,9 @@ Perfecta para residencia habitual o como inversión en el mercado de alquiler va
                       key={tab.id}
                       onClick={() => setActiveTab(tab.id)}
                       className={`flex items-center gap-2 px-4 py-3 rounded-lg transition-colors ${
-                        activeTab === tab.id 
-                          ? 'bg-neon-teal text-blue-dark font-semibold' 
-                          : 'text-white/70 hover:text-white hover:bg-white/5'
+                        activeTab === tab.id
+                          ? "bg-neon-teal text-blue-dark font-semibold"
+                          : "text-white/70 hover:text-white hover:bg-white/5"
                       }`}
                     >
                       <IconComponent size={18} />
@@ -329,7 +347,7 @@ Perfecta para residencia habitual o como inversión en el mercado de alquiler va
 
               {/* Tab Content */}
               <div className="glass-card p-8 rounded-xl">
-                {activeTab === 'overview' && (
+                {activeTab === "overview" && (
                   <div className="space-y-6">
                     <div>
                       <h3 className="text-xl font-bold mb-4">Descripción</h3>
@@ -337,13 +355,18 @@ Perfecta para residencia habitual o como inversión en el mercado de alquiler va
                         {property.description}
                       </div>
                     </div>
-                    
+
                     <div>
-                      <h3 className="text-xl font-bold mb-4">Características destacadas</h3>
+                      <h3 className="text-xl font-bold mb-4">
+                        Características destacadas
+                      </h3>
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                         {property.features.map((feature, index) => (
                           <div key={index} className="flex items-center gap-3">
-                            <CheckCircle className="text-neon-teal flex-shrink-0" size={20} />
+                            <CheckCircle
+                              className="text-neon-teal flex-shrink-0"
+                              size={20}
+                            />
                             <span className="text-white/80">{feature}</span>
                           </div>
                         ))}
@@ -351,14 +374,21 @@ Perfecta para residencia habitual o como inversión en el mercado de alquiler va
                     </div>
 
                     <div>
-                      <h3 className="text-xl font-bold mb-4">Servicios incluidos</h3>
+                      <h3 className="text-xl font-bold mb-4">
+                        Servicios incluidos
+                      </h3>
                       <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                         {property.amenities.map((amenity, index) => {
                           const IconComponent = amenity.icon;
                           return (
                             <div key={index} className="text-center">
-                              <IconComponent className="text-neon-teal mx-auto mb-2" size={24} />
-                              <div className="text-white/80 text-sm">{amenity.label}</div>
+                              <IconComponent
+                                className="text-neon-teal mx-auto mb-2"
+                                size={24}
+                              />
+                              <div className="text-white/80 text-sm">
+                                {amenity.label}
+                              </div>
                             </div>
                           );
                         })}
@@ -367,45 +397,68 @@ Perfecta para residencia habitual o como inversión en el mercado de alquiler va
                   </div>
                 )}
 
-                {activeTab === 'features' && (
+                {activeTab === "features" && (
                   <div className="space-y-6">
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                       <div>
-                        <h3 className="text-xl font-bold mb-4">Detalles técnicos</h3>
+                        <h3 className="text-xl font-bold mb-4">
+                          Detalles técnicos
+                        </h3>
                         <div className="space-y-3">
                           <div className="flex justify-between">
-                            <span className="text-white/70">Año construcción:</span>
+                            <span className="text-white/70">
+                              Año construcción:
+                            </span>
                             <span>{property.yearBuilt}</span>
                           </div>
                           <div className="flex justify-between">
-                            <span className="text-white/70">Superficie construida:</span>
+                            <span className="text-white/70">
+                              Superficie construida:
+                            </span>
                             <span>{property.sqm} m²</span>
                           </div>
                           <div className="flex justify-between">
-                            <span className="text-white/70">Superficie parcela:</span>
+                            <span className="text-white/70">
+                              Superficie parcela:
+                            </span>
                             <span>{property.plotSize} m²</span>
                           </div>
                           <div className="flex justify-between">
-                            <span className="text-white/70">Certificado energético:</span>
+                            <span className="text-white/70">
+                              Certificado energético:
+                            </span>
                             <span className="bg-green-500 text-black px-2 py-1 rounded text-sm font-bold">
                               {property.energyRating}
                             </span>
                           </div>
                           <div className="flex justify-between">
-                            <span className="text-white/70">Disponible desde:</span>
-                            <span>{new Date(property.availableFrom).toLocaleDateString('es-ES')}</span>
+                            <span className="text-white/70">
+                              Disponible desde:
+                            </span>
+                            <span>
+                              {new Date(
+                                property.availableFrom,
+                              ).toLocaleDateString("es-ES")}
+                            </span>
                           </div>
                         </div>
                       </div>
-                      
+
                       <div>
-                        <h3 className="text-xl font-bold mb-4">Documentación</h3>
+                        <h3 className="text-xl font-bold mb-4">
+                          Documentación
+                        </h3>
                         <div className="space-y-3">
                           {property.documents.map((doc, index) => (
-                            <div key={index} className="flex justify-between items-center">
+                            <div
+                              key={index}
+                              className="flex justify-between items-center"
+                            >
                               <span className="text-white/70">{doc.type}:</span>
                               <div className="flex items-center gap-2">
-                                <span className="text-neon-emerald text-sm">{doc.status}</span>
+                                <span className="text-neon-emerald text-sm">
+                                  {doc.status}
+                                </span>
                                 <button className="text-neon-teal hover:text-neon-emerald transition-colors">
                                   <Download size={16} />
                                 </button>
@@ -418,26 +471,38 @@ Perfecta para residencia habitual o como inversión en el mercado de alquiler va
                   </div>
                 )}
 
-                {activeTab === 'location' && (
+                {activeTab === "location" && (
                   <div className="space-y-6">
                     <div className="bg-white/5 rounded-lg h-64 flex items-center justify-center">
                       <div className="text-center text-white/60">
                         <MapPin size={48} className="mx-auto mb-4" />
                         <p>Mapa interactivo 3D</p>
-                        <p className="text-sm">Coordenadas: {property.coordinates.lat}, {property.coordinates.lng}</p>
+                        <p className="text-sm">
+                          Coordenadas: {property.coordinates.lat},{" "}
+                          {property.coordinates.lng}
+                        </p>
                       </div>
                     </div>
-                    
+
                     <div>
-                      <h3 className="text-xl font-bold mb-4">Lugares de interés cercanos</h3>
+                      <h3 className="text-xl font-bold mb-4">
+                        Lugares de interés cercanos
+                      </h3>
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                         {property.nearbyPlaces.map((place, index) => (
-                          <div key={index} className="flex justify-between items-center p-4 bg-white/5 rounded-lg">
+                          <div
+                            key={index}
+                            className="flex justify-between items-center p-4 bg-white/5 rounded-lg"
+                          >
                             <div>
                               <div className="font-medium">{place.name}</div>
-                              <div className="text-white/60 text-sm">{place.type}</div>
+                              <div className="text-white/60 text-sm">
+                                {place.type}
+                              </div>
                             </div>
-                            <div className="text-neon-teal font-medium">{place.distance}</div>
+                            <div className="text-neon-teal font-medium">
+                              {place.distance}
+                            </div>
                           </div>
                         ))}
                       </div>
@@ -445,21 +510,27 @@ Perfecta para residencia habitual o como inversión en el mercado de alquiler va
                   </div>
                 )}
 
-                {activeTab === 'documents' && (
+                {activeTab === "documents" && (
                   <div className="space-y-6">
                     <p className="text-white/70">
-                      Todos los documentos están verificados y actualizados. Puedes descargar 
-                      la documentación completa o generar un dossier personalizado.
+                      Todos los documentos están verificados y actualizados.
+                      Puedes descargar la documentación completa o generar un
+                      dossier personalizado.
                     </p>
-                    
+
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                       {property.documents.map((doc, index) => (
-                        <div key={index} className="glass-card p-4 rounded-lg flex justify-between items-center">
+                        <div
+                          key={index}
+                          className="glass-card p-4 rounded-lg flex justify-between items-center"
+                        >
                           <div className="flex items-center gap-3">
                             <FileText className="text-neon-teal" size={24} />
                             <div>
                               <div className="font-medium">{doc.type}</div>
-                              <div className="text-white/60 text-sm">{doc.status}</div>
+                              <div className="text-white/60 text-sm">
+                                {doc.status}
+                              </div>
                             </div>
                           </div>
                           <button className="btn-secondary px-3 py-2 text-sm">
@@ -480,7 +551,7 @@ Perfecta para residencia habitual o como inversión en el mercado de alquiler va
                     location: property.location,
                     sqm: property.sqm,
                     bedrooms: property.bedrooms,
-                    category: property.category
+                    category: property.category,
                   }}
                 />
               </div>
@@ -505,16 +576,16 @@ Perfecta para residencia habitual o como inversión en el mercado de alquiler va
                   <MessageCircle size={20} />
                   Hablar con IA
                 </button>
-                
-                <button 
+
+                <button
                   onClick={handleGeneratePDF}
                   className="btn-secondary w-full flex items-center justify-center gap-2"
                 >
                   <Download size={20} />
                   Generar dossier PDF
                 </button>
-                
-                <button 
+
+                <button
                   onClick={handlePublishAbroad}
                   className="glass-card w-full p-3 rounded-lg hover-glow-teal flex items-center justify-center gap-2"
                 >
@@ -527,34 +598,38 @@ Perfecta para residencia habitual o como inversión en el mercado de alquiler va
             {/* Agent Info */}
             <div className="glass-card p-6 rounded-xl">
               <h3 className="font-bold mb-4">Agente especializado</h3>
-              
+
               <div className="flex items-center gap-4 mb-4">
-                <img 
-                  src={property.agent.avatar} 
+                <img
+                  src={property.agent.avatar}
                   alt={property.agent.name}
                   className="w-16 h-16 rounded-full object-cover"
                 />
                 <div>
                   <div className="font-bold">{property.agent.name}</div>
-                  <div className="text-white/60 text-sm">{property.agent.specialization}</div>
+                  <div className="text-white/60 text-sm">
+                    {property.agent.specialization}
+                  </div>
                   <div className="flex items-center gap-1 text-neon-teal text-sm">
                     <Star size={14} fill="currentColor" />
                     <span>{property.agent.rating}</span>
-                    <span className="text-white/60">({property.agent.sales} ventas)</span>
+                    <span className="text-white/60">
+                      ({property.agent.sales} ventas)
+                    </span>
                   </div>
                 </div>
               </div>
 
               <div className="space-y-3">
-                <a 
+                <a
                   href={`tel:${property.agent.phone}`}
                   className="glass-card p-3 rounded-lg flex items-center gap-3 hover-glow-teal"
                 >
                   <Phone className="text-neon-teal" size={20} />
                   <span>{property.agent.phone}</span>
                 </a>
-                
-                <a 
+
+                <a
                   href={`mailto:${property.agent.email}`}
                   className="glass-card p-3 rounded-lg flex items-center gap-3 hover-glow-teal"
                 >
@@ -572,12 +647,12 @@ Perfecta para residencia habitual o como inversión en el mercado de alquiler va
                   <Calendar className="text-neon-teal" size={20} />
                   <span>Agendar visita</span>
                 </button>
-                
+
                 <button className="w-full glass-card p-3 rounded-lg hover-glow-emerald flex items-center gap-3">
                   <Camera className="text-neon-emerald" size={20} />
                   <span>Solicitar más fotos</span>
                 </button>
-                
+
                 <button className="w-full glass-card p-3 rounded-lg hover-glow-teal flex items-center gap-3">
                   <Euro className="text-neon-teal" size={20} />
                   <span>Calcular hipoteca</span>
@@ -589,19 +664,29 @@ Perfecta para residencia habitual o como inversión en el mercado de alquiler va
 
         {/* Related Properties */}
         <div className="mb-16">
-          <h2 className="text-2xl font-bold text-gradient mb-8">Propiedades similares</h2>
+          <h2 className="text-2xl font-bold text-gradient mb-8">
+            Propiedades similares
+          </h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {/* This would be populated with similar properties */}
             {[1, 2, 3].map((item) => (
-              <div key={item} className="glass-card p-4 rounded-xl hover-glow-teal">
+              <div
+                key={item}
+                className="glass-card p-4 rounded-xl hover-glow-teal"
+              >
                 <div className="bg-white/5 h-48 rounded-lg mb-4 flex items-center justify-center">
-                  <span className="text-white/40">Propiedad relacionada {item}</span>
+                  <span className="text-white/40">
+                    Propiedad relacionada {item}
+                  </span>
                 </div>
                 <h4 className="font-bold mb-2">Villa Similiar {item}</h4>
                 <p className="text-white/60 text-sm mb-3">Ubicación similar</p>
                 <div className="flex justify-between items-center">
                   <span className="text-neon-teal font-bold">€890.000</span>
-                  <Link to={`/property/similar-${item}`} className="btn-secondary px-3 py-2 text-sm">
+                  <Link
+                    to={`/property/similar-${item}`}
+                    className="btn-secondary px-3 py-2 text-sm"
+                  >
                     Ver detalles
                   </Link>
                 </div>
@@ -624,21 +709,21 @@ Perfecta para residencia habitual o como inversión en el mercado de alquiler va
             >
               <X size={24} />
             </button>
-            
+
             <img
               src={property.images[currentImageIndex]}
               alt={`${property.title} - Imagen ${currentImageIndex + 1}`}
               className="max-w-full max-h-full object-contain rounded-lg"
             />
-            
-            <button 
+
+            <button
               onClick={prevImage}
               className="absolute left-4 top-1/2 transform -translate-y-1/2 w-12 h-12 bg-black/50 backdrop-blur-sm rounded-full flex items-center justify-center text-white hover:bg-black/70 transition-colors"
             >
               <ChevronLeft size={24} />
             </button>
-            
-            <button 
+
+            <button
               onClick={nextImage}
               className="absolute right-4 top-1/2 transform -translate-y-1/2 w-12 h-12 bg-black/50 backdrop-blur-sm rounded-full flex items-center justify-center text-white hover:bg-black/70 transition-colors"
             >

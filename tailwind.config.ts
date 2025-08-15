@@ -58,11 +58,11 @@ export default {
           ring: "hsl(var(--sidebar-ring))",
         },
         // BlueEyeHomes brand colors
-        'blue-dark': '#0A0F1A',
-        'neon-teal': '#0EE7E7',
-        'neon-emerald': '#00E7A7',
-        'glass': 'rgba(255, 255, 255, 0.08)',
-        'glass-border': 'rgba(255, 255, 255, 0.12)',
+        "blue-dark": "#0A0F1A",
+        "neon-teal": "#0EE7E7",
+        "neon-emerald": "#00E7A7",
+        glass: "rgba(255, 255, 255, 0.08)",
+        "glass-border": "rgba(255, 255, 255, 0.12)",
       },
       borderRadius: {
         lg: "var(--radius)",
@@ -71,15 +71,15 @@ export default {
         xl: "16px",
       },
       backdropBlur: {
-        xs: '2px',
+        xs: "2px",
       },
       boxShadow: {
-        'neon-teal': '0 0 20px rgba(14, 231, 231, 0.3)',
-        'neon-emerald': '0 0 20px rgba(0, 231, 167, 0.3)',
-        'glass': '0 8px 32px rgba(0, 0, 0, 0.1)',
+        "neon-teal": "0 0 20px rgba(14, 231, 231, 0.3)",
+        "neon-emerald": "0 0 20px rgba(0, 231, 167, 0.3)",
+        glass: "0 8px 32px rgba(0, 0, 0, 0.1)",
       },
       fontFamily: {
-        'geometric': ['Inter', 'system-ui', 'sans-serif'],
+        geometric: ["Inter", "system-ui", "sans-serif"],
       },
       keyframes: {
         "accordion-down": {
@@ -98,13 +98,16 @@ export default {
             height: "0",
           },
         },
-        "float": {
+        float: {
           "0%, 100%": { transform: "translateY(0px)" },
           "50%": { transform: "translateY(-10px)" },
         },
-        "glow": {
+        glow: {
           "0%": { boxShadow: "0 0 20px rgba(14, 231, 231, 0.3)" },
-          "100%": { boxShadow: "0 0 30px rgba(14, 231, 231, 0.6), 0 0 40px rgba(14, 231, 231, 0.3)" },
+          "100%": {
+            boxShadow:
+              "0 0 30px rgba(14, 231, 231, 0.6), 0 0 40px rgba(14, 231, 231, 0.3)",
+          },
         },
         "slide-up": {
           "0%": { transform: "translateY(100px)", opacity: "0" },
@@ -118,8 +121,8 @@ export default {
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
-        "float": "float 6s ease-in-out infinite",
-        "glow": "glow 2s ease-in-out infinite alternate",
+        float: "float 6s ease-in-out infinite",
+        glow: "glow 2s ease-in-out infinite alternate",
         "slide-up": "slide-up 0.6s ease-out",
         "fade-in": "fade-in 0.6s ease-out",
       },
