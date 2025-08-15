@@ -154,8 +154,9 @@ Perfecta para residencia habitual o como inversión en el mercado de alquiler va
   ];
 
   return (
-    <div className="min-h-screen bg-blue-dark text-white/90 pt-20">
-      <div className="container mx-auto container-padding">
+    <div className="min-h-screen bg-blue-dark text-white/90">
+      <Header isScrolled={isScrolled} />
+      <div className="container mx-auto container-padding pt-20 lg:pt-24">
         {/* Back Navigation */}
         <Link 
           to="/propiedades" 
