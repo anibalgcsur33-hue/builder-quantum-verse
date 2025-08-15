@@ -16,6 +16,12 @@ import Reformas from "./pages/marketplace/Reformas";
 import Seguros from "./pages/marketplace/Seguros";
 import ServiciosLegales from "./pages/marketplace/ServiciosLegales";
 import Mobiliario from "./pages/marketplace/Mobiliario";
+import Login from "./pages/auth/Login";
+import Register from "./pages/auth/Register";
+import Profile from "./pages/user/Profile";
+import AgencyDashboard from "./pages/agency/Dashboard";
+import CryptoToken from "./pages/CryptoToken";
+import MetaverseMap from "./pages/MetaverseMap";
 
 const queryClient = new QueryClient();
 
