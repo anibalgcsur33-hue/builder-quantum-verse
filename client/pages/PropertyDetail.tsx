@@ -3,6 +3,8 @@ import { useParams, Link } from 'react-router-dom';
 import Header from '../components/Header';
 import AIChatbot from '../components/AIChatbot';
 import FinancialSimulator from '../components/FinancialSimulator';
+import NFTReservation from '../components/NFTReservation';
+import DigitalTwin from '../components/DigitalTwin';
 import { 
   ArrowLeft,
   Heart,
