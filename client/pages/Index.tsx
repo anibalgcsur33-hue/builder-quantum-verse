@@ -705,7 +705,7 @@ export default function Index() {
           </h2>
           <p className="text-xl text-white/80 max-w-3xl mx-auto mb-12">
             Navega por un mapa interactivo 3D de las Islas Canarias y España. 
-            Filtra por ubicación, precio, tipo de propiedad y accede a tours VR instantáneos.
+            Filtra por ubicación, precio, tipo de propiedad y accede a tours VR instant��neos.
           </p>
           
           {/* Interactive Features */}
@@ -868,7 +868,7 @@ export default function Index() {
       {/* Footer */}
       <footer className="border-t border-white/10 py-16 bg-gradient-to-b from-transparent to-blue-dark/50">
         <div className="container mx-auto container-padding">
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
+          <div className="grid grid-cols-1 md:grid-cols-5 gap-8 mb-12">
             <div>
               <Link to="/" className="text-2xl font-bold text-gradient mb-4 block">
                 BlueEyeHomes
@@ -890,57 +890,78 @@ export default function Index() {
                 ))}
               </div>
             </div>
-            
+
             <div>
               <h4 className="font-bold mb-6 text-neon-teal">Propiedades</h4>
               <div className="space-y-3">
                 <Link to="/propiedades" className="block text-white/60 hover:text-neon-teal transition-colors">
                   Todas las Propiedades
                 </Link>
-                <Link to="/propiedades/canarias" className="block text-white/60 hover:text-neon-teal transition-colors">
-                  Islas Canarias
+                <Link to="/propiedades/comprar" className="block text-white/60 hover:text-neon-teal transition-colors">
+                  Comprar
                 </Link>
-                <Link to="/propiedades/peninsula" className="block text-white/60 hover:text-neon-teal transition-colors">
-                  España Peninsular
+                <Link to="/propiedades/alquilar" className="block text-white/60 hover:text-neon-teal transition-colors">
+                  Alquilar
                 </Link>
-                <Link to="/propiedades/lujo" className="block text-white/60 hover:text-neon-teal transition-colors">
-                  Propiedades de Lujo
+                <Link to="/propiedades/obra-nueva" className="block text-white/60 hover:text-neon-teal transition-colors">
+                  Obra Nueva
+                </Link>
+                <Link to="/propiedades/verificadas" className="block text-white/60 hover:text-neon-teal transition-colors">
+                  Verificadas
                 </Link>
               </div>
             </div>
-            
+
             <div>
               <h4 className="font-bold mb-6 text-neon-emerald">Tecnología</h4>
               <div className="space-y-3">
                 <Link to="/tour-vr" className="block text-white/60 hover:text-neon-teal transition-colors">
                   Tours VR
                 </Link>
-                <Link to="/agente-ia" className="block text-white/60 hover:text-neon-teal transition-colors">
-                  Agente IA
+                <Link to="/comunidad" className="block text-white/60 hover:text-neon-teal transition-colors">
+                  Comunidad
                 </Link>
                 <Link to="/metaverso" className="block text-white/60 hover:text-neon-teal transition-colors">
                   Metaverso
                 </Link>
-                <Link to="/blockchain" className="block text-white/60 hover:text-neon-teal transition-colors">
-                  Blockchain & Cripto
+                <Link to="/mapa-canarias" className="block text-white/60 hover:text-neon-teal transition-colors">
+                  Mapa 3D
                 </Link>
               </div>
             </div>
-            
+
             <div>
-              <h4 className="font-bold mb-6 text-neon-teal">Soporte</h4>
+              <h4 className="font-bold mb-6 text-neon-teal">Marketplace</h4>
+              <div className="space-y-3">
+                <Link to="/marketplace/reformas" className="block text-white/60 hover:text-neon-teal transition-colors">
+                  Reformas
+                </Link>
+                <Link to="/marketplace/seguros" className="block text-white/60 hover:text-neon-teal transition-colors">
+                  Seguros
+                </Link>
+                <Link to="/marketplace/servicios-legales" className="block text-white/60 hover:text-neon-teal transition-colors">
+                  Servicios Legales
+                </Link>
+                <Link to="/marketplace/mobiliario" className="block text-white/60 hover:text-neon-teal transition-colors">
+                  Mobiliario
+                </Link>
+              </div>
+            </div>
+
+            <div>
+              <h4 className="font-bold mb-6 text-neon-emerald">Soporte</h4>
               <div className="space-y-3">
                 <Link to="/como-funciona" className="block text-white/60 hover:text-neon-teal transition-colors">
                   Cómo Funciona
                 </Link>
-                <Link to="/legal" className="block text-white/60 hover:text-neon-teal transition-colors">
-                  Asesoría Legal
-                </Link>
                 <Link to="/contacto" className="block text-white/60 hover:text-neon-teal transition-colors">
                   Contacto
                 </Link>
-                <Link to="/ayuda" className="block text-white/60 hover:text-neon-teal transition-colors">
-                  Centro de Ayuda
+                <Link to="/privacidad" className="block text-white/60 hover:text-neon-teal transition-colors">
+                  Privacidad
+                </Link>
+                <Link to="/terminos" className="block text-white/60 hover:text-neon-teal transition-colors">
+                  Términos
                 </Link>
               </div>
             </div>
