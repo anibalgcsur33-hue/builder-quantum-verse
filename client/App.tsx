@@ -9,6 +9,13 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 import PlaceholderPage from "./pages/PlaceholderPage";
+import Properties from "./pages/Properties";
+import PropertyDetail from "./pages/PropertyDetail";
+import Community from "./pages/Community";
+import Reformas from "./pages/marketplace/Reformas";
+import Seguros from "./pages/marketplace/Seguros";
+import ServiciosLegales from "./pages/marketplace/ServiciosLegales";
+import Mobiliario from "./pages/marketplace/Mobiliario";
 
 const queryClient = new QueryClient();
 
