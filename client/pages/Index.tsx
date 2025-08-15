@@ -260,6 +260,9 @@ export default function Index() {
                   </button>
                 ))}
               </div>
+              <Link to="/auth/login" className="text-white/70 hover:text-neon-teal transition-colors">
+                Iniciar Sesión
+              </Link>
               <Link to="/metaverso" className="btn-primary">
                 {t.nav.cta}
               </Link>
