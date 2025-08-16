@@ -185,29 +185,59 @@ export default function PremiumTourism() {
 
   return (
     <section className="mb-20">
-      <div className="text-center mb-12">
-        <div className="flex items-center justify-center space-x-3 mb-4">
-          <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-pink-500 via-purple-500 to-indigo-600 p-3 shadow-lg shadow-pink-500/30">
-            <Plane className="w-full h-full text-white" />
+      {/* Enhanced Hero Section with Prominent Offer */}
+      <div className="glass-card p-8 lg:p-12 rounded-3xl border border-pink-500/30 bg-gradient-to-br from-pink-500/20 via-purple-500/15 to-indigo-600/20 mb-12">
+        <div className="text-center">
+          <div className="flex items-center justify-center space-x-4 mb-6">
+            <div className="w-20 h-20 rounded-3xl bg-gradient-to-br from-pink-500 via-purple-500 to-indigo-600 p-4 shadow-2xl shadow-pink-500/40 animate-pulse">
+              <Plane className="w-full h-full text-white" />
+            </div>
+            <div>
+              <h2 className="text-5xl lg:text-7xl font-bold">
+                <span className="bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-600 bg-clip-text text-transparent">
+                  Visita Canarias
+                </span>
+              </h2>
+              <p className="text-pink-400 font-bold text-xl">con BlueEyeHomes</p>
+            </div>
           </div>
-          <div>
-            <h2 className="text-4xl lg:text-5xl font-bold">
-              <span className="bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-600 bg-clip-text text-transparent">
-                Visita Canarias
-              </span>
-            </h2>
-            <p className="text-pink-400 font-medium">con BlueEyeHomes</p>
+
+          {/* Special Offer Banner */}
+          <div className="bg-gradient-to-r from-pink-600 to-purple-600 rounded-2xl p-6 mb-6 shadow-2xl shadow-pink-500/30">
+            <div className="flex items-center justify-center space-x-3 mb-3">
+              <Sparkles className="w-8 h-8 text-yellow-300 animate-bounce" />
+              <h3 className="text-3xl lg:text-4xl font-black text-white">
+                ¡OFERTA EXCLUSIVA!
+              </h3>
+              <Sparkles className="w-8 h-8 text-yellow-300 animate-bounce" />
+            </div>
+            <p className="text-xl lg:text-2xl text-white/95 font-bold mb-4">
+              🏨 <span className="text-yellow-300">3 NOCHES DE HOTEL GRATIS</span> 🏨
+            </p>
+            <p className="text-lg text-white/90 max-w-3xl mx-auto leading-relaxed">
+              Para clientes interesados en propiedades premium +€1M.
+              <span className="font-bold text-yellow-300"> Valor hasta €1,240</span>
+            </p>
+          </div>
+
+          <p className="text-xl text-white/80 max-w-4xl mx-auto leading-relaxed mb-8">
+            Combina la búsqueda de tu propiedad ideal con unas vacaciones de lujo inolvidables.
+            Hoteles 5 estrellas, tours privados y acceso exclusivo a propiedades no disponibles públicamente.
+          </p>
+
+          {/* Main CTA Button */}
+          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+            <button className="btn-primary bg-gradient-to-r from-pink-500 to-purple-600 hover:from-pink-600 hover:to-purple-700 text-lg px-10 py-4 shadow-2xl shadow-pink-500/30 transform hover:scale-105 transition-all duration-300 flex items-center gap-3">
+              <Calendar className="w-6 h-6" />
+              <span className="font-bold">Reserva tu Viaje de Exploración</span>
+              <ArrowRight className="w-6 h-6" />
+            </button>
+            <div className="text-center">
+              <p className="text-pink-400 font-medium">📞 Consulta inmediata</p>
+              <p className="text-white/70 text-sm">+34 922 XXX XXX</p>
+            </div>
           </div>
         </div>
-        <p className="text-xl text-white/70 max-w-3xl mx-auto leading-relaxed">
-          Explora propiedades premium mientras disfrutas de unas vacaciones de
-          lujo.
-          <span className="text-pink-400 font-bold">
-            {" "}
-            3 noches completamente gratis
-          </span>{" "}
-          para clientes interesados en propiedades exclusivas.
-        </p>
       </div>
 
       {/* Benefits Grid */}
