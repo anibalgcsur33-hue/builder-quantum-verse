@@ -703,15 +703,30 @@ export default function AIConcierge() {
           </button>
         </div>
 
-        <div className="flex justify-center mt-2 space-x-4">
-          <button className="text-xs text-neon-teal hover:text-neon-emerald transition-colors">
+        <div className="flex justify-center mt-2 space-x-2">
+          <button
+            onClick={() => {
+              setInputValue("Villa de €1.5M en Tenerife con vistas al mar y ROI >6%");
+            }}
+            className="text-xs text-neon-teal hover:text-neon-emerald transition-colors bg-neon-teal/10 px-2 py-1 rounded"
+          >
             Villa €1.5M Tenerife
           </button>
-          <button className="text-xs text-neon-teal hover:text-neon-emerald transition-colors">
+          <button
+            onClick={() => {
+              setInputValue("Apartamento con ROI mayor a 8% en Gran Canaria, máximo €800k");
+            }}
+            className="text-xs text-neon-teal hover:text-neon-emerald transition-colors bg-neon-teal/10 px-2 py-1 rounded"
+          >
             Apartamento ROI &gt;8%
           </button>
-          <button className="text-xs text-neon-teal hover:text-neon-emerald transition-colors">
-            Ático vista mar
+          <button
+            onClick={() => {
+              setInputValue("Ático de 2M€ en Tenerife, vistas al mar, ROI >7%");
+            }}
+            className="text-xs text-neon-teal hover:text-neon-emerald transition-colors bg-neon-teal/10 px-2 py-1 rounded"
+          >
+            Ático 2M€ vista mar
           </button>
         </div>
       </div>
