@@ -573,7 +573,15 @@ Perfecta para residencia habitual o como inversión en el mercado de alquiler va
               </div>
 
               <div className="space-y-4">
-                <button className="btn-primary w-full flex items-center justify-center gap-2">
+                <button
+                  onClick={() => setIsNFTModalOpen(true)}
+                  className="btn-primary w-full flex items-center justify-center gap-2 bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700"
+                >
+                  <Shield size={20} />
+                  Reserva NFT 48h
+                </button>
+
+                <button className="btn-secondary w-full flex items-center justify-center gap-2">
                   <MessageCircle size={20} />
                   Hablar con IA
                 </button>
