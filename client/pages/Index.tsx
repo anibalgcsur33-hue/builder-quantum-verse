@@ -253,9 +253,12 @@ export default function Index() {
         <div className="relative z-10 container mx-auto container-padding text-center">
           <div className="max-w-5xl mx-auto">
             <h1 className="heading-xl text-gradient animate-slide-up mb-6">
-              {t.hero.title}
+              Bienvenido a BlueEye Homes
             </h1>
-            <p className="text-xl lg:text-2xl text-white/90 mb-12 animate-fade-in max-w-4xl mx-auto leading-relaxed">
+            <p className="text-xl lg:text-2xl text-white/90 mb-8 animate-fade-in max-w-4xl mx-auto leading-relaxed">
+              Un metaverso único donde las propiedades se viven en 3D y las compras son reales
+            </p>
+            <p className="text-lg text-white/80 mb-12 animate-fade-in max-w-3xl mx-auto leading-relaxed">
               {t.hero.subtitle}
             </p>
             <div className="flex flex-col sm:flex-row gap-6 justify-center animate-fade-in">
