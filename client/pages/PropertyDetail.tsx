@@ -597,7 +597,10 @@ Perfecta para residencia habitual o como inversión en el mercado de alquiler va
                   Reserva NFT 48h
                 </button>
 
-                <button className="btn-secondary w-full flex items-center justify-center gap-2">
+                <button
+                  onClick={() => setIsPropertyAIOpen(true)}
+                  className="btn-secondary w-full flex items-center justify-center gap-2"
+                >
                   <MessageCircle size={20} />
                   Hablar con IA
                 </button>
