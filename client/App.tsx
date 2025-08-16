@@ -46,15 +46,7 @@ const App = () => (
           <Route path="/property/:id/vr" element={<PropertyDetail />} />
 
           {/* Property Categories */}
-          <Route
-            path="/propiedades/comprar"
-            element={
-              <PlaceholderPage
-                title="Propiedades en Venta"
-                description="Explora inmuebles disponibles para compra en Canarias y España."
-              />
-            }
-          />
+          <Route path="/propiedades/comprar" element={<Comprar />} />
           <Route
             path="/propiedades/alquilar"
             element={
