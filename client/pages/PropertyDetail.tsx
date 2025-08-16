@@ -45,6 +45,7 @@ export default function PropertyDetail() {
   const [isSaved, setIsSaved] = useState(false);
   const [activeTab, setActiveTab] = useState("overview");
   const [isScrolled, setIsScrolled] = useState(false);
+  const [isNFTModalOpen, setIsNFTModalOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
