@@ -82,6 +82,7 @@ const App = () => (
           <Route path="/mapa-metaverso" element={<MetaverseMap />} />
 
           {/* Marketplace Routes */}
+          <Route path="/marketplace" element={<Marketplace />} />
           <Route path="/marketplace/reformas" element={<Reformas />} />
           <Route path="/marketplace/seguros" element={<Seguros />} />
           <Route
@@ -91,6 +92,10 @@ const App = () => (
           <Route path="/marketplace/mobiliario" element={<Mobiliario />} />
           <Route path="/marketplace/smart-home" element={<SmartHome />} />
           <Route path="/marketplace/energia-solar" element={<SolarEnergia />} />
+          <Route path="/marketplace/piscinas-spa" element={<PiscinasSpa />} />
+          <Route path="/marketplace/jardines-paisajismo" element={<JardinesPaisajismo />} />
+          <Route path="/marketplace/sistemas-agua" element={<SistemasAgua />} />
+          <Route path="/marketplace/telecomunicaciones" element={<Telecomunicaciones />} />
 
           {/* Other Routes */}
           <Route
