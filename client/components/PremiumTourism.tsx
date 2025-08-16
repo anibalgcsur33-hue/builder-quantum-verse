@@ -433,37 +433,73 @@ export default function PremiumTourism() {
         </div>
       </div>
 
-      {/* CTA Section */}
-      <div className="glass-card p-8 rounded-2xl border border-pink-500/30 bg-gradient-to-r from-pink-500/10 via-purple-500/10 to-indigo-600/10 text-center">
-        <div className="max-w-2xl mx-auto">
-          <h3 className="text-2xl font-bold text-white mb-4">
-            ¿Listo para tu Viaje de Exploración?
-          </h3>
-          <p className="text-white/70 mb-6">
-            Contacta con nuestro equipo para personalizar tu experiencia.
-            Disponemos de más opciones exclusivas en Fuerteventura, La Palma y
-            El Hierro.
+      {/* Enhanced CTA Section */}
+      <div className="glass-card p-10 rounded-3xl border border-pink-500/40 bg-gradient-to-br from-pink-500/20 via-purple-500/15 to-indigo-600/20 text-center shadow-2xl shadow-pink-500/20">
+        <div className="max-w-3xl mx-auto">
+          <div className="flex items-center justify-center space-x-3 mb-6">
+            <Heart className="w-8 h-8 text-pink-400 animate-pulse" />
+            <h3 className="text-3xl font-bold text-white">
+              ¿Listo para tu Viaje de Exploración?
+            </h3>
+            <Heart className="w-8 h-8 text-pink-400 animate-pulse" />
+          </div>
+
+          <p className="text-xl text-white/80 mb-8 leading-relaxed">
+            Nuestro equipo de turismo premium está listo para crear tu experiencia personalizada.
+            <span className="text-pink-400 font-bold"> Disponemos de opciones exclusivas</span> en
+            Fuerteventura, La Palma y El Hierro.
           </p>
 
-          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-            <button className="btn-primary bg-gradient-to-r from-pink-500 to-purple-600 hover:from-pink-600 hover:to-purple-700 flex items-center gap-2">
-              <Phone className="w-4 h-4" />
-              Llamar Ahora: +34 922 XXX XXX
-            </button>
-            <button className="btn-secondary border-purple-500 text-purple-400 hover:bg-purple-500/20 flex items-center gap-2">
-              <Mail className="w-4 h-4" />
-              tourism@blueeyehomes.com
+          {/* Prominent Booking Button */}
+          <div className="mb-8">
+            <button className="btn-primary bg-gradient-to-r from-pink-500 to-purple-600 hover:from-pink-600 hover:to-purple-700 text-xl px-12 py-5 shadow-2xl shadow-pink-500/40 transform hover:scale-105 transition-all duration-300 flex items-center gap-3 mx-auto">
+              <Calendar className="w-7 h-7" />
+              <span className="font-bold">Reserva tu Viaje de Exploración</span>
+              <Plane className="w-7 h-7" />
             </button>
           </div>
 
-          <div className="mt-6 text-sm text-white/60">
+          {/* Contact Options */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+            <div className="glass-card p-6 rounded-xl border border-pink-400/20">
+              <Phone className="w-8 h-8 text-pink-400 mx-auto mb-3" />
+              <h4 className="font-bold text-white mb-2">Llamada Inmediata</h4>
+              <p className="text-pink-400 font-bold text-lg">+34 922 XXX XXX</p>
+              <p className="text-white/60 text-sm mt-1">Lun-Dom 8:00-22:00</p>
+            </div>
+            <div className="glass-card p-6 rounded-xl border border-purple-400/20">
+              <Mail className="w-8 h-8 text-purple-400 mx-auto mb-3" />
+              <h4 className="font-bold text-white mb-2">Consulta por Email</h4>
+              <p className="text-purple-400 font-bold">tourism@blueeyehomes.com</p>
+              <p className="text-white/60 text-sm mt-1">Respuesta en 2h</p>
+            </div>
+          </div>
+
+          {/* Trust Indicators */}
+          <div className="flex flex-wrap justify-center gap-6 mb-6">
+            <div className="flex items-center space-x-2">
+              <CheckCircle className="w-5 h-5 text-green-400" />
+              <span className="text-white/70 text-sm">Sin compromiso</span>
+            </div>
+            <div className="flex items-center space-x-2">
+              <CheckCircle className="w-5 h-5 text-green-400" />
+              <span className="text-white/70 text-sm">Cancelación flexible</span>
+            </div>
+            <div className="flex items-center space-x-2">
+              <CheckCircle className="w-5 h-5 text-green-400" />
+              <span className="text-white/70 text-sm">Totalmente gratuito</span>
+            </div>
+          </div>
+
+          <div className="text-sm text-white/60 space-y-1">
             <p>
-              * Oferta válida para clientes interesados en propiedades premium
-              desde €1M
+              * Oferta válida para clientes interesados en propiedades premium desde €1M
             </p>
             <p>
-              ** Sujeto a disponibilidad y confirmación de interés real de
-              compra
+              ** Sujeto a disponibilidad y confirmación de interés real de compra
+            </p>
+            <p>
+              *** Programa exclusivo limitado a 50 clientes por trimestre
             </p>
           </div>
         </div>
