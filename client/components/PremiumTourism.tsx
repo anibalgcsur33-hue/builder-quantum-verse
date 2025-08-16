@@ -378,9 +378,10 @@ export default function PremiumTourism() {
               )}
 
               <div className="mt-6">
-                <button className="w-full btn-primary bg-gradient-to-r from-pink-500 to-purple-600 hover:from-pink-600 hover:to-purple-700 flex items-center justify-center gap-2">
-                  <Calendar className="w-4 h-4" />
-                  Reservar Viaje de Exploración
+                <button className="w-full btn-primary bg-gradient-to-r from-pink-500 to-purple-600 hover:from-pink-600 hover:to-purple-700 flex items-center justify-center gap-2 py-3 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105">
+                  <Plane className="w-4 h-4" />
+                  <span className="font-bold">Reserva tu Viaje de Exploración</span>
+                  <ArrowRight className="w-4 h-4" />
                 </button>
               </div>
             </div>
