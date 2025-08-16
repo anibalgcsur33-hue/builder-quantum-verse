@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import Header from "../components/Header";
-import AIChatbot from "../components/AIChatbot";
+import AIConcierge from "../components/AIConcierge";
 import PremiumTourism from "../components/PremiumTourism";
 import {
   Eye,
