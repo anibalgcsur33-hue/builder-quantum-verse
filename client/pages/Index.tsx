@@ -225,6 +225,54 @@ export default function Index() {
 
       <Header isScrolled={isScrolled} transparent={true} />
 
+      {/* Bienvenido a BlueEye Homes Section */}
+      <section className="relative pt-24 pb-16 bg-gradient-to-b from-blue-dark to-blue-dark/90">
+        <div className="container mx-auto container-padding">
+          <div className="text-center mb-12">
+            <h2 className="heading-lg text-gradient mb-8">
+              Bienvenido a BlueEye Homes
+            </h2>
+
+            {/* Video Container - Responsive */}
+            <div className="relative w-full max-w-5xl mx-auto mb-8">
+              <div className="relative aspect-video rounded-2xl overflow-hidden shadow-2xl">
+                <video
+                  className="w-full h-full object-cover"
+                  controls
+                  poster="/placeholder.svg"
+                  preload="metadata"
+                  aria-label="Video de introducción a BlueEye Homes"
+                >
+                  <source
+                    src="https://cdn.builder.io/o/assets%2Fb022b0ef6eaa47cba6348b0a48fcb095%2F64f7b1c47f374d8ebf859e5b650ba2ba?alt=media&token=b197dd5a-d641-4142-a5c9-c35b7fc8f470&apiKey=b022b0ef6eaa47cba6348b0a48fcb095"
+                    type="video/mp4"
+                  />
+                  Su navegador no soporta el elemento de video.
+                </video>
+
+                {/* Video overlay with gradient */}
+                <div className="absolute inset-0 bg-gradient-to-t from-blue-dark/20 via-transparent to-transparent pointer-events-none"></div>
+
+                {/* Video badge */}
+                <div className="absolute top-4 left-4">
+                  <div className="glass-card px-4 py-2 rounded-full flex items-center gap-2">
+                    <Play className="text-neon-teal" size={16} />
+                    <span className="text-white font-medium text-sm">
+                      Video Introducción
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Explanatory text */}
+            <p className="text-xl lg:text-2xl text-white/90 max-w-4xl mx-auto leading-relaxed">
+              Un metaverso único donde las propiedades se viven en 3D y las compras son reales
+            </p>
+          </div>
+        </div>
+      </section>
+
       {/* Hero Section - Futuristic Coastal City Sunrise */}
       <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
         {/* Sunrise Video Background */}
