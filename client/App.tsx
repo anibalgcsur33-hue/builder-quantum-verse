@@ -16,6 +16,8 @@ import Reformas from "./pages/marketplace/Reformas";
 import Seguros from "./pages/marketplace/Seguros";
 import ServiciosLegales from "./pages/marketplace/ServiciosLegales";
 import Mobiliario from "./pages/marketplace/Mobiliario";
+import SmartHome from "./pages/marketplace/SmartHome";
+import SolarEnergia from "./pages/marketplace/SolarEnergia";
 import Login from "./pages/auth/Login";
 import Register from "./pages/auth/Register";
 import Profile from "./pages/user/Profile";
