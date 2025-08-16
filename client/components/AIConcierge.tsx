@@ -327,17 +327,39 @@ export default function AIConcierge() {
     setIsProcessingSearch(false);
 
     if (results.length > 0) {
-      const responseText =
-        `He encontrado ${results.length} propiedades que coinciden con tus criterios. ` +
-        `Las he ordenado por compatibilidad con tu búsqueda. La mejor opción tiene un match del ${results[0].matchScore}%. ` +
-        `¿Te gustaría que genere un dossier completo con estas propiedades?`;
+      // Generate intelligent, conversational response
+      const topProperty = results[0];
+      const criteriaUsed = [];
+      if (criteria.priceRange) criteriaUsed.push(`presupuesto de €${(criteria.priceRange.min/1000000).toFixed(1)}M-${(criteria.priceRange.max/1000000).toFixed(1)}M`);
+      if (criteria.location) criteriaUsed.push(criteria.location);
+      if (criteria.propertyType) criteriaUsed.push(criteria.propertyType);
+      if (criteria.seaView) criteriaUsed.push('vistas al mar');
+      if (criteria.roiMin) criteriaUsed.push(`ROI >${criteria.roiMin}%`);
+
+      let responseText = `🎯 ¡Excelente! He analizado ${results.length} propiedades basándome en tus criterios: ${criteriaUsed.join(', ')}.\n\n`;
+
+      responseText += `✨ **Destacado**: ${topProperty.title} en ${topProperty.location}\n`;
+      responseText += `💰 Precio: €${topProperty.price.toLocaleString()}\n`;
+      responseText += `📈 ROI: ${topProperty.roi}% (${topProperty.roi >= 7 ? '¡Supera tus expectativas!' : 'Dentro del rango'})\n`;
+      responseText += `🏆 Match: ${topProperty.matchScore}%\n\n`;
+
+      if (results.length > 1) {
+        responseText += `También he encontrado ${results.length - 1} alternativas adicionales que podrían interesarte.\n\n`;
+      }
+
+      responseText += `¿Te gustaría que genere un **dossier completo** con análisis financiero, documentación legal y cronograma de visitas?`;
 
       addAIMessage(responseText, results);
     } else {
-      const responseText =
-        `No he encontrado propiedades que coincidan exactamente con tus criterios. ` +
-        `Te recomiendo ajustar algunos parámetros como el presupuesto o la ubicación. ` +
-        `¿Te gustaría que busque opciones similares?`;
+      // Suggest alternatives and refinements
+      let responseText = `🔍 He buscado exhaustivamente pero no he encontrado propiedades que coincidan exactamente con todos tus criterios.\n\n`;
+
+      responseText += `💡 **Sugerencias para encontrar tu propiedad ideal:**\n`;
+      if (criteria.priceRange) responseText += `• Ampliar el rango de precio (±10-15%)\n`;
+      if (criteria.location) responseText += `• Considerar zonas cercanas a ${criteria.location}\n`;
+      if (criteria.roiMin) responseText += `• Ajustar expectativas de ROI (actualmente >${criteria.roiMin}%)\n`;
+
+      responseText += `\n¿Te gustaría que busque opciones similares con criterios más flexibles?`;
 
       addAIMessage(responseText);
     }
