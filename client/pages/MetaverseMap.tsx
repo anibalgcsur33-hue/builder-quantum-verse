@@ -721,6 +721,15 @@ export default function MetaverseMap() {
 
       {/* Live Social Proof Notifications */}
       {!isFullscreen && <LiveSocialProof />}
+
+      {/* Metaverse Experience Overlay */}
+      {isMetaverseMode && (
+        <div className="fixed inset-0 z-50 bg-black/90">
+          <MetaverseExperience
+            onClose={() => setIsMetaverseMode(false)}
+          />
+        </div>
+      )}
     </div>
   );
 }
