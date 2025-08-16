@@ -975,6 +975,18 @@ export default function Index() {
                 >
                   Mobiliario
                 </Link>
+                <Link
+                  to="/marketplace/smart-home"
+                  className="block text-white/60 hover:text-neon-teal transition-colors"
+                >
+                  Smart Home
+                </Link>
+                <Link
+                  to="/marketplace/energia-solar"
+                  className="block text-white/60 hover:text-neon-teal transition-colors"
+                >
+                  Energía Solar
+                </Link>
               </div>
             </div>
 
