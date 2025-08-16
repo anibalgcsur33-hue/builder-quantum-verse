@@ -755,6 +755,18 @@ Perfecta para residencia habitual o como inversión en el mercado de alquiler va
           </div>
         </div>
       )}
+
+      {/* NFT Reservation Modal */}
+      <NFTReservation
+        property={{
+          id: property.id,
+          title: property.title,
+          price: property.price,
+          location: property.location,
+        }}
+        isOpen={isNFTModalOpen}
+        onClose={() => setIsNFTModalOpen(false)}
+      />
     </div>
   );
 }
