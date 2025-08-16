@@ -293,8 +293,8 @@ export default function Index() {
         </div>
       </section>
 
-      {/* AI Chatbot */}
-      <AIChatbot context="home" />
+      {/* AI Concierge */}
+      <AIConcierge />
 
       {/* Featured Properties Section */}
       <section className="section-padding">
