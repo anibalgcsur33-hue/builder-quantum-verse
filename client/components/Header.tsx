@@ -30,7 +30,7 @@ export default function Header({
           >
             <div className="relative">
               <img
-                src="https://cdn.builder.io/api/v1/image/assets%2Fb022b0ef6eaa47cba6348b0a48fcb095%2Fca2673d707a04c138fbacd2f23aa41ea?format=webp&width=800"
+                src="https://cdn.builder.io/api/v1/image/assets%2Fb022b0ef6eaa47cba6348b0a48fcb095%2F1c320a0873094c09989924f61288119e"
                 alt="BlueEye Homes Logo"
                 className="h-12 lg:h-14 w-auto object-contain group-hover:drop-shadow-lg transition-all duration-300"
               />
