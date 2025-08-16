@@ -47,33 +47,9 @@ const App = () => (
 
           {/* Property Categories */}
           <Route path="/propiedades/comprar" element={<Comprar />} />
-          <Route
-            path="/propiedades/alquilar"
-            element={
-              <PlaceholderPage
-                title="Propiedades en Alquiler"
-                description="Encuentra alquileres vacacionales y de larga temporada."
-              />
-            }
-          />
-          <Route
-            path="/propiedades/alquilar/vacacional"
-            element={
-              <PlaceholderPage
-                title="Alquiler Vacacional"
-                description="Propiedades para alquiler vacacional en destinos únicos."
-              />
-            }
-          />
-          <Route
-            path="/propiedades/alquilar/larga-temporada"
-            element={
-              <PlaceholderPage
-                title="Alquiler Larga Temporada"
-                description="Propiedades para alquiler de larga duración."
-              />
-            }
-          />
+          <Route path="/propiedades/alquilar" element={<Alquilar />} />
+          <Route path="/propiedades/alquilar/vacacional" element={<Alquilar />} />
+          <Route path="/propiedades/alquilar/larga-temporada" element={<Alquilar />} />
           <Route
             path="/propiedades/obra-nueva"
             element={
