@@ -772,6 +772,24 @@ Perfecta para residencia habitual o como inversión en el mercado de alquiler va
         isOpen={isNFTModalOpen}
         onClose={() => setIsNFTModalOpen(false)}
       />
+
+      {/* Property AI Assistant */}
+      <PropertyAI
+        property={{
+          id: property.id,
+          title: property.title,
+          location: property.location,
+          price: property.price,
+          bedrooms: property.bedrooms,
+          bathrooms: property.bathrooms,
+          sqm: property.sqm,
+          category: property.category,
+          energyRating: property.energyRating,
+          yearBuilt: property.yearBuilt
+        }}
+        isOpen={isPropertyAIOpen}
+        onClose={() => setIsPropertyAIOpen(false)}
+      />
     </div>
   );
 }
