@@ -785,7 +785,7 @@ Perfecta para residencia habitual o como inversión en el mercado de alquiler va
           sqm: property.sqm,
           category: property.category,
           energyRating: property.energyRating,
-          yearBuilt: property.yearBuilt
+          yearBuilt: property.yearBuilt,
         }}
         isOpen={isPropertyAIOpen}
         onClose={() => setIsPropertyAIOpen(false)}

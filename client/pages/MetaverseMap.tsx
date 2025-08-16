@@ -275,8 +275,8 @@ export default function MetaverseMap() {
                 onClick={() => setIsMetaverseMode(!isMetaverseMode)}
                 className={`flex items-center gap-2 px-4 py-2 rounded-lg font-medium transition-all duration-300 ${
                   isMetaverseMode
-                    ? 'bg-gradient-to-r from-purple-600 to-pink-600 text-white shadow-lg'
-                    : 'bg-gradient-to-r from-neon-teal to-neon-emerald text-blue-dark hover:shadow-lg'
+                    ? "bg-gradient-to-r from-purple-600 to-pink-600 text-white shadow-lg"
+                    : "bg-gradient-to-r from-neon-teal to-neon-emerald text-blue-dark hover:shadow-lg"
                 }`}
               >
                 <Eye size={20} />
@@ -725,9 +725,7 @@ export default function MetaverseMap() {
       {/* Metaverse Experience Overlay */}
       {isMetaverseMode && (
         <div className="fixed inset-0 z-50 bg-black/90">
-          <MetaverseExperience
-            onClose={() => setIsMetaverseMode(false)}
-          />
+          <MetaverseExperience onClose={() => setIsMetaverseMode(false)} />
         </div>
       )}
     </div>

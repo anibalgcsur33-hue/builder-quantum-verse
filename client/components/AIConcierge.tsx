@@ -197,14 +197,17 @@ export default function AIConcierge() {
       /(\d+(?:\.\d+)?)\s*(?:m|M|millones?)€?/,
       /(\d+(?:\.\d+)?)\s*€?\s*(?:m|M|millones?)/,
       /€\s*(\d+(?:\.\d+)?)\s*(?:m|M|millones?)/,
-      /presupuesto\s+(?:de\s+)?(\d+(?:\.\d+)?)\s*(?:m|M|millones?)€?/
+      /presupuesto\s+(?:de\s+)?(\d+(?:\.\d+)?)\s*(?:m|M|millones?)€?/,
     ];
 
     for (const pattern of pricePatterns) {
       const match = query.match(pattern);
       if (match) {
-        const price = parseFloat(match[1]) *
-          (match[0].includes('M') || match[0].includes('millones') ? 1000000 : 1);
+        const price =
+          parseFloat(match[1]) *
+          (match[0].includes("M") || match[0].includes("millones")
+            ? 1000000
+            : 1);
         criteria.priceRange = { min: price * 0.85, max: price * 1.15 };
         break;
       }
@@ -212,17 +215,17 @@ export default function AIConcierge() {
 
     // Enhanced location detection
     const locationMap = {
-      'tenerife': 'Tenerife',
-      'tfe': 'Tenerife',
-      'gran canaria': 'Gran Canaria',
-      'las palmas': 'Gran Canaria',
-      'lanzarote': 'Lanzarote',
-      'fuerteventura': 'Fuerteventura',
-      'la palma': 'La Palma',
-      'el hierro': 'El Hierro',
-      'la gomera': 'La Gomera',
-      'canarias': 'Canarias',
-      'islas canarias': 'Canarias'
+      tenerife: "Tenerife",
+      tfe: "Tenerife",
+      "gran canaria": "Gran Canaria",
+      "las palmas": "Gran Canaria",
+      lanzarote: "Lanzarote",
+      fuerteventura: "Fuerteventura",
+      "la palma": "La Palma",
+      "el hierro": "El Hierro",
+      "la gomera": "La Gomera",
+      canarias: "Canarias",
+      "islas canarias": "Canarias",
     };
 
     for (const [key, value] of Object.entries(locationMap)) {
@@ -234,16 +237,16 @@ export default function AIConcierge() {
 
     // Enhanced property type detection
     const propertyTypes = {
-      'ático': ['ático', 'atico', 'penthouse', 'última planta'],
-      'villa': ['villa', 'chalet', 'casa independiente'],
-      'apartamento': ['apartamento', 'piso', 'flat'],
-      'estudio': ['estudio', 'studio'],
-      'dúplex': ['dúplex', 'duplex'],
-      'casa': ['casa', 'vivienda unifamiliar']
+      ático: ["ático", "atico", "penthouse", "última planta"],
+      villa: ["villa", "chalet", "casa independiente"],
+      apartamento: ["apartamento", "piso", "flat"],
+      estudio: ["estudio", "studio"],
+      dúplex: ["dúplex", "duplex"],
+      casa: ["casa", "vivienda unifamiliar"],
     };
 
     for (const [type, variants] of Object.entries(propertyTypes)) {
-      if (variants.some(variant => lowerQuery.includes(variant))) {
+      if (variants.some((variant) => lowerQuery.includes(variant))) {
         criteria.propertyType = type;
         break;
       }
@@ -330,17 +333,20 @@ export default function AIConcierge() {
       // Generate intelligent, conversational response
       const topProperty = results[0];
       const criteriaUsed = [];
-      if (criteria.priceRange) criteriaUsed.push(`presupuesto de €${(criteria.priceRange.min/1000000).toFixed(1)}M-${(criteria.priceRange.max/1000000).toFixed(1)}M`);
+      if (criteria.priceRange)
+        criteriaUsed.push(
+          `presupuesto de €${(criteria.priceRange.min / 1000000).toFixed(1)}M-${(criteria.priceRange.max / 1000000).toFixed(1)}M`,
+        );
       if (criteria.location) criteriaUsed.push(criteria.location);
       if (criteria.propertyType) criteriaUsed.push(criteria.propertyType);
-      if (criteria.seaView) criteriaUsed.push('vistas al mar');
+      if (criteria.seaView) criteriaUsed.push("vistas al mar");
       if (criteria.roiMin) criteriaUsed.push(`ROI >${criteria.roiMin}%`);
 
-      let responseText = `🎯 ¡Excelente! He analizado ${results.length} propiedades basándome en tus criterios: ${criteriaUsed.join(', ')}.\n\n`;
+      let responseText = `🎯 ¡Excelente! He analizado ${results.length} propiedades basándome en tus criterios: ${criteriaUsed.join(", ")}.\n\n`;
 
       responseText += `✨ **Destacado**: ${topProperty.title} en ${topProperty.location}\n`;
       responseText += `💰 Precio: €${topProperty.price.toLocaleString()}\n`;
-      responseText += `📈 ROI: ${topProperty.roi}% (${topProperty.roi >= 7 ? '¡Supera tus expectativas!' : 'Dentro del rango'})\n`;
+      responseText += `📈 ROI: ${topProperty.roi}% (${topProperty.roi >= 7 ? "¡Supera tus expectativas!" : "Dentro del rango"})\n`;
       responseText += `🏆 Match: ${topProperty.matchScore}%\n\n`;
 
       if (results.length > 1) {
@@ -355,9 +361,12 @@ export default function AIConcierge() {
       let responseText = `🔍 He buscado exhaustivamente pero no he encontrado propiedades que coincidan exactamente con todos tus criterios.\n\n`;
 
       responseText += `💡 **Sugerencias para encontrar tu propiedad ideal:**\n`;
-      if (criteria.priceRange) responseText += `• Ampliar el rango de precio (±10-15%)\n`;
-      if (criteria.location) responseText += `• Considerar zonas cercanas a ${criteria.location}\n`;
-      if (criteria.roiMin) responseText += `• Ajustar expectativas de ROI (actualmente >${criteria.roiMin}%)\n`;
+      if (criteria.priceRange)
+        responseText += `• Ampliar el rango de precio (±10-15%)\n`;
+      if (criteria.location)
+        responseText += `• Considerar zonas cercanas a ${criteria.location}\n`;
+      if (criteria.roiMin)
+        responseText += `• Ajustar expectativas de ROI (actualmente >${criteria.roiMin}%)\n`;
 
       responseText += `\n¿Te gustaría que busque opciones similares con criterios más flexibles?`;
 
@@ -374,7 +383,8 @@ export default function AIConcierge() {
     await new Promise((resolve) => setTimeout(resolve, 3000));
 
     const totalValue = properties.reduce((sum, p) => sum + p.price, 0);
-    const avgROI = properties.reduce((sum, p) => sum + p.roi, 0) / properties.length;
+    const avgROI =
+      properties.reduce((sum, p) => sum + p.roi, 0) / properties.length;
 
     let responseText = `📋 **Dossier Inmobiliario Generado Exitosamente**\n\n`;
 
@@ -382,7 +392,7 @@ export default function AIConcierge() {
     responseText += `• ${properties.length} propiedades seleccionadas\n`;
     responseText += `• Valor total de cartera: €${totalValue.toLocaleString()}\n`;
     responseText += `• ROI promedio: ${avgROI.toFixed(1)}%\n`;
-    responseText += `• Ubicaciones: ${[...new Set(properties.map(p => p.location.split(',')[1]?.trim() || p.location))].join(', ')}\n\n`;
+    responseText += `• Ubicaciones: ${[...new Set(properties.map((p) => p.location.split(",")[1]?.trim() || p.location))].join(", ")}\n\n`;
 
     responseText += `📊 **Contenido del Dossier:**\n`;
     responseText += `✅ Fichas técnicas detalladas de cada propiedad\n`;
@@ -706,7 +716,9 @@ export default function AIConcierge() {
         <div className="flex justify-center mt-2 space-x-2">
           <button
             onClick={() => {
-              setInputValue("Villa de €1.5M en Tenerife con vistas al mar y ROI >6%");
+              setInputValue(
+                "Villa de €1.5M en Tenerife con vistas al mar y ROI >6%",
+              );
             }}
             className="text-xs text-neon-teal hover:text-neon-emerald transition-colors bg-neon-teal/10 px-2 py-1 rounded"
           >
@@ -714,7 +726,9 @@ export default function AIConcierge() {
           </button>
           <button
             onClick={() => {
-              setInputValue("Apartamento con ROI mayor a 8% en Gran Canaria, máximo €800k");
+              setInputValue(
+                "Apartamento con ROI mayor a 8% en Gran Canaria, máximo €800k",
+              );
             }}
             className="text-xs text-neon-teal hover:text-neon-emerald transition-colors bg-neon-teal/10 px-2 py-1 rounded"
           >

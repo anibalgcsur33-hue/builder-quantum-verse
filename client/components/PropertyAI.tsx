@@ -1,30 +1,30 @@
-import { useState, useRef, useEffect } from 'react';
-import { 
-  Bot, 
-  Send, 
-  Sparkles, 
-  MessageSquare, 
-  FileText, 
-  Download, 
-  Share2, 
-  Euro, 
-  Calculator, 
-  MapPin, 
-  Bed, 
-  Bath, 
-  Square, 
-  TrendingUp, 
-  Calendar, 
-  Shield, 
-  X, 
-  Mic, 
-  MicOff, 
-  Volume2, 
-  VolumeX, 
-  Eye, 
-  Home, 
-  Zap
-} from 'lucide-react';
+import { useState, useRef, useEffect } from "react";
+import {
+  Bot,
+  Send,
+  Sparkles,
+  MessageSquare,
+  FileText,
+  Download,
+  Share2,
+  Euro,
+  Calculator,
+  MapPin,
+  Bed,
+  Bath,
+  Square,
+  TrendingUp,
+  Calendar,
+  Shield,
+  X,
+  Mic,
+  MicOff,
+  Volume2,
+  VolumeX,
+  Eye,
+  Home,
+  Zap,
+} from "lucide-react";
 
 interface PropertyAIProps {
   property: {
@@ -45,16 +45,20 @@ interface PropertyAIProps {
 
 interface Message {
   id: string;
-  type: 'user' | 'ai';
+  type: "user" | "ai";
   content: string;
   timestamp: Date;
-  actionType?: 'pdf' | 'share' | 'calculation' | 'info';
+  actionType?: "pdf" | "share" | "calculation" | "info";
   actionData?: any;
 }
 
-export default function PropertyAI({ property, isOpen, onClose }: PropertyAIProps) {
+export default function PropertyAI({
+  property,
+  isOpen,
+  onClose,
+}: PropertyAIProps) {
   const [messages, setMessages] = useState<Message[]>([]);
-  const [inputValue, setInputValue] = useState('');
+  const [inputValue, setInputValue] = useState("");
   const [isTyping, setIsTyping] = useState(false);
   const [isListening, setIsListening] = useState(false);
   const [audioEnabled, setAudioEnabled] = useState(true);
@@ -65,13 +69,13 @@ export default function PropertyAI({ property, isOpen, onClose }: PropertyAIProp
       // Welcome message
       addAIMessage(
         `¡Hola! Soy tu asistente IA especializado en ${property.title}. Puedo ayudarte con:\n\n` +
-        `🏠 Información detallada de la propiedad\n` +
-        `💰 Cálculos financieros y rentabilidad\n` +
-        `📋 Generar dossier PDF personalizado\n` +
-        `📤 Compartir información\n` +
-        `📍 Detalles de ubicación y servicios\n` +
-        `⚖️ Aspectos legales y documentación\n\n` +
-        `¿En qué puedo ayudarte específicamente?`
+          `🏠 Información detallada de la propiedad\n` +
+          `💰 Cálculos financieros y rentabilidad\n` +
+          `📋 Generar dossier PDF personalizado\n` +
+          `📤 Compartir información\n` +
+          `📍 Detalles de ubicación y servicios\n` +
+          `⚖️ Aspectos legales y documentación\n\n` +
+          `¿En qué puedo ayudarte específicamente?`,
       );
     }
   }, [isOpen, property]);
@@ -81,51 +85,68 @@ export default function PropertyAI({ property, isOpen, onClose }: PropertyAIProp
   }, [messages]);
 
   const scrollToBottom = () => {
-    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   };
 
   const addUserMessage = (content: string) => {
     const message: Message = {
       id: Date.now().toString(),
-      type: 'user',
+      type: "user",
       content,
-      timestamp: new Date()
+      timestamp: new Date(),
     };
-    setMessages(prev => [...prev, message]);
+    setMessages((prev) => [...prev, message]);
   };
 
-  const addAIMessage = (content: string, actionType?: string, actionData?: any) => {
+  const addAIMessage = (
+    content: string,
+    actionType?: string,
+    actionData?: any,
+  ) => {
     const message: Message = {
       id: Date.now().toString(),
-      type: 'ai',
+      type: "ai",
       content,
       timestamp: new Date(),
       actionType: actionType as any,
-      actionData
+      actionData,
     };
-    setMessages(prev => [...prev, message]);
+    setMessages((prev) => [...prev, message]);
   };
 
   const processQuery = async (query: string) => {
     setIsTyping(true);
-    await new Promise(resolve => setTimeout(resolve, 1500));
+    await new Promise((resolve) => setTimeout(resolve, 1500));
 
     const lowerQuery = query.toLowerCase();
 
     // Property information queries
-    if (lowerQuery.includes('precio') || lowerQuery.includes('cuesta') || lowerQuery.includes('vale')) {
-      const response = `💰 **Información de Precio:**\n\n` +
+    if (
+      lowerQuery.includes("precio") ||
+      lowerQuery.includes("cuesta") ||
+      lowerQuery.includes("vale")
+    ) {
+      const response =
+        `💰 **Información de Precio:**\n\n` +
         `• Precio: €${property.price.toLocaleString()}\n` +
         `• Precio por m²: €${Math.round(property.price / property.sqm).toLocaleString()}/m²\n` +
         `• Superficie: ${property.sqm}m²\n\n` +
         `Este precio está **alineado con el mercado** según nuestro análisis. ¿Te gustaría que genere un **análisis financiero completo** con opciones de financiación?`;
-      
-      addAIMessage(response, 'calculation', { price: property.price, sqm: property.sqm });
+
+      addAIMessage(response, "calculation", {
+        price: property.price,
+        sqm: property.sqm,
+      });
     }
-    
+
     // PDF generation queries
-    else if (lowerQuery.includes('dossier') || lowerQuery.includes('pdf') || lowerQuery.includes('documentos')) {
-      const response = `📋 **Generación de Dossier PDF**\n\n` +
+    else if (
+      lowerQuery.includes("dossier") ||
+      lowerQuery.includes("pdf") ||
+      lowerQuery.includes("documentos")
+    ) {
+      const response =
+        `📋 **Generación de Dossier PDF**\n\n` +
         `Puedo crear un dossier completo de ${property.title} que incluye:\n\n` +
         `✅ Ficha técnica detallada\n` +
         `✅ Galería de fotos en alta resolución\n` +
@@ -135,26 +156,39 @@ export default function PropertyAI({ property, isOpen, onClose }: PropertyAIProp
         `✅ Análisis del mercado local\n` +
         `✅ Información de la zona y servicios\n\n` +
         `¿Te gustaría que genere el dossier personalizado ahora?`;
-      
-      addAIMessage(response, 'pdf', { propertyId: property.id });
+
+      addAIMessage(response, "pdf", { propertyId: property.id });
     }
-    
+
     // Sharing queries
-    else if (lowerQuery.includes('compartir') || lowerQuery.includes('enviar') || lowerQuery.includes('share')) {
-      const response = `📤 **Compartir Propiedad**\n\n` +
+    else if (
+      lowerQuery.includes("compartir") ||
+      lowerQuery.includes("enviar") ||
+      lowerQuery.includes("share")
+    ) {
+      const response =
+        `📤 **Compartir Propiedad**\n\n` +
         `Puedo ayudarte a compartir ${property.title} de varias formas:\n\n` +
         `🔗 **Enlace directo** - Para enviar por WhatsApp, email, etc.\n` +
         `📱 **Redes sociales** - Optimizado para Instagram, Facebook\n` +
         `📧 **Email profesional** - Con toda la información técnica\n` +
         `💼 **Presentación comercial** - Para presentar a clientes\n\n` +
         `¿Cómo te gustaría compartirla?`;
-      
-      addAIMessage(response, 'share', { url: `${window.location.origin}/property/${property.id}` });
+
+      addAIMessage(response, "share", {
+        url: `${window.location.origin}/property/${property.id}`,
+      });
     }
-    
+
     // Location and area queries
-    else if (lowerQuery.includes('ubicación') || lowerQuery.includes('zona') || lowerQuery.includes('servicios') || lowerQuery.includes('transporte')) {
-      const response = `📍 **Información de Ubicación: ${property.location}**\n\n` +
+    else if (
+      lowerQuery.includes("ubicación") ||
+      lowerQuery.includes("zona") ||
+      lowerQuery.includes("servicios") ||
+      lowerQuery.includes("transporte")
+    ) {
+      const response =
+        `📍 **Información de Ubicación: ${property.location}**\n\n` +
         `🏥 **Servicios cercanos:**\n` +
         `• Hospital Universitario - 1.2 km\n` +
         `• Centro comercial - 800m\n` +
@@ -168,16 +202,22 @@ export default function PropertyAI({ property, isOpen, onClose }: PropertyAIProp
         `• Instituto - 800m\n` +
         `• Universidad - 12 km\n\n` +
         `¿Te interesa información específica sobre algún servicio?`;
-      
+
       addAIMessage(response);
     }
-    
+
     // Investment and ROI queries
-    else if (lowerQuery.includes('inversión') || lowerQuery.includes('rentabilidad') || lowerQuery.includes('roi') || lowerQuery.includes('alquiler')) {
+    else if (
+      lowerQuery.includes("inversión") ||
+      lowerQuery.includes("rentabilidad") ||
+      lowerQuery.includes("roi") ||
+      lowerQuery.includes("alquiler")
+    ) {
       const estimatedROI = 7.5;
       const monthlyRental = Math.round(property.price * 0.005);
-      
-      const response = `📈 **Análisis de Inversión**\n\n` +
+
+      const response =
+        `📈 **Análisis de Inversión**\n\n` +
         `💰 **Rentabilidad estimada:**\n` +
         `• ROI anual: ~${estimatedROI}%\n` +
         `• Alquiler mensual estimado: €${monthlyRental.toLocaleString()}\n` +
@@ -187,13 +227,22 @@ export default function PropertyAI({ property, isOpen, onClose }: PropertyAIProp
         `• Demanda turística alta\n` +
         `• Infraestructuras en desarrollo\n\n` +
         `¿Te gustaría un **análisis financiero detallado** con diferentes escenarios?`;
-      
-      addAIMessage(response, 'calculation', { roi: estimatedROI, rental: monthlyRental });
+
+      addAIMessage(response, "calculation", {
+        roi: estimatedROI,
+        rental: monthlyRental,
+      });
     }
-    
+
     // Legal and documentation queries
-    else if (lowerQuery.includes('legal') || lowerQuery.includes('documentos') || lowerQuery.includes('escritura') || lowerQuery.includes('notaría')) {
-      const response = `⚖️ **Aspectos Legales y Documentación**\n\n` +
+    else if (
+      lowerQuery.includes("legal") ||
+      lowerQuery.includes("documentos") ||
+      lowerQuery.includes("escritura") ||
+      lowerQuery.includes("notaría")
+    ) {
+      const response =
+        `⚖️ **Aspectos Legales y Documentación**\n\n` +
         `📄 **Documentación disponible:**\n` +
         `✅ Escritura de propiedad al día\n` +
         `✅ Nota simple registral actualizada\n` +
@@ -206,27 +255,28 @@ export default function PropertyAI({ property, isOpen, onClose }: PropertyAIProp
         `• Registro: ~0.5% del valor\n` +
         `• Gestión: incluida\n\n` +
         `¿Necesitas información sobre algún documento específico?`;
-      
+
       addAIMessage(response);
     }
-    
+
     // General information queries
     else {
-      const response = `🏠 **Información de ${property.title}**\n\n` +
+      const response =
+        `🏠 **Información de ${property.title}**\n\n` +
         `📋 **Características principales:**\n` +
         `• ${property.bedrooms} dormitorios, ${property.bathrooms} baños\n` +
         `• ${property.sqm}m² construidos\n` +
         `• Tipo: ${property.category}\n` +
         `• Ubicación: ${property.location}\n` +
-        `${property.energyRating ? `• Certificación energética: ${property.energyRating}\n` : ''}` +
-        `${property.yearBuilt ? `• Año construcción: ${property.yearBuilt}\n` : ''}\n` +
+        `${property.energyRating ? `• Certificación energética: ${property.energyRating}\n` : ""}` +
+        `${property.yearBuilt ? `• Año construcción: ${property.yearBuilt}\n` : ""}\n` +
         `💡 **Puedo ayudarte con:**\n` +
         `• Análisis financiero detallado\n` +
         `• Información de la zona\n` +
         `• Proceso de compra\n` +
         `• Generar dossier completo\n\n` +
         `¿Sobre qué aspecto específico te gustaría saber más?`;
-      
+
       addAIMessage(response);
     }
 
@@ -235,27 +285,35 @@ export default function PropertyAI({ property, isOpen, onClose }: PropertyAIProp
 
   const handleSendMessage = async () => {
     if (!inputValue.trim()) return;
-    
+
     const userQuery = inputValue.trim();
-    setInputValue('');
+    setInputValue("");
     addUserMessage(userQuery);
-    
+
     await processQuery(userQuery);
   };
 
   const handleActionClick = (actionType: string, actionData: any) => {
     switch (actionType) {
-      case 'pdf':
+      case "pdf":
         // Simulate PDF generation
-        addAIMessage(`🎉 ¡Dossier generado exitosamente!\n\nTu dossier personalizado de ${property.title} está listo para descargar. Incluye toda la información técnica, legal y financiera.`, 'pdf', { ready: true });
+        addAIMessage(
+          `🎉 ¡Dossier generado exitosamente!\n\nTu dossier personalizado de ${property.title} está listo para descargar. Incluye toda la información técnica, legal y financiera.`,
+          "pdf",
+          { ready: true },
+        );
         break;
-      case 'share':
+      case "share":
         // Copy to clipboard
         navigator.clipboard.writeText(actionData.url);
-        addAIMessage(`📋 ¡Enlace copiado al portapapeles!\n\nYa puedes compartir ${property.title} pegando el enlace en WhatsApp, email o redes sociales.`);
+        addAIMessage(
+          `📋 ¡Enlace copiado al portapapeles!\n\nYa puedes compartir ${property.title} pegando el enlace en WhatsApp, email o redes sociales.`,
+        );
         break;
-      case 'calculation':
-        addAIMessage(`📊 Generando análisis financiero detallado con simulaciones de financiación, cálculos de ROI a 5 y 10 años, y comparativas del mercado...`);
+      case "calculation":
+        addAIMessage(
+          `📊 Generando análisis financiero detallado con simulaciones de financiación, cálculos de ROI a 5 y 10 años, y comparativas del mercado...`,
+        );
         break;
     }
   };
@@ -292,10 +350,14 @@ export default function PropertyAI({ property, isOpen, onClose }: PropertyAIProp
               <button
                 onClick={() => setAudioEnabled(!audioEnabled)}
                 className={`p-2 rounded-lg transition-colors ${
-                  audioEnabled ? 'text-neon-teal' : 'text-white/40'
+                  audioEnabled ? "text-neon-teal" : "text-white/40"
                 }`}
               >
-                {audioEnabled ? <Volume2 className="w-4 h-4" /> : <VolumeX className="w-4 h-4" />}
+                {audioEnabled ? (
+                  <Volume2 className="w-4 h-4" />
+                ) : (
+                  <VolumeX className="w-4 h-4" />
+                )}
               </button>
               <button
                 onClick={onClose}
@@ -310,38 +372,51 @@ export default function PropertyAI({ property, isOpen, onClose }: PropertyAIProp
         {/* Messages */}
         <div className="flex-1 overflow-y-auto p-4 space-y-4">
           {messages.map((message) => (
-            <div key={message.id} className={`flex ${message.type === 'user' ? 'justify-end' : 'justify-start'}`}>
-              <div className={`max-w-[80%] p-3 rounded-2xl ${
-                message.type === 'user' 
-                  ? 'bg-neon-teal text-blue-dark' 
-                  : 'glass border border-white/10'
-              }`}>
+            <div
+              key={message.id}
+              className={`flex ${message.type === "user" ? "justify-end" : "justify-start"}`}
+            >
+              <div
+                className={`max-w-[80%] p-3 rounded-2xl ${
+                  message.type === "user"
+                    ? "bg-neon-teal text-blue-dark"
+                    : "glass border border-white/10"
+                }`}
+              >
                 <p className="text-sm whitespace-pre-line">{message.content}</p>
-                
+
                 {/* Action Buttons */}
                 {message.actionType && (
                   <div className="mt-3 flex gap-2">
-                    {message.actionType === 'pdf' && (
+                    {message.actionType === "pdf" && (
                       <button
-                        onClick={() => handleActionClick('pdf', message.actionData)}
+                        onClick={() =>
+                          handleActionClick("pdf", message.actionData)
+                        }
                         className="btn-primary text-xs px-3 py-2 flex items-center gap-2"
                       >
                         <Download className="w-3 h-3" />
-                        {message.actionData?.ready ? 'Descargar PDF' : 'Generar Dossier'}
+                        {message.actionData?.ready
+                          ? "Descargar PDF"
+                          : "Generar Dossier"}
                       </button>
                     )}
-                    {message.actionType === 'share' && (
+                    {message.actionType === "share" && (
                       <button
-                        onClick={() => handleActionClick('share', message.actionData)}
+                        onClick={() =>
+                          handleActionClick("share", message.actionData)
+                        }
                         className="btn-secondary text-xs px-3 py-2 flex items-center gap-2"
                       >
                         <Share2 className="w-3 h-3" />
                         Copiar enlace
                       </button>
                     )}
-                    {message.actionType === 'calculation' && (
+                    {message.actionType === "calculation" && (
                       <button
-                        onClick={() => handleActionClick('calculation', message.actionData)}
+                        onClick={() =>
+                          handleActionClick("calculation", message.actionData)
+                        }
                         className="btn-secondary text-xs px-3 py-2 flex items-center gap-2"
                       >
                         <Calculator className="w-3 h-3" />
@@ -350,28 +425,37 @@ export default function PropertyAI({ property, isOpen, onClose }: PropertyAIProp
                     )}
                   </div>
                 )}
-                
+
                 <div className="flex justify-between items-center mt-2">
                   <span className="text-xs text-white/40">
-                    {message.timestamp.toLocaleTimeString('es-ES', { hour: '2-digit', minute: '2-digit' })}
+                    {message.timestamp.toLocaleTimeString("es-ES", {
+                      hour: "2-digit",
+                      minute: "2-digit",
+                    })}
                   </span>
                 </div>
               </div>
             </div>
           ))}
-          
+
           {isTyping && (
             <div className="flex justify-start">
               <div className="glass border border-white/10 p-3 rounded-2xl">
                 <div className="flex space-x-1">
                   <div className="w-2 h-2 bg-neon-teal rounded-full animate-pulse"></div>
-                  <div className="w-2 h-2 bg-neon-teal rounded-full animate-pulse" style={{ animationDelay: '0.2s' }}></div>
-                  <div className="w-2 h-2 bg-neon-teal rounded-full animate-pulse" style={{ animationDelay: '0.4s' }}></div>
+                  <div
+                    className="w-2 h-2 bg-neon-teal rounded-full animate-pulse"
+                    style={{ animationDelay: "0.2s" }}
+                  ></div>
+                  <div
+                    className="w-2 h-2 bg-neon-teal rounded-full animate-pulse"
+                    style={{ animationDelay: "0.4s" }}
+                  ></div>
                 </div>
               </div>
             </div>
           )}
-          
+
           <div ref={messagesEndRef} />
         </div>
 
@@ -383,17 +467,23 @@ export default function PropertyAI({ property, isOpen, onClose }: PropertyAIProp
                 type="text"
                 value={inputValue}
                 onChange={(e) => setInputValue(e.target.value)}
-                onKeyPress={(e) => e.key === 'Enter' && handleSendMessage()}
+                onKeyPress={(e) => e.key === "Enter" && handleSendMessage()}
                 placeholder="Pregunta sobre la propiedad..."
                 className="w-full bg-white/10 border border-white/20 rounded-xl px-4 py-3 text-white placeholder-white/40 text-sm focus:outline-none focus:border-neon-teal pr-10"
               />
               <button
                 onClick={startVoiceRecognition}
                 className={`absolute right-3 top-1/2 transform -translate-y-1/2 transition-colors ${
-                  isListening ? 'text-red-400 animate-pulse' : 'text-white/60 hover:text-neon-teal'
+                  isListening
+                    ? "text-red-400 animate-pulse"
+                    : "text-white/60 hover:text-neon-teal"
                 }`}
               >
-                {isListening ? <Mic className="w-4 h-4" /> : <MicOff className="w-4 h-4" />}
+                {isListening ? (
+                  <Mic className="w-4 h-4" />
+                ) : (
+                  <MicOff className="w-4 h-4" />
+                )}
               </button>
             </div>
             <button
@@ -404,28 +494,34 @@ export default function PropertyAI({ property, isOpen, onClose }: PropertyAIProp
               <Send className="w-4 h-4" />
             </button>
           </div>
-          
+
           <div className="flex justify-center mt-2 space-x-3">
-            <button 
-              onClick={() => setInputValue("¿Cuál es el precio y las condiciones de pago?")}
+            <button
+              onClick={() =>
+                setInputValue("¿Cuál es el precio y las condiciones de pago?")
+              }
               className="text-xs text-neon-teal hover:text-neon-emerald transition-colors"
             >
               💰 Precio
             </button>
-            <button 
+            <button
               onClick={() => setInputValue("Genera el dossier completo en PDF")}
               className="text-xs text-neon-teal hover:text-neon-emerald transition-colors"
             >
               📋 Dossier
             </button>
-            <button 
-              onClick={() => setInputValue("¿Cuál es la rentabilidad de inversión?")}
+            <button
+              onClick={() =>
+                setInputValue("¿Cuál es la rentabilidad de inversión?")
+              }
               className="text-xs text-neon-teal hover:text-neon-emerald transition-colors"
             >
               📈 ROI
             </button>
-            <button 
-              onClick={() => setInputValue("Información de la zona y servicios")}
+            <button
+              onClick={() =>
+                setInputValue("Información de la zona y servicios")
+              }
               className="text-xs text-neon-teal hover:text-neon-emerald transition-colors"
             >
               📍 Zona

@@ -48,8 +48,14 @@ const App = () => (
           {/* Property Categories */}
           <Route path="/propiedades/comprar" element={<Comprar />} />
           <Route path="/propiedades/alquilar" element={<Alquilar />} />
-          <Route path="/propiedades/alquilar/vacacional" element={<Alquilar />} />
-          <Route path="/propiedades/alquilar/larga-temporada" element={<Alquilar />} />
+          <Route
+            path="/propiedades/alquilar/vacacional"
+            element={<Alquilar />}
+          />
+          <Route
+            path="/propiedades/alquilar/larga-temporada"
+            element={<Alquilar />}
+          />
           <Route path="/propiedades/obra-nueva" element={<ObraNueva />} />
           <Route path="/propiedades/verificadas" element={<Verificadas />} />
 
