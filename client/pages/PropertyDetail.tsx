@@ -556,6 +556,20 @@ Perfecta para residencia habitual o como inversión en el mercado de alquiler va
                   }}
                 />
               </div>
+
+              {/* Digital Twin */}
+              <div className="mt-8">
+                <DigitalTwin
+                  property={{
+                    id: property.id,
+                    title: property.title,
+                    location: property.location,
+                    sqm: property.sqm,
+                    energyRating: property.energyRating,
+                  }}
+                  vrTourUrl={property.vrTourUrl}
+                />
+              </div>
             </div>
           </div>
 
