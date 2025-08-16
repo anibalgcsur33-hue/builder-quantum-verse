@@ -190,31 +190,64 @@ export default function AIConcierge() {
 
   const parseCriteria = (query: string): SearchCriteria => {
     const criteria: SearchCriteria = {};
+    const lowerQuery = query.toLowerCase();
 
-    // Extract price range
-    const priceMatch = query.match(/(\d+(?:\.\d+)?)\s*(?:m|M|millones?)?€?/);
-    if (priceMatch) {
-      const price =
-        parseFloat(priceMatch[1]) *
-        (priceMatch[0].includes("M") || priceMatch[0].includes("millones")
-          ? 1000000
-          : 1);
-      criteria.priceRange = { min: price * 0.8, max: price * 1.2 };
+    // Enhanced price extraction with multiple formats
+    const pricePatterns = [
+      /(\d+(?:\.\d+)?)\s*(?:m|M|millones?)€?/,
+      /(\d+(?:\.\d+)?)\s*€?\s*(?:m|M|millones?)/,
+      /€\s*(\d+(?:\.\d+)?)\s*(?:m|M|millones?)/,
+      /presupuesto\s+(?:de\s+)?(\d+(?:\.\d+)?)\s*(?:m|M|millones?)€?/
+    ];
+
+    for (const pattern of pricePatterns) {
+      const match = query.match(pattern);
+      if (match) {
+        const price = parseFloat(match[1]) *
+          (match[0].includes('M') || match[0].includes('millones') ? 1000000 : 1);
+        criteria.priceRange = { min: price * 0.85, max: price * 1.15 };
+        break;
+      }
     }
 
-    // Extract location
-    if (query.toLowerCase().includes("tenerife"))
-      criteria.location = "Tenerife";
-    if (query.toLowerCase().includes("gran canaria"))
-      criteria.location = "Gran Canaria";
-    if (query.toLowerCase().includes("lanzarote"))
-      criteria.location = "Lanzarote";
+    // Enhanced location detection
+    const locationMap = {
+      'tenerife': 'Tenerife',
+      'tfe': 'Tenerife',
+      'gran canaria': 'Gran Canaria',
+      'las palmas': 'Gran Canaria',
+      'lanzarote': 'Lanzarote',
+      'fuerteventura': 'Fuerteventura',
+      'la palma': 'La Palma',
+      'el hierro': 'El Hierro',
+      'la gomera': 'La Gomera',
+      'canarias': 'Canarias',
+      'islas canarias': 'Canarias'
+    };
 
-    // Extract property type
-    if (query.toLowerCase().includes("ático")) criteria.propertyType = "ático";
-    if (query.toLowerCase().includes("villa")) criteria.propertyType = "villa";
-    if (query.toLowerCase().includes("apartamento"))
-      criteria.propertyType = "apartamento";
+    for (const [key, value] of Object.entries(locationMap)) {
+      if (lowerQuery.includes(key)) {
+        criteria.location = value;
+        break;
+      }
+    }
+
+    // Enhanced property type detection
+    const propertyTypes = {
+      'ático': ['ático', 'atico', 'penthouse', 'última planta'],
+      'villa': ['villa', 'chalet', 'casa independiente'],
+      'apartamento': ['apartamento', 'piso', 'flat'],
+      'estudio': ['estudio', 'studio'],
+      'dúplex': ['dúplex', 'duplex'],
+      'casa': ['casa', 'vivienda unifamiliar']
+    };
+
+    for (const [type, variants] of Object.entries(propertyTypes)) {
+      if (variants.some(variant => lowerQuery.includes(variant))) {
+        criteria.propertyType = type;
+        break;
+      }
+    }
 
     // Extract bedrooms
     const bedroomMatch = query.match(
