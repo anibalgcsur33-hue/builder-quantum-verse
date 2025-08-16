@@ -845,6 +845,11 @@ export default function Index() {
         </div>
       </section>
 
+      {/* Premium Tourism Section */}
+      <div className="container mx-auto container-padding">
+        <PremiumTourism />
+      </div>
+
       {/* Footer */}
       <footer className="border-t border-white/10 py-16 bg-gradient-to-b from-transparent to-blue-dark/50">
         <div className="container mx-auto container-padding">
