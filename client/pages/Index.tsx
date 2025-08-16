@@ -959,28 +959,10 @@ export default function Index() {
               <h4 className="font-bold mb-6 text-neon-teal">Marketplace</h4>
               <div className="space-y-3">
                 <Link
-                  to="/marketplace/reformas"
-                  className="block text-white/60 hover:text-neon-teal transition-colors"
+                  to="/marketplace"
+                  className="block text-white/60 hover:text-neon-teal transition-colors font-medium"
                 >
-                  Reformas
-                </Link>
-                <Link
-                  to="/marketplace/seguros"
-                  className="block text-white/60 hover:text-neon-teal transition-colors"
-                >
-                  Seguros
-                </Link>
-                <Link
-                  to="/marketplace/servicios-legales"
-                  className="block text-white/60 hover:text-neon-teal transition-colors"
-                >
-                  Servicios Legales
-                </Link>
-                <Link
-                  to="/marketplace/mobiliario"
-                  className="block text-white/60 hover:text-neon-teal transition-colors"
-                >
-                  Mobiliario
+                  Ver Todo el Marketplace
                 </Link>
                 <Link
                   to="/marketplace/smart-home"
@@ -993,6 +975,36 @@ export default function Index() {
                   className="block text-white/60 hover:text-neon-teal transition-colors"
                 >
                   Energía Solar
+                </Link>
+                <Link
+                  to="/marketplace/reformas"
+                  className="block text-white/60 hover:text-neon-teal transition-colors"
+                >
+                  Reformas
+                </Link>
+                <Link
+                  to="/marketplace/piscinas-spa"
+                  className="block text-white/60 hover:text-neon-teal transition-colors"
+                >
+                  Piscinas & Spa
+                </Link>
+                <Link
+                  to="/marketplace/jardines-paisajismo"
+                  className="block text-white/60 hover:text-neon-teal transition-colors"
+                >
+                  Jardines & Paisajismo
+                </Link>
+                <Link
+                  to="/marketplace/sistemas-agua"
+                  className="block text-white/60 hover:text-neon-teal transition-colors"
+                >
+                  Sistemas de Agua
+                </Link>
+                <Link
+                  to="/marketplace/telecomunicaciones"
+                  className="block text-white/60 hover:text-neon-teal transition-colors"
+                >
+                  Telecomunicaciones
                 </Link>
               </div>
             </div>
