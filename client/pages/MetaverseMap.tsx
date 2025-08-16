@@ -66,6 +66,7 @@ export default function MetaverseMap() {
   const [showFilters, setShowFilters] = useState(false);
   const [isFullscreen, setIsFullscreen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const [isMetaverseMode, setIsMetaverseMode] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
