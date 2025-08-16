@@ -50,24 +50,8 @@ const App = () => (
           <Route path="/propiedades/alquilar" element={<Alquilar />} />
           <Route path="/propiedades/alquilar/vacacional" element={<Alquilar />} />
           <Route path="/propiedades/alquilar/larga-temporada" element={<Alquilar />} />
-          <Route
-            path="/propiedades/obra-nueva"
-            element={
-              <PlaceholderPage
-                title="Obra Nueva"
-                description="Proyectos inmobiliarios nuevos y en construcción."
-              />
-            }
-          />
-          <Route
-            path="/propiedades/verificadas"
-            element={
-              <PlaceholderPage
-                title="Propiedades Verificadas"
-                description="Inmuebles con sello registral y verificación completa."
-              />
-            }
-          />
+          <Route path="/propiedades/obra-nueva" element={<ObraNueva />} />
+          <Route path="/propiedades/verificadas" element={<Verificadas />} />
 
           {/* Community */}
           <Route path="/comunidad" element={<Community />} />
