@@ -122,6 +122,8 @@ const App = () => (
             element={<ServiciosLegales />}
           />
           <Route path="/marketplace/mobiliario" element={<Mobiliario />} />
+          <Route path="/marketplace/smart-home" element={<SmartHome />} />
+          <Route path="/marketplace/energia-solar" element={<SolarEnergia />} />
 
           {/* Other Routes */}
           <Route
