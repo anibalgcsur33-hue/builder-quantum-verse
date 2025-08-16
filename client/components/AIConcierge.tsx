@@ -370,12 +370,36 @@ export default function AIConcierge() {
   const generateDossier = async (properties: PropertyMatch[]) => {
     setIsTyping(true);
 
+    // Simulate comprehensive dossier generation
     await new Promise((resolve) => setTimeout(resolve, 3000));
 
-    const responseText =
-      `¡Perfecto! He generado un dossier completo con las ${properties.length} propiedades seleccionadas. ` +
-      `Incluye análisis financiero detallado, comparativas de ROI, documentación legal y cronograma de visitas. ` +
-      `El dossier está listo para descargar.`;
+    const totalValue = properties.reduce((sum, p) => sum + p.price, 0);
+    const avgROI = properties.reduce((sum, p) => sum + p.roi, 0) / properties.length;
+
+    let responseText = `📋 **Dossier Inmobiliario Generado Exitosamente**\n\n`;
+
+    responseText += `🏆 **Resumen Ejecutivo:**\n`;
+    responseText += `• ${properties.length} propiedades seleccionadas\n`;
+    responseText += `• Valor total de cartera: €${totalValue.toLocaleString()}\n`;
+    responseText += `• ROI promedio: ${avgROI.toFixed(1)}%\n`;
+    responseText += `• Ubicaciones: ${[...new Set(properties.map(p => p.location.split(',')[1]?.trim() || p.location))].join(', ')}\n\n`;
+
+    responseText += `📊 **Contenido del Dossier:**\n`;
+    responseText += `✅ Fichas técnicas detalladas de cada propiedad\n`;
+    responseText += `✅ Análisis financiero y proyecciones ROI 5-10 años\n`;
+    responseText += `✅ Comparativa de rentabilidad por alquiler vacacional/residencial\n`;
+    responseText += `✅ Documentación legal y verificaciones notariales\n`;
+    responseText += `✅ Cronograma de visitas personalizadas\n`;
+    responseText += `✅ Análisis de mercado local y tendencias\n`;
+    responseText += `✅ Opciones de financiación y partners bancarios\n\n`;
+
+    responseText += `🎯 **Próximos pasos sugeridos:**\n`;
+    responseText += `1. Revisar el dossier detallado\n`;
+    responseText += `2. Agendar visitas virtuales VR\n`;
+    responseText += `3. Coordinar visitas presenciales\n`;
+    responseText += `4. Consultar con nuestro equipo legal\n\n`;
+
+    responseText += `El dossier personalizado (${Math.ceil(properties.length * 0.8 + 2)}MB) está listo para descargar.`;
 
     addAIMessage(responseText, undefined, true);
     setIsTyping(false);
