@@ -450,9 +450,13 @@ export default function AIConcierge() {
     return (
       <button
         onClick={() => setIsOpen(true)}
-        className="fixed bottom-6 right-6 w-16 h-16 bg-gradient-to-br from-neon-teal via-neon-emerald to-blue-600 rounded-2xl shadow-2xl shadow-neon-teal/30 flex items-center justify-center hover:scale-110 transition-all duration-300 z-50 group"
+        className="fixed bottom-6 right-6 w-16 h-16 bg-gradient-to-br from-neon-teal via-neon-emerald to-blue-600 rounded-2xl shadow-2xl shadow-neon-teal/30 flex items-center justify-center hover:scale-110 transition-all duration-300 z-50 group p-1"
       >
-        <Bot className="w-8 h-8 text-white group-hover:animate-pulse" />
+        <img
+          src="https://cdn.builder.io/api/v1/image/assets%2Fb022b0ef6eaa47cba6348b0a48fcb095%2F17edddd60152463581993ed71a0f6614?format=webp&width=800"
+          alt="AI Assistant Avatar"
+          className="w-full h-full rounded-xl object-cover group-hover:scale-105 transition-transform duration-300"
+        />
         <div className="absolute -top-2 -right-2 w-6 h-6 bg-gradient-to-r from-yellow-400 to-orange-500 rounded-full flex items-center justify-center shadow-lg">
           <Sparkles className="w-3 h-3 text-white animate-pulse" />
         </div>
