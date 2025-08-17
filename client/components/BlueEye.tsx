@@ -78,11 +78,30 @@ export default function BlueEye({ height = 520, autoRotate = true }: BlueEyeProp
         avatar.rotation.y = 0; // Mirar directamente al frente
         avatar.scale.setScalar(1);
 
+        // Ajustar pose de brazos para que se vean más naturales
         avatar.traverse((o) => {
           if (o instanceof THREE.Mesh) {
             o.castShadow = true;
             if (o instanceof THREE.SkinnedMesh && !meshRef.current) {
               meshRef.current = o;
+            }
+          }
+
+          // Ajustar brazos si encontramos los huesos
+          if (o.isBone) {
+            if (o.name.toLowerCase().includes('leftarm') || o.name.toLowerCase().includes('left_arm')) {
+              o.rotation.z = 0; // Brazo izquierdo relajado
+              o.rotation.x = 0.1;
+            }
+            if (o.name.toLowerCase().includes('rightarm') || o.name.toLowerCase().includes('right_arm')) {
+              o.rotation.z = 0; // Brazo derecho relajado
+              o.rotation.x = 0.1;
+            }
+            if (o.name.toLowerCase().includes('leftshoulder') || o.name.toLowerCase().includes('left_shoulder')) {
+              o.rotation.z = 0.2; // Hombro izquierdo más natural
+            }
+            if (o.name.toLowerCase().includes('rightshoulder') || o.name.toLowerCase().includes('right_shoulder')) {
+              o.rotation.z = -0.2; // Hombro derecho más natural
             }
           }
         });
