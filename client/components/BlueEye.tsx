@@ -386,30 +386,32 @@ export default function BlueEye({ height = 520, autoRotate = true }: BlueEyeProp
       }
     };
 
-    // Función principal para cargar avatar
+    // Función principal para cargar avatar FBX
     const loadAvatar = async () => {
-      console.log("🔄 Verificando archivo avatar en:", AVATAR_URL);
-      
+      console.log("🔄 Verificando archivo avatar FBX en:", AVATAR_URL);
+
       const fileExists = await checkFileExists(AVATAR_URL);
-      
+
       if (!fileExists) {
-        console.log("📁 Archivo blueeye.glb no encontrado, usando avatar placeholder");
+        console.log("📁 Archivo blueeye.fbx no encontrado, usando avatar placeholder");
+        console.log("💡 Coloca tu archivo FBX en /public/assets/blueeye.fbx");
         createPlaceholderAvatar();
         return;
       }
 
-      console.log("✅ Archivo encontrado, cargando avatar GLB...");
-      
-      const loader = new GLTFLoader();
+      console.log("✅ Archivo FBX encontrado, cargando avatar...");
+      console.log("🎮 Formato FBX perfecto para VR y propiedades inmobiliarias");
+
+      const loader = new FBXLoader();
       loader.load(
         AVATAR_URL,
-        handleGLBLoad,
+        handleFBXLoad,
         (progress) => {
           const percent = (progress.loaded / progress.total) * 100;
-          console.log(`📥 Progreso de carga: ${percent.toFixed(1)}%`);
+          console.log(`📥 Progreso de carga FBX: ${percent.toFixed(1)}%`);
         },
         (error) => {
-          console.error("❌ Error cargando avatar GLB:", error);
+          console.error("❌ Error cargando avatar FBX:", error);
           console.log("🔄 Fallback a avatar placeholder");
           createPlaceholderAvatar();
         }
