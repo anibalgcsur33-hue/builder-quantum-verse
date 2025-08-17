@@ -344,27 +344,103 @@ const Avatar3D: React.FC<Avatar3DProps> = ({
     });
   }, []);
 
-  // Simulate speaking (placeholder for TTS + lip sync)
+  // Speak function with TTS and lip sync
   const speakText = useCallback(async (text: string) => {
+    if (!text.trim()) return;
+
     setAvatarState(prev => ({ ...prev, isSpeaking: true, currentEmotion: 'speaking' }));
     console.log('🗣️ Avatar speaking:', text);
-    
-    // TODO: Implement TTS + Lip Sync
-    // 1. Send text to TTS (Coqui/Piper)
-    // 2. Get audio + viseme data from Rhubarb
-    // 3. Play audio and animate blendshapes
-    // 4. Update avatar mouth movements
-    
-    // Simulate speaking duration
-    const duration = text.length * 50; // ~50ms per character
-    setTimeout(() => {
-      setAvatarState(prev => ({ 
-        ...prev, 
-        isSpeaking: false, 
-        currentEmotion: 'neutral' 
+
+    try {
+      const refs = threeRef.current;
+
+      // 1. Get audio from TTS endpoint
+      const audioResponse = await fetch(`/api/speak?text=${encodeURIComponent(text)}`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        }
+      });
+
+      if (!audioResponse.ok) {
+        throw new Error('TTS request failed');
+      }
+
+      const audioBlob = await audioResponse.blob();
+
+      // 2. Get visemes from lip sync endpoint
+      const formData = new FormData();
+      formData.append('audio', audioBlob, 'speech.wav');
+
+      const visemeResponse = await fetch('/api/visemes', {
+        method: 'POST',
+        body: formData
+      });
+
+      if (!visemeResponse.ok) {
+        throw new Error('Viseme request failed');
+      }
+
+      const visemeData: VisemeData[] = await visemeResponse.json();
+
+      // 3. Prepare viseme data for animation
+      refs.currentVisemes = visemeData.map(d => ({
+        t: d.time,
+        name: d.phoneme,
+        strength: d.strength ?? 0.9
       }));
-    }, Math.max(2000, duration));
-  }, []);
+
+      // 4. Play audio and start lip sync
+      if (refs.audio) {
+        refs.audio.pause();
+        refs.audio.remove();
+      }
+
+      refs.audio = new Audio(URL.createObjectURL(audioBlob));
+      refs.audio.volume = avatarState.volume;
+
+      refs.audio.onplay = () => {
+        refs.t0 = performance.now();
+      };
+
+      refs.audio.onended = () => {
+        setAvatarState(prev => ({
+          ...prev,
+          isSpeaking: false,
+          currentEmotion: 'neutral'
+        }));
+        refs.currentVisemes = [];
+      };
+
+      refs.audio.onerror = () => {
+        console.error('Audio playback error');
+        setAvatarState(prev => ({
+          ...prev,
+          isSpeaking: false,
+          currentEmotion: 'neutral'
+        }));
+      };
+
+      await refs.audio.play();
+
+    } catch (error) {
+      console.error('Error in speakText:', error);
+      setAvatarState(prev => ({
+        ...prev,
+        isSpeaking: false,
+        currentEmotion: 'neutral'
+      }));
+
+      // Fallback: simulate speaking without audio
+      setTimeout(() => {
+        setAvatarState(prev => ({
+          ...prev,
+          isSpeaking: false,
+          currentEmotion: 'neutral'
+        }));
+      }, text.length * 50);
+    }
+  }, [avatarState.volume]);
 
   // Test avatar speech
   const testSpeech = () => {
