@@ -102,6 +102,96 @@ export default function MetaverseMap() {
   const [isFullscreen, setIsFullscreen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMetaverseMode, setIsMetaverseMode] = useState(false);
+  const [isMultiplayerMode, setIsMultiplayerMode] = useState(false);
+  const [isWebXREnabled, setIsWebXREnabled] = useState(false);
+  const [heatmapLayers, setHeatmapLayers] = useState([
+    {
+      type: 'price' as const,
+      visible: true,
+      opacity: 0.7,
+      minValue: 2000,
+      maxValue: 8000,
+      currentValue: 3500,
+      unit: '€',
+      description: 'Precio promedio por metro cuadrado en la zona',
+      colors: { low: '#3B82F6', medium: '#F59E0B', high: '#EF4444' }
+    },
+    {
+      type: 'tourism' as const,
+      visible: false,
+      opacity: 0.6,
+      minValue: 0,
+      maxValue: 100,
+      currentValue: 75,
+      unit: '%',
+      description: 'Porcentaje de ocupación turística anual',
+      colors: { low: '#10B981', medium: '#F59E0B', high: '#EF4444' }
+    },
+    {
+      type: 'demand' as const,
+      visible: false,
+      opacity: 0.8,
+      minValue: 0,
+      maxValue: 100,
+      currentValue: 85,
+      unit: '%',
+      description: 'Índice de demanda basado en búsquedas y consultas',
+      colors: { low: '#8B5CF6', medium: '#EC4899', high: '#F59E0B' }
+    }
+  ]);
+
+  // Multiplayer state
+  const [connectedUsers, setConnectedUsers] = useState([
+    {
+      id: '2',
+      name: 'Carlos Ruiz',
+      avatar: '/placeholder.svg',
+      role: 'agent' as const,
+      status: 'active' as const,
+      position: { x: 300, y: 200, z: 0, rotation: { x: 0, y: 0, z: 0 } },
+      pointer: { x: 350, y: 250, visible: true, color: '#8B5CF6' },
+      audio: { isMuted: false, isDeafened: false, volume: 80, isVoiceActive: true },
+      video: { isEnabled: true, isScreenSharing: false },
+      permissions: { canControl: true, canAnnotate: true, canInvite: true },
+      joinedAt: new Date(Date.now() - 300000).toISOString(),
+      lastActivity: new Date().toISOString()
+    }
+  ]);
+
+  const [currentUser] = useState({
+    id: '1',
+    name: 'María González',
+    avatar: '/placeholder.svg',
+    role: 'client' as const,
+    status: 'active' as const,
+    position: { x: 250, y: 180, z: 0, rotation: { x: 0, y: 0, z: 0 } },
+    audio: { isMuted: false, isDeafened: false, volume: 100, isVoiceActive: false },
+    video: { isEnabled: false, isScreenSharing: false },
+    permissions: { canControl: false, canAnnotate: true, canInvite: false },
+    joinedAt: new Date(Date.now() - 600000).toISOString(),
+    lastActivity: new Date().toISOString()
+  });
+
+  const [chatMessages] = useState([
+    {
+      id: '1',
+      userId: '2',
+      userName: 'Carlos Ruiz',
+      userAvatar: '/placeholder.svg',
+      message: '¡Bienvenida a la sesión colaborativa! Te voy a mostrar las mejores propiedades de la zona.',
+      timestamp: new Date(Date.now() - 60000).toISOString(),
+      type: 'text' as const
+    },
+    {
+      id: '2',
+      userId: '1',
+      userName: 'María González',
+      userAvatar: '/placeholder.svg',
+      message: 'Perfecto, estoy especialmente interesada en villas con vista al mar.',
+      timestamp: new Date(Date.now() - 30000).toISOString(),
+      type: 'text' as const
+    }
+  ]);
 
   useEffect(() => {
     const handleScroll = () => {
