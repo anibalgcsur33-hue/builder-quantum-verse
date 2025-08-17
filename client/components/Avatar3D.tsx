@@ -1,17 +1,16 @@
-import React, { useRef, useEffect, useState, useCallback } from 'react';
+import React, { useRef, useEffect, useState } from 'react';
 import * as THREE from 'three';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
-import { 
-  Mic, 
-  MicOff, 
-  Volume2, 
-  VolumeX, 
-  Settings, 
+import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
+import {
+  Volume2,
+  VolumeX,
   MessageCircle,
   Calendar,
   Home,
   FileText,
-  Phone
+  Phone,
+  RotateCcw
 } from 'lucide-react';
 
 interface Avatar3DProps {
