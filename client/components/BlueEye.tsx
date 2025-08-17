@@ -90,16 +90,60 @@ export default function BlueEye({ height = 520, autoRotate = true }: BlueEyeProp
 
         scene.add(avatar);
 
-        // Intentar ajustar pose después de que el avatar esté cargado
+        // Agregar tablet y bolígrafo para justificar la pose de los brazos
         setTimeout(() => {
+          // Crear tablet
+          const tabletGeometry = new THREE.BoxGeometry(0.15, 0.02, 0.2);
+          const tabletMaterial = new THREE.MeshLambertMaterial({ color: 0x333333 });
+          const tablet = new THREE.Mesh(tabletGeometry, tabletMaterial);
+
+          // Crear pantalla de tablet
+          const screenGeometry = new THREE.PlaneGeometry(0.14, 0.18);
+          const screenMaterial = new THREE.MeshLambertMaterial({
+            color: 0x1a1a2e,
+            emissive: 0x0066cc,
+            emissiveIntensity: 0.1
+          });
+          const screen = new THREE.Mesh(screenGeometry, screenMaterial);
+          screen.position.set(0, 0.011, 0);
+          screen.rotation.x = -Math.PI / 2;
+          tablet.add(screen);
+
+          // Crear bolígrafo
+          const penGeometry = new THREE.CylinderGeometry(0.003, 0.003, 0.15);
+          const penMaterial = new THREE.MeshLambertMaterial({ color: 0x0066ff });
+          const pen = new THREE.Mesh(penGeometry, penMaterial);
+
+          // Buscar las manos para colocar los objetos
           avatar.traverse((bone) => {
             if (bone.isBone) {
-              // Ajuste sutil de brazos - solo si encuentra los huesos correctos
+              // Tablet en mano izquierda
+              if (bone.name === "LeftHand" || bone.name === "mixamorigLeftHand") {
+                tablet.position.set(0, 0, 0.1);
+                tablet.rotation.set(-Math.PI / 4, 0, 0);
+                bone.add(tablet);
+              }
+              // Bolígrafo en mano derecha
+              if (bone.name === "RightHand" || bone.name === "mixamorigRightHand") {
+                pen.position.set(0, 0, 0.1);
+                pen.rotation.set(0, 0, Math.PI / 4);
+                bone.add(pen);
+              }
+
+              // Ajustar pose de brazos para sostener los objetos
               if (bone.name === "LeftArm" || bone.name === "mixamorigLeftArm") {
-                bone.rotation.z = -0.2; // Brazo izquierdo más natural
+                bone.rotation.x = 0.3; // Brazo izquierdo sosteniendo tablet
+                bone.rotation.z = -0.4;
               }
               if (bone.name === "RightArm" || bone.name === "mixamorigRightArm") {
-                bone.rotation.z = 0.2; // Brazo derecho más natural
+                bone.rotation.x = 0.2; // Brazo derecho con bolígrafo
+                bone.rotation.z = 0.3;
+              }
+              if (bone.name === "LeftForeArm" || bone.name === "mixamorigLeftForeArm") {
+                bone.rotation.x = -0.5; // Antebrazo sostiene tablet
+              }
+              if (bone.name === "RightForeArm" || bone.name === "mixamorigRightForeArm") {
+                bone.rotation.x = -0.3; // Antebrazo con bolígrafo
               }
             }
           });
