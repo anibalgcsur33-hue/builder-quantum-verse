@@ -515,7 +515,48 @@ export default function Community() {
             })}
           </div>
 
+          {/* Global CTA */}
+          <div className="glass-card p-6 rounded-2xl border border-purple-500/20 bg-gradient-to-r from-purple-500/10 to-blue-500/10 text-center mb-8">
+            <h3 className="text-2xl font-bold text-white mb-4">¡Únete a la Comunidad BlueEyeHomes!</h3>
+            <p className="text-white/70 mb-6 max-w-2xl mx-auto">
+              Conecta con otros compradores e inversores, gana puntos por tu actividad,
+              participa en eventos exclusivos y accede a beneficios únicos.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <button className="btn-primary flex items-center gap-2">
+                <UserPlus className="w-5 h-5" />
+                Completar Perfil
+              </button>
+              <button className="btn-secondary flex items-center gap-2">
+                <Gift className="w-5 h-5" />
+                Ver Recompensas
+              </button>
+            </div>
+          </div>
+
           {/* Tab Content */}
+          {activeTab === "gamification" && (
+            <div>
+              <GamificationSystem userStats={userStats} />
+            </div>
+          )}
+
+          {activeTab === "groups" && (
+            <div>
+              <CommunityGroups
+                groups={groups}
+                userLocation="Tenerife"
+                userInterests={['inversión', 'tecnología']}
+              />
+            </div>
+          )}
+
+          {activeTab === "events" && (
+            <div>
+              <EventsSystem events={events} userLevel={userStats.level} />
+            </div>
+          )}
+
           {activeTab === "virtual-space" && (
             <div className="space-y-8">
               {/* Virtual Space Header */}
