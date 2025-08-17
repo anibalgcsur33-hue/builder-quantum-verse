@@ -6,7 +6,7 @@ export default function HeroBlueEye() {
     // Saludo automático más temprano y más largo
     setTimeout(() => {
       const evt = new CustomEvent("blueeye-saludo", {
-        detail: "¡Hola! Soy Blu-ai, tu asesora virtual inmobiliaria. Como puedes ver, tengo mi tablet con todas las propiedades disponibles y mi bolígrafo digital listo para asesorarte. Bienvenidos al futuro de los bienes raíces en el metaverso."
+        detail: "¡Hola! Soy Blu-ai, tu asesora virtual inmobiliaria. Ahora con un diseño completamente nuevo y brazos en posición perfectamente natural. Tengo mi tablet profesional y bolígrafo listo para asesorarte en el metaverso inmobiliario."
       });
       window.dispatchEvent(evt);
     }, 2000);
