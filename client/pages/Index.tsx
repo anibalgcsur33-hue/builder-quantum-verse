@@ -409,21 +409,15 @@ export default function Index() {
         <div className="container mx-auto container-padding">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             <div className="relative">
-              <video
-                className="w-full h-96 lg:h-[500px] object-cover rounded-2xl shadow-glass"
-                autoPlay
-                muted
-                loop
-                playsInline
-                poster="/placeholder.svg"
-              >
-                <source src="https://cdn.builder.io/o/assets%2Fb022b0ef6eaa47cba6348b0a48fcb095%2F69654e0c8eeb48cabf7dfe2e22ac60ac?alt=media&token=2ebe688d-8a7e-43fa-ae96-6667d5b3642a&apiKey=b022b0ef6eaa47cba6348b0a48fcb095" type="video/mp4" />
-                <img
-                  src="/placeholder.svg"
-                  alt="Luxury villa interior VR tour"
-                />
-              </video>
-              <div className="absolute inset-0 bg-gradient-to-t from-blue-dark/50 to-transparent rounded-2xl"></div>
+              <div className="w-full h-96 lg:h-[500px] bg-gradient-to-br from-purple-900/40 to-blue-900/40 rounded-2xl shadow-glass flex items-center justify-center">
+                <div className="text-center">
+                  <div className="w-24 h-24 bg-neon-teal/20 rounded-full flex items-center justify-center mb-4 mx-auto">
+                    <Play className="text-neon-teal" size={40} />
+                  </div>
+                  <h3 className="text-white text-xl font-bold mb-2">Tour VR Villa de Lujo</h3>
+                  <p className="text-white/60">Click para reproducir</p>
+                </div>
+              </div>
 
               {/* Play Button Overlay */}
               <button className="absolute inset-0 flex items-center justify-center group">
