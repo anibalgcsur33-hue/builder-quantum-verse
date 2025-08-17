@@ -440,6 +440,9 @@ export default function Community() {
       : forumTopics.filter((topic) => topic.category === selectedForumCategory);
 
   const tabs = [
+    { id: "gamification", label: "Mi Progreso", icon: Trophy },
+    { id: "groups", label: "Grupos", icon: Users },
+    { id: "events", label: "Eventos", icon: Calendar },
     { id: "virtual-space", label: "Espacio Virtual", icon: Globe },
     { id: "blog", label: "Blog", icon: BookOpen },
     { id: "forum", label: "Foro", icon: MessageSquare },
