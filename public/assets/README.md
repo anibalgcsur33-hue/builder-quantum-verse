@@ -36,8 +36,16 @@
 ### 4. Verificaciones Importantes
 - **Rig Humanoide**: El modelo debe tener skeleton humanoide estándar
 - **Escala**: Altura aproximada 1.7-1.8 unidades
-- **Materiales**: Preferiblemente PBR materials
+- **Materiales**: PBR materials (perfecto para VR)
 - **Blendshapes**: Para animación facial (opcional)
+- **FBX Benefits**: Mejor compatibilidad con VR, Unity, Unreal Engine
+
+### 4.1. Ventajas del Formato FBX para VR
+- ✅ **Mejor rendimiento** en aplicaciones VR
+- ✅ **Compatibilidad total** con Unity/Unreal para VR
+- ✅ **Animaciones más fluidas** para mostrar propiedades
+- ✅ **Soporte completo** para interacciones VR
+- ✅ **Materiales optimizados** para realidad virtual
 
 ### 5. Props/Accesorios (Opcional)
 Si el modelo incluye tablet u otros props sueltos:
