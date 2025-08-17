@@ -710,26 +710,7 @@ export default function Index() {
           <div className="max-w-4xl mx-auto">
             <Avatar3D
               height={520}
-              autoRotate={true}
-              defaultLine="¡Hola! Soy BlueEye, tu asesora virtual inmobiliaria. ¿En qué puedo ayudarte hoy?"
-              onInteraction={(action, data) => {
-                console.log('Avatar action:', action, data);
-                // Here you can handle navigation or other actions
-                switch(action) {
-                  case 'search-properties':
-                    // Navigate to properties page
-                    break;
-                  case 'schedule-visit':
-                    // Open calendar or visit scheduling
-                    break;
-                  case 'legal-info':
-                    // Show legal information
-                    break;
-                  case 'contact-agent':
-                    // Open contact form
-                    break;
-                }
-              }}
+              defaultLine="¡Hola! Soy BlueEye, tu asesora virtual inmobiliaria."
             />
           </div>
         </div>
