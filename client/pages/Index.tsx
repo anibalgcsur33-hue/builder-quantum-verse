@@ -24,6 +24,9 @@ import {
   Globe,
   CheckCircle,
   ArrowRight,
+  Brain,
+  Clock,
+  Sparkles,
 } from "lucide-react";
 
 export default function Index() {
