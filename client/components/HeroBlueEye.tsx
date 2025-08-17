@@ -3,13 +3,13 @@ import BlueEye from "./BlueEye";
 
 export default function HeroBlueEye() {
   useEffect(() => {
-    // Saludo automático
+    // Saludo automático más temprano y más largo
     setTimeout(() => {
       const evt = new CustomEvent("blueeye-saludo", {
-        detail: "Hola, soy Blu-ai, bienvenida al metaverso inmobiliario."
+        detail: "¡Hola! Soy Blu-ai, tu asesora virtual inmobiliaria. Bienvenidos al futuro de los bienes raíces en el metaverso. Aquí podrás explorar propiedades reales en tres dimensiones antes de tomar cualquier decisión."
       });
       window.dispatchEvent(evt);
-    }, 1500);
+    }, 2000);
   }, []);
 
   return (
