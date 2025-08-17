@@ -141,20 +141,33 @@ export default function BlueEye({ height = 520, autoRotate = true }: BlueEyeProp
   // Síntesis de voz del navegador
   const speak = (line: string) => {
     if (!("speechSynthesis" in window)) return;
-    
+
     // Reemplazar "BlueEye" con "Blu-ai" para mejor pronunciación en español
     const textToSpeak = line.replace(/BlueEye/gi, "Blu-ai");
-    
+
     const utter = new SpeechSynthesisUtterance(textToSpeak);
     const voices = speechSynthesis.getVoices();
     const es = voices.find((v) => /es-|Spanish/i.test(v.lang));
     if (es) utter.voice = es;
+
+    // Configuración optimizada para voz femenina
+    utter.rate = 0.8;
+    utter.pitch = 1.2;
+    utter.volume = 0.9;
+
     utter.onstart = () => {
       speakingRef.current = true;
+      console.log("🗣️ BlueEye comenzó a hablar");
     };
     utter.onend = () => {
       speakingRef.current = false;
+      console.log("🔇 BlueEye terminó de hablar");
     };
+    utter.onerror = () => {
+      speakingRef.current = false;
+      console.log("❌ Error en síntesis de voz");
+    };
+
     speechSynthesis.cancel();
     speechSynthesis.speak(utter);
   };
