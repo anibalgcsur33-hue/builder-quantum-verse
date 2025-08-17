@@ -248,7 +248,8 @@ export default function BlueEye({ height = 520, autoRotate = true }: BlueEyeProp
       scene.add(group);
       
       console.log("💼 Avatar placeholder profesional creado");
-      console.log("📁 Para usar tu avatar custom, coloca blueeye.glb en /public/assets/");
+      console.log("📁 Para usar tu avatar custom, coloca blueeye.fbx en /public/assets/");
+      console.log("🎮 El formato FBX es perfecto para VR y mostrar propiedades inmobiliarias");
     };
 
     // Función para manejar la carga exitosa del avatar FBX
