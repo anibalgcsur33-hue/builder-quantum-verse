@@ -237,7 +237,7 @@ export default function Index() {
       <AIConcierge />
 
       {/* Featured Properties Section */}
-      <section className="section-padding">
+      <section className="section-padding" data-section="properties">
         <div className="container mx-auto container-padding">
           <div className="text-center mb-16">
             <h2 className="heading-lg text-gradient mb-6">
