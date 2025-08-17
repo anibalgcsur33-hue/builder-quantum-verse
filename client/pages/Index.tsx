@@ -754,21 +754,15 @@ export default function Index() {
         <div className="container mx-auto container-padding">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             <div className="relative">
-              <video
-                className="w-full h-96 lg:h-[500px] object-cover rounded-2xl shadow-glass"
-                autoPlay
-                muted
-                loop
-                playsInline
-                poster="/placeholder.svg"
-              >
-                <source src="/futuristic-community.mp4" type="video/mp4" />
-                <img
-                  src="/placeholder.svg"
-                  alt="Futuristic community of connected users sharing experiences"
-                />
-              </video>
-              <div className="absolute inset-0 bg-gradient-to-t from-blue-dark/50 to-transparent rounded-2xl"></div>
+              <div className="w-full h-96 lg:h-[500px] bg-gradient-to-br from-teal-900/40 to-emerald-900/40 rounded-2xl shadow-glass flex items-center justify-center">
+                <div className="text-center">
+                  <div className="w-24 h-24 bg-neon-emerald/20 rounded-full flex items-center justify-center mb-4 mx-auto">
+                    <Users className="text-neon-emerald" size={40} />
+                  </div>
+                  <h3 className="text-white text-xl font-bold mb-2">Comunidad Digital</h3>
+                  <p className="text-white/60">Red de inversores conectados</p>
+                </div>
+              </div>
 
               {/* Community Stats */}
               <div className="absolute top-6 left-6 space-y-3">
