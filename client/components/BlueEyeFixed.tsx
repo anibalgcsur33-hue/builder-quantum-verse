@@ -4,6 +4,7 @@ import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
 
 const AVATAR_URL = "https://models.readyplayer.me/68a130cc6db44d17d10d931b.glb";
+const FALLBACK_AVATAR_URL = "https://models.readyplayer.me/64c6aaeb0e6df2e7e3b8b2a6.glb"; // URL de respaldo
 
 interface BlueEyeFixedProps {
   height?: number;
