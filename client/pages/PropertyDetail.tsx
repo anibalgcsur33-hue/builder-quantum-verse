@@ -38,6 +38,7 @@ import {
   Shield,
   Phone,
   Mail,
+  Users,
 } from "lucide-react";
 
 export default function PropertyDetail() {
