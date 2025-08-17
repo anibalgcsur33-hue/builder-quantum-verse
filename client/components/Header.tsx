@@ -102,6 +102,13 @@ export default function Header({
                 Propiedades
               </Link>
               <Link
+                to="/marketplace"
+                className="block text-white/80 hover:text-neon-teal transition-colors duration-300 font-medium py-2"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                Marketplace
+              </Link>
+              <Link
                 to="/community"
                 className="block text-white/80 hover:text-neon-teal transition-colors duration-300 font-medium py-2 relative"
                 onClick={() => setIsMenuOpen(false)}
