@@ -66,6 +66,7 @@ const App = () => (
 
           {/* Community */}
           <Route path="/comunidad" element={<Community />} />
+          <Route path="/community" element={<Community />} />
 
           {/* Authentication Routes */}
           <Route path="/auth/login" element={<Login />} />
