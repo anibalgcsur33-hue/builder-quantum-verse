@@ -4,6 +4,7 @@ import Header from "../components/Header";
 import AIConcierge from "../components/AIConcierge";
 import PremiumTourism from "../components/PremiumTourism";
 import Avatar3D from "../components/Avatar3DInstant";
+import HeroBlueEye from "../components/HeroBlueEye";
 import {
   Eye,
   MapPin,
