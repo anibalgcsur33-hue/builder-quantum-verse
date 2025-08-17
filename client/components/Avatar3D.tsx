@@ -1,12 +1,12 @@
 import React, { useRef, useEffect, useState, useCallback } from 'react';
 import * as THREE from 'three';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
-import {
-  Mic,
-  MicOff,
-  Volume2,
-  VolumeX,
-  Settings,
+import { 
+  Mic, 
+  MicOff, 
+  Volume2, 
+  VolumeX, 
+  Settings, 
   MessageCircle,
   Calendar,
   Home,
@@ -59,10 +59,10 @@ interface ThreeJSRefs {
   t0: number;
 }
 
-const Avatar3D: React.FC<Avatar3DProps> = ({
-  className = '',
+const Avatar3D: React.FC<Avatar3DProps> = ({ 
+  className = '', 
   onInteraction,
-  isVisible = true
+  isVisible = true 
 }) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const threeRef = useRef<ThreeJSRefs>({
@@ -92,7 +92,7 @@ const Avatar3D: React.FC<Avatar3DProps> = ({
   const mapVisemes = useCallback((mesh: THREE.SkinnedMesh): MouthMap => {
     const names = mesh.morphTargetDictionary || {};
     const find = (candidates: string[]) => candidates.find(n => n in names);
-
+    
     return {
       "AA": names[find(["viseme_aa", "AA", "aah"]) || ""] ?? -1,
       "O":  names[find(["viseme_oh", "O", "oh"]) || ""] ?? -1,
@@ -134,7 +134,7 @@ const Avatar3D: React.FC<Avatar3DProps> = ({
     if (!refs.scene || !refs.camera || !refs.renderer) return;
 
     animationFrameRef.current = requestAnimationFrame(animate);
-
+    
     const dt = refs.clock.getDelta();
     refs.mixer?.update(dt);
 
@@ -194,9 +194,9 @@ const Avatar3D: React.FC<Avatar3DProps> = ({
     // Setup three.js scene
     refs.scene = new THREE.Scene();
     refs.camera = new THREE.PerspectiveCamera(
-      35,
-      container.clientWidth / container.clientHeight,
-      0.1,
+      35, 
+      container.clientWidth / container.clientHeight, 
+      0.1, 
       100
     );
     refs.camera.position.set(0, 1.5, 2.3);
@@ -210,7 +210,7 @@ const Avatar3D: React.FC<Avatar3DProps> = ({
     // Lighting setup
     const hemiLight = new THREE.HemisphereLight(0xffffff, 0x202025, 0.7);
     refs.scene.add(hemiLight);
-
+    
     const keyLight = new THREE.DirectionalLight(0xffffff, 1.2);
     keyLight.position.set(2, 3, 1.5);
     keyLight.castShadow = true;
@@ -232,7 +232,7 @@ const Avatar3D: React.FC<Avatar3DProps> = ({
       '/assets/avatar.glb',
       (gltf) => {
         refs.avatar = gltf.scene;
-
+        
         // Setup shadows and find skinned mesh
         refs.avatar.traverse((child) => {
           child.castShadow = true;
@@ -240,7 +240,7 @@ const Avatar3D: React.FC<Avatar3DProps> = ({
             refs.skinnedMesh = child;
           }
         });
-
+        
         refs.scene!.add(refs.avatar);
         refs.mixer = new THREE.AnimationMixer(refs.avatar);
 
@@ -259,7 +259,7 @@ const Avatar3D: React.FC<Avatar3DProps> = ({
 
         setAvatarState(prev => ({ ...prev, isInitialized: true }));
         console.log('✅ Avatar loaded and initialized');
-
+        
         // Start animation loop
         animate();
       },
@@ -274,7 +274,7 @@ const Avatar3D: React.FC<Avatar3DProps> = ({
     // Handle window resize
     const handleResize = () => {
       if (!refs.camera || !refs.renderer || !container) return;
-
+      
       refs.camera.aspect = container.clientWidth / container.clientHeight;
       refs.camera.updateProjectionMatrix();
       refs.renderer.setSize(container.clientWidth, container.clientHeight);
@@ -285,24 +285,24 @@ const Avatar3D: React.FC<Avatar3DProps> = ({
     return () => {
       // Cleanup three.js resources
       console.log('🧹 Cleaning up 3D Avatar...');
-
+      
       if (animationFrameRef.current) {
         cancelAnimationFrame(animationFrameRef.current);
       }
-
+      
       window.removeEventListener('resize', handleResize);
-
-      if (refs.renderer) {
+      
+      if (refs.renderer && container.contains(refs.renderer.domElement)) {
         container.removeChild(refs.renderer.domElement);
         refs.renderer.dispose();
       }
-
+      
       if (refs.audio) {
         refs.audio.pause();
         refs.audio = null;
       }
     };
-  }, [containerRef.current, mapVisemes, animate]);
+  }, [mapVisemes, animate]);
 
   // Handle avatar actions
   const handleAction = useCallback((actionId: string, data?: any) => {
@@ -347,13 +347,13 @@ const Avatar3D: React.FC<Avatar3DProps> = ({
   // Speak function with TTS and lip sync
   const speakText = useCallback(async (text: string) => {
     if (!text.trim()) return;
-
+    
     setAvatarState(prev => ({ ...prev, isSpeaking: true, currentEmotion: 'speaking' }));
     console.log('🗣️ Avatar speaking:', text);
 
     try {
       const refs = threeRef.current;
-
+      
       // 1. Get audio from TTS endpoint
       const audioResponse = await fetch(`/api/speak?text=${encodeURIComponent(text)}`, {
         method: 'POST',
@@ -361,82 +361,82 @@ const Avatar3D: React.FC<Avatar3DProps> = ({
           'Content-Type': 'application/json',
         }
       });
-
+      
       if (!audioResponse.ok) {
         throw new Error('TTS request failed');
       }
-
+      
       const audioBlob = await audioResponse.blob();
-
+      
       // 2. Get visemes from lip sync endpoint
       const formData = new FormData();
       formData.append('audio', audioBlob, 'speech.wav');
-
+      
       const visemeResponse = await fetch('/api/visemes', {
         method: 'POST',
         body: formData
       });
-
+      
       if (!visemeResponse.ok) {
         throw new Error('Viseme request failed');
       }
-
+      
       const visemeData: VisemeData[] = await visemeResponse.json();
-
+      
       // 3. Prepare viseme data for animation
       refs.currentVisemes = visemeData.map(d => ({
         t: d.time,
         name: d.phoneme,
         strength: d.strength ?? 0.9
       }));
-
+      
       // 4. Play audio and start lip sync
       if (refs.audio) {
         refs.audio.pause();
         refs.audio.remove();
       }
-
+      
       refs.audio = new Audio(URL.createObjectURL(audioBlob));
       refs.audio.volume = avatarState.volume;
-
+      
       refs.audio.onplay = () => {
         refs.t0 = performance.now();
       };
-
+      
       refs.audio.onended = () => {
-        setAvatarState(prev => ({
-          ...prev,
-          isSpeaking: false,
-          currentEmotion: 'neutral'
+        setAvatarState(prev => ({ 
+          ...prev, 
+          isSpeaking: false, 
+          currentEmotion: 'neutral' 
         }));
         refs.currentVisemes = [];
       };
-
+      
       refs.audio.onerror = () => {
         console.error('Audio playback error');
-        setAvatarState(prev => ({
-          ...prev,
-          isSpeaking: false,
-          currentEmotion: 'neutral'
+        setAvatarState(prev => ({ 
+          ...prev, 
+          isSpeaking: false, 
+          currentEmotion: 'neutral' 
         }));
       };
-
+      
       await refs.audio.play();
-
+      
     } catch (error) {
       console.error('Error in speakText:', error);
-      setAvatarState(prev => ({
-        ...prev,
-        isSpeaking: false,
-        currentEmotion: 'neutral'
+      setAvatarState(prev => ({ 
+        ...prev, 
+        isSpeaking: false, 
+        currentEmotion: 'neutral' 
       }));
-
+      
       // Fallback: simulate speaking without audio
       setTimeout(() => {
-        setAvatarState(prev => ({
-          ...prev,
-          isSpeaking: false,
-          currentEmotion: 'neutral'
+        setAvatarState(prev => ({ 
+          ...prev, 
+          isSpeaking: false, 
+          currentEmotion: 'neutral' 
         }));
       }, text.length * 50);
     }
@@ -457,17 +457,15 @@ const Avatar3D: React.FC<Avatar3DProps> = ({
 
   return (
     <div className={`avatar-3d-container relative ${className}`}>
-      {/* 3D Avatar Canvas */}
-      <div className="relative w-full h-96 lg:h-[500px] bg-gradient-to-br from-blue-900/20 via-purple-900/10 to-blue-800/20 rounded-2xl overflow-hidden border border-neon-teal/20">
-        <canvas
-          ref={canvasRef}
-          className="w-full h-full"
-          style={{ background: 'transparent' }}
-        />
-        
+      {/* 3D Avatar Canvas Container */}
+      <div 
+        ref={containerRef}
+        className="relative w-full h-96 lg:h-[500px] bg-gradient-to-br from-blue-900/20 via-purple-900/10 to-blue-800/20 rounded-2xl overflow-hidden border border-neon-teal/20"
+        style={{ width: '100%', height: '520px' }}
+      >
         {/* Loading State */}
         {!avatarState.isInitialized && (
-          <div className="absolute inset-0 flex items-center justify-center bg-blue-dark/80 backdrop-blur-sm">
+          <div className="absolute inset-0 flex items-center justify-center bg-blue-dark/80 backdrop-blur-sm z-10">
             <div className="text-center">
               <div className="w-16 h-16 border-4 border-neon-teal border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
               <p className="text-white/70">Inicializando avatar 3D...</p>
@@ -476,7 +474,7 @@ const Avatar3D: React.FC<Avatar3DProps> = ({
         )}
 
         {/* Avatar Status Indicators */}
-        <div className="absolute top-4 left-4 flex flex-col gap-2">
+        <div className="absolute top-4 left-4 flex flex-col gap-2 z-20">
           {/* Listening indicator */}
           {avatarState.isListening && (
             <div className="glass-card px-3 py-2 rounded-full flex items-center gap-2 animate-pulse">
@@ -502,7 +500,7 @@ const Avatar3D: React.FC<Avatar3DProps> = ({
         </div>
 
         {/* Volume Control */}
-        <div className="absolute top-4 right-4">
+        <div className="absolute top-4 right-4 z-20">
           <div className="glass-card p-2 rounded-full">
             <button 
               onClick={() => setAvatarState(prev => ({ 
