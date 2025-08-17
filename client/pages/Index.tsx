@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import Header from "../components/Header";
 import AIConcierge from "../components/AIConcierge";
 import PremiumTourism from "../components/PremiumTourism";
-import Avatar3D from "../components/Avatar3DFast";
+import Avatar3D from "../components/Avatar3DInstant";
 import {
   Eye,
   MapPin,
