@@ -23,11 +23,9 @@ interface Avatar3DProps {
 }
 
 interface AvatarState {
-  isListening: boolean;
-  isSpeaking: boolean;
-  currentEmotion: 'neutral' | 'happy' | 'thinking' | 'speaking';
-  volume: number;
-  isInitialized: boolean;
+  ready: boolean;
+  speaking: boolean;
+  text: string;
 }
 
 interface AvatarAction {
