@@ -516,6 +516,122 @@ Perfecta para residencia habitual o como inversión en el mercado de alquiler va
                   </div>
                 )}
 
+                {activeTab === "community" && (
+                  <div>
+                    <PropertyCommunity
+                      propertyId={property.id}
+                      questions={[
+                        {
+                          id: '1',
+                          question: '¿Cuáles son los gastos de comunidad mensuales?',
+                          answer: 'Los gastos de comunidad son de aproximadamente 180€ mensuales, que incluyen mantenimiento de zonas comunes, piscina, jardines y seguridad.',
+                          author: {
+                            name: 'María González',
+                            avatar: '/placeholder.svg',
+                            level: 'comprador-pro',
+                            verified: true
+                          },
+                          answeredBy: {
+                            name: 'Carlos Ruiz',
+                            avatar: '/placeholder.svg',
+                            role: 'Agente Inmobiliario',
+                            verified: true
+                          },
+                          timestamp: '2024-01-20T10:30:00Z',
+                          answeredAt: '2024-01-20T14:20:00Z',
+                          likes: 8,
+                          isLiked: false,
+                          category: 'financial'
+                        },
+                        {
+                          id: '2',
+                          question: '¿Es posible hacer alquiler vacacional en esta propiedad?',
+                          answer: 'Sí, la comunidad permite alquiler vacacional. Sin embargo, requiere registro en el ayuntamiento y cumplir con la normativa turística de Canarias.',
+                          author: {
+                            name: 'Pedro López',
+                            avatar: '/placeholder.svg',
+                            level: 'explorador',
+                            verified: false
+                          },
+                          answeredBy: {
+                            name: 'Ana Martínez',
+                            avatar: '/placeholder.svg',
+                            role: 'Asesora Legal',
+                            verified: true
+                          },
+                          timestamp: '2024-01-18T16:45:00Z',
+                          answeredAt: '2024-01-19T09:15:00Z',
+                          likes: 12,
+                          isLiked: true,
+                          category: 'legal'
+                        },
+                        {
+                          id: '3',
+                          question: '¿Cómo está la conectividad a internet en la zona?',
+                          author: {
+                            name: 'Sophie Dubois',
+                            avatar: '/placeholder.svg',
+                            level: 'comprador-pro',
+                            verified: true
+                          },
+                          timestamp: '2024-01-22T11:20:00Z',
+                          likes: 3,
+                          isLiked: false,
+                          category: 'technical'
+                        }
+                      ]}
+                      reviews={[
+                        {
+                          id: '1',
+                          rating: 5,
+                          title: 'Villa espectacular con vistas increíbles',
+                          content: 'Visitamos esta villa el mes pasado y quedamos impresionados. Las vistas al océano son realmente únicas y la calidad de los acabados es excepcional. La distribución es muy práctica para una familia.',
+                          author: {
+                            name: 'Hans Mueller',
+                            avatar: '/placeholder.svg',
+                            level: 'agente-confiable',
+                            verified: true
+                          },
+                          timestamp: '2024-01-15T10:30:00Z',
+                          visitDate: '2024-01-10T15:00:00Z',
+                          visitType: 'physical',
+                          helpful: 15,
+                          notHelpful: 1,
+                          isVerified: true,
+                          pros: ['Vistas espectaculares', 'Acabados de alta calidad', 'Ubicación privilegiada'],
+                          cons: ['Precio elevado', 'Acceso algo empinado'],
+                          wouldRecommend: true
+                        },
+                        {
+                          id: '2',
+                          rating: 4,
+                          title: 'Buena opción para inversión',
+                          content: 'La propiedad tiene mucho potencial para alquiler vacacional. La zona es muy demandada y las características de la villa la hacen muy atractiva para turistas de alto nivel.',
+                          author: {
+                            name: 'Carmen Silva',
+                            avatar: '/placeholder.svg',
+                            level: 'comprador-pro',
+                            verified: true
+                          },
+                          timestamp: '2024-01-12T14:20:00Z',
+                          visitDate: '2024-01-08T11:30:00Z',
+                          visitType: 'both',
+                          helpful: 8,
+                          notHelpful: 2,
+                          isVerified: true,
+                          pros: ['Alto potencial de rentabilidad', 'Zona turística consolidada'],
+                          cons: ['Competencia alta en la zona'],
+                          wouldRecommend: true
+                        }
+                      ]}
+                      averageRating={4.5}
+                      totalReviews={2}
+                      canLeaveReview={true}
+                      hasVisited={false}
+                    />
+                  </div>
+                )}
+
                 {activeTab === "documents" && (
                   <div className="space-y-6">
                     <p className="text-white/70">
