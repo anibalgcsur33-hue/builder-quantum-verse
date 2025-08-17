@@ -210,14 +210,34 @@ export default function MetaverseMap() {
       title: "Villa Oceanfront Paradise",
       location: "Costa Adeje, Tenerife",
       price: 1250000,
+      pricePerSqm: 3500,
       type: "villa",
-      coordinates: { x: 200, y: 150, z: 0 },
+      coordinates: {
+        x: 200,
+        y: 150,
+        z: 0,
+        lat: 28.0916,
+        lng: -16.7281,
+        elevation: 45
+      },
       bedrooms: 4,
       bathrooms: 3,
       sqm: 357,
-      image: "/placeholder.svg",
-      vrTour: true,
-      featured: true,
+      images: ["/placeholder.svg", "/placeholder.svg", "/placeholder.svg"],
+      badges: ['vr', 'featured', 'verified'],
+      heatmapData: {
+        priceHeat: 0.8,
+        tourismOccupancy: 0.9,
+        demand: 0.85
+      },
+      nearby: {
+        beaches: [{ name: "Playa del Duque", distance: 200 }],
+        schools: [{ name: "Colegio Internacional", distance: 800, type: "internacional" }],
+        hospitals: [{ name: "Hospital Costa Adeje", distance: 1200 }],
+        shopping: [{ name: "Centro Comercial Gran Sur", distance: 600, type: "centro comercial" }]
+      },
+      vrTourUrl: "/vr-tour/villa-oceanfront",
+      tour3DUrl: "/3d-tour/villa-oceanfront",
       status: "available",
     },
     {
