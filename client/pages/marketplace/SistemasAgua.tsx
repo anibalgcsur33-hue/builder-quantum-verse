@@ -324,7 +324,8 @@ export default function SistemasAgua() {
                       ¿Emergencia de Fontanería?
                     </h3>
                     <p className="text-white/70">
-                      Respuesta en menos de 30 minutos. Servicio 24/7 en toda Canarias.
+                      Respuesta en menos de 30 minutos. Servicio 24/7 en toda
+                      Canarias.
                     </p>
                   </div>
                 </div>
@@ -370,12 +371,12 @@ export default function SistemasAgua() {
                       )}
                     </div>
                   </div>
-                  
+
                   <h3 className="font-bold text-white mb-2">{provider.name}</h3>
                   <p className="text-white/70 text-sm mb-3 line-clamp-2">
                     {provider.description}
                   </p>
-                  
+
                   <div className="space-y-2 mb-4">
                     <div className="flex justify-between text-sm">
                       <div className="flex items-center space-x-1">
@@ -393,7 +394,7 @@ export default function SistemasAgua() {
                       </span>
                     </div>
                   </div>
-                  
+
                   <button className="w-full btn-primary text-sm py-2 flex items-center justify-center gap-2">
                     <Phone className="w-4 h-4" />
                     Contactar

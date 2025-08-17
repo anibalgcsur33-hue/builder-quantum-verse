@@ -197,28 +197,43 @@ export default function Marketplace() {
 
   const filters = [
     { id: "all", label: "Todas", count: categories.length },
-    { id: "featured", label: "Destacadas", count: categories.filter(c => c.featured).length },
+    {
+      id: "featured",
+      label: "Destacadas",
+      count: categories.filter((c) => c.featured).length,
+    },
     { id: "construction", label: "Construcción", count: 3 },
     { id: "technology", label: "Tecnología", count: 3 },
     { id: "services", label: "Servicios", count: 2 },
     { id: "exterior", label: "Exteriores", count: 2 },
   ];
 
-  const filteredCategories = selectedFilter === "all" 
-    ? categories 
-    : selectedFilter === "featured" 
-    ? categories.filter(c => c.featured)
-    : selectedFilter === "construction"
-    ? categories.filter(c => ["reformas", "piscinas-spa", "sistemas-agua"].includes(c.id))
-    : selectedFilter === "technology"
-    ? categories.filter(c => ["smart-home", "energia-solar", "telecomunicaciones"].includes(c.id))
-    : selectedFilter === "services"
-    ? categories.filter(c => ["seguros", "servicios-legales"].includes(c.id))
-    : selectedFilter === "exterior"
-    ? categories.filter(c => ["jardines-paisajismo", "piscinas-spa"].includes(c.id))
-    : categories;
+  const filteredCategories =
+    selectedFilter === "all"
+      ? categories
+      : selectedFilter === "featured"
+        ? categories.filter((c) => c.featured)
+        : selectedFilter === "construction"
+          ? categories.filter((c) =>
+              ["reformas", "piscinas-spa", "sistemas-agua"].includes(c.id),
+            )
+          : selectedFilter === "technology"
+            ? categories.filter((c) =>
+                ["smart-home", "energia-solar", "telecomunicaciones"].includes(
+                  c.id,
+                ),
+              )
+            : selectedFilter === "services"
+              ? categories.filter((c) =>
+                  ["seguros", "servicios-legales"].includes(c.id),
+                )
+              : selectedFilter === "exterior"
+                ? categories.filter((c) =>
+                    ["jardines-paisajismo", "piscinas-spa"].includes(c.id),
+                  )
+                : categories;
 
-  const featuredCategories = categories.filter(c => c.featured);
+  const featuredCategories = categories.filter((c) => c.featured);
 
   return (
     <div className="min-h-screen bg-blue-dark text-white/90">
@@ -241,10 +256,11 @@ export default function Marketplace() {
               </div>
             </div>
             <p className="text-xl lg:text-2xl text-white/70 max-w-4xl mx-auto leading-relaxed mb-8">
-              Conecta con los mejores profesionales de Canarias. Desde domótica hasta jardines, 
-              todo lo que necesitas para transformar tu propiedad en un hogar perfecto.
+              Conecta con los mejores profesionales de Canarias. Desde domótica
+              hasta jardines, todo lo que necesitas para transformar tu
+              propiedad en un hogar perfecto.
             </p>
-            
+
             {/* Key Stats */}
             <div className="flex flex-wrap justify-center gap-6 mt-8">
               <div className="glass-card px-6 py-3 rounded-xl">
@@ -252,11 +268,15 @@ export default function Marketplace() {
                 <span className="text-white/70">Profesionales</span>
               </div>
               <div className="glass-card px-6 py-3 rounded-xl">
-                <span className="text-neon-emerald font-bold text-2xl">4.7★ </span>
+                <span className="text-neon-emerald font-bold text-2xl">
+                  4.7★{" "}
+                </span>
                 <span className="text-white/70">Valoración media</span>
               </div>
               <div className="glass-card px-6 py-3 rounded-xl">
-                <span className="text-blue-400 font-bold text-2xl">2,500+ </span>
+                <span className="text-blue-400 font-bold text-2xl">
+                  2,500+{" "}
+                </span>
                 <span className="text-white/70">Proyectos completados</span>
               </div>
               <div className="glass-card px-6 py-3 rounded-xl">
@@ -270,7 +290,9 @@ export default function Marketplace() {
           <section className="mb-16">
             <div className="flex items-center space-x-3 mb-8">
               <Award className="w-8 h-8 text-neon-teal" />
-              <h2 className="text-3xl font-bold text-white">Categorías Destacadas</h2>
+              <h2 className="text-3xl font-bold text-white">
+                Categorías Destacadas
+              </h2>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
               {featuredCategories.map((category) => {
@@ -281,7 +303,9 @@ export default function Marketplace() {
                     to={category.href}
                     className="glass-card p-6 rounded-2xl hover-glow transition-all duration-300 group"
                   >
-                    <div className={`w-16 h-16 rounded-xl bg-gradient-to-br ${category.gradientFrom} ${category.gradientTo} p-3 shadow-lg mb-4 group-hover:scale-110 transition-transform duration-300`}>
+                    <div
+                      className={`w-16 h-16 rounded-xl bg-gradient-to-br ${category.gradientFrom} ${category.gradientTo} p-3 shadow-lg mb-4 group-hover:scale-110 transition-transform duration-300`}
+                    >
                       <IconComponent className="w-full h-full text-white" />
                     </div>
                     <h3 className="text-xl font-bold mb-2 group-hover:text-neon-teal transition-colors">
@@ -313,13 +337,15 @@ export default function Marketplace() {
           {/* Filters */}
           <section className="mb-8">
             <div className="flex items-center justify-between mb-6">
-              <h2 className="text-2xl font-bold text-white">Todas las Categorías</h2>
+              <h2 className="text-2xl font-bold text-white">
+                Todas las Categorías
+              </h2>
               <div className="flex items-center space-x-2">
                 <Target className="w-5 h-5 text-neon-teal" />
                 <span className="text-white/70">Filtrar por:</span>
               </div>
             </div>
-            
+
             <div className="flex flex-wrap gap-3 mb-8">
               {filters.map((filter) => (
                 <button
@@ -349,10 +375,12 @@ export default function Marketplace() {
                     className="glass-card rounded-2xl overflow-hidden hover-glow transition-all duration-300 group"
                   >
                     <div className="relative p-6">
-                      <div className={`w-12 h-12 rounded-lg bg-gradient-to-br ${category.gradientFrom} ${category.gradientTo} p-2 shadow-lg mb-4 group-hover:scale-110 transition-transform duration-300`}>
+                      <div
+                        className={`w-12 h-12 rounded-lg bg-gradient-to-br ${category.gradientFrom} ${category.gradientTo} p-2 shadow-lg mb-4 group-hover:scale-110 transition-transform duration-300`}
+                      >
                         <IconComponent className="w-full h-full text-white" />
                       </div>
-                      
+
                       {category.featured && (
                         <div className="absolute top-3 right-3">
                           <div className="bg-neon-teal/20 text-neon-teal px-2 py-1 rounded-full text-xs font-bold backdrop-blur-sm">
@@ -360,14 +388,14 @@ export default function Marketplace() {
                           </div>
                         </div>
                       )}
-                      
+
                       <h3 className="text-lg font-bold mb-2 group-hover:text-neon-teal transition-colors">
                         {category.name}
                       </h3>
                       <p className="text-white/70 text-sm mb-4 line-clamp-2">
                         {category.description}
                       </p>
-                      
+
                       <div className="space-y-2 mb-4">
                         <div className="flex justify-between items-center">
                           <div className="flex items-center space-x-1">
@@ -380,13 +408,17 @@ export default function Marketplace() {
                             {category.providers} profesionales
                           </span>
                         </div>
-                        <div className={`font-medium text-xs ${category.color}`}>
+                        <div
+                          className={`font-medium text-xs ${category.color}`}
+                        >
                           {category.priceRange}
                         </div>
                       </div>
-                      
+
                       <div className="flex items-center justify-between">
-                        <span className="text-white/60 text-xs">Ver profesionales</span>
+                        <span className="text-white/60 text-xs">
+                          Ver profesionales
+                        </span>
                         <ArrowRight className="w-4 h-4 text-white/60 group-hover:text-neon-teal group-hover:translate-x-1 transition-all duration-300" />
                       </div>
                     </div>
@@ -403,8 +435,9 @@ export default function Marketplace() {
                 ¿Eres un profesional?
               </h2>
               <p className="text-white/70 mb-6 max-w-2xl mx-auto">
-                Únete a nuestro marketplace y conecta con propietarios de las mejores propiedades de Canarias. 
-                Aumenta tu visibilidad y consigue más clientes.
+                Únete a nuestro marketplace y conecta con propietarios de las
+                mejores propiedades de Canarias. Aumenta tu visibilidad y
+                consigue más clientes.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <button className="btn-primary flex items-center justify-center gap-2">

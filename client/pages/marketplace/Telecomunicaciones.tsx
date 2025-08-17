@@ -122,11 +122,7 @@ export default function Telecomunicaciones() {
         "Control inteligente",
         "Acústica profesional",
       ],
-      certifications: [
-        "THX Certified",
-        "Dolby Atmos",
-        "Control4 Dealer",
-      ],
+      certifications: ["THX Certified", "Dolby Atmos", "Control4 Dealer"],
       installationTime: "3-7 días",
       warranty: "3 años",
       location: "Costa Adeje",
@@ -371,12 +367,12 @@ export default function Telecomunicaciones() {
                       </div>
                     </div>
                   </div>
-                  
+
                   <h3 className="font-bold text-white mb-2">{provider.name}</h3>
                   <p className="text-white/70 text-sm mb-3 line-clamp-2">
                     {provider.description}
                   </p>
-                  
+
                   <div className="space-y-2 mb-4">
                     <div className="flex justify-between text-sm">
                       <div className="flex items-center space-x-1">
@@ -391,7 +387,7 @@ export default function Telecomunicaciones() {
                       {provider.priceRange}
                     </div>
                   </div>
-                  
+
                   <button className="w-full btn-primary text-sm py-2 flex items-center justify-center gap-2">
                     <Phone className="w-4 h-4" />
                     Consultar
@@ -559,7 +555,9 @@ export default function Telecomunicaciones() {
                         <div className="text-indigo-400 font-bold">
                           {provider.completedInstallations}
                         </div>
-                        <div className="text-xs text-white/60">Instalaciones</div>
+                        <div className="text-xs text-white/60">
+                          Instalaciones
+                        </div>
                       </div>
                       <div className="glass p-2 rounded text-center">
                         <div className="text-white font-bold">
@@ -582,7 +580,9 @@ export default function Telecomunicaciones() {
                       </div>
                       <div className="flex justify-between text-sm">
                         <span className="text-white/60">Soporte:</span>
-                        <span className="text-white">{provider.supportLevel}</span>
+                        <span className="text-white">
+                          {provider.supportLevel}
+                        </span>
                       </div>
                     </div>
 

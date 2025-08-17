@@ -348,12 +348,12 @@ export default function JardinesPaisajismo() {
                       )}
                     </div>
                   </div>
-                  
+
                   <h3 className="font-bold text-white mb-2">{provider.name}</h3>
                   <p className="text-white/70 text-sm mb-3 line-clamp-2">
                     {provider.description}
                   </p>
-                  
+
                   <div className="space-y-2 mb-4">
                     <div className="flex justify-between text-sm">
                       <div className="flex items-center space-x-1">
@@ -368,7 +368,7 @@ export default function JardinesPaisajismo() {
                       {provider.priceRange}
                     </div>
                   </div>
-                  
+
                   <button className="w-full btn-primary text-sm py-2 flex items-center justify-center gap-2">
                     <Phone className="w-4 h-4" />
                     Contactar
@@ -434,7 +434,9 @@ export default function JardinesPaisajismo() {
               </div>
               <div className="glass-card p-6 rounded-xl text-center">
                 <Euro className="w-12 h-12 text-green-400 mx-auto mb-4" />
-                <h3 className="font-bold text-white mb-2">Valor Inmueble +15%</h3>
+                <h3 className="font-bold text-white mb-2">
+                  Valor Inmueble +15%
+                </h3>
                 <p className="text-white/70 text-sm">
                   Un jardín profesional incrementa significativamente el valor.
                 </p>

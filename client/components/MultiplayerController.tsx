@@ -33,8 +33,8 @@ interface ConnectedUser {
   id: string;
   name: string;
   avatar: string;
-  role: 'client' | 'agent' | 'admin' | 'expert';
-  status: 'active' | 'idle' | 'away';
+  role: "client" | "agent" | "admin" | "expert";
+  status: "active" | "idle" | "away";
   position: {
     x: number;
     y: number;
@@ -73,7 +73,7 @@ interface ChatMessage {
   userAvatar: string;
   message: string;
   timestamp: string;
-  type: 'text' | 'annotation' | 'system';
+  type: "text" | "annotation" | "system";
   target?: { x: number; y: number; z: number };
 }
 
@@ -84,7 +84,10 @@ interface MultiplayerControllerProps {
   sessionId: string;
   onUserUpdate: (user: Partial<ConnectedUser>) => void;
   onChatMessage: (message: string) => void;
-  onAnnotate: (position: { x: number; y: number; z: number }, text: string) => void;
+  onAnnotate: (
+    position: { x: number; y: number; z: number },
+    text: string,
+  ) => void;
   onInviteUser: (email: string) => void;
   onEndSession: () => void;
   className?: string;
@@ -112,7 +115,7 @@ export default function MultiplayerController({
   const [videoDevices, setVideoDevices] = useState<MediaDeviceInfo[]>([]);
   const [selectedAudioDevice, setSelectedAudioDevice] = useState<string>("");
   const [selectedVideoDevice, setSelectedVideoDevice] = useState<string>("");
-  
+
   const chatRef = useRef<HTMLDivElement>(null);
   const streamRef = useRef<MediaStream | null>(null);
 
@@ -125,78 +128,100 @@ export default function MultiplayerController({
 
   useEffect(() => {
     // Get available audio/video devices
-    navigator.mediaDevices?.enumerateDevices().then(devices => {
-      setAudioDevices(devices.filter(device => device.kind === 'audioinput'));
-      setVideoDevices(devices.filter(device => device.kind === 'videoinput'));
+    navigator.mediaDevices?.enumerateDevices().then((devices) => {
+      setAudioDevices(devices.filter((device) => device.kind === "audioinput"));
+      setVideoDevices(devices.filter((device) => device.kind === "videoinput"));
     });
   }, []);
 
   const getUserRoleIcon = (role: string) => {
     switch (role) {
-      case 'admin': return Crown;
-      case 'agent': return Shield;
-      case 'expert': return User;
-      default: return User;
+      case "admin":
+        return Crown;
+      case "agent":
+        return Shield;
+      case "expert":
+        return User;
+      default:
+        return User;
     }
   };
 
   const getUserRoleColor = (role: string) => {
     switch (role) {
-      case 'admin': return 'text-yellow-400';
-      case 'agent': return 'text-purple-400';
-      case 'expert': return 'text-blue-400';
-      default: return 'text-gray-400';
+      case "admin":
+        return "text-yellow-400";
+      case "agent":
+        return "text-purple-400";
+      case "expert":
+        return "text-blue-400";
+      default:
+        return "text-gray-400";
     }
   };
 
   const getStatusColor = (status: string) => {
     switch (status) {
-      case 'active': return 'bg-green-400';
-      case 'idle': return 'bg-yellow-400';
-      case 'away': return 'bg-red-400';
-      default: return 'bg-gray-400';
+      case "active":
+        return "bg-green-400";
+      case "idle":
+        return "bg-yellow-400";
+      case "away":
+        return "bg-red-400";
+      default:
+        return "bg-gray-400";
     }
   };
 
   const toggleMute = async () => {
     try {
       if (!streamRef.current) {
-        streamRef.current = await navigator.mediaDevices.getUserMedia({ audio: true });
+        streamRef.current = await navigator.mediaDevices.getUserMedia({
+          audio: true,
+        });
       }
-      
+
       const audioTrack = streamRef.current.getAudioTracks()[0];
       if (audioTrack) {
         audioTrack.enabled = currentUser.audio.isMuted;
         onUserUpdate({
-          audio: { ...currentUser.audio, isMuted: !currentUser.audio.isMuted }
+          audio: { ...currentUser.audio, isMuted: !currentUser.audio.isMuted },
         });
       }
     } catch (error) {
-      console.error('Error toggling microphone:', error);
+      console.error("Error toggling microphone:", error);
     }
   };
 
   const toggleDeafen = () => {
     onUserUpdate({
-      audio: { ...currentUser.audio, isDeafened: !currentUser.audio.isDeafened }
+      audio: {
+        ...currentUser.audio,
+        isDeafened: !currentUser.audio.isDeafened,
+      },
     });
   };
 
   const toggleVideo = async () => {
     try {
       if (!streamRef.current) {
-        streamRef.current = await navigator.mediaDevices.getUserMedia({ video: true });
+        streamRef.current = await navigator.mediaDevices.getUserMedia({
+          video: true,
+        });
       }
-      
+
       const videoTrack = streamRef.current.getVideoTracks()[0];
       if (videoTrack) {
         videoTrack.enabled = !currentUser.video.isEnabled;
         onUserUpdate({
-          video: { ...currentUser.video, isEnabled: !currentUser.video.isEnabled }
+          video: {
+            ...currentUser.video,
+            isEnabled: !currentUser.video.isEnabled,
+          },
         });
       }
     } catch (error) {
-      console.error('Error toggling video:', error);
+      console.error("Error toggling video:", error);
     }
   };
 
@@ -205,19 +230,24 @@ export default function MultiplayerController({
       if (currentUser.video.isScreenSharing) {
         // Stop screen sharing
         if (streamRef.current) {
-          streamRef.current.getTracks().forEach(track => track.stop());
+          streamRef.current.getTracks().forEach((track) => track.stop());
           streamRef.current = null;
         }
       } else {
         // Start screen sharing
-        streamRef.current = await navigator.mediaDevices.getDisplayMedia({ video: true });
+        streamRef.current = await navigator.mediaDevices.getDisplayMedia({
+          video: true,
+        });
       }
-      
+
       onUserUpdate({
-        video: { ...currentUser.video, isScreenSharing: !currentUser.video.isScreenSharing }
+        video: {
+          ...currentUser.video,
+          isScreenSharing: !currentUser.video.isScreenSharing,
+        },
       });
     } catch (error) {
-      console.error('Error toggling screen share:', error);
+      console.error("Error toggling screen share:", error);
     }
   };
 
@@ -229,7 +259,7 @@ export default function MultiplayerController({
   };
 
   const handleChatKeyPress = (e: React.KeyboardEvent) => {
-    if (e.key === 'Enter' && !e.shiftKey) {
+    if (e.key === "Enter" && !e.shiftKey) {
       e.preventDefault();
       sendChatMessage();
     }
@@ -242,7 +272,7 @@ export default function MultiplayerController({
       setIsLinkCopied(true);
       setTimeout(() => setIsLinkCopied(false), 2000);
     } catch (error) {
-      console.error('Error copying link:', error);
+      console.error("Error copying link:", error);
     }
   };
 
@@ -255,7 +285,10 @@ export default function MultiplayerController({
   };
 
   const formatTime = (timestamp: string) => {
-    return new Date(timestamp).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+    return new Date(timestamp).toLocaleTimeString([], {
+      hour: "2-digit",
+      minute: "2-digit",
+    });
   };
 
   return (
@@ -274,7 +307,9 @@ export default function MultiplayerController({
               </div>
               <div>
                 <h3 className="text-white font-bold">Sesión Colaborativa</h3>
-                <p className="text-white/60 text-sm">ID: {sessionId.slice(-8)}</p>
+                <p className="text-white/60 text-sm">
+                  ID: {sessionId.slice(-8)}
+                </p>
               </div>
             </div>
             <button
@@ -294,48 +329,80 @@ export default function MultiplayerController({
                 onClick={toggleMute}
                 className={`p-2 rounded-lg transition-all ${
                   currentUser.audio.isMuted
-                    ? 'bg-red-500 text-white'
-                    : 'bg-green-500 text-white'
+                    ? "bg-red-500 text-white"
+                    : "bg-green-500 text-white"
                 }`}
-                title={currentUser.audio.isMuted ? 'Activar micrófono' : 'Silenciar micrófono'}
+                title={
+                  currentUser.audio.isMuted
+                    ? "Activar micrófono"
+                    : "Silenciar micrófono"
+                }
               >
-                {currentUser.audio.isMuted ? <MicOff size={16} /> : <Mic size={16} />}
+                {currentUser.audio.isMuted ? (
+                  <MicOff size={16} />
+                ) : (
+                  <Mic size={16} />
+                )}
               </button>
 
               <button
                 onClick={toggleDeafen}
                 className={`p-2 rounded-lg transition-all ${
                   currentUser.audio.isDeafened
-                    ? 'bg-red-500 text-white'
-                    : 'bg-blue-500 text-white'
+                    ? "bg-red-500 text-white"
+                    : "bg-blue-500 text-white"
                 }`}
-                title={currentUser.audio.isDeafened ? 'Activar audio' : 'Silenciar audio'}
+                title={
+                  currentUser.audio.isDeafened
+                    ? "Activar audio"
+                    : "Silenciar audio"
+                }
               >
-                {currentUser.audio.isDeafened ? <VolumeX size={16} /> : <Volume2 size={16} />}
+                {currentUser.audio.isDeafened ? (
+                  <VolumeX size={16} />
+                ) : (
+                  <Volume2 size={16} />
+                )}
               </button>
 
               <button
                 onClick={toggleVideo}
                 className={`p-2 rounded-lg transition-all ${
                   currentUser.video.isEnabled
-                    ? 'bg-blue-500 text-white'
-                    : 'bg-gray-500 text-white'
+                    ? "bg-blue-500 text-white"
+                    : "bg-gray-500 text-white"
                 }`}
-                title={currentUser.video.isEnabled ? 'Desactivar cámara' : 'Activar cámara'}
+                title={
+                  currentUser.video.isEnabled
+                    ? "Desactivar cámara"
+                    : "Activar cámara"
+                }
               >
-                {currentUser.video.isEnabled ? <Video size={16} /> : <VideoOff size={16} />}
+                {currentUser.video.isEnabled ? (
+                  <Video size={16} />
+                ) : (
+                  <VideoOff size={16} />
+                )}
               </button>
 
               <button
                 onClick={toggleScreenShare}
                 className={`p-2 rounded-lg transition-all ${
                   currentUser.video.isScreenSharing
-                    ? 'bg-purple-500 text-white'
-                    : 'bg-gray-500 text-white'
+                    ? "bg-purple-500 text-white"
+                    : "bg-gray-500 text-white"
                 }`}
-                title={currentUser.video.isScreenSharing ? 'Detener compartir pantalla' : 'Compartir pantalla'}
+                title={
+                  currentUser.video.isScreenSharing
+                    ? "Detener compartir pantalla"
+                    : "Compartir pantalla"
+                }
               >
-                {currentUser.video.isScreenSharing ? <ScreenShareOff size={16} /> : <ScreenShare size={16} />}
+                {currentUser.video.isScreenSharing ? (
+                  <ScreenShareOff size={16} />
+                ) : (
+                  <ScreenShare size={16} />
+                )}
               </button>
 
               <div className="flex-1"></div>
@@ -343,7 +410,9 @@ export default function MultiplayerController({
               <button
                 onClick={() => setShowChat(!showChat)}
                 className={`p-2 rounded-lg transition-all ${
-                  showChat ? 'bg-neon-teal text-blue-dark' : 'bg-white/10 text-white/70'
+                  showChat
+                    ? "bg-neon-teal text-blue-dark"
+                    : "bg-white/10 text-white/70"
                 }`}
                 title="Toggle chat"
               >
@@ -361,7 +430,9 @@ export default function MultiplayerController({
 
             {/* Connected Users */}
             <div className="space-y-2">
-              <h4 className="text-white/70 font-medium text-sm">Usuarios conectados:</h4>
+              <h4 className="text-white/70 font-medium text-sm">
+                Usuarios conectados:
+              </h4>
               <div className="space-y-2 max-h-32 overflow-y-auto">
                 {/* Current User */}
                 <div className="flex items-center space-x-3 p-2 bg-neon-teal/20 rounded-lg">
@@ -371,11 +442,15 @@ export default function MultiplayerController({
                       alt={currentUser.name}
                       className="w-8 h-8 rounded-full"
                     />
-                    <div className={`absolute -bottom-1 -right-1 w-3 h-3 rounded-full border-2 border-blue-dark ${getStatusColor(currentUser.status)}`}></div>
+                    <div
+                      className={`absolute -bottom-1 -right-1 w-3 h-3 rounded-full border-2 border-blue-dark ${getStatusColor(currentUser.status)}`}
+                    ></div>
                   </div>
                   <div className="flex-1">
                     <div className="flex items-center space-x-2">
-                      <span className="text-white font-medium text-sm">{currentUser.name}</span>
+                      <span className="text-white font-medium text-sm">
+                        {currentUser.name}
+                      </span>
                       <span className="text-neon-teal text-xs">(Tú)</span>
                       {React.createElement(getUserRoleIcon(currentUser.role), {
                         className: `w-3 h-3 ${getUserRoleColor(currentUser.role)}`,
@@ -396,19 +471,28 @@ export default function MultiplayerController({
                 {connectedUsers.map((user) => {
                   const RoleIcon = getUserRoleIcon(user.role);
                   return (
-                    <div key={user.id} className="flex items-center space-x-3 p-2 bg-white/5 rounded-lg">
+                    <div
+                      key={user.id}
+                      className="flex items-center space-x-3 p-2 bg-white/5 rounded-lg"
+                    >
                       <div className="relative">
                         <img
                           src={user.avatar}
                           alt={user.name}
                           className="w-8 h-8 rounded-full"
                         />
-                        <div className={`absolute -bottom-1 -right-1 w-3 h-3 rounded-full border-2 border-blue-dark ${getStatusColor(user.status)}`}></div>
+                        <div
+                          className={`absolute -bottom-1 -right-1 w-3 h-3 rounded-full border-2 border-blue-dark ${getStatusColor(user.status)}`}
+                        ></div>
                       </div>
                       <div className="flex-1">
                         <div className="flex items-center space-x-2">
-                          <span className="text-white font-medium text-sm">{user.name}</span>
-                          <RoleIcon className={`w-3 h-3 ${getUserRoleColor(user.role)}`} />
+                          <span className="text-white font-medium text-sm">
+                            {user.name}
+                          </span>
+                          <RoleIcon
+                            className={`w-3 h-3 ${getUserRoleColor(user.role)}`}
+                          />
                         </div>
                         <div className="text-white/60 text-xs">
                           Conectado {formatTime(user.joinedAt)}
@@ -437,8 +521,8 @@ export default function MultiplayerController({
                 onClick={copySessionLink}
                 className={`flex-1 p-2 rounded-lg text-sm transition-all ${
                   isLinkCopied
-                    ? 'bg-green-500 text-white'
-                    : 'bg-white/10 text-white/70 hover:bg-white/20'
+                    ? "bg-green-500 text-white"
+                    : "bg-white/10 text-white/70 hover:bg-white/20"
                 }`}
               >
                 {isLinkCopied ? (
@@ -491,16 +575,22 @@ export default function MultiplayerController({
                       alt={message.userName}
                       className="w-6 h-6 rounded-full"
                     />
-                    <span className="text-white/90 font-medium text-sm">{message.userName}</span>
-                    <span className="text-white/40 text-xs">{formatTime(message.timestamp)}</span>
+                    <span className="text-white/90 font-medium text-sm">
+                      {message.userName}
+                    </span>
+                    <span className="text-white/40 text-xs">
+                      {formatTime(message.timestamp)}
+                    </span>
                   </div>
-                  <div className={`text-sm p-2 rounded-lg ${
-                    message.type === 'system'
-                      ? 'bg-blue-500/20 text-blue-300'
-                      : message.type === 'annotation'
-                      ? 'bg-yellow-500/20 text-yellow-300'
-                      : 'bg-white/10 text-white/90'
-                  }`}>
+                  <div
+                    className={`text-sm p-2 rounded-lg ${
+                      message.type === "system"
+                        ? "bg-blue-500/20 text-blue-300"
+                        : message.type === "annotation"
+                          ? "bg-yellow-500/20 text-yellow-300"
+                          : "bg-white/10 text-white/90"
+                    }`}
+                  >
                     {message.message}
                     {message.target && (
                       <div className="flex items-center mt-1 text-xs text-white/60">
@@ -554,7 +644,9 @@ export default function MultiplayerController({
 
           <div className="p-4 space-y-4">
             <div>
-              <label className="block text-white/70 text-sm mb-2">Email del usuario:</label>
+              <label className="block text-white/70 text-sm mb-2">
+                Email del usuario:
+              </label>
               <div className="flex space-x-2">
                 <input
                   type="email"
@@ -574,7 +666,9 @@ export default function MultiplayerController({
             </div>
 
             <div className="border-t border-white/10 pt-4">
-              <p className="text-white/60 text-sm mb-2">O comparte el enlace directo:</p>
+              <p className="text-white/60 text-sm mb-2">
+                O comparte el enlace directo:
+              </p>
               <button
                 onClick={copySessionLink}
                 className="w-full p-2 rounded-lg bg-white/10 text-white/70 hover:bg-white/20 transition-all text-sm"

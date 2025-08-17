@@ -198,7 +198,9 @@ export default function PremiumTourism() {
                   Visita Canarias
                 </span>
               </h2>
-              <p className="text-pink-400 font-bold text-xl">con BlueEyeHomes</p>
+              <p className="text-pink-400 font-bold text-xl">
+                con BlueEyeHomes
+              </p>
             </div>
           </div>
 
@@ -212,17 +214,23 @@ export default function PremiumTourism() {
               <Sparkles className="w-8 h-8 text-yellow-300 animate-bounce" />
             </div>
             <p className="text-xl lg:text-2xl text-white/95 font-bold mb-4">
-              🏨 <span className="text-yellow-300">3 NOCHES DE HOTEL GRATIS</span> 🏨
+              🏨{" "}
+              <span className="text-yellow-300">3 NOCHES DE HOTEL GRATIS</span>{" "}
+              🏨
             </p>
             <p className="text-lg text-white/90 max-w-3xl mx-auto leading-relaxed">
               Para clientes interesados en propiedades premium +€1M.
-              <span className="font-bold text-yellow-300"> Valor hasta €1,240</span>
+              <span className="font-bold text-yellow-300">
+                {" "}
+                Valor hasta €1,240
+              </span>
             </p>
           </div>
 
           <p className="text-xl text-white/80 max-w-4xl mx-auto leading-relaxed mb-8">
-            Combina la búsqueda de tu propiedad ideal con unas vacaciones de lujo inolvidables.
-            Hoteles 5 estrellas, tours privados y acceso exclusivo a propiedades no disponibles públicamente.
+            Combina la búsqueda de tu propiedad ideal con unas vacaciones de
+            lujo inolvidables. Hoteles 5 estrellas, tours privados y acceso
+            exclusivo a propiedades no disponibles públicamente.
           </p>
 
           {/* Main CTA Button */}
@@ -380,7 +388,9 @@ export default function PremiumTourism() {
               <div className="mt-6">
                 <button className="w-full btn-primary bg-gradient-to-r from-pink-500 to-purple-600 hover:from-pink-600 hover:to-purple-700 flex items-center justify-center gap-2 py-3 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105">
                   <Plane className="w-4 h-4" />
-                  <span className="font-bold">Reserva tu Viaje de Exploración</span>
+                  <span className="font-bold">
+                    Reserva tu Viaje de Exploración
+                  </span>
                   <ArrowRight className="w-4 h-4" />
                 </button>
               </div>
@@ -446,9 +456,13 @@ export default function PremiumTourism() {
           </div>
 
           <p className="text-xl text-white/80 mb-8 leading-relaxed">
-            Nuestro equipo de turismo premium está listo para crear tu experiencia personalizada.
-            <span className="text-pink-400 font-bold"> Disponemos de opciones exclusivas</span> en
-            Fuerteventura, La Palma y El Hierro.
+            Nuestro equipo de turismo premium está listo para crear tu
+            experiencia personalizada.
+            <span className="text-pink-400 font-bold">
+              {" "}
+              Disponemos de opciones exclusivas
+            </span>{" "}
+            en Fuerteventura, La Palma y El Hierro.
           </p>
 
           {/* Prominent Booking Button */}
@@ -471,7 +485,9 @@ export default function PremiumTourism() {
             <div className="glass-card p-6 rounded-xl border border-purple-400/20">
               <Mail className="w-8 h-8 text-purple-400 mx-auto mb-3" />
               <h4 className="font-bold text-white mb-2">Consulta por Email</h4>
-              <p className="text-purple-400 font-bold">tourism@blueeyehomes.com</p>
+              <p className="text-purple-400 font-bold">
+                tourism@blueeyehomes.com
+              </p>
               <p className="text-white/60 text-sm mt-1">Respuesta en 2h</p>
             </div>
           </div>
@@ -484,7 +500,9 @@ export default function PremiumTourism() {
             </div>
             <div className="flex items-center space-x-2">
               <CheckCircle className="w-5 h-5 text-green-400" />
-              <span className="text-white/70 text-sm">Cancelación flexible</span>
+              <span className="text-white/70 text-sm">
+                Cancelación flexible
+              </span>
             </div>
             <div className="flex items-center space-x-2">
               <CheckCircle className="w-5 h-5 text-green-400" />
@@ -494,14 +512,14 @@ export default function PremiumTourism() {
 
           <div className="text-sm text-white/60 space-y-1">
             <p>
-              * Oferta válida para clientes interesados en propiedades premium desde €1M
+              * Oferta válida para clientes interesados en propiedades premium
+              desde €1M
             </p>
             <p>
-              ** Sujeto a disponibilidad y confirmación de interés real de compra
+              ** Sujeto a disponibilidad y confirmación de interés real de
+              compra
             </p>
-            <p>
-              *** Programa exclusivo limitado a 50 clientes por trimestre
-            </p>
+            <p>*** Programa exclusivo limitado a 50 clientes por trimestre</p>
           </div>
         </div>
       </div>

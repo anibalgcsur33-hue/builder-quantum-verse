@@ -88,11 +88,7 @@ export default function PiscinasSpa() {
         "Climatización",
         "Iluminación LED",
       ],
-      certifications: [
-        "ISO 9001",
-        "Certificación NSPF",
-        "Hayward Pro Partner",
-      ],
+      certifications: ["ISO 9001", "Certificación NSPF", "Hayward Pro Partner"],
       installationTime: "4-8 semanas",
       warranty: "10 años",
       location: "Costa Adeje",
@@ -326,7 +322,9 @@ export default function PiscinasSpa() {
                     />
                     <div className="flex-1">
                       <div className="flex items-center space-x-2 mb-2">
-                        <h3 className="font-bold text-white">{provider.name}</h3>
+                        <h3 className="font-bold text-white">
+                          {provider.name}
+                        </h3>
                         {provider.blueEyePartner && (
                           <div className="bg-cyan-400/20 text-cyan-400 px-2 py-1 rounded-full text-xs font-medium">
                             Partner BlueEye
@@ -364,11 +362,15 @@ export default function PiscinasSpa() {
                     </div>
                     <div className="flex justify-between text-sm">
                       <span className="text-white/60">Tiempo:</span>
-                      <span className="text-white">{provider.installationTime}</span>
+                      <span className="text-white">
+                        {provider.installationTime}
+                      </span>
                     </div>
                     <div className="flex justify-between text-sm">
                       <span className="text-white/60">Experiencia:</span>
-                      <span className="text-white">{provider.experienceYears} años</span>
+                      <span className="text-white">
+                        {provider.experienceYears} años
+                      </span>
                     </div>
                   </div>
                   <div className="flex space-x-3">

@@ -27,7 +27,7 @@ interface CommunityGroup {
   id: string;
   name: string;
   description: string;
-  category: 'location' | 'interest' | 'lifestyle';
+  category: "location" | "interest" | "lifestyle";
   location?: string;
   memberCount: number;
   isPrivate: boolean;
@@ -43,7 +43,7 @@ interface CommunityGroup {
     avatar: string;
   }[];
   recentActivity: {
-    type: 'post' | 'member_joined' | 'event' | 'discussion';
+    type: "post" | "member_joined" | "event" | "discussion";
     text: string;
     timestamp: string;
     user?: {
@@ -66,79 +66,126 @@ interface CommunityGroupsProps {
   userInterests: string[];
 }
 
-export default function CommunityGroups({ groups, userLocation, userInterests }: CommunityGroupsProps) {
-  const [selectedCategory, setSelectedCategory] = useState<string>('all');
-  const [searchTerm, setSearchTerm] = useState('');
-  const [viewMode, setViewMode] = useState<'grid' | 'list'>('grid');
+export default function CommunityGroups({
+  groups,
+  userLocation,
+  userInterests,
+}: CommunityGroupsProps) {
+  const [selectedCategory, setSelectedCategory] = useState<string>("all");
+  const [searchTerm, setSearchTerm] = useState("");
+  const [viewMode, setViewMode] = useState<"grid" | "list">("grid");
 
   const categories = [
-    { id: 'all', label: 'Todos', icon: Users, count: groups.length },
-    { id: 'location', label: 'Por Isla/Ciudad', icon: MapPin, count: groups.filter(g => g.category === 'location').length },
-    { id: 'interest', label: 'Intereses', icon: Heart, count: groups.filter(g => g.category === 'interest').length },
-    { id: 'lifestyle', label: 'Estilo de Vida', icon: Coffee, count: groups.filter(g => g.category === 'lifestyle').length },
+    { id: "all", label: "Todos", icon: Users, count: groups.length },
+    {
+      id: "location",
+      label: "Por Isla/Ciudad",
+      icon: MapPin,
+      count: groups.filter((g) => g.category === "location").length,
+    },
+    {
+      id: "interest",
+      label: "Intereses",
+      icon: Heart,
+      count: groups.filter((g) => g.category === "interest").length,
+    },
+    {
+      id: "lifestyle",
+      label: "Estilo de Vida",
+      icon: Coffee,
+      count: groups.filter((g) => g.category === "lifestyle").length,
+    },
   ];
 
-  const filteredGroups = groups.filter(group => {
-    const matchesCategory = selectedCategory === 'all' || group.category === selectedCategory;
-    const matchesSearch = group.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                         group.description.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                         group.tags.some(tag => tag.toLowerCase().includes(searchTerm.toLowerCase()));
+  const filteredGroups = groups.filter((group) => {
+    const matchesCategory =
+      selectedCategory === "all" || group.category === selectedCategory;
+    const matchesSearch =
+      group.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      group.description.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      group.tags.some((tag) =>
+        tag.toLowerCase().includes(searchTerm.toLowerCase()),
+      );
     return matchesCategory && matchesSearch;
   });
 
-  const recommendedGroups = groups.filter(group => {
-    if (group.joined) return false;
-    
-    // Recommend based on location
-    if (group.category === 'location' && group.location?.includes(userLocation)) {
-      return true;
-    }
-    
-    // Recommend based on interests
-    if (group.category === 'interest' && 
-        group.tags.some(tag => userInterests.includes(tag.toLowerCase()))) {
-      return true;
-    }
-    
-    return false;
-  }).slice(0, 3);
+  const recommendedGroups = groups
+    .filter((group) => {
+      if (group.joined) return false;
+
+      // Recommend based on location
+      if (
+        group.category === "location" &&
+        group.location?.includes(userLocation)
+      ) {
+        return true;
+      }
+
+      // Recommend based on interests
+      if (
+        group.category === "interest" &&
+        group.tags.some((tag) => userInterests.includes(tag.toLowerCase()))
+      ) {
+        return true;
+      }
+
+      return false;
+    })
+    .slice(0, 3);
 
   const getCategoryIcon = (category: string) => {
     switch (category) {
-      case 'location': return MapPin;
-      case 'interest': return Heart;
-      case 'lifestyle': return Coffee;
-      default: return Users;
+      case "location":
+        return MapPin;
+      case "interest":
+        return Heart;
+      case "lifestyle":
+        return Coffee;
+      default:
+        return Users;
     }
   };
 
   const getCategoryColor = (category: string) => {
     switch (category) {
-      case 'location': return 'text-blue-400 bg-blue-400/20';
-      case 'interest': return 'text-red-400 bg-red-400/20';
-      case 'lifestyle': return 'text-green-400 bg-green-400/20';
-      default: return 'text-gray-400 bg-gray-400/20';
+      case "location":
+        return "text-blue-400 bg-blue-400/20";
+      case "interest":
+        return "text-red-400 bg-red-400/20";
+      case "lifestyle":
+        return "text-green-400 bg-green-400/20";
+      default:
+        return "text-gray-400 bg-gray-400/20";
     }
   };
 
   const getInterestIcon = (interest: string) => {
     switch (interest.toLowerCase()) {
-      case 'inversión': case 'investment': return TrendingUp;
-      case 'nómadas': case 'nomads': return Plane;
-      case 'familias': case 'families': return Baby;
-      case 'negocios': case 'business': return Briefcase;
-      default: return Heart;
+      case "inversión":
+      case "investment":
+        return TrendingUp;
+      case "nómadas":
+      case "nomads":
+        return Plane;
+      case "familias":
+      case "families":
+        return Baby;
+      case "negocios":
+      case "business":
+        return Briefcase;
+      default:
+        return Heart;
     }
   };
 
   const joinGroup = (groupId: string) => {
     // Implementation for joining a group
-    console.log('Joining group:', groupId);
+    console.log("Joining group:", groupId);
   };
 
   const leaveGroup = (groupId: string) => {
     // Implementation for leaving a group
-    console.log('Leaving group:', groupId);
+    console.log("Leaving group:", groupId);
   };
 
   return (
@@ -146,8 +193,12 @@ export default function CommunityGroups({ groups, userLocation, userInterests }:
       {/* Header */}
       <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-4">
         <div>
-          <h2 className="text-3xl font-bold text-gradient mb-2">Grupos de la Comunidad</h2>
-          <p className="text-white/70">Conecta con personas que comparten tus intereses y ubicación</p>
+          <h2 className="text-3xl font-bold text-gradient mb-2">
+            Grupos de la Comunidad
+          </h2>
+          <p className="text-white/70">
+            Conecta con personas que comparten tus intereses y ubicación
+          </p>
         </div>
         <button className="btn-primary flex items-center gap-2">
           <Plus className="w-4 h-4" />
@@ -174,14 +225,18 @@ export default function CommunityGroups({ groups, userLocation, userInterests }:
                       className="w-12 h-12 rounded-lg object-cover"
                     />
                     <div className="flex-1">
-                      <h4 className="font-bold text-white text-sm">{group.name}</h4>
+                      <h4 className="font-bold text-white text-sm">
+                        {group.name}
+                      </h4>
                       <div className="flex items-center space-x-2 text-white/60 text-xs">
                         <CategoryIcon className="w-3 h-3" />
                         <span>{group.memberCount} miembros</span>
                       </div>
                     </div>
                   </div>
-                  <p className="text-white/70 text-sm mb-3 line-clamp-2">{group.description}</p>
+                  <p className="text-white/70 text-sm mb-3 line-clamp-2">
+                    {group.description}
+                  </p>
                   <button
                     onClick={() => joinGroup(group.id)}
                     className="w-full btn-secondary text-sm py-2"
@@ -212,9 +267,11 @@ export default function CommunityGroups({ groups, userLocation, userInterests }:
           </div>
           <div className="flex gap-2">
             <button
-              onClick={() => setViewMode('grid')}
+              onClick={() => setViewMode("grid")}
               className={`p-3 rounded-lg transition-colors ${
-                viewMode === 'grid' ? 'bg-purple-500 text-white' : 'bg-white/5 text-white/60 hover:text-white'
+                viewMode === "grid"
+                  ? "bg-purple-500 text-white"
+                  : "bg-white/5 text-white/60 hover:text-white"
               }`}
             >
               <div className="w-4 h-4 grid grid-cols-2 gap-0.5">
@@ -225,9 +282,11 @@ export default function CommunityGroups({ groups, userLocation, userInterests }:
               </div>
             </button>
             <button
-              onClick={() => setViewMode('list')}
+              onClick={() => setViewMode("list")}
               className={`p-3 rounded-lg transition-colors ${
-                viewMode === 'list' ? 'bg-purple-500 text-white' : 'bg-white/5 text-white/60 hover:text-white'
+                viewMode === "list"
+                  ? "bg-purple-500 text-white"
+                  : "bg-white/5 text-white/60 hover:text-white"
               }`}
             >
               <div className="w-4 h-4 space-y-1">
@@ -249,13 +308,15 @@ export default function CommunityGroups({ groups, userLocation, userInterests }:
                 onClick={() => setSelectedCategory(category.id)}
                 className={`flex items-center space-x-2 px-4 py-2 rounded-lg transition-colors ${
                   selectedCategory === category.id
-                    ? 'bg-purple-500 text-white'
-                    : 'bg-white/5 text-white/70 hover:text-white hover:bg-white/10'
+                    ? "bg-purple-500 text-white"
+                    : "bg-white/5 text-white/70 hover:text-white hover:bg-white/10"
                 }`}
               >
                 <IconComponent className="w-4 h-4" />
                 <span>{category.label}</span>
-                <span className="bg-white/20 px-2 py-0.5 rounded-full text-xs">{category.count}</span>
+                <span className="bg-white/20 px-2 py-0.5 rounded-full text-xs">
+                  {category.count}
+                </span>
               </button>
             );
           })}
@@ -263,14 +324,23 @@ export default function CommunityGroups({ groups, userLocation, userInterests }:
       </div>
 
       {/* Groups Grid/List */}
-      <div className={viewMode === 'grid' ? 'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6' : 'space-y-4'}>
+      <div
+        className={
+          viewMode === "grid"
+            ? "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+            : "space-y-4"
+        }
+      >
         {filteredGroups.map((group) => {
           const CategoryIcon = getCategoryIcon(group.category);
           const categoryColor = getCategoryColor(group.category);
-          
-          if (viewMode === 'list') {
+
+          if (viewMode === "list") {
             return (
-              <div key={group.id} className="glass-card p-6 rounded-2xl hover-glow">
+              <div
+                key={group.id}
+                className="glass-card p-6 rounded-2xl hover-glow"
+              >
                 <div className="flex gap-6">
                   <img
                     src={group.image}
@@ -279,10 +349,15 @@ export default function CommunityGroups({ groups, userLocation, userInterests }:
                   />
                   <div className="flex-1">
                     <div className="flex items-center space-x-3 mb-3">
-                      <div className={`px-3 py-1 rounded-full text-sm font-semibold ${categoryColor}`}>
+                      <div
+                        className={`px-3 py-1 rounded-full text-sm font-semibold ${categoryColor}`}
+                      >
                         <CategoryIcon className="w-4 h-4 inline mr-2" />
-                        {group.category === 'location' ? 'Ubicación' :
-                         group.category === 'interest' ? 'Interés' : 'Estilo de Vida'}
+                        {group.category === "location"
+                          ? "Ubicación"
+                          : group.category === "interest"
+                            ? "Interés"
+                            : "Estilo de Vida"}
                       </div>
                       {group.isPrivate && (
                         <div className="bg-orange-400/20 text-orange-400 px-3 py-1 rounded-full text-sm font-semibold">
@@ -297,20 +372,32 @@ export default function CommunityGroups({ groups, userLocation, userInterests }:
                       )}
                     </div>
 
-                    <h3 className="text-xl font-bold text-white mb-2">{group.name}</h3>
-                    <p className="text-white/70 mb-4 line-clamp-2">{group.description}</p>
+                    <h3 className="text-xl font-bold text-white mb-2">
+                      {group.name}
+                    </h3>
+                    <p className="text-white/70 mb-4 line-clamp-2">
+                      {group.description}
+                    </p>
 
                     <div className="grid grid-cols-3 gap-4 mb-4">
                       <div className="text-center">
-                        <div className="text-lg font-bold text-white">{group.memberCount}</div>
+                        <div className="text-lg font-bold text-white">
+                          {group.memberCount}
+                        </div>
                         <div className="text-white/60 text-xs">Miembros</div>
                       </div>
                       <div className="text-center">
-                        <div className="text-lg font-bold text-white">{group.stats.postsThisWeek}</div>
-                        <div className="text-white/60 text-xs">Posts/semana</div>
+                        <div className="text-lg font-bold text-white">
+                          {group.stats.postsThisWeek}
+                        </div>
+                        <div className="text-white/60 text-xs">
+                          Posts/semana
+                        </div>
                       </div>
                       <div className="text-center">
-                        <div className="text-lg font-bold text-white">{group.stats.activeMembers}</div>
+                        <div className="text-lg font-bold text-white">
+                          {group.stats.activeMembers}
+                        </div>
                         <div className="text-white/60 text-xs">Activos</div>
                       </div>
                     </div>
@@ -322,9 +409,11 @@ export default function CommunityGroups({ groups, userLocation, userInterests }:
                           alt={group.admin.name}
                           className="w-6 h-6 rounded-full"
                         />
-                        <span className="text-white/60 text-sm">Admin: {group.admin.name}</span>
+                        <span className="text-white/60 text-sm">
+                          Admin: {group.admin.name}
+                        </span>
                       </div>
-                      
+
                       <div className="flex space-x-2">
                         {group.joined ? (
                           <button
@@ -338,7 +427,7 @@ export default function CommunityGroups({ groups, userLocation, userInterests }:
                             onClick={() => joinGroup(group.id)}
                             className="btn-primary text-sm px-4 py-2"
                           >
-                            {group.isPrivate ? 'Solicitar' : 'Unirse'}
+                            {group.isPrivate ? "Solicitar" : "Unirse"}
                           </button>
                         )}
                       </div>
@@ -350,7 +439,10 @@ export default function CommunityGroups({ groups, userLocation, userInterests }:
           }
 
           return (
-            <div key={group.id} className="glass-card rounded-2xl overflow-hidden hover-glow">
+            <div
+              key={group.id}
+              className="glass-card rounded-2xl overflow-hidden hover-glow"
+            >
               <div className="relative">
                 <img
                   src={group.image}
@@ -358,10 +450,15 @@ export default function CommunityGroups({ groups, userLocation, userInterests }:
                   className="w-full h-48 object-cover"
                 />
                 <div className="absolute top-4 left-4 space-y-2">
-                  <div className={`px-3 py-1 rounded-full text-sm font-semibold ${categoryColor}`}>
+                  <div
+                    className={`px-3 py-1 rounded-full text-sm font-semibold ${categoryColor}`}
+                  >
                     <CategoryIcon className="w-4 h-4 inline mr-2" />
-                    {group.category === 'location' ? 'Ubicación' :
-                     group.category === 'interest' ? 'Interés' : 'Estilo de Vida'}
+                    {group.category === "location"
+                      ? "Ubicación"
+                      : group.category === "interest"
+                        ? "Interés"
+                        : "Estilo de Vida"}
                   </div>
                   {group.isPrivate && (
                     <div className="bg-orange-400/90 text-white px-3 py-1 rounded-full text-sm font-bold backdrop-blur-sm">
@@ -384,20 +481,30 @@ export default function CommunityGroups({ groups, userLocation, userInterests }:
               </div>
 
               <div className="p-6">
-                <h3 className="text-xl font-bold text-white mb-2">{group.name}</h3>
-                <p className="text-white/70 mb-4 line-clamp-2">{group.description}</p>
+                <h3 className="text-xl font-bold text-white mb-2">
+                  {group.name}
+                </h3>
+                <p className="text-white/70 mb-4 line-clamp-2">
+                  {group.description}
+                </p>
 
                 <div className="grid grid-cols-3 gap-3 mb-4">
                   <div className="text-center">
-                    <div className="text-lg font-bold text-white">{group.memberCount}</div>
+                    <div className="text-lg font-bold text-white">
+                      {group.memberCount}
+                    </div>
                     <div className="text-white/60 text-xs">Miembros</div>
                   </div>
                   <div className="text-center">
-                    <div className="text-lg font-bold text-white">{group.stats.postsThisWeek}</div>
+                    <div className="text-lg font-bold text-white">
+                      {group.stats.postsThisWeek}
+                    </div>
                     <div className="text-white/60 text-xs">Posts/sem.</div>
                   </div>
                   <div className="text-center">
-                    <div className="text-lg font-bold text-white">{group.stats.activeMembers}</div>
+                    <div className="text-lg font-bold text-white">
+                      {group.stats.activeMembers}
+                    </div>
                     <div className="text-white/60 text-xs">Activos</div>
                   </div>
                 </div>
@@ -411,7 +518,7 @@ export default function CommunityGroups({ groups, userLocation, userInterests }:
                   <div>
                     <div className="text-white font-medium text-sm flex items-center gap-1">
                       {group.admin.name}
-                      {group.admin.level === 'agente-confiable' && (
+                      {group.admin.level === "agente-confiable" && (
                         <Crown className="w-3 h-3 text-yellow-400" />
                       )}
                     </div>
@@ -444,13 +551,18 @@ export default function CommunityGroups({ groups, userLocation, userInterests }:
 
                 {/* Recent Activity */}
                 <div className="border-t border-white/10 pt-4 mb-4">
-                  <div className="text-white/60 text-xs mb-2">Actividad reciente:</div>
+                  <div className="text-white/60 text-xs mb-2">
+                    Actividad reciente:
+                  </div>
                   <div className="space-y-1">
                     {group.recentActivity.slice(0, 2).map((activity, index) => (
                       <div key={index} className="text-white/70 text-xs">
                         {activity.user && (
-                          <span className="font-medium">{activity.user.name}</span>
-                        )} {activity.text}
+                          <span className="font-medium">
+                            {activity.user.name}
+                          </span>
+                        )}{" "}
+                        {activity.text}
                       </div>
                     ))}
                   </div>
@@ -476,7 +588,7 @@ export default function CommunityGroups({ groups, userLocation, userInterests }:
                       className="w-full btn-primary text-sm py-2 flex items-center justify-center gap-2"
                     >
                       <Users className="w-4 h-4" />
-                      {group.isPrivate ? 'Solicitar Unirse' : 'Unirse al Grupo'}
+                      {group.isPrivate ? "Solicitar Unirse" : "Unirse al Grupo"}
                     </button>
                   )}
                 </div>
@@ -489,8 +601,12 @@ export default function CommunityGroups({ groups, userLocation, userInterests }:
       {filteredGroups.length === 0 && (
         <div className="text-center py-12">
           <Users className="w-16 h-16 text-white/30 mx-auto mb-4" />
-          <h3 className="text-xl font-bold text-white/60 mb-2">No hay grupos disponibles</h3>
-          <p className="text-white/40">Prueba con diferentes filtros o crea tu propio grupo.</p>
+          <h3 className="text-xl font-bold text-white/60 mb-2">
+            No hay grupos disponibles
+          </h3>
+          <p className="text-white/40">
+            Prueba con diferentes filtros o crea tu propio grupo.
+          </p>
         </div>
       )}
     </div>

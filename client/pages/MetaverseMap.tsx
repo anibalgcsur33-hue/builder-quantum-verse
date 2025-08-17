@@ -67,17 +67,17 @@ interface PropertyPin {
   bathrooms: number;
   sqm: number;
   images: string[];
-  badges: ('vr' | 'crypto' | 'tour3d' | 'verified' | 'featured')[];
+  badges: ("vr" | "crypto" | "tour3d" | "verified" | "featured")[];
   heatmapData: {
     priceHeat: number;
     tourismOccupancy: number;
     demand: number;
   };
   nearby: {
-    beaches: { name: string; distance: number; }[];
-    schools: { name: string; distance: number; type: string; }[];
-    hospitals: { name: string; distance: number; }[];
-    shopping: { name: string; distance: number; type: string; }[];
+    beaches: { name: string; distance: number }[];
+    schools: { name: string; distance: number; type: string }[];
+    hospitals: { name: string; distance: number }[];
+    shopping: { name: string; distance: number; type: string }[];
   };
   vrTourUrl?: string;
   tour3DUrl?: string;
@@ -106,91 +106,103 @@ export default function MetaverseMap() {
   const [isWebXREnabled, setIsWebXREnabled] = useState(false);
   const [heatmapLayers, setHeatmapLayers] = useState([
     {
-      type: 'price' as const,
+      type: "price" as const,
       visible: true,
       opacity: 0.7,
       minValue: 2000,
       maxValue: 8000,
       currentValue: 3500,
-      unit: '€',
-      description: 'Precio promedio por metro cuadrado en la zona',
-      colors: { low: '#3B82F6', medium: '#F59E0B', high: '#EF4444' }
+      unit: "€",
+      description: "Precio promedio por metro cuadrado en la zona",
+      colors: { low: "#3B82F6", medium: "#F59E0B", high: "#EF4444" },
     },
     {
-      type: 'tourism' as const,
+      type: "tourism" as const,
       visible: false,
       opacity: 0.6,
       minValue: 0,
       maxValue: 100,
       currentValue: 75,
-      unit: '%',
-      description: 'Porcentaje de ocupación turística anual',
-      colors: { low: '#10B981', medium: '#F59E0B', high: '#EF4444' }
+      unit: "%",
+      description: "Porcentaje de ocupación turística anual",
+      colors: { low: "#10B981", medium: "#F59E0B", high: "#EF4444" },
     },
     {
-      type: 'demand' as const,
+      type: "demand" as const,
       visible: false,
       opacity: 0.8,
       minValue: 0,
       maxValue: 100,
       currentValue: 85,
-      unit: '%',
-      description: 'Índice de demanda basado en búsquedas y consultas',
-      colors: { low: '#8B5CF6', medium: '#EC4899', high: '#F59E0B' }
-    }
+      unit: "%",
+      description: "Índice de demanda basado en búsquedas y consultas",
+      colors: { low: "#8B5CF6", medium: "#EC4899", high: "#F59E0B" },
+    },
   ]);
 
   // Multiplayer state
   const [connectedUsers, setConnectedUsers] = useState([
     {
-      id: '2',
-      name: 'Carlos Ruiz',
-      avatar: '/placeholder.svg',
-      role: 'agent' as const,
-      status: 'active' as const,
+      id: "2",
+      name: "Carlos Ruiz",
+      avatar: "/placeholder.svg",
+      role: "agent" as const,
+      status: "active" as const,
       position: { x: 300, y: 200, z: 0, rotation: { x: 0, y: 0, z: 0 } },
-      pointer: { x: 350, y: 250, visible: true, color: '#8B5CF6' },
-      audio: { isMuted: false, isDeafened: false, volume: 80, isVoiceActive: true },
+      pointer: { x: 350, y: 250, visible: true, color: "#8B5CF6" },
+      audio: {
+        isMuted: false,
+        isDeafened: false,
+        volume: 80,
+        isVoiceActive: true,
+      },
       video: { isEnabled: true, isScreenSharing: false },
       permissions: { canControl: true, canAnnotate: true, canInvite: true },
       joinedAt: new Date(Date.now() - 300000).toISOString(),
-      lastActivity: new Date().toISOString()
-    }
+      lastActivity: new Date().toISOString(),
+    },
   ]);
 
   const [currentUser] = useState({
-    id: '1',
-    name: 'María González',
-    avatar: '/placeholder.svg',
-    role: 'client' as const,
-    status: 'active' as const,
+    id: "1",
+    name: "María González",
+    avatar: "/placeholder.svg",
+    role: "client" as const,
+    status: "active" as const,
     position: { x: 250, y: 180, z: 0, rotation: { x: 0, y: 0, z: 0 } },
-    audio: { isMuted: false, isDeafened: false, volume: 100, isVoiceActive: false },
+    audio: {
+      isMuted: false,
+      isDeafened: false,
+      volume: 100,
+      isVoiceActive: false,
+    },
     video: { isEnabled: false, isScreenSharing: false },
     permissions: { canControl: false, canAnnotate: true, canInvite: false },
     joinedAt: new Date(Date.now() - 600000).toISOString(),
-    lastActivity: new Date().toISOString()
+    lastActivity: new Date().toISOString(),
   });
 
   const [chatMessages] = useState([
     {
-      id: '1',
-      userId: '2',
-      userName: 'Carlos Ruiz',
-      userAvatar: '/placeholder.svg',
-      message: '¡Bienvenida a la sesión colaborativa! Te voy a mostrar las mejores propiedades de la zona.',
+      id: "1",
+      userId: "2",
+      userName: "Carlos Ruiz",
+      userAvatar: "/placeholder.svg",
+      message:
+        "¡Bienvenida a la sesión colaborativa! Te voy a mostrar las mejores propiedades de la zona.",
       timestamp: new Date(Date.now() - 60000).toISOString(),
-      type: 'text' as const
+      type: "text" as const,
     },
     {
-      id: '2',
-      userId: '1',
-      userName: 'María González',
-      userAvatar: '/placeholder.svg',
-      message: 'Perfecto, estoy especialmente interesada en villas con vista al mar.',
+      id: "2",
+      userId: "1",
+      userName: "María González",
+      userAvatar: "/placeholder.svg",
+      message:
+        "Perfecto, estoy especialmente interesada en villas con vista al mar.",
       timestamp: new Date(Date.now() - 30000).toISOString(),
-      type: 'text' as const
-    }
+      type: "text" as const,
+    },
   ]);
 
   useEffect(() => {
@@ -218,23 +230,35 @@ export default function MetaverseMap() {
         z: 0,
         lat: 28.0916,
         lng: -16.7281,
-        elevation: 45
+        elevation: 45,
       },
       bedrooms: 4,
       bathrooms: 3,
       sqm: 357,
       images: ["/placeholder.svg", "/placeholder.svg", "/placeholder.svg"],
-      badges: ['vr', 'featured', 'verified'],
+      badges: ["vr", "featured", "verified"],
       heatmapData: {
         priceHeat: 0.8,
         tourismOccupancy: 0.9,
-        demand: 0.85
+        demand: 0.85,
       },
       nearby: {
         beaches: [{ name: "Playa del Duque", distance: 200 }],
-        schools: [{ name: "Colegio Internacional", distance: 800, type: "internacional" }],
+        schools: [
+          {
+            name: "Colegio Internacional",
+            distance: 800,
+            type: "internacional",
+          },
+        ],
         hospitals: [{ name: "Hospital Costa Adeje", distance: 1200 }],
-        shopping: [{ name: "Centro Comercial Gran Sur", distance: 600, type: "centro comercial" }]
+        shopping: [
+          {
+            name: "Centro Comercial Gran Sur",
+            distance: 600,
+            type: "centro comercial",
+          },
+        ],
       },
       vrTourUrl: "/vr-tour/villa-oceanfront",
       tour3DUrl: "/3d-tour/villa-oceanfront",
@@ -253,23 +277,27 @@ export default function MetaverseMap() {
         z: 0,
         lat: 28.1482,
         lng: -15.4288,
-        elevation: 120
+        elevation: 120,
       },
       bedrooms: 3,
       bathrooms: 2,
       sqm: 202,
       images: ["/placeholder.svg", "/placeholder.svg"],
-      badges: ['vr', 'crypto', 'tour3d'],
+      badges: ["vr", "crypto", "tour3d"],
       heatmapData: {
         priceHeat: 0.7,
         tourismOccupancy: 0.6,
-        demand: 0.75
+        demand: 0.75,
       },
       nearby: {
         beaches: [{ name: "Playa de Las Canteras", distance: 500 }],
-        schools: [{ name: "Colegio Aleman", distance: 1000, type: "internacional" }],
+        schools: [
+          { name: "Colegio Aleman", distance: 1000, type: "internacional" },
+        ],
         hospitals: [{ name: "Hospital Dr. Negrín", distance: 2000 }],
-        shopping: [{ name: "Las Arenas", distance: 300, type: "centro comercial" }]
+        shopping: [
+          { name: "Las Arenas", distance: 300, type: "centro comercial" },
+        ],
       },
       vrTourUrl: "/vr-tour/penthouse-marina",
       status: "available",
@@ -287,23 +315,25 @@ export default function MetaverseMap() {
         z: 0,
         lat: 28.4682,
         lng: -16.2546,
-        elevation: 30
+        elevation: 30,
       },
       bedrooms: 2,
       bathrooms: 2,
       sqm: 150,
       images: ["/placeholder.svg"],
-      badges: ['vr', 'verified'],
+      badges: ["vr", "verified"],
       heatmapData: {
         priceHeat: 0.4,
         tourismOccupancy: 0.3,
-        demand: 0.5
+        demand: 0.5,
       },
       nearby: {
         beaches: [{ name: "Playa de Las Teresitas", distance: 7000 }],
         schools: [{ name: "IES Santa Cruz", distance: 500, type: "público" }],
         hospitals: [{ name: "Hospital Universitario", distance: 800 }],
-        shopping: [{ name: "Meridiano", distance: 1200, type: "centro comercial" }]
+        shopping: [
+          { name: "Meridiano", distance: 1200, type: "centro comercial" },
+        ],
       },
       vrTourUrl: "/vr-tour/modern-apartment",
       status: "reserved",
@@ -321,23 +351,25 @@ export default function MetaverseMap() {
         z: 0,
         lat: 29.0361,
         lng: -13.6533,
-        elevation: 300
+        elevation: 300,
       },
       bedrooms: 3,
       bathrooms: 2,
       sqm: 324,
       images: ["/placeholder.svg", "/placeholder.svg"],
-      badges: ['featured', 'verified'],
+      badges: ["featured", "verified"],
       heatmapData: {
         priceHeat: 0.3,
         tourismOccupancy: 0.8,
-        demand: 0.7
+        demand: 0.7,
       },
       nearby: {
         beaches: [{ name: "Playa Blanca", distance: 12000 }],
-        schools: [{ name: "CEO Playa Blanca", distance: 15000, type: "público" }],
+        schools: [
+          { name: "CEO Playa Blanca", distance: 15000, type: "público" },
+        ],
         hospitals: [{ name: "Centro de Salud Yaiza", distance: 8000 }],
-        shopping: [{ name: "Pueblo de Yaiza", distance: 8000, type: "local" }]
+        shopping: [{ name: "Pueblo de Yaiza", distance: 8000, type: "local" }],
       },
       status: "available",
     },
@@ -354,23 +386,30 @@ export default function MetaverseMap() {
         z: 0,
         lat: 28.8593,
         lng: -13.8644,
-        elevation: 15
+        elevation: 15,
       },
       bedrooms: 5,
       bathrooms: 4,
       sqm: 450,
-      images: ["/placeholder.svg", "/placeholder.svg", "/placeholder.svg", "/placeholder.svg"],
-      badges: ['vr', 'crypto', 'tour3d', 'featured', 'verified'],
+      images: [
+        "/placeholder.svg",
+        "/placeholder.svg",
+        "/placeholder.svg",
+        "/placeholder.svg",
+      ],
+      badges: ["vr", "crypto", "tour3d", "featured", "verified"],
       heatmapData: {
         priceHeat: 0.9,
         tourismOccupancy: 0.95,
-        demand: 0.9
+        demand: 0.9,
       },
       nearby: {
         beaches: [{ name: "Playa Blanca", distance: 100 }],
-        schools: [{ name: "Colegio Costa Teguise", distance: 25000, type: "privado" }],
+        schools: [
+          { name: "Colegio Costa Teguise", distance: 25000, type: "privado" },
+        ],
         hospitals: [{ name: "Hospital de Lanzarote", distance: 30000 }],
-        shopping: [{ name: "Rubicón Marina", distance: 2000, type: "marina" }]
+        shopping: [{ name: "Rubicón Marina", distance: 2000, type: "marina" }],
       },
       vrTourUrl: "/vr-tour/beachfront-villa",
       tour3DUrl: "/3d-tour/beachfront-villa",
