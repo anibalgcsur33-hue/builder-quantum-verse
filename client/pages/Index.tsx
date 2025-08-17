@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import Header from "../components/Header";
 import AIConcierge from "../components/AIConcierge";
 import PremiumTourism from "../components/PremiumTourism";
-import Avatar3D from "../components/Avatar3D";
+import Avatar3D from "../components/Avatar3DSimple";
 import {
   Eye,
   MapPin,
@@ -124,7 +124,7 @@ export default function Index() {
         cta2: "Echte Immobilien ansehen",
       },
       sections: {
-        featured: "Ausgew��hlte Immobilien",
+        featured: "Ausgewählte Immobilien",
         villa: "Erlebe es in VR bevor du entscheidest",
         vr: "Dein KI-Agent führt dich, unser Rechtsteam unterstützt dich",
         map: "Finde echte Gelegenheiten in 3D",
