@@ -3,8 +3,10 @@ import * as THREE from "three";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
 
-const AVATAR_URL = "https://models.readyplayer.me/68a130cc6db44d17d10d931b.glb";
-const FALLBACK_AVATAR_URL = "https://models.readyplayer.me/64c6aaeb0e6df2e7e3b8b2a6.glb"; // URL de respaldo
+const AVATAR_URLS = [
+  "https://models.readyplayer.me/68a130cc6db44d17d10d931b.glb",
+  "https://models.readyplayer.me/64c6aaeb0e6df2e7e3b8b2a6.glb"
+];
 
 interface BlueEyeFixedProps {
   height?: number;
@@ -14,22 +16,10 @@ interface BlueEyeFixedProps {
 export default function BlueEyeFixed({ height = 520, autoRotate = true }: BlueEyeFixedProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const clock = useRef(new THREE.Clock());
-  const state = useRef({
-    scene: null as THREE.Scene | null,
-    camera: null as THREE.PerspectiveCamera | null,
-    renderer: null as THREE.WebGLRenderer | null,
-    controls: null as OrbitControls | null,
-    avatar: null as THREE.Group | null,
-    head: null as THREE.Object3D | null,
-    spine: null as THREE.Object3D | null,
-    leftShoulder: null as THREE.Object3D | null,
-    rightShoulder: null as THREE.Object3D | null,
-    leftElbow: null as THREE.Object3D | null,
-    rightElbow: null as THREE.Object3D | null,
-    rightHand: null as THREE.Object3D | null,
-    skinned: null as THREE.SkinnedMesh | null,
-    propAttached: false
-  });
+  const speakingRef = useRef(false);
+  const sceneRef = useRef<THREE.Scene | null>(null);
+  const rendererRef = useRef<THREE.WebGLRenderer | null>(null);
+  const controlsRef = useRef<OrbitControls | null>(null);
 
   useEffect(() => {
     const root = containerRef.current;
@@ -44,13 +34,15 @@ export default function BlueEyeFixed({ height = 520, autoRotate = true }: BlueEy
     renderer.setSize(root.clientWidth, height);
     renderer.shadowMap.enabled = true;
     root.appendChild(renderer.domElement);
+    rendererRef.current = renderer;
 
     // Scene & camera
     const scene = new THREE.Scene();
+    sceneRef.current = scene;
     const camera = new THREE.PerspectiveCamera(35, root.clientWidth / height, 0.1, 100);
     camera.position.set(0, 1.55, 2.6);
 
-    // Env light
+    // Lighting
     const hemi = new THREE.HemisphereLight(0xffffff, 0x2a2a40, 0.8);
     scene.add(hemi);
     const key = new THREE.DirectionalLight(0xffffff, 1.2);
@@ -58,7 +50,7 @@ export default function BlueEyeFixed({ height = 520, autoRotate = true }: BlueEy
     key.castShadow = true;
     scene.add(key);
 
-    // Ground (shadow catcher)
+    // Ground
     const ground = new THREE.Mesh(
       new THREE.PlaneGeometry(12, 12),
       new THREE.ShadowMaterial({ opacity: 0.28 })
@@ -77,13 +69,9 @@ export default function BlueEyeFixed({ height = 520, autoRotate = true }: BlueEy
     controls.maxDistance = 3.2;
     controls.minPolarAngle = Math.PI * 0.18;
     controls.maxPolarAngle = Math.PI * 0.92;
+    controlsRef.current = controls;
 
-    state.current.scene = scene;
-    state.current.camera = camera;
-    state.current.renderer = renderer;
-    state.current.controls = controls;
-
-    // Helpers
+    // Helper function para buscar bones
     const byNameLike = (root: THREE.Object3D, ...parts: string[]) => {
       const p = parts.map(s => s.toLowerCase());
       let found: THREE.Object3D | null = null;
@@ -95,155 +83,206 @@ export default function BlueEyeFixed({ height = 520, autoRotate = true }: BlueEy
       return found;
     };
 
-    // Load GLB
-    const loader = new GLTFLoader();
-    loader.load(
-      AVATAR_URL,
-      (gltf) => {
-        const avatar = gltf.scene;
-        avatar.traverse(o => {
-          if (o.isMesh) {
-            o.castShadow = true;
-            o.receiveShadow = false;
-            // materiales más vivos
-            if (o.material) {
-              (o.material as any).envMapIntensity = 0.7;
-              o.material.needsUpdate = true;
-            }
-            if (o.isSkinnedMesh && !state.current.skinned) {
-              state.current.skinned = o as THREE.SkinnedMesh;
-            }
+    // Función para crear avatar de respaldo
+    const createFallbackAvatar = () => {
+      console.log("🤖 Creando avatar de respaldo...");
+      
+      const group = new THREE.Group();
+      
+      // Cabeza
+      const headGeometry = new THREE.SphereGeometry(0.12, 16, 16);
+      const headMaterial = new THREE.MeshLambertMaterial({ color: 0xfdbcb4 });
+      const head = new THREE.Mesh(headGeometry, headMaterial);
+      head.position.set(0, 1.65, 0);
+      head.castShadow = true;
+      group.add(head);
+      
+      // Cuerpo
+      const bodyGeometry = new THREE.CylinderGeometry(0.15, 0.18, 0.6, 8);
+      const bodyMaterial = new THREE.MeshLambertMaterial({ color: 0x8B5CF6 });
+      const body = new THREE.Mesh(bodyGeometry, bodyMaterial);
+      body.position.set(0, 1.2, 0);
+      body.castShadow = true;
+      group.add(body);
+      
+      // Brazos con pose natural
+      const armGeometry = new THREE.CylinderGeometry(0.04, 0.04, 0.4, 6);
+      const armMaterial = new THREE.MeshLambertMaterial({ color: 0xfdbcb4 });
+      
+      const leftArm = new THREE.Mesh(armGeometry, armMaterial);
+      leftArm.position.set(-0.22, 1.25, 0.05);
+      leftArm.rotation.set(0.3, 0, -0.4);
+      leftArm.castShadow = true;
+      group.add(leftArm);
+      
+      const rightArm = new THREE.Mesh(armGeometry, armMaterial);
+      rightArm.position.set(0.22, 1.25, 0.05);
+      rightArm.rotation.set(0.2, 0, 0.3);
+      rightArm.castShadow = true;
+      group.add(rightArm);
+      
+      // Tablet y bolígrafo
+      const tabletGeometry = new THREE.BoxGeometry(0.12, 0.015, 0.18);
+      const tabletMaterial = new THREE.MeshLambertMaterial({ color: 0x1a1a1a });
+      const tablet = new THREE.Mesh(tabletGeometry, tabletMaterial);
+      tablet.position.set(0.32, 1.05, 0.12);
+      tablet.rotation.set(-Math.PI / 6, 0, Math.PI / 12);
+      group.add(tablet);
+      
+      // Pantalla de tablet
+      const screenGeometry = new THREE.PlaneGeometry(0.11, 0.16);
+      const screenMaterial = new THREE.MeshLambertMaterial({
+        color: 0x0a0a0a,
+        emissive: 0x003366,
+        emissiveIntensity: 0.15
+      });
+      const screen = new THREE.Mesh(screenGeometry, screenMaterial);
+      screen.position.set(0.32, 1.06, 0.12);
+      screen.rotation.set(-Math.PI / 3, 0, Math.PI / 12);
+      group.add(screen);
+      
+      const penGeometry = new THREE.CylinderGeometry(0.002, 0.002, 0.14);
+      const penMaterial = new THREE.MeshLambertMaterial({ color: 0x2563eb });
+      const pen = new THREE.Mesh(penGeometry, penMaterial);
+      pen.position.set(-0.32, 1.05, 0.12);
+      pen.rotation.set(0, 0, Math.PI / 6);
+      group.add(pen);
+      
+      // Centrar el grupo en el suelo
+      const box = new THREE.Box3().setFromObject(group);
+      group.position.y -= box.min.y;
+      
+      scene.add(group);
+    };
+
+    // Función para manejar la carga exitosa del avatar
+    const handleAvatarLoad = (gltf: any) => {
+      console.log("✅ Avatar GLB cargado exitosamente");
+      
+      const avatar = gltf.scene;
+      avatar.traverse((o: any) => {
+        if (o.isMesh) {
+          o.castShadow = true;
+          o.receiveShadow = false;
+          if (o.material) {
+            o.material.envMapIntensity = 0.7;
+            o.material.needsUpdate = true;
           }
-        });
-
-        // Centrar en el suelo
-        const box = new THREE.Box3().setFromObject(avatar);
-        const size = new THREE.Vector3(); 
-        box.getSize(size);
-        const center = new THREE.Vector3(); 
-        box.getCenter(center);
-        avatar.position.y += (avatar.position.y - box.min.y); // sube hasta tocar suelo
-        avatar.position.y -= 0.01; // micro ajuste
-        avatar.position.x -= center.x;
-        avatar.position.z -= center.z;
-        scene.add(avatar);
-
-        // Bones comunes (Ready Player Me / Mixamo)
-        const head = byNameLike(avatar, "head");
-        const spine = byNameLike(avatar, "spine2") || byNameLike(avatar, "spine");
-        const lSh = byNameLike(avatar, "left", "shoulder") || byNameLike(avatar, "left", "arm");
-        const rSh = byNameLike(avatar, "right", "shoulder") || byNameLike(avatar, "right", "arm");
-        const lEl = byNameLike(avatar, "left", "forearm") || byNameLike(avatar, "left", "elbow");
-        const rEl = byNameLike(avatar, "right", "forearm") || byNameLike(avatar, "right", "elbow");
-        const rHand = byNameLike(avatar, "right", "hand");
-
-        // Pose natural (bajar brazos desde T)
-        if (lSh) lSh.rotation.z -= 0.9;   // baja ~50°
-        if (rSh) rSh.rotation.z += 0.9;
-        if (lEl) lEl.rotation.z += 0.25;  // flexión ligera
-        if (rEl) rEl.rotation.z -= 0.25;
-
-        // Detectar "tablet/phone" suelto y anclarlo a la mano derecha
-        let tablet: THREE.Object3D | null = null;
-        let minArea = Infinity;
-        avatar.traverse(o => {
-          if (o.isMesh && !o.isSkinnedMesh) {
-            const bb = new THREE.Box3().setFromObject(o);
-            const s = new THREE.Vector3(); 
-            bb.getSize(s);
-            const area = s.x * s.y; // "rectangularidad" simple
-            const likely = /tablet|phone|pad|prop/i.test(o.name) || (s.z < 0.06 && (s.x > 0.06 || s.y > 0.06));
-            if (likely && area < minArea) { 
-              minArea = area; 
-              tablet = o; 
-            }
-          }
-        });
-
-        // Si no encuentra tablet existente, crear una nueva
-        if (!tablet && rHand) {
-          // Crear tablet profesional
-          const tabletGeometry = new THREE.BoxGeometry(0.12, 0.015, 0.18);
-          const tabletMaterial = new THREE.MeshLambertMaterial({ color: 0x1a1a1a });
-          tablet = new THREE.Mesh(tabletGeometry, tabletMaterial);
-
-          // Pantalla de tablet
-          const screenGeometry = new THREE.PlaneGeometry(0.11, 0.16);
-          const screenMaterial = new THREE.MeshLambertMaterial({
-            color: 0x0a0a0a,
-            emissive: 0x003366,
-            emissiveIntensity: 0.15
-          });
-          const screen = new THREE.Mesh(screenGeometry, screenMaterial);
-          screen.position.set(0, 0.008, 0);
-          screen.rotation.x = -Math.PI / 2;
-          tablet.add(screen);
         }
+      });
 
-        if (tablet && rHand && !state.current.propAttached) {
-          // Mover el prop bajo la mano con un offset razonable
-          const prop = tablet;
-          
-          // Limpiar cualquier parent anterior
-          if (prop.parent) {
-            prop.parent.remove(prop);
-          }
-          
-          // Posicionar tablet en mano derecha de forma natural
-          prop.position.set(0.02, 0.05, 0.08);
-          prop.rotation.set(-Math.PI / 6, 0, Math.PI / 12); // Ligera inclinación natural
-          rHand.add(prop);
+      // Centrar en el suelo
+      const box = new THREE.Box3().setFromObject(avatar);
+      const center = new THREE.Vector3();
+      box.getCenter(center);
+      avatar.position.y += (avatar.position.y - box.min.y);
+      avatar.position.y -= 0.01;
+      avatar.position.x -= center.x;
+      avatar.position.z -= center.z;
+      scene.add(avatar);
 
-          // Crear bolígrafo en la otra mano
-          const lHand = byNameLike(avatar, "left", "hand");
-          if (lHand) {
-            const penGeometry = new THREE.CylinderGeometry(0.002, 0.002, 0.14);
-            const penMaterial = new THREE.MeshLambertMaterial({ color: 0x2563eb });
-            const pen = new THREE.Mesh(penGeometry, penMaterial);
-            
-            pen.position.set(0, 0.06, 0.02);
-            pen.rotation.set(0, 0, Math.PI / 6);
-            lHand.add(pen);
-          }
+      // Buscar bones y aplicar pose natural
+      const lSh = byNameLike(avatar, "left", "shoulder") || byNameLike(avatar, "left", "arm");
+      const rSh = byNameLike(avatar, "right", "shoulder") || byNameLike(avatar, "right", "arm");
+      const lEl = byNameLike(avatar, "left", "forearm") || byNameLike(avatar, "left", "elbow");
+      const rEl = byNameLike(avatar, "right", "forearm") || byNameLike(avatar, "right", "elbow");
+      const rHand = byNameLike(avatar, "right", "hand");
+      const lHand = byNameLike(avatar, "left", "hand");
 
-          // Ajustar pose de brazos para sostener objetos de forma natural
-          if (rSh) {
-            rSh.rotation.x = 0.1; // Brazo derecho ligeramente adelante
-            rSh.rotation.z = 0.6; // Bajar brazo de T-pose
-          }
-          if (lSh) {
-            lSh.rotation.x = 0.15; // Brazo izquierdo ligeramente más adelante
-            lSh.rotation.z = -0.7; // Bajar brazo de T-pose
-          }
-          if (rEl) {
-            rEl.rotation.x = -0.4; // Flexionar antebrazo para sostener tablet
-          }
-          if (lEl) {
-            lEl.rotation.x = -0.3; // Flexionar antebrazo para sostener bolígrafo
-          }
+      // Pose natural (quitar T-pose)
+      if (lSh) lSh.rotation.z -= 0.9;
+      if (rSh) rSh.rotation.z += 0.9;
+      if (lEl) lEl.rotation.z += 0.25;
+      if (rEl) rEl.rotation.z -= 0.25;
 
-          state.current.propAttached = true;
+      // Crear y agregar props si encontramos las manos
+      if (rHand) {
+        // Tablet
+        const tabletGeometry = new THREE.BoxGeometry(0.12, 0.015, 0.18);
+        const tabletMaterial = new THREE.MeshLambertMaterial({ color: 0x1a1a1a });
+        const tablet = new THREE.Mesh(tabletGeometry, tabletMaterial);
+
+        const screenGeometry = new THREE.PlaneGeometry(0.11, 0.16);
+        const screenMaterial = new THREE.MeshLambertMaterial({
+          color: 0x0a0a0a,
+          emissive: 0x003366,
+          emissiveIntensity: 0.15
+        });
+        const screen = new THREE.Mesh(screenGeometry, screenMaterial);
+        screen.position.set(0, 0.008, 0);
+        screen.rotation.x = -Math.PI / 2;
+        tablet.add(screen);
+
+        tablet.position.set(0.02, 0.05, 0.08);
+        tablet.rotation.set(-Math.PI / 6, 0, Math.PI / 12);
+        rHand.add(tablet);
+
+        // Ajustar brazo derecho
+        if (rSh) {
+          rSh.rotation.x = 0.1;
+          rSh.rotation.z = 0.6;
         }
+        if (rEl) {
+          rEl.rotation.x = -0.4;
+        }
+      }
 
-        state.current.avatar = avatar;
-        state.current.head = head;
-        state.current.spine = spine;
-        state.current.leftShoulder = lSh;
-        state.current.rightShoulder = rSh;
-        state.current.leftElbow = lEl;
-        state.current.rightElbow = rEl;
-        state.current.rightHand = rHand;
-      },
-      undefined,
-      (err) => console.error("Error cargando GLB:", err)
-    );
+      if (lHand) {
+        // Bolígrafo
+        const penGeometry = new THREE.CylinderGeometry(0.002, 0.002, 0.14);
+        const penMaterial = new THREE.MeshLambertMaterial({ color: 0x2563eb });
+        const pen = new THREE.Mesh(penGeometry, penMaterial);
+        
+        pen.position.set(0, 0.06, 0.02);
+        pen.rotation.set(0, 0, Math.PI / 6);
+        lHand.add(pen);
+
+        // Ajustar brazo izquierdo
+        if (lSh) {
+          lSh.rotation.x = 0.15;
+          lSh.rotation.z = -0.7;
+        }
+        if (lEl) {
+          lEl.rotation.x = -0.3;
+        }
+      }
+    };
+
+    // Sistema de carga con reintentos
+    const loadAvatarWithRetry = (urls: string[], currentIndex: number = 0) => {
+      if (currentIndex >= urls.length) {
+        console.warn("⚠️ No se pudo cargar ningún modelo GLB, usando avatar de respaldo");
+        createFallbackAvatar();
+        return;
+      }
+
+      const currentUrl = urls[currentIndex];
+      console.log(`🔄 Intentando cargar modelo ${currentIndex + 1}/${urls.length}`);
+      
+      const loader = new GLTFLoader();
+      loader.load(
+        currentUrl,
+        handleAvatarLoad,
+        (progress) => {
+          const percent = (progress.loaded / progress.total) * 100;
+          console.log(`📥 Cargando modelo: ${percent.toFixed(1)}%`);
+        },
+        (error) => {
+          console.warn(`❌ Error cargando modelo ${currentIndex + 1}:`, error.message);
+          setTimeout(() => {
+            loadAvatarWithRetry(urls, currentIndex + 1);
+          }, 1000);
+        }
+      );
+    };
+
+    // Iniciar carga
+    loadAvatarWithRetry(AVATAR_URLS);
 
     // Render loop
     let rafId: number;
     const animate = () => {
       rafId = requestAnimationFrame(animate);
-      const dt = clock.current.getDelta();
-
       controls.update();
       renderer.render(scene, camera);
     };
@@ -258,7 +297,7 @@ export default function BlueEyeFixed({ height = 520, autoRotate = true }: BlueEy
     };
   }, [height, autoRotate]);
 
-  // Síntesis de voz del navegador
+  // Síntesis de voz
   const speak = (line: string) => {
     if (!("speechSynthesis" in window)) return;
 
@@ -276,7 +315,7 @@ export default function BlueEyeFixed({ height = 520, autoRotate = true }: BlueEy
     speechSynthesis.speak(utter);
   };
 
-  // Escuchar saludo automático desde el Hero
+  // Escuchar saludo automático
   useEffect(() => {
     const handleSaludo = (e: CustomEvent) => {
       const texto = e.detail;
