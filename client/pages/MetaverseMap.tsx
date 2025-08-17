@@ -34,6 +34,18 @@ import {
   Phone,
   Calendar,
   Share2,
+  Users,
+  Volume2,
+  Mic,
+  Globe,
+  TrendingUp,
+  Activity,
+  Headphones,
+  Wifi,
+  School,
+  Hospital,
+  ShoppingCart,
+  Route,
 } from "lucide-react";
 
 interface PropertyPin {
