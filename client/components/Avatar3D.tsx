@@ -15,6 +15,9 @@ import {
 
 interface Avatar3DProps {
   className?: string;
+  height?: number;
+  autoRotate?: boolean;
+  defaultLine?: string;
   onInteraction?: (action: string, data?: any) => void;
   isVisible?: boolean;
 }
