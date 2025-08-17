@@ -88,6 +88,72 @@ const Avatar3D: React.FC<Avatar3DProps> = ({
     isInitialized: false
   });
 
+  // Viseme mapping for lip sync
+  const mapVisemes = useCallback((mesh: THREE.SkinnedMesh): MouthMap => {
+    const names = mesh.morphTargetDictionary || {};
+    const find = (candidates: string[]) => candidates.find(n => n in names);
+
+    return {
+      "AA": names[find(["viseme_aa", "AA", "aah"]) || ""] ?? -1,
+      "O":  names[find(["viseme_oh", "O", "oh"]) || ""] ?? -1,
+      "E":  names[find(["viseme_ee", "E", "ee"]) || ""] ?? -1,
+      "U":  names[find(["viseme_uw", "U", "oo"]) || ""] ?? -1,
+      "M":  names[find(["viseme_mbp", "M", "mbp"]) || ""] ?? -1,
+      "L":  names[find(["viseme_l", "L"]) || ""] ?? -1,
+      "WQ": names[find(["viseme_w", "WQ"]) || ""] ?? -1,
+      "CH": names[find(["viseme_ch", "CH", "tCH"]) || ""] ?? -1,
+      "FV": names[find(["viseme_fv", "FV"]) || ""] ?? -1
+    };
+  }, []);
+
+  // Apply visemes for lip sync
+  const applyVisemes = useCallback((t: number) => {
+    const { skinnedMesh, mouthMap, currentVisemes } = threeRef.current;
+    if (!skinnedMesh || !skinnedMesh.morphTargetInfluences) return;
+
+    // General decay
+    const influences = skinnedMesh.morphTargetInfluences;
+    for (let i = 0; i < influences.length; i++) {
+      influences[i] = Math.max(0, influences[i] - 0.15);
+    }
+
+    // Apply current viseme
+    const viseme = currentVisemes.find(v => Math.abs(v.t - t) < 0.06);
+    if (!viseme) return;
+
+    const idx = mouthMap[viseme.name];
+    if (idx >= 0) {
+      const lerp = (a: number, b: number, t: number) => a + (b - a) * t;
+      influences[idx] = Math.min(1, lerp(influences[idx], viseme.strength ?? 0.8, 0.8));
+    }
+  }, []);
+
+  // Animation loop
+  const animate = useCallback(() => {
+    const refs = threeRef.current;
+    if (!refs.scene || !refs.camera || !refs.renderer) return;
+
+    animationFrameRef.current = requestAnimationFrame(animate);
+
+    const dt = refs.clock.getDelta();
+    refs.mixer?.update(dt);
+
+    // Living gaze: subtle head oscillation
+    if (refs.avatar) {
+      const head = refs.avatar.getObjectByName("Head") || refs.avatar;
+      head.rotation.y = Math.sin(performance.now() * 0.0006) * 0.08;
+      head.rotation.x = Math.sin(performance.now() * 0.0004) * 0.03;
+    }
+
+    // Apply lip sync if speaking
+    if (refs.audio && !refs.audio.paused) {
+      const t = (performance.now() - refs.t0) / 1000;
+      applyVisemes(t);
+    }
+
+    refs.renderer.render(refs.scene, refs.camera);
+  }, [applyVisemes]);
+
   // Avatar actions for real estate assistant
   const avatarActions: AvatarAction[] = [
     {
