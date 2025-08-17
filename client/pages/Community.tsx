@@ -42,7 +42,7 @@ import {
 } from "lucide-react";
 
 export default function Community() {
-  const [activeTab, setActiveTab] = useState("virtual-space");
+  const [activeTab, setActiveTab] = useState("gamification");
   const [selectedBlogCategory, setSelectedBlogCategory] = useState("all");
   const [selectedForumCategory, setSelectedForumCategory] = useState("all");
   const [isScrolled, setIsScrolled] = useState(false);
@@ -54,6 +54,242 @@ export default function Community() {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  // Mock user data for gamification
+  const userStats = {
+    level: 'comprador-pro',
+    points: 2450,
+    rank: 127,
+    totalUsers: 5247,
+    behTokens: 150,
+    achievements: [
+      {
+        id: '1',
+        name: 'Primer Tour VR',
+        description: 'Completaste tu primer tour virtual',
+        icon: Eye,
+        points: 50,
+        rarity: 'common' as const,
+        achieved: true,
+        achievedAt: '2024-01-15T10:30:00Z'
+      },
+      {
+        id: '2',
+        name: 'Explorador Social',
+        description: 'Hiciste 10 comentarios en la comunidad',
+        icon: MessageSquare,
+        points: 100,
+        rarity: 'rare' as const,
+        achieved: true,
+        achievedAt: '2024-01-20T14:20:00Z'
+      },
+      {
+        id: '3',
+        name: 'Inversor Verificado',
+        description: 'Verificaste tu primera propiedad',
+        icon: CheckCircle,
+        points: 200,
+        rarity: 'epic' as const,
+        achieved: false,
+        progress: 0,
+        maxProgress: 1
+      },
+      {
+        id: '4',
+        name: 'Maestro del Metaverso',
+        description: 'Completaste 50 tours VR',
+        icon: Crown,
+        points: 1000,
+        rarity: 'legendary' as const,
+        achieved: false,
+        progress: 23,
+        maxProgress: 50
+      }
+    ],
+    activities: {
+      posts: 12,
+      comments: 45,
+      verifications: 0,
+      invites: 3,
+      operationsClosed: 0,
+      vrToursCompleted: 23
+    }
+  };
+
+  // Mock events data
+  const events = [
+    {
+      id: '1',
+      title: 'Tour VR Grupal: Villas de Lujo en Tenerife',
+      description: 'Únete a otros inversores para explorar las mejores propiedades de la isla en un tour VR guiado por expertos.',
+      type: 'vr-tour' as const,
+      date: '2024-02-05T19:00:00Z',
+      duration: 90,
+      isOnline: true,
+      maxAttendees: 25,
+      currentAttendees: 18,
+      organizer: {
+        name: 'Carlos Ruiz',
+        avatar: '/placeholder.svg',
+        role: 'Agente Senior'
+      },
+      image: '/placeholder.svg',
+      tags: ['VR', 'Tenerife', 'Lujo', 'Inversión'],
+      isRegistered: true,
+      isPremium: false,
+      meetingLink: 'https://vr.blueeyehomes.com/tour-tenerife'
+    },
+    {
+      id: '2',
+      title: 'Webinar: Inversión Inmobiliaria en Canarias 2024',
+      description: 'Análisis completo del mercado, tendencias y oportunidades de inversión para el próximo año.',
+      type: 'webinar' as const,
+      date: '2024-02-08T18:00:00Z',
+      duration: 60,
+      isOnline: true,
+      currentAttendees: 156,
+      organizer: {
+        name: 'María González',
+        avatar: '/placeholder.svg',
+        role: 'Analista de Mercado'
+      },
+      image: '/placeholder.svg',
+      tags: ['Inversión', 'Mercado', 'Análisis', 'Canarias'],
+      isRegistered: false,
+      isPremium: true,
+      speakers: [
+        { name: 'María González', role: 'Analista de Mercado', avatar: '/placeholder.svg' },
+        { name: 'Pedro Sánchez', role: 'Director Financiero', avatar: '/placeholder.svg' }
+      ]
+    },
+    {
+      id: '3',
+      title: 'Meetup: Networking de Inversores Gran Canaria',
+      description: 'Encuentro presencial para conocer a otros inversores y profesionales del sector inmobiliario.',
+      type: 'meetup' as const,
+      date: '2024-02-12T19:30:00Z',
+      duration: 180,
+      location: 'Hotel Santa Catalina, Las Palmas',
+      isOnline: false,
+      maxAttendees: 40,
+      currentAttendees: 28,
+      organizer: {
+        name: 'Ana Martínez',
+        avatar: '/placeholder.svg',
+        role: 'Community Manager'
+      },
+      image: '/placeholder.svg',
+      tags: ['Networking', 'Gran Canaria', 'Presencial', 'Inversores'],
+      isRegistered: false,
+      isPremium: false,
+      price: 25
+    }
+  ];
+
+  // Mock groups data
+  const groups = [
+    {
+      id: '1',
+      name: 'Inversores Tenerife',
+      description: 'Grupo para inversores inmobiliarios en Tenerife. Compartimos oportunidades, análisis de mercado y experiencias.',
+      category: 'location' as const,
+      location: 'Tenerife',
+      memberCount: 156,
+      isPrivate: false,
+      image: '/placeholder.svg',
+      tags: ['inversión', 'tenerife', 'análisis'],
+      admin: {
+        name: 'Carlos Ruiz',
+        avatar: '/placeholder.svg',
+        level: 'agente-confiable'
+      },
+      moderators: [
+        { name: 'María Silva', avatar: '/placeholder.svg' }
+      ],
+      recentActivity: [
+        {
+          type: 'post' as const,
+          text: 'compartió un análisis del mercado en Costa Adeje',
+          timestamp: '2024-01-23T10:30:00Z',
+          user: { name: 'Pedro López', avatar: '/placeholder.svg' }
+        },
+        {
+          type: 'member_joined' as const,
+          text: 'Nuevo miembro: Ana García se unió al grupo',
+          timestamp: '2024-01-23T09:15:00Z'
+        }
+      ],
+      stats: {
+        postsThisWeek: 12,
+        activeMembers: 45,
+        avgResponseTime: '2h'
+      },
+      joined: true
+    },
+    {
+      id: '2',
+      name: 'Nómadas Digitales Canarias',
+      description: 'Comunidad de nómadas digitales que buscan establecerse en las Islas Canarias. Tips, propiedades y networking.',
+      category: 'lifestyle' as const,
+      memberCount: 89,
+      isPrivate: false,
+      image: '/placeholder.svg',
+      tags: ['nómadas', 'digital', 'lifestyle', 'trabajo remoto'],
+      admin: {
+        name: 'Sophie Dubois',
+        avatar: '/placeholder.svg',
+        level: 'comprador-pro'
+      },
+      moderators: [],
+      recentActivity: [
+        {
+          type: 'discussion' as const,
+          text: 'inició una discusión sobre mejores zonas con fibra óptica',
+          timestamp: '2024-01-22T16:45:00Z',
+          user: { name: 'Alex Johnson', avatar: '/placeholder.svg' }
+        }
+      ],
+      stats: {
+        postsThisWeek: 8,
+        activeMembers: 23,
+        avgResponseTime: '1h'
+      },
+      joined: false
+    },
+    {
+      id: '3',
+      name: 'Familias con Niños',
+      description: 'Grupo para familias que buscan propiedades familiares en Canarias. Colegios, parques, seguridad y comunidad.',
+      category: 'lifestyle' as const,
+      memberCount: 67,
+      isPrivate: true,
+      image: '/placeholder.svg',
+      tags: ['familias', 'niños', 'colegios', 'seguridad'],
+      admin: {
+        name: 'Carmen Rodríguez',
+        avatar: '/placeholder.svg',
+        level: 'comprador-pro'
+      },
+      moderators: [
+        { name: 'Luis Fernández', avatar: '/placeholder.svg' }
+      ],
+      recentActivity: [
+        {
+          type: 'post' as const,
+          text: 'compartió información sobre colegios internacionales',
+          timestamp: '2024-01-21T14:20:00Z',
+          user: { name: 'Carmen Rodríguez', avatar: '/placeholder.svg' }
+        }
+      ],
+      stats: {
+        postsThisWeek: 6,
+        activeMembers: 18,
+        avgResponseTime: '3h'
+      },
+      joined: false,
+      isPending: true
+    }
+  ];
 
   const virtualSpaceUsers = [
     {
