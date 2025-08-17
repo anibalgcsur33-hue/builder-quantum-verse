@@ -1,4 +1,4 @@
-# Avatar BlueEye - Instrucciones de Implementación
+# Avatar BlueEye FBX - Perfecto para VR y Propiedades Inmobiliarias
 
 ## Pasos para crear y añadir el avatar:
 
@@ -7,12 +7,16 @@
   - Ir a https://readyplayer.me/
   - Crear avatar femenino profesional
   - Configurar como mujer de negocios
-  - Descargar en formato GLB
+  - Descargar en formato FBX (mejor para VR)
 
 - **Opción B: VRoid Studio**
   - Descargar VRoid Studio (gratuito)
   - Crear avatar femenino personalizado
-  - Exportar como VRM, luego convertir a GLB
+  - Exportar como FBX
+
+- **Opción C: Blender/Maya/3ds Max**
+  - Crear o modificar avatar existente
+  - Exportar como FBX con rig humanoide
 
 ### 2. Añadir Animación Idle en Mixamo
 - Ir a https://www.mixamo.com/
