@@ -694,21 +694,7 @@ export default function Index() {
 
       {/* 3D Map Canarias Section */}
       <section className="section-padding relative overflow-hidden">
-        <div className="absolute inset-0 z-0">
-          <video
-            className="w-full h-full object-cover opacity-40"
-            autoPlay
-            muted
-            loop
-            playsInline
-            poster="/placeholder.svg"
-          >
-            <source src="/3d-canarias-map.mp4" type="video/mp4" />
-            <img
-              src="/placeholder.svg"
-              alt="3D futuristic map of Canary Islands with glowing pins"
-            />
-          </video>
+        <div className="absolute inset-0 z-0 bg-gradient-to-br from-blue-900 to-purple-900 opacity-40">
           <div className="absolute inset-0 bg-gradient-to-b from-blue-dark/80 to-blue-dark/90"></div>
         </div>
 
