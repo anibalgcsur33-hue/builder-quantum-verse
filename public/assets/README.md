@@ -20,13 +20,14 @@
 
 ### 2. Añadir Animación Idle en Mixamo
 - Ir a https://www.mixamo.com/
-- Subir el modelo GLB/FBX
-- Buscar animación "Idle" o "Breathing Idle"
+- Subir el modelo FBX
+- Buscar animación "Idle", "Breathing Idle" o "Standing Idle"
 - Aplicar la animación
-- Exportar como GLB con:
-  - Format: GLB
+- Exportar como FBX con:
+  - Format: FBX for Unity (.fbx)
   - Skin: With Skin
   - Keyframe Reduction: Uniform
+  - 30 FPS (perfecto para VR)
 
 ### 3. Colocar el Archivo
 - Renombrar el archivo exportado a `blueeye.glb`
