@@ -182,30 +182,127 @@ const Avatar3D: React.FC<Avatar3DProps> = ({
     }
   ];
 
-  // Initialize 3D Avatar (placeholder for three.js integration)
+  // Initialize 3D Avatar with three.js
   useEffect(() => {
-    if (!canvasRef.current || avatarState.isInitialized) return;
+    if (!containerRef.current || avatarState.isInitialized) return;
 
-    // TODO: Initialize three.js scene here
-    // This is where we'll integrate:
-    // - Three.js scene setup
-    // - GLB/GLTF model loading
-    // - Animation system
-    // - Lip sync system
-    // - Eye tracking
+    const container = containerRef.current;
+    const refs = threeRef.current;
+
     console.log('🤖 Initializing 3D Avatar...');
-    
-    // Simulate initialization
-    setTimeout(() => {
-      setAvatarState(prev => ({ ...prev, isInitialized: true }));
-      console.log('✅ Avatar initialized');
-    }, 1000);
+
+    // Setup three.js scene
+    refs.scene = new THREE.Scene();
+    refs.camera = new THREE.PerspectiveCamera(
+      35,
+      container.clientWidth / container.clientHeight,
+      0.1,
+      100
+    );
+    refs.camera.position.set(0, 1.5, 2.3);
+
+    refs.renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+    refs.renderer.setSize(container.clientWidth, container.clientHeight);
+    refs.renderer.shadowMap.enabled = true;
+    refs.renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+    container.appendChild(refs.renderer.domElement);
+
+    // Lighting setup
+    const hemiLight = new THREE.HemisphereLight(0xffffff, 0x202025, 0.7);
+    refs.scene.add(hemiLight);
+
+    const keyLight = new THREE.DirectionalLight(0xffffff, 1.2);
+    keyLight.position.set(2, 3, 1.5);
+    keyLight.castShadow = true;
+    keyLight.shadow.mapSize.width = 2048;
+    keyLight.shadow.mapSize.height = 2048;
+    refs.scene.add(keyLight);
+
+    // Floor plane
+    const floorGeometry = new THREE.PlaneGeometry(10, 10);
+    const floorMaterial = new THREE.ShadowMaterial({ opacity: 0.25 });
+    const floor = new THREE.Mesh(floorGeometry, floorMaterial);
+    floor.rotation.x = -Math.PI / 2;
+    floor.receiveShadow = true;
+    refs.scene.add(floor);
+
+    // Load avatar GLB model
+    const loader = new GLTFLoader();
+    loader.load(
+      '/assets/avatar.glb',
+      (gltf) => {
+        refs.avatar = gltf.scene;
+
+        // Setup shadows and find skinned mesh
+        refs.avatar.traverse((child) => {
+          child.castShadow = true;
+          if (child instanceof THREE.SkinnedMesh) {
+            refs.skinnedMesh = child;
+          }
+        });
+
+        refs.scene!.add(refs.avatar);
+        refs.mixer = new THREE.AnimationMixer(refs.avatar);
+
+        // Play idle animation if available
+        if (gltf.animations?.length > 0) {
+          const idleAction = refs.mixer.clipAction(gltf.animations[0]);
+          idleAction.loop = THREE.LoopRepeat;
+          idleAction.play();
+        }
+
+        // Map blendshapes for lip sync
+        if (refs.skinnedMesh && refs.skinnedMesh.morphTargetDictionary) {
+          refs.mouthMap = mapVisemes(refs.skinnedMesh);
+          console.log('🗣️ Mouth mapping:', refs.mouthMap);
+        }
+
+        setAvatarState(prev => ({ ...prev, isInitialized: true }));
+        console.log('✅ Avatar loaded and initialized');
+
+        // Start animation loop
+        animate();
+      },
+      (progress) => {
+        console.log('Loading progress:', (progress.loaded / progress.total * 100) + '%');
+      },
+      (error) => {
+        console.error('Error loading avatar:', error);
+      }
+    );
+
+    // Handle window resize
+    const handleResize = () => {
+      if (!refs.camera || !refs.renderer || !container) return;
+
+      refs.camera.aspect = container.clientWidth / container.clientHeight;
+      refs.camera.updateProjectionMatrix();
+      refs.renderer.setSize(container.clientWidth, container.clientHeight);
+    };
+
+    window.addEventListener('resize', handleResize);
 
     return () => {
       // Cleanup three.js resources
       console.log('🧹 Cleaning up 3D Avatar...');
+
+      if (animationFrameRef.current) {
+        cancelAnimationFrame(animationFrameRef.current);
+      }
+
+      window.removeEventListener('resize', handleResize);
+
+      if (refs.renderer) {
+        container.removeChild(refs.renderer.domElement);
+        refs.renderer.dispose();
+      }
+
+      if (refs.audio) {
+        refs.audio.pause();
+        refs.audio = null;
+      }
     };
-  }, [canvasRef.current]);
+  }, [containerRef.current, mapVisemes, animate]);
 
   // Handle avatar actions
   const handleAction = useCallback((actionId: string, data?: any) => {
