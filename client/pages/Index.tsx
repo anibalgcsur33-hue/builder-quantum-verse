@@ -693,6 +693,47 @@ export default function Index() {
         </div>
       </section>
 
+      {/* BlueEye Avatar Section */}
+      <section className="section-padding">
+        <div className="container mx-auto container-padding">
+          <div className="text-center mb-12">
+            <h2 className="heading-lg text-gradient mb-6">
+              Conoce a BlueEye
+            </h2>
+            <p className="text-xl text-white/70 max-w-3xl mx-auto">
+              Tu asesora virtual inmobiliaria con inteligencia artificial.
+              Conversa con ella sobre propiedades, procesos legales y visitas programadas.
+            </p>
+          </div>
+
+          <div className="max-w-4xl mx-auto">
+            <Avatar3D
+              height={520}
+              autoRotate={true}
+              defaultLine="¡Hola! Soy BlueEye, tu asesora virtual inmobiliaria. ¿En qué puedo ayudarte hoy?"
+              onInteraction={(action, data) => {
+                console.log('Avatar action:', action, data);
+                // Here you can handle navigation or other actions
+                switch(action) {
+                  case 'search-properties':
+                    // Navigate to properties page
+                    break;
+                  case 'schedule-visit':
+                    // Open calendar or visit scheduling
+                    break;
+                  case 'legal-info':
+                    // Show legal information
+                    break;
+                  case 'contact-agent':
+                    // Open contact form
+                    break;
+                }
+              }}
+            />
+          </div>
+        </div>
+      </section>
+
       {/* 3D Map Canarias Section */}
       <section className="section-padding relative overflow-hidden">
         <div className="absolute inset-0 z-0">
@@ -1088,7 +1129,7 @@ export default function Index() {
                   to="/terminos"
                   className="block text-white/60 hover:text-neon-teal transition-colors"
                 >
-                  Términos
+                  T��rminos
                 </Link>
               </div>
             </div>
