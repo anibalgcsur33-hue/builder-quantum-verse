@@ -111,32 +111,14 @@ export default function BlueEye({ height = 520, autoRotate = true }: BlueEyeProp
           jawIndexRef.current = dict["jawOpen"];
         }
 
-        // Animación idle más natural
+        // Animación idle simple
         if (gltf.animations?.length) {
           const mixer = new THREE.AnimationMixer(avatar);
           mixerRef.current = mixer;
-
-          // Buscar animación idle o breathing
-          let idleAction = null;
-          for (const animation of gltf.animations) {
-            if (animation.name.toLowerCase().includes('idle') ||
-                animation.name.toLowerCase().includes('breathing') ||
-                animation.name.toLowerCase().includes('stand')) {
-              idleAction = mixer.clipAction(animation);
-              break;
-            }
-          }
-
-          // Si no hay animación específica, usar la primera pero más suave
-          if (!idleAction && gltf.animations.length > 0) {
-            idleAction = mixer.clipAction(gltf.animations[0]);
-          }
-
-          if (idleAction) {
-            idleAction.loop = THREE.LoopRepeat;
-            idleAction.setEffectiveWeight(0.3); // Animación más sutil
-            idleAction.play();
-          }
+          const idle = mixer.clipAction(gltf.animations[0]);
+          idle.loop = THREE.LoopRepeat;
+          idle.setEffectiveWeight(0.5); // Animación más sutil
+          idle.play();
         }
       },
       undefined,
