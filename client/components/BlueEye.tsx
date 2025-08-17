@@ -251,11 +251,11 @@ export default function BlueEye({ height = 520, autoRotate = true }: BlueEyeProp
       console.log("📁 Para usar tu avatar custom, coloca blueeye.glb en /public/assets/");
     };
 
-    // Función para manejar la carga exitosa del avatar GLB
-    const handleGLBLoad = (gltf: any) => {
-      console.log("✅ Avatar GLB cargado exitosamente");
-      
-      const avatar = gltf.scene;
+    // Función para manejar la carga exitosa del avatar FBX
+    const handleFBXLoad = (fbx: any) => {
+      console.log("✅ Avatar FBX cargado exitosamente para VR");
+
+      const avatar = fbx; // FBX ya es el objeto scene directamente
       avatarRef.current = avatar;
 
       // Configurar materiales y sombras
