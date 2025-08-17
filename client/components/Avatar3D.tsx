@@ -35,6 +35,30 @@ interface AvatarAction {
   action: () => void;
 }
 
+interface VisemeData {
+  time: number;
+  phoneme: string;
+  strength?: number;
+}
+
+interface MouthMap {
+  [key: string]: number;
+}
+
+interface ThreeJSRefs {
+  scene: THREE.Scene | null;
+  camera: THREE.PerspectiveCamera | null;
+  renderer: THREE.WebGLRenderer | null;
+  avatar: THREE.Object3D | null;
+  skinnedMesh: THREE.SkinnedMesh | null;
+  mixer: THREE.AnimationMixer | null;
+  clock: THREE.Clock;
+  mouthMap: MouthMap;
+  currentVisemes: Array<{ t: number; name: string; strength: number; }>;
+  audio: HTMLAudioElement | null;
+  t0: number;
+}
+
 const Avatar3D: React.FC<Avatar3DProps> = ({ 
   className = '', 
   onInteraction,
