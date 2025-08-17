@@ -30,7 +30,7 @@ export default function BlueEye({ height = 520, autoRotate = true }: BlueEyeProp
       0.1,
       100
     );
-    camera.position.set(0, 1.55, 2.4);
+    camera.position.set(0, 1.6, 2.2);
 
     const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
