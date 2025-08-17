@@ -372,11 +372,15 @@ export default function BlueEye({ height = 520, autoRotate = true }: BlueEyeProp
       }, 1000);
     };
 
-    // Función para verificar si el archivo GLB existe
+    // Función para verificar si el archivo FBX existe
     const checkFileExists = async (url: string): Promise<boolean> => {
       try {
         const response = await fetch(url, { method: 'HEAD' });
-        return response.ok && response.headers.get('content-type')?.includes('application/octet-stream');
+        return response.ok && (
+          response.headers.get('content-type')?.includes('application/octet-stream') ||
+          response.headers.get('content-type')?.includes('application/x-fbx') ||
+          response.status === 200
+        );
       } catch {
         return false;
       }
