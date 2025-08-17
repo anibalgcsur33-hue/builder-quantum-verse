@@ -6,6 +6,7 @@ import FinancialSimulator from "../components/FinancialSimulator";
 import NFTReservation from "../components/NFTReservation";
 import DigitalTwin from "../components/DigitalTwin";
 import PropertyAI from "../components/PropertyAI";
+import PropertyCommunity from "../components/PropertyCommunity";
 import {
   ArrowLeft,
   Heart,
