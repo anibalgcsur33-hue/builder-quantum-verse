@@ -53,14 +53,34 @@ interface PropertyPin {
   title: string;
   location: string;
   price: number;
+  pricePerSqm: number;
   type: "villa" | "apartment" | "penthouse" | "house";
-  coordinates: { x: number; y: number; z: number };
+  coordinates: {
+    x: number;
+    y: number;
+    z: number;
+    lat: number;
+    lng: number;
+    elevation: number;
+  };
   bedrooms: number;
   bathrooms: number;
   sqm: number;
-  image: string;
-  vrTour: boolean;
-  featured: boolean;
+  images: string[];
+  badges: ('vr' | 'crypto' | 'tour3d' | 'verified' | 'featured')[];
+  heatmapData: {
+    priceHeat: number;
+    tourismOccupancy: number;
+    demand: number;
+  };
+  nearby: {
+    beaches: { name: string; distance: number; }[];
+    schools: { name: string; distance: number; type: string; }[];
+    hospitals: { name: string; distance: number; }[];
+    shopping: { name: string; distance: number; type: string; }[];
+  };
+  vrTourUrl?: string;
+  tour3DUrl?: string;
   status: "available" | "reserved" | "sold";
 }
 
