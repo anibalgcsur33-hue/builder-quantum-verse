@@ -81,6 +81,14 @@ npm run dev
 
 ## Archivo Actual
 **Estado**: ❌ Archivo no encontrado
-**Esperando**: blueeye.glb con avatar femenino profesional + animación idle
+**Esperando**: blueeye.fbx con avatar femenino profesional + animación idle
+**Formato**: FBX (perfecto para VR y propiedades inmobiliarias)
 
-Una vez que coloques el archivo aquí, el avatar debería funcionar automáticamente.
+Una vez que coloques el archivo FBX aquí, el avatar funcionará automáticamente con soporte completo para VR.
+
+## Próximos Pasos VR
+Cuando tengas el avatar FBX funcionando, podremos:
+- 🥽 Integrar con WebXR para VR en el navegador
+- 🏠 Mostrar propiedades inmobiliarias en VR
+- 👋 Interacciones gestuales en realidad virtual
+- 🎮 Controles VR para navegación de propiedades
