@@ -470,8 +470,12 @@ export default function AIConcierge() {
       <div className="p-4 border-b border-white/10 bg-gradient-to-r from-neon-teal/20 to-neon-emerald/20">
         <div className="flex items-center justify-between">
           <div className="flex items-center space-x-3">
-            <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-neon-teal via-neon-emerald to-blue-600 p-2 shadow-lg">
-              <Brain className="w-full h-full text-white" />
+            <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-neon-teal via-neon-emerald to-blue-600 p-1 shadow-lg">
+              <img
+                src="https://cdn.builder.io/api/v1/image/assets%2Fb022b0ef6eaa47cba6348b0a48fcb095%2F17edddd60152463581993ed71a0f6614?format=webp&width=800"
+                alt="AI Assistant Avatar"
+                className="w-full h-full rounded-lg object-cover"
+              />
             </div>
             <div>
               <h3 className="font-bold text-white flex items-center gap-1">
