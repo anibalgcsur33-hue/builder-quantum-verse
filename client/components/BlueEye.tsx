@@ -3,8 +3,8 @@ import * as THREE from "three";
 import { FBXLoader } from "three/examples/jsm/loaders/FBXLoader.js";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
 
-// URL del avatar local - cambiar cuando tengas el archivo
-const AVATAR_URL = "/assets/blueeye.glb";
+// URL del avatar local FBX - perfecto para VR y propiedades
+const AVATAR_URL = "/assets/blueeye.fbx";
 
 interface BlueEyeProps {
   height?: number;
