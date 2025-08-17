@@ -245,14 +245,33 @@ export default function MetaverseMap() {
       title: "Penthouse Marina Elite",
       location: "Las Palmas, Gran Canaria",
       price: 850000,
+      pricePerSqm: 4200,
       type: "penthouse",
-      coordinates: { x: 400, y: 200, z: 0 },
+      coordinates: {
+        x: 400,
+        y: 200,
+        z: 0,
+        lat: 28.1482,
+        lng: -15.4288,
+        elevation: 120
+      },
       bedrooms: 3,
       bathrooms: 2,
       sqm: 202,
-      image: "/placeholder.svg",
-      vrTour: true,
-      featured: false,
+      images: ["/placeholder.svg", "/placeholder.svg"],
+      badges: ['vr', 'crypto', 'tour3d'],
+      heatmapData: {
+        priceHeat: 0.7,
+        tourismOccupancy: 0.6,
+        demand: 0.75
+      },
+      nearby: {
+        beaches: [{ name: "Playa de Las Canteras", distance: 500 }],
+        schools: [{ name: "Colegio Aleman", distance: 1000, type: "internacional" }],
+        hospitals: [{ name: "Hospital Dr. Negrín", distance: 2000 }],
+        shopping: [{ name: "Las Arenas", distance: 300, type: "centro comercial" }]
+      },
+      vrTourUrl: "/vr-tour/penthouse-marina",
       status: "available",
     },
     {
@@ -260,14 +279,33 @@ export default function MetaverseMap() {
       title: "Modern Apartment Center",
       location: "Santa Cruz, Tenerife",
       price: 420000,
+      pricePerSqm: 2800,
       type: "apartment",
-      coordinates: { x: 250, y: 180, z: 0 },
+      coordinates: {
+        x: 250,
+        y: 180,
+        z: 0,
+        lat: 28.4682,
+        lng: -16.2546,
+        elevation: 30
+      },
       bedrooms: 2,
       bathrooms: 2,
       sqm: 150,
-      image: "/placeholder.svg",
-      vrTour: true,
-      featured: false,
+      images: ["/placeholder.svg"],
+      badges: ['vr', 'verified'],
+      heatmapData: {
+        priceHeat: 0.4,
+        tourismOccupancy: 0.3,
+        demand: 0.5
+      },
+      nearby: {
+        beaches: [{ name: "Playa de Las Teresitas", distance: 7000 }],
+        schools: [{ name: "IES Santa Cruz", distance: 500, type: "público" }],
+        hospitals: [{ name: "Hospital Universitario", distance: 800 }],
+        shopping: [{ name: "Meridiano", distance: 1200, type: "centro comercial" }]
+      },
+      vrTourUrl: "/vr-tour/modern-apartment",
       status: "reserved",
     },
     {
@@ -275,14 +313,32 @@ export default function MetaverseMap() {
       title: "Casa Rural Vineyards",
       location: "La Geria, Lanzarote",
       price: 680000,
+      pricePerSqm: 2100,
       type: "house",
-      coordinates: { x: 600, y: 120, z: 0 },
+      coordinates: {
+        x: 600,
+        y: 120,
+        z: 0,
+        lat: 29.0361,
+        lng: -13.6533,
+        elevation: 300
+      },
       bedrooms: 3,
       bathrooms: 2,
       sqm: 324,
-      image: "/placeholder.svg",
-      vrTour: false,
-      featured: true,
+      images: ["/placeholder.svg", "/placeholder.svg"],
+      badges: ['featured', 'verified'],
+      heatmapData: {
+        priceHeat: 0.3,
+        tourismOccupancy: 0.8,
+        demand: 0.7
+      },
+      nearby: {
+        beaches: [{ name: "Playa Blanca", distance: 12000 }],
+        schools: [{ name: "CEO Playa Blanca", distance: 15000, type: "público" }],
+        hospitals: [{ name: "Centro de Salud Yaiza", distance: 8000 }],
+        shopping: [{ name: "Pueblo de Yaiza", distance: 8000, type: "local" }]
+      },
       status: "available",
     },
     {
@@ -290,14 +346,34 @@ export default function MetaverseMap() {
       title: "Beachfront Villa Exclusive",
       location: "Playa Blanca, Lanzarote",
       price: 1800000,
+      pricePerSqm: 4000,
       type: "villa",
-      coordinates: { x: 650, y: 100, z: 0 },
+      coordinates: {
+        x: 650,
+        y: 100,
+        z: 0,
+        lat: 28.8593,
+        lng: -13.8644,
+        elevation: 15
+      },
       bedrooms: 5,
       bathrooms: 4,
       sqm: 450,
-      image: "/placeholder.svg",
-      vrTour: true,
-      featured: true,
+      images: ["/placeholder.svg", "/placeholder.svg", "/placeholder.svg", "/placeholder.svg"],
+      badges: ['vr', 'crypto', 'tour3d', 'featured', 'verified'],
+      heatmapData: {
+        priceHeat: 0.9,
+        tourismOccupancy: 0.95,
+        demand: 0.9
+      },
+      nearby: {
+        beaches: [{ name: "Playa Blanca", distance: 100 }],
+        schools: [{ name: "Colegio Costa Teguise", distance: 25000, type: "privado" }],
+        hospitals: [{ name: "Hospital de Lanzarote", distance: 30000 }],
+        shopping: [{ name: "Rubicón Marina", distance: 2000, type: "marina" }]
+      },
+      vrTourUrl: "/vr-tour/beachfront-villa",
+      tour3DUrl: "/3d-tour/beachfront-villa",
       status: "available",
     },
   ];
