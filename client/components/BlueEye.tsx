@@ -72,6 +72,12 @@ export default function BlueEye({ height = 520, autoRotate = true }: BlueEyeProp
       AVATAR_URL,
       (gltf) => {
         const avatar = gltf.scene;
+
+        // Posicionar avatar para que mire al frente
+        avatar.position.set(0, 0, 0);
+        avatar.rotation.y = 0; // Mirar directamente al frente
+        avatar.scale.setScalar(1);
+
         avatar.traverse((o) => {
           if (o instanceof THREE.Mesh) {
             o.castShadow = true;
