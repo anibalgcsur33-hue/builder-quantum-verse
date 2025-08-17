@@ -230,62 +230,8 @@ export default function Index() {
 
       <Header isScrolled={isScrolled} transparent={true} />
 
-      {/* Hero Section - BlueEye Homes Presentation Video */}
-      <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-        {/* Background optimizado */}
-        <div className="absolute inset-0 z-0 bg-gradient-to-br from-blue-dark via-blue-900 to-blue-800">
-          <div className="absolute inset-0 bg-gradient-to-b from-blue-dark/40 via-transparent to-blue-dark/70"></div>
-        </div>
-
-        <div className="relative z-10 container mx-auto container-padding text-center">
-          <div className="max-w-5xl mx-auto">
-            <h1 className="heading-xl text-gradient animate-slide-up mb-6">
-              Bienvenido a BlueEye Homes
-            </h1>
-            <p className="text-xl lg:text-2xl text-white/90 mb-8 animate-fade-in max-w-4xl mx-auto leading-relaxed">
-              Un metaverso único donde las propiedades se viven en 3D y las
-              compras son reales
-            </p>
-            <p className="text-lg text-white/80 mb-12 animate-fade-in max-w-3xl mx-auto leading-relaxed">
-              {t.hero.subtitle}
-            </p>
-            <div className="flex flex-col sm:flex-row gap-6 justify-center animate-fade-in">
-              <Link to="/metaverso" className="btn-primary text-lg px-10 py-4">
-                <Eye className="mr-3" size={24} />
-                {t.hero.cta1}
-              </Link>
-              <Link
-                to="/propiedades"
-                className="btn-secondary text-lg px-10 py-4"
-              >
-                <Building className="mr-3" size={24} />
-                {t.hero.cta2}
-              </Link>
-            </div>
-
-            {/* Trust Indicators */}
-            <div className="flex flex-wrap justify-center gap-8 mt-16 text-sm">
-              <div className="flex items-center gap-2 glass-card px-4 py-2 rounded-full">
-                <CheckCircle className="text-neon-teal" size={16} />
-                <span className="text-white/80">Verificado por notario</span>
-              </div>
-              <div className="flex items-center gap-2 glass-card px-4 py-2 rounded-full">
-                <Shield className="text-neon-emerald" size={16} />
-                <span className="text-white/80">Registro de propiedad</span>
-              </div>
-              <div className="flex items-center gap-2 glass-card px-4 py-2 rounded-full">
-                <Scale className="text-neon-teal" size={16} />
-                <span className="text-white/80">Cumplimiento legal</span>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* Scroll Indicator */}
-        <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
-          <ChevronDown className="text-white/60" size={32} />
-        </div>
-      </section>
+      {/* Hero Section - BlueEye Avatar */}
+      <HeroBlueEye />
 
       {/* AI Concierge */}
       <AIConcierge />
