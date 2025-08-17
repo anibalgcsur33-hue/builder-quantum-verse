@@ -58,20 +58,21 @@ export default function HeroBlueEye() {
           zIndex: 1,
           textAlign: "center",
           maxWidth: "900px",
-          padding: "0 2rem"
+          padding: "0 2rem",
+          paddingTop: "120px" // Más espacio para no tapar el header
         }}
       >
-        <h1 style={{ fontSize: "3rem", marginBottom: "1rem", fontWeight: "bold" }}>
-          Bienvenido a <span style={{ color: "#0EE7E7" }}>BlueEye</span>
-        </h1>
-        <p style={{ fontSize: "1.3rem", marginBottom: "2rem", opacity: 0.8 }}>
-          Tu asesora virtual en el metaverso inmobiliario.
-        </p>
-
         {/* 🤖 Avatar BlueEye en primer plano */}
-        <div style={{ maxWidth: "600px", margin: "0 auto" }}>
-          <BlueEye height={480} autoRotate={true} />
+        <div style={{ maxWidth: "600px", margin: "0 auto 2rem auto" }}>
+          <BlueEye height={420} autoRotate={true} />
         </div>
+
+        <h1 style={{ fontSize: "2.5rem", marginBottom: "1rem", fontWeight: "bold" }}>
+          Conoce a <span style={{ color: "#0EE7E7" }}>BlueEye</span>
+        </h1>
+        <p style={{ fontSize: "1.2rem", marginBottom: "2rem", opacity: 0.9 }}>
+          Tu asesora virtual inmobiliaria con inteligencia artificial
+        </p>
 
         <button
           style={{
