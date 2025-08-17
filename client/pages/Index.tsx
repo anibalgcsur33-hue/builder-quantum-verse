@@ -431,7 +431,7 @@ export default function Index() {
                 playsInline
                 poster="/placeholder.svg"
               >
-                <source src="/luxury-villa-tour.mp4" type="video/mp4" />
+                <source src="https://cdn.builder.io/o/assets%2Fb022b0ef6eaa47cba6348b0a48fcb095%2F69654e0c8eeb48cabf7dfe2e22ac60ac?alt=media&token=2ebe688d-8a7e-43fa-ae96-6667d5b3642a&apiKey=b022b0ef6eaa47cba6348b0a48fcb095" type="video/mp4" />
                 <img
                   src="/placeholder.svg"
                   alt="Luxury villa interior VR tour"
