@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import BlueEye from "./BlueEye";
+import BlueEyeFixed from "./BlueEyeFixed";
 
 export default function HeroBlueEye() {
   useEffect(() => {
