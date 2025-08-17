@@ -103,10 +103,13 @@ export default function Header({
               </Link>
               <Link
                 to="/community"
-                className="block text-white/80 hover:text-neon-teal transition-colors duration-300 font-medium py-2"
+                className="block text-white/80 hover:text-neon-teal transition-colors duration-300 font-medium py-2 relative"
                 onClick={() => setIsMenuOpen(false)}
               >
                 Comunidad
+                <span className="inline-block bg-purple-500 text-white text-xs px-2 py-1 rounded-full ml-2 animate-pulse">
+                  ¡Únete!
+                </span>
               </Link>
               <Link
                 to="/metaverse-map"
