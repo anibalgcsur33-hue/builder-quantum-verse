@@ -167,6 +167,7 @@ Perfecta para residencia habitual o como inversión en el mercado de alquiler va
     { id: "overview", label: "Descripción", icon: FileText },
     { id: "features", label: "Características", icon: CheckCircle },
     { id: "location", label: "Ubicación", icon: MapPin },
+    { id: "community", label: "Comunidad", icon: Users },
     { id: "documents", label: "Documentos", icon: Download },
   ];
 
