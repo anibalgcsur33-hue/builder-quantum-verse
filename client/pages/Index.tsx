@@ -599,39 +599,90 @@ export default function Index() {
             </div>
 
             <div className="order-1 lg:order-2 relative">
-              <video
-                className="w-full h-96 lg:h-[500px] object-cover rounded-2xl shadow-glass"
-                autoPlay
-                muted
-                loop
-                playsInline
-                poster="/placeholder.svg"
-              >
-                <source src="/vr-user-holograms.mp4" type="video/mp4" />
-                <img
-                  src="/placeholder.svg"
-                  alt="User with VR headset interacting with holograms"
-                />
-              </video>
-              <div className="absolute inset-0 bg-gradient-to-t from-blue-dark/40 to-transparent rounded-2xl"></div>
-
-              {/* Floating Elements */}
-              <div className="absolute top-6 right-6">
-                <div className="glass-card px-4 py-2 rounded-full flex items-center gap-2 animate-float">
-                  <Headphones className="text-neon-emerald" size={16} />
-                  <span className="text-white font-medium">Audio 3D</span>
+              {/* AI Avatar Digital */}
+              <div className="w-full h-96 lg:h-[500px] bg-gradient-to-br from-blue-900/50 via-purple-900/30 to-blue-800/60 rounded-2xl shadow-glass overflow-hidden relative flex items-center justify-center">
+                {/* Background Pattern */}
+                <div className="absolute inset-0 opacity-20">
+                  <div className="absolute inset-0 bg-gradient-to-r from-neon-teal/20 to-neon-emerald/20 rounded-2xl"></div>
+                  <div className="grid grid-cols-8 grid-rows-8 h-full w-full">
+                    {Array.from({ length: 64 }).map((_, i) => (
+                      <div
+                        key={i}
+                        className="border border-white/5 animate-pulse"
+                        style={{ animationDelay: `${i * 0.1}s` }}
+                      ></div>
+                    ))}
+                  </div>
                 </div>
-              </div>
 
-              <div className="absolute bottom-6 left-6">
-                <div
-                  className="glass-card px-4 py-2 rounded-full flex items-center gap-2 animate-float"
-                  style={{ animationDelay: "1s" }}
-                >
-                  <MessageCircle className="text-neon-teal" size={16} />
-                  <span className="text-white font-medium">
-                    IA en Tiempo Real
-                  </span>
+                {/* AI Avatar */}
+                <div className="relative z-10 flex flex-col items-center">
+                  {/* Avatar Container with Holographic Effect */}
+                  <div className="relative">
+                    {/* Holographic Rings */}
+                    <div className="absolute -inset-8 rounded-full border-2 border-neon-teal/30 animate-spin-slow"></div>
+                    <div className="absolute -inset-12 rounded-full border border-neon-emerald/20 animate-spin-slow-reverse"></div>
+                    <div className="absolute -inset-16 rounded-full border border-blue-400/10 animate-pulse"></div>
+
+                    {/* Main Avatar */}
+                    <div className="w-48 h-48 lg:w-64 lg:h-64 rounded-full overflow-hidden border-4 border-gradient-to-br from-neon-teal to-neon-emerald shadow-2xl shadow-neon-teal/50 relative">
+                      <img
+                        src="https://cdn.builder.io/api/v1/image/assets%2Fb022b0ef6eaa47cba6348b0a48fcb095%2F17edddd60152463581993ed71a0f6614?format=webp&width=800"
+                        alt="AI Assistant Avatar"
+                        className="w-full h-full object-cover scale-110 hover:scale-125 transition-transform duration-700"
+                      />
+                      {/* Digital Effect Overlay */}
+                      <div className="absolute inset-0 bg-gradient-to-t from-transparent via-neon-teal/10 to-transparent animate-pulse"></div>
+                    </div>
+
+                    {/* Floating Data Points */}
+                    <div className="absolute -top-4 -right-4 w-8 h-8 bg-neon-teal/80 rounded-full flex items-center justify-center animate-bounce">
+                      <Brain className="w-4 h-4 text-white" />
+                    </div>
+                    <div className="absolute -bottom-4 -left-4 w-6 h-6 bg-neon-emerald/80 rounded-full flex items-center justify-center animate-bounce" style={{ animationDelay: '0.5s' }}>
+                      <MessageCircle className="w-3 h-3 text-white" />
+                    </div>
+                    <div className="absolute top-1/2 -left-8 w-4 h-4 bg-blue-400/80 rounded-full animate-pulse" style={{ animationDelay: '1s' }}></div>
+                    <div className="absolute top-1/4 -right-8 w-3 h-3 bg-purple-400/80 rounded-full animate-pulse" style={{ animationDelay: '1.5s' }}></div>
+                  </div>
+
+                  {/* AI Status */}
+                  <div className="mt-8 glass-card px-6 py-3 rounded-full">
+                    <div className="flex items-center gap-3">
+                      <div className="w-3 h-3 bg-green-400 rounded-full animate-pulse"></div>
+                      <span className="text-white font-medium">IA Asistente Activo</span>
+                      <Sparkles className="w-4 h-4 text-neon-teal animate-pulse" />
+                    </div>
+                  </div>
+                </div>
+
+                {/* Floating Information Cards */}
+                <div className="absolute top-6 right-6">
+                  <div className="glass-card px-4 py-2 rounded-full flex items-center gap-2 animate-float">
+                    <Shield className="text-neon-emerald" size={16} />
+                    <span className="text-white font-medium">Seguro Legal</span>
+                  </div>
+                </div>
+
+                <div className="absolute top-20 left-6">
+                  <div className="glass-card px-4 py-2 rounded-full flex items-center gap-2 animate-float" style={{ animationDelay: "0.5s" }}>
+                    <Clock className="text-neon-teal" size={16} />
+                    <span className="text-white font-medium">24/7 Disponible</span>
+                  </div>
+                </div>
+
+                <div className="absolute bottom-6 right-6">
+                  <div className="glass-card px-4 py-2 rounded-full flex items-center gap-2 animate-float" style={{ animationDelay: "1s" }}>
+                    <CheckCircle className="text-neon-emerald" size={16} />
+                    <span className="text-white font-medium">Verificado</span>
+                  </div>
+                </div>
+
+                <div className="absolute bottom-20 left-6">
+                  <div className="glass-card px-4 py-2 rounded-full flex items-center gap-2 animate-float" style={{ animationDelay: "1.5s" }}>
+                    <Users className="text-neon-teal" size={16} />
+                    <span className="text-white font-medium">Equipo Experto</span>
+                  </div>
                 </div>
               </div>
             </div>
