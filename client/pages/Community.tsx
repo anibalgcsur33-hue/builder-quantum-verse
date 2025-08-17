@@ -1,6 +1,9 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import Header from "../components/Header";
+import GamificationSystem from "../components/GamificationSystem";
+import EventsSystem from "../components/EventsSystem";
+import CommunityGroups from "../components/CommunityGroups";
 import {
   Users,
   MessageSquare,
@@ -25,6 +28,17 @@ import {
   Image as ImageIcon,
   Video,
   FileText,
+  Trophy,
+  Gift,
+  Heart,
+  UserPlus,
+  CheckCircle,
+  Home,
+  Coins,
+  Award,
+  Presentation,
+  Coffee,
+  User,
 } from "lucide-react";
 
 export default function Community() {
