@@ -318,22 +318,25 @@ export default function BlueEye({ height = 520, autoRotate = true }: BlueEyeProp
 
       scene.add(avatar);
 
-      // Configurar animaciones
-      if (gltf.animations && gltf.animations.length > 0) {
+      // Configurar animaciones FBX
+      if (fbx.animations && fbx.animations.length > 0) {
         const mixer = new THREE.AnimationMixer(avatar);
         mixerRef.current = mixer;
 
-        // Buscar animación idle
-        let idleAnimation = gltf.animations.find((anim: THREE.AnimationClip) => 
-          anim.name.toLowerCase().includes('idle')
-        ) || gltf.animations[0];
+        // Buscar animación idle o usar la primera disponible
+        let idleAnimation = fbx.animations.find((anim: THREE.AnimationClip) =>
+          anim.name.toLowerCase().includes('idle') ||
+          anim.name.toLowerCase().includes('breathing') ||
+          anim.name.toLowerCase().includes('standing')
+        ) || fbx.animations[0];
 
         const action = mixer.clipAction(idleAnimation);
         action.setLoop(THREE.LoopRepeat, Infinity);
-        action.setEffectiveWeight(0.7);
+        action.setEffectiveWeight(0.8); // Más intenso para FBX
         action.play();
 
-        console.log(`🎭 Animación iniciada: ${idleAnimation.name}`);
+        console.log(`🎭 Animación FBX iniciada: ${idleAnimation.name}`);
+        console.log(`🎮 Total animaciones disponibles: ${fbx.animations.length}`);
       }
 
       // Buscar y anclar props si existen
