@@ -59,12 +59,27 @@ interface ThreeJSRefs {
   t0: number;
 }
 
-const Avatar3D: React.FC<Avatar3DProps> = ({ 
-  className = '', 
+const Avatar3D: React.FC<Avatar3DProps> = ({
+  className = '',
   onInteraction,
-  isVisible = true 
+  isVisible = true
 }) => {
-  const canvasRef = useRef<HTMLCanvasElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const threeRef = useRef<ThreeJSRefs>({
+    scene: null,
+    camera: null,
+    renderer: null,
+    avatar: null,
+    skinnedMesh: null,
+    mixer: null,
+    clock: new THREE.Clock(),
+    mouthMap: {},
+    currentVisemes: [],
+    audio: null,
+    t0: 0
+  });
+  const animationFrameRef = useRef<number>();
+
   const [avatarState, setAvatarState] = useState<AvatarState>({
     isListening: false,
     isSpeaking: false,
