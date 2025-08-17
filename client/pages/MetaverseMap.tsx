@@ -3,6 +3,9 @@ import { Link } from "react-router-dom";
 import Header from "../components/Header";
 import LiveSocialProof from "../components/LiveSocialProof";
 import MetaverseExperience from "../components/MetaverseExperience";
+import Advanced3DMap from "../components/Advanced3DMap";
+import HeatmapLegend from "../components/HeatmapLegend";
+import MultiplayerController from "../components/MultiplayerController";
 import {
   Map,
   Search,
