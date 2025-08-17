@@ -3,8 +3,8 @@ import * as THREE from "three";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
 
-// Avatar original que funcionaba
-const AVATAR_URL = "https://models.readyplayer.me/68a130cc6db44d17d10d931b.glb";
+// URL del avatar local - cambiar cuando tengas el archivo
+const AVATAR_URL = "/assets/blueeye.glb";
 
 interface BlueEyeProps {
   height?: number;
@@ -18,6 +18,7 @@ export default function BlueEye({ height = 520, autoRotate = true }: BlueEyeProp
   const meshRef = useRef<THREE.SkinnedMesh | null>(null);
   const jawIndexRef = useRef(-1);
   const speakingRef = useRef(false);
+  const avatarRef = useRef<THREE.Group | null>(null);
 
   useEffect(() => {
     if (!containerRef.current) return;
@@ -25,29 +26,49 @@ export default function BlueEye({ height = 520, autoRotate = true }: BlueEyeProp
     const root = containerRef.current;
     const scene = new THREE.Scene();
 
+    // Camera optimizada para avatar femenino
     const camera = new THREE.PerspectiveCamera(
       35,
       root.clientWidth / height,
       0.1,
       100
     );
-    camera.position.set(0, 1.6, 2.2);
+    camera.position.set(0, 1.6, 2.5);
 
-    const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+    // Renderer con mejor calidad
+    const renderer = new THREE.WebGLRenderer({ 
+      antialias: true, 
+      alpha: true,
+      powerPreference: "high-performance"
+    });
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
     renderer.setSize(root.clientWidth, height);
     renderer.shadowMap.enabled = true;
+    renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+    renderer.outputColorSpace = THREE.SRGBColorSpace;
+    renderer.toneMapping = THREE.ACESFilmicToneMapping;
+    renderer.toneMappingExposure = 1.2;
     root.appendChild(renderer.domElement);
 
-    // Luces
-    const hemi = new THREE.HemisphereLight(0xffffff, 0x303040, 0.8);
-    scene.add(hemi);
-    const key = new THREE.DirectionalLight(0xffffff, 1.1);
-    key.position.set(2, 3, 1.5);
-    key.castShadow = true;
-    scene.add(key);
+    // Iluminación profesional
+    const ambientLight = new THREE.AmbientLight(0x404040, 0.6);
+    scene.add(ambientLight);
 
-    // Suelo
+    const directionalLight = new THREE.DirectionalLight(0xffffff, 1.5);
+    directionalLight.position.set(3, 4, 2);
+    directionalLight.castShadow = true;
+    directionalLight.shadow.mapSize.width = 2048;
+    directionalLight.shadow.mapSize.height = 2048;
+    directionalLight.shadow.camera.near = 0.5;
+    directionalLight.shadow.camera.far = 10;
+    scene.add(directionalLight);
+
+    // Luz de relleno
+    const fillLight = new THREE.DirectionalLight(0x87ceeb, 0.4);
+    fillLight.position.set(-2, 2, -2);
+    scene.add(fillLight);
+
+    // Suelo con sombras
     const floor = new THREE.Mesh(
       new THREE.PlaneGeometry(10, 10),
       new THREE.ShadowMaterial({ opacity: 0.25 })
@@ -56,134 +77,196 @@ export default function BlueEye({ height = 520, autoRotate = true }: BlueEyeProp
     floor.receiveShadow = true;
     scene.add(floor);
 
-    // Controles
+    // Controles de cámara
     const controls = new OrbitControls(camera, renderer.domElement);
     controls.enableDamping = true;
-    controls.target.set(0, 1.6, 0); // Enfocar más arriba para ver mejor la cara
+    controls.target.set(0, 1.6, 0);
     controls.autoRotate = autoRotate;
-    controls.autoRotateSpeed = 0.4; // Rotación más lenta
+    controls.autoRotateSpeed = 0.5;
     controls.minDistance = 1.5;
     controls.maxDistance = 4;
-    controls.minPolarAngle = Math.PI / 6; // Limitar ángulo vertical
+    controls.minPolarAngle = Math.PI / 6;
     controls.maxPolarAngle = Math.PI / 2;
+
+    // Helper para buscar bones por nombre
+    const findBoneByName = (object: THREE.Object3D, ...names: string[]) => {
+      let foundBone: THREE.Object3D | null = null;
+      object.traverse((child) => {
+        if (child.isBone || child.type === 'Bone') {
+          const boneName = child.name.toLowerCase();
+          for (const name of names) {
+            if (boneName.includes(name.toLowerCase()) && !foundBone) {
+              foundBone = child;
+              break;
+            }
+          }
+        }
+      });
+      return foundBone;
+    };
 
     // Cargar avatar
     const loader = new GLTFLoader();
+    console.log("🔄 Cargando avatar desde:", AVATAR_URL);
+    
     loader.load(
       AVATAR_URL,
       (gltf) => {
+        console.log("✅ Avatar cargado exitosamente");
+        
         const avatar = gltf.scene;
+        avatarRef.current = avatar;
 
-        // Posicionar avatar para que mire al frente
-        avatar.position.set(0, 0, 0);
-        avatar.rotation.y = 0; // Mirar directamente al frente
-        avatar.scale.setScalar(1);
+        // Configurar materiales y sombras
+        avatar.traverse((child) => {
+          if (child.isMesh) {
+            child.castShadow = true;
+            child.receiveShadow = true;
+            
+            // Mejorar materiales
+            if (child.material) {
+              if (Array.isArray(child.material)) {
+                child.material.forEach((mat: any) => {
+                  mat.envMapIntensity = 0.5;
+                  mat.needsUpdate = true;
+                });
+              } else {
+                (child.material as any).envMapIntensity = 0.5;
+                child.material.needsUpdate = true;
+              }
+            }
 
-        avatar.traverse((o) => {
-          if (o instanceof THREE.Mesh) {
-            o.castShadow = true;
-            if (o instanceof THREE.SkinnedMesh && !meshRef.current) {
-              meshRef.current = o;
+            // Detectar mesh principal para blendshapes
+            if (child.isSkinnedMesh && !meshRef.current) {
+              meshRef.current = child as THREE.SkinnedMesh;
+              
+              // Buscar blendshape para mandíbula
+              const morphTargets = child.morphTargetDictionary;
+              if (morphTargets) {
+                // Posibles nombres para apertura de boca
+                const jawNames = ['jawOpen', 'jaw_open', 'mouth_open', 'A', 'aa'];
+                for (const name of jawNames) {
+                  if (morphTargets[name] !== undefined) {
+                    jawIndexRef.current = morphTargets[name];
+                    console.log(`📢 Blendshape encontrado: ${name} (index: ${jawIndexRef.current})`);
+                    break;
+                  }
+                }
+              }
             }
           }
         });
 
+        // Centrar y posicionar avatar
+        const box = new THREE.Box3().setFromObject(avatar);
+        const center = new THREE.Vector3();
+        const size = new THREE.Vector3();
+        box.getCenter(center);
+        box.getSize(size);
+
+        // Posicionar en el suelo
+        avatar.position.y = -box.min.y;
+        avatar.position.x = -center.x;
+        avatar.position.z = -center.z;
+
+        // Escala si es necesario
+        const maxSize = Math.max(size.x, size.y, size.z);
+        if (maxSize > 3) {
+          const scale = 2.5 / maxSize;
+          avatar.scale.setScalar(scale);
+        }
+
         scene.add(avatar);
 
-        // Agregar tablet y bolígrafo para justificar la pose de los brazos
-        setTimeout(() => {
-          // Crear tablet
-          const tabletGeometry = new THREE.BoxGeometry(0.15, 0.02, 0.2);
-          const tabletMaterial = new THREE.MeshLambertMaterial({ color: 0x333333 });
-          const tablet = new THREE.Mesh(tabletGeometry, tabletMaterial);
-
-          // Crear pantalla de tablet
-          const screenGeometry = new THREE.PlaneGeometry(0.14, 0.18);
-          const screenMaterial = new THREE.MeshLambertMaterial({
-            color: 0x1a1a2e,
-            emissive: 0x0066cc,
-            emissiveIntensity: 0.1
-          });
-          const screen = new THREE.Mesh(screenGeometry, screenMaterial);
-          screen.position.set(0, 0.011, 0);
-          screen.rotation.x = -Math.PI / 2;
-          tablet.add(screen);
-
-          // Crear bolígrafo
-          const penGeometry = new THREE.CylinderGeometry(0.003, 0.003, 0.15);
-          const penMaterial = new THREE.MeshLambertMaterial({ color: 0x0066ff });
-          const pen = new THREE.Mesh(penGeometry, penMaterial);
-
-          // Buscar las manos para colocar los objetos
-          avatar.traverse((bone) => {
-            if (bone.isBone) {
-              // Tablet en mano izquierda
-              if (bone.name === "LeftHand" || bone.name === "mixamorigLeftHand") {
-                tablet.position.set(0, 0, 0.1);
-                tablet.rotation.set(-Math.PI / 4, 0, 0);
-                bone.add(tablet);
-              }
-              // Bolígrafo en mano derecha
-              if (bone.name === "RightHand" || bone.name === "mixamorigRightHand") {
-                pen.position.set(0, 0, 0.1);
-                pen.rotation.set(0, 0, Math.PI / 4);
-                bone.add(pen);
-              }
-
-              // Ajustar pose de brazos para sostener los objetos
-              if (bone.name === "LeftArm" || bone.name === "mixamorigLeftArm") {
-                bone.rotation.x = 0.3; // Brazo izquierdo sosteniendo tablet
-                bone.rotation.z = -0.4;
-              }
-              if (bone.name === "RightArm" || bone.name === "mixamorigRightArm") {
-                bone.rotation.x = 0.2; // Brazo derecho con bolígrafo
-                bone.rotation.z = 0.3;
-              }
-              if (bone.name === "LeftForeArm" || bone.name === "mixamorigLeftForeArm") {
-                bone.rotation.x = -0.5; // Antebrazo sostiene tablet
-              }
-              if (bone.name === "RightForeArm" || bone.name === "mixamorigRightForeArm") {
-                bone.rotation.x = -0.3; // Antebrazo con bolígrafo
-              }
-            }
-          });
-        }, 1000);
-
-        // Blendshape para mandíbula
-        const dict = meshRef.current?.morphTargetDictionary || {};
-        if (dict["jawOpen"] !== undefined) {
-          jawIndexRef.current = dict["jawOpen"];
-        }
-
-        // Animación idle simple
-        if (gltf.animations?.length) {
+        // Configurar animaciones
+        if (gltf.animations && gltf.animations.length > 0) {
           const mixer = new THREE.AnimationMixer(avatar);
           mixerRef.current = mixer;
-          const idle = mixer.clipAction(gltf.animations[0]);
-          idle.loop = THREE.LoopRepeat;
-          idle.setEffectiveWeight(0.5); // Animación más sutil
-          idle.play();
+
+          // Buscar animación idle
+          let idleAnimation = gltf.animations.find((anim: THREE.AnimationClip) => 
+            anim.name.toLowerCase().includes('idle')
+          ) || gltf.animations[0];
+
+          const action = mixer.clipAction(idleAnimation);
+          action.setLoop(THREE.LoopRepeat, Infinity);
+          action.setEffectiveWeight(0.7);
+          action.play();
+
+          console.log(`🎭 Animación iniciada: ${idleAnimation.name}`);
         }
+
+        // Buscar y anclar props si existen
+        setTimeout(() => {
+          const rightHand = findBoneByName(avatar, 'righthand', 'hand_r', 'mixamorig:righthand');
+          
+          if (rightHand) {
+            // Buscar objetos que podrían ser props (tablet, phone, etc.)
+            const props: THREE.Object3D[] = [];
+            avatar.traverse((child) => {
+              if (child.isMesh && !child.isSkinnedMesh) {
+                const name = child.name.toLowerCase();
+                if (name.includes('tablet') || name.includes('phone') || name.includes('prop')) {
+                  props.push(child);
+                }
+              }
+            });
+
+            // Anclar el primer prop encontrado
+            if (props.length > 0) {
+              const prop = props[0];
+              
+              // Remover de su parent actual
+              if (prop.parent) {
+                prop.parent.remove(prop);
+              }
+              
+              // Añadir a la mano con posición relativa
+              prop.position.set(0, 0.05, 0.08);
+              prop.rotation.set(-Math.PI / 6, 0, Math.PI / 12);
+              rightHand.add(prop);
+              
+              console.log(`📱 Prop anclado a mano derecha: ${prop.name}`);
+            }
+          }
+        }, 1000);
       },
-      undefined,
-      (err) => console.error("Error cargando GLB:", err)
+      (progress) => {
+        const percent = (progress.loaded / progress.total) * 100;
+        console.log(`📥 Progreso de carga: ${percent.toFixed(1)}%`);
+      },
+      (error) => {
+        console.error("❌ Error cargando avatar:", error);
+        console.log("💡 Verifica que el archivo blueeye.glb existe en /public/assets/");
+        console.log("💡 Asegúrate de que el modelo tiene rig humanoide y escala correcta");
+      }
     );
 
-    // Render loop
+    // Loop de renderizado
     let rafId: number;
     const animate = () => {
       rafId = requestAnimationFrame(animate);
-      const dt = clockRef.current.getDelta();
-      mixerRef.current && mixerRef.current.update(dt);
+      const delta = clockRef.current.getDelta();
+      
+      // Actualizar animaciones
+      if (mixerRef.current) {
+        mixerRef.current.update(delta);
+      }
 
-      // Simular boca
+      // Simular movimiento de boca al hablar
       if (
         speakingRef.current &&
         meshRef.current?.morphTargetInfluences &&
         jawIndexRef.current >= 0
       ) {
-        meshRef.current.morphTargetInfluences[jawIndexRef.current] =
-          (Math.sin(performance.now() * 0.03) * 0.5 + 0.5) * 0.6;
+        const intensity = (Math.sin(performance.now() * 0.03) * 0.5 + 0.5) * 0.7;
+        meshRef.current.morphTargetInfluences[jawIndexRef.current] = intensity;
+      } else if (
+        meshRef.current?.morphTargetInfluences &&
+        jawIndexRef.current >= 0
+      ) {
+        // Cerrar boca cuando no habla
+        meshRef.current.morphTargetInfluences[jawIndexRef.current] = 0;
       }
 
       controls.update();
@@ -193,6 +276,9 @@ export default function BlueEye({ height = 520, autoRotate = true }: BlueEyeProp
 
     return () => {
       cancelAnimationFrame(rafId);
+      if (mixerRef.current) {
+        mixerRef.current.stopAllAction();
+      }
       renderer.dispose();
       if (root.contains(renderer.domElement)) {
         root.removeChild(renderer.domElement);
@@ -200,19 +286,16 @@ export default function BlueEye({ height = 520, autoRotate = true }: BlueEyeProp
     };
   }, [height, autoRotate]);
 
-  // Síntesis de voz del navegador
+  // Síntesis de voz
   const speak = (line: string) => {
     if (!("speechSynthesis" in window)) return;
 
-    // Reemplazar "BlueEye" con "Blu-ai" para mejor pronunciación en español
     const textToSpeak = line.replace(/BlueEye/gi, "Blu-ai");
-
     const utter = new SpeechSynthesisUtterance(textToSpeak);
     const voices = speechSynthesis.getVoices();
-    const es = voices.find((v) => /es-|Spanish/i.test(v.lang));
-    if (es) utter.voice = es;
+    const spanishVoice = voices.find((v) => /es-|Spanish/i.test(v.lang));
+    if (spanishVoice) utter.voice = spanishVoice;
 
-    // Configuración optimizada para voz femenina
     utter.rate = 0.8;
     utter.pitch = 1.2;
     utter.volume = 0.9;
@@ -221,26 +304,26 @@ export default function BlueEye({ height = 520, autoRotate = true }: BlueEyeProp
       speakingRef.current = true;
       console.log("🗣️ BlueEye comenzó a hablar");
     };
+    
     utter.onend = () => {
       speakingRef.current = false;
       console.log("🔇 BlueEye terminó de hablar");
     };
+    
     utter.onerror = () => {
       speakingRef.current = false;
-      console.log("❌ Error en síntesis de voz");
     };
 
     speechSynthesis.cancel();
     speechSynthesis.speak(utter);
   };
 
-  // Escuchar saludo automático desde el Hero
+  // Escuchar eventos de saludo
   useEffect(() => {
     const handleSaludo = (e: CustomEvent) => {
       const texto = e.detail;
       console.log("📢 Evento blueeye-saludo recibido:", texto);
-
-      // Pequeño delay para asegurar que el avatar esté cargado
+      
       setTimeout(() => {
         speak(texto);
       }, 500);
@@ -248,10 +331,10 @@ export default function BlueEye({ height = 520, autoRotate = true }: BlueEyeProp
 
     window.addEventListener("blueeye-saludo", handleSaludo as EventListener);
 
-    // También intentar hablar si no se activó el evento
+    // Saludo de respaldo
     const fallbackTimeout = setTimeout(() => {
       if (!speakingRef.current) {
-        speak("¡Hola! Soy Blu-ai, tu asesora virtual inmobiliaria.");
+        speak("¡Hola! Soy Blu-ai, tu nueva asesora virtual inmobiliaria profesional.");
       }
     }, 5000);
 
