@@ -231,26 +231,8 @@ export default function Index() {
 
       {/* Hero Section - BlueEye Homes Presentation Video */}
       <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-        {/* Presentation Video Background */}
-        <div className="absolute inset-0 z-0">
-          <video
-            className="w-full h-full object-cover"
-            autoPlay
-            muted
-            loop
-            playsInline
-            poster="/placeholder.svg"
-            aria-label="Video de presentación BlueEye Homes"
-          >
-            <source
-              src="https://cdn.builder.io/o/assets%2Fb022b0ef6eaa47cba6348b0a48fcb095%2F64f7b1c47f374d8ebf859e5b650ba2ba?alt=media&token=b197dd5a-d641-4142-a5c9-c35b7fc8f470&apiKey=b022b0ef6eaa47cba6348b0a48fcb095"
-              type="video/mp4"
-            />
-            <img
-              src="/placeholder.svg"
-              alt="Video de presentación BlueEye Homes"
-            />
-          </video>
+        {/* Background optimizado */}
+        <div className="absolute inset-0 z-0 bg-gradient-to-br from-blue-dark via-blue-900 to-blue-800">
           <div className="absolute inset-0 bg-gradient-to-b from-blue-dark/40 via-transparent to-blue-dark/70"></div>
         </div>
 
