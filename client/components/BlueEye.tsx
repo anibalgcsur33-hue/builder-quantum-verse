@@ -176,10 +176,27 @@ export default function BlueEye({ height = 520, autoRotate = true }: BlueEyeProp
   useEffect(() => {
     const handleSaludo = (e: CustomEvent) => {
       const texto = e.detail;
-      speak(texto);
+      console.log("📢 Evento blueeye-saludo recibido:", texto);
+
+      // Pequeño delay para asegurar que el avatar esté cargado
+      setTimeout(() => {
+        speak(texto);
+      }, 500);
     };
+
     window.addEventListener("blueeye-saludo", handleSaludo as EventListener);
-    return () => window.removeEventListener("blueeye-saludo", handleSaludo as EventListener);
+
+    // También intentar hablar si no se activó el evento
+    const fallbackTimeout = setTimeout(() => {
+      if (!speakingRef.current) {
+        speak("¡Hola! Soy Blu-ai, tu asesora virtual inmobiliaria.");
+      }
+    }, 5000);
+
+    return () => {
+      window.removeEventListener("blueeye-saludo", handleSaludo as EventListener);
+      clearTimeout(fallbackTimeout);
+    };
   }, []);
 
   return (
