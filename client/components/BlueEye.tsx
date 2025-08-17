@@ -58,9 +58,13 @@ export default function BlueEye({ height = 520, autoRotate = true }: BlueEyeProp
     // Controles
     const controls = new OrbitControls(camera, renderer.domElement);
     controls.enableDamping = true;
-    controls.target.set(0, 1.5, 0);
+    controls.target.set(0, 1.6, 0); // Enfocar más arriba para ver mejor la cara
     controls.autoRotate = autoRotate;
-    controls.autoRotateSpeed = 0.6;
+    controls.autoRotateSpeed = 0.4; // Rotación más lenta
+    controls.minDistance = 1.5;
+    controls.maxDistance = 4;
+    controls.minPolarAngle = Math.PI / 6; // Limitar ángulo vertical
+    controls.maxPolarAngle = Math.PI / 2;
 
     // Cargar avatar
     const loader = new GLTFLoader();
