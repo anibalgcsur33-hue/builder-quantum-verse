@@ -64,7 +64,7 @@ export default function HeroBlueEye() {
       >
         {/* 🤖 Avatar BlueEye en primer plano */}
         <div style={{ maxWidth: "600px", margin: "0 auto 2rem auto" }}>
-          <BlueEye height={420} autoRotate={true} />
+          <BlueEyeFixed height={420} autoRotate={true} />
         </div>
 
         <h1 style={{ fontSize: "2.5rem", marginBottom: "1rem", fontWeight: "bold" }}>
