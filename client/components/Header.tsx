@@ -47,10 +47,19 @@ export default function Header({
               Propiedades
             </Link>
             <Link
-              to="/community"
+              to="/marketplace"
               className="text-white/80 hover:text-neon-teal transition-colors duration-300 font-medium"
             >
+              Marketplace
+            </Link>
+            <Link
+              to="/community"
+              className="relative text-white/80 hover:text-neon-teal transition-colors duration-300 font-medium"
+            >
               Comunidad
+              <span className="absolute -top-1 -right-2 bg-purple-500 text-white text-xs px-1.5 py-0.5 rounded-full animate-pulse">
+                ¡Únete!
+              </span>
             </Link>
             <Link
               to="/metaverse-map"
