@@ -30,8 +30,8 @@
   - 30 FPS (perfecto para VR)
 
 ### 3. Colocar el Archivo
-- Renombrar el archivo exportado a `blueeye.glb`
-- Colocarlo en esta carpeta: `/public/assets/blueeye.glb`
+- Renombrar el archivo exportado a `blueeye.fbx`
+- Colocarlo en esta carpeta: `/public/assets/blueeye.fbx`
 
 ### 4. Verificaciones Importantes
 - **Rig Humanoide**: El modelo debe tener skeleton humanoide estándar
