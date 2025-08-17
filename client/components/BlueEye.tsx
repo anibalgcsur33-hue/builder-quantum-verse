@@ -3,8 +3,8 @@ import * as THREE from "three";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
 
-// Avatar con pose más natural (brazos relajados)
-const AVATAR_URL = "https://models.readyplayer.me/64f7b1c47f374d8ebf859e5b650ba2ba.glb";
+// Avatar femenino profesional con pose natural
+const AVATAR_URL = "https://models.readyplayer.me/6411823a35b4a800c0ca50bf.glb";
 
 interface BlueEyeProps {
   height?: number;
