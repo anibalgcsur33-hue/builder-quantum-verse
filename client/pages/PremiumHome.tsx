@@ -54,19 +54,13 @@ export default function PremiumHome() {
           </motion.div>
 
           <motion.h1
-            className="text-5xl md:text-7xl font-bold mb-8 leading-tight"
+            className="text-5xl md:text-7xl font-bold mb-8 leading-tight bg-gradient-to-r from-cyan-400 via-blue-400 to-purple-500 bg-clip-text text-transparent"
             animate={{
-              background: [
-                "linear-gradient(45deg, #67e8f9, #a855f7)",
-                "linear-gradient(45deg, #a855f7, #67e8f9)",
-                "linear-gradient(45deg, #67e8f9, #a855f7)"
-              ]
+              backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"]
             }}
-            transition={{ duration: 4, repeat: Infinity }}
+            transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
             style={{
-              backgroundClip: "text",
-              WebkitBackgroundClip: "text",
-              color: "transparent"
+              backgroundSize: "200% 200%"
             }}
           >
             El futuro del real estate de lujo empieza aquí
