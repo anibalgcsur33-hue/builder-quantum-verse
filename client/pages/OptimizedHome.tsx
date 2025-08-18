@@ -9,7 +9,7 @@ import NeuralField from "@/components/future/NeuralField";
 import QuantumPortalLoader from "@/components/future/QuantumPortalLoader";
 import QuantumBackgroundFallback from "@/components/future/QuantumBackgroundFallback";
 import CanaryMap3DFallback from "@/components/future/CanaryMap3DFallback";
-import HologramCard3D from "@/components/future/HologramCard3D";
+import HologramCard3DSimple from "@/components/future/HologramCard3DSimple";
 import SpatialAudioHotspot from "@/components/future/SpatialAudioHotspot";
 import ScrollTracker from "@/components/ux/ScrollTracker";
 import StickyCTA from "@/components/ux/StickyCTA";
@@ -83,26 +83,23 @@ export default function OptimizedHome() {
               </p>
             </div>
             <div className="grid md:grid-cols-3 gap-6">
-              <HologramCard3D
+              <HologramCard3DSimple
                 title="Villa Mirador — Tenerife"
                 price="€7.9M"
                 location="Santa Cruz de Tenerife"
-                sketchfabId="d729f2d7c8174bd4800182a6da28bf83"
-                fallbackImage="https://images.pexels.com/photos/8134750/pexels-photo-8134750.jpeg?w=400&auto=compress&cs=tinysrgb"
+                image="https://images.pexels.com/photos/8134750/pexels-photo-8134750.jpeg?w=800&auto=compress&cs=tinysrgb&dpr=2"
               />
-              <HologramCard3D
+              <HologramCard3DSimple
                 title="Skyline Penthouse — Barcelona"
                 price="€5.2M"
                 location="Eixample District"
-                sketchfabId="e30700a3565f41e3bd6c2751eccfe5f5"
-                fallbackImage="https://images.pexels.com/photos/8572163/pexels-photo-8572163.jpeg?w=400&auto=compress&cs=tinysrgb"
+                image="https://images.pexels.com/photos/8572163/pexels-photo-8572163.jpeg?w=800&auto=compress&cs=tinysrgb&dpr=2"
               />
-              <HologramCard3D
+              <HologramCard3DSimple
                 title="Cliffside Estate — Lanzarote"
                 price="€9.4M"
                 location="Puerto del Carmen"
-                sketchfabId="ba52e385eaf6407481fed1b1ede4649e"
-                fallbackImage="https://images.pexels.com/photos/29874112/pexels-photo-29874112.jpeg?w=400&auto=compress&cs=tinysrgb"
+                image="https://images.pexels.com/photos/29874112/pexels-photo-29874112.jpeg?w=800&auto=compress&cs=tinysrgb&dpr=2"
               />
             </div>
           </section>
