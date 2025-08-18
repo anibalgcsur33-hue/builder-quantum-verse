@@ -76,11 +76,15 @@ export default function PropertyGrid() {
               whileHover={{ y: -5, scale: 1.02, willChange: "transform" }}
             >
               <div className="relative h-48 overflow-hidden">
-                <img
+                <motion.img
                   src={property.image}
                   alt={property.title}
                   loading="lazy"
-                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                  className="w-full h-full object-cover rounded-xl shadow-lg"
+                  whileHover={{
+                    scale: 1.08,
+                    transition: { type: "spring" as const, stiffness: 200, damping: 15 }
+                  }}
                   style={{ willChange: "transform" }}
                   onLoad={(e) => {
                     // Switch to HD after load
