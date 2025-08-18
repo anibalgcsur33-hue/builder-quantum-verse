@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { Suspense } from "react";
 import HeroWaveTitle from "@/components/hero/HeroWaveTitle";
 import PropertyGrid from "@/components/property/PropertyGrid";
 import { VRDemoCTA } from "@/components/modals/DemoModalUsage";
@@ -25,6 +26,8 @@ import VRPortalTeaser from "@/components/sections/VRPortalTeaser";
 import InvestorsCTA from "@/components/sections/InvestorsCTA";
 import InvestorStatsAlternate from "@/components/sections/InvestorStatsAlternate";
 import SpainMapTeaser from "@/components/sections/SpainMapTeaser";
+import LazyVisible from "@/utils/LazyVisible";
+import MotionSafe from "@/utils/MotionSafe";
 
 export default function OptimizedHome() {
   return (
@@ -37,12 +40,14 @@ export default function OptimizedHome() {
         <QuantumBackground3D />
 
         {/* Neural Field Overlay */}
-        <NeuralField
-          density={0.00015}
-          colorA="#67e8f9"
-          colorB="#a78bfa"
-          className="opacity-60"
-        />
+        <MotionSafe>
+          <NeuralField
+            density={0.00015}
+            colorA="#67e8f9"
+            colorB="#a78bfa"
+            className="opacity-60"
+          />
+        </MotionSafe>
 
         <PremiumHeader />
 
@@ -72,33 +77,49 @@ export default function OptimizedHome() {
           </section>
 
           {/* Neural Navigation */}
-          <section className="py-8">
-            <NeuralNav />
-          </section>
+          <LazyVisible>
+            <section className="py-8">
+              <MotionSafe>
+                <NeuralNav />
+              </MotionSafe>
+            </section>
+          </LazyVisible>
 
           <PropertyGrid />
 
           {/* Canary Islands 3D Map */}
-          <section className="mx-auto max-w-6xl px-6 py-16">
-            <div className="text-center mb-8">
-              <h3 className="text-3xl font-bold text-white mb-4">
-                España & Canarias — Mapa Interactivo
-              </h3>
-              <p className="text-white/70 max-w-2xl mx-auto">
-                Explora nuestras propiedades premium en las ubicaciones más
-                exclusivas de España y las Islas Canarias
-              </p>
-            </div>
-            <div className="glass rounded-2xl ring-glow p-4 relative overflow-hidden scanlines">
-              <CanaryMap3DFallback />
-            </div>
-          </section>
+          <LazyVisible>
+            <section className="mx-auto max-w-6xl px-6 py-16">
+              <div className="text-center mb-8">
+                <h3 className="text-3xl font-bold text-white mb-4">
+                  España & Canarias — Mapa Interactivo
+                </h3>
+                <p className="text-white/70 max-w-2xl mx-auto">
+                  Explora nuestras propiedades premium en las ubicaciones más
+                  exclusivas de España y las Islas Canarias
+                </p>
+              </div>
+              <div className="glass rounded-2xl ring-glow p-4 relative overflow-hidden scanlines">
+                <MotionSafe>
+                  <CanaryMap3DFallback />
+                </MotionSafe>
+              </div>
+            </section>
+          </LazyVisible>
 
           {/* Neural Showcase */}
-          <NeuralShowcase />
+          <LazyVisible>
+            <MotionSafe>
+              <NeuralShowcase />
+            </MotionSafe>
+          </LazyVisible>
 
           {/* Spain Map with Animated Routes */}
-          <SpainMapTeaser />
+          <LazyVisible>
+            <MotionSafe>
+              <SpainMapTeaser />
+            </MotionSafe>
+          </LazyVisible>
 
           {/* Hologram Property Cards */}
           <section className="mx-auto max-w-6xl px-6 py-16">
@@ -136,25 +157,53 @@ export default function OptimizedHome() {
       </div>
 
       {/* Premium Showcase */}
-      <PremiumShowcase />
+      <LazyVisible>
+        <MotionSafe>
+          <PremiumShowcase />
+        </MotionSafe>
+      </LazyVisible>
 
       {/* Investor Stats Alternate */}
-      <InvestorStatsAlternate />
+      <LazyVisible>
+        <MotionSafe>
+          <InvestorStatsAlternate />
+        </MotionSafe>
+      </LazyVisible>
 
       {/* Holographic Concierge */}
-      <HolographicConcierge />
+      <LazyVisible>
+        <MotionSafe>
+          <HolographicConcierge />
+        </MotionSafe>
+      </LazyVisible>
 
       {/* VR Portal Teaser */}
-      <VRPortalTeaser />
+      <LazyVisible>
+        <MotionSafe>
+          <VRPortalTeaser />
+        </MotionSafe>
+      </LazyVisible>
 
       {/* Community Strip */}
-      <CommunityStrip />
+      <LazyVisible>
+        <MotionSafe>
+          <CommunityStrip />
+        </MotionSafe>
+      </LazyVisible>
 
       {/* VR Experience Section */}
-      <VRExperienceSection />
+      <LazyVisible>
+        <MotionSafe>
+          <VRExperienceSection />
+        </MotionSafe>
+      </LazyVisible>
 
       {/* Investors CTA */}
-      <InvestorsCTA />
+      <LazyVisible>
+        <MotionSafe>
+          <InvestorsCTA />
+        </MotionSafe>
+      </LazyVisible>
 
       <SpatialAudioHotspot />
       <SpatialAudioAdvanced />
