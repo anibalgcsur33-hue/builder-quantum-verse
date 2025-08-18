@@ -42,33 +42,33 @@ export default function Header({
           <nav className="hidden md:flex items-center space-x-8">
             <Link
               to="/propiedades"
-              className="text-white/80 hover:text-neon-teal transition-colors duration-300 font-medium"
+              className="text-white/80 hover:text-neon-teal transition-colors duration-300 font-medium flex items-center gap-2"
             >
-              Propiedades
+              🏠 Propiedades
             </Link>
             <Link
               to="/metaverso"
-              className="text-white/80 hover:text-neon-teal transition-colors duration-300 font-medium"
+              className="text-white/80 hover:text-neon-teal transition-colors duration-300 font-medium flex items-center gap-2"
             >
-              Metaverso
+              🌐 Metaverso
             </Link>
             <Link
               to="/comunidad"
-              className="text-white/80 hover:text-neon-teal transition-colors duration-300 font-medium"
+              className="text-white/80 hover:text-neon-teal transition-colors duration-300 font-medium flex items-center gap-2"
             >
-              Comunidad
+              👥 Comunidad
             </Link>
             <Link
               to="/inversion"
-              className="text-white/80 hover:text-neon-teal transition-colors duration-300 font-medium"
+              className="text-white/80 hover:text-neon-teal transition-colors duration-300 font-medium flex items-center gap-2"
             >
-              Inversión
+              💎 Inversión
             </Link>
             <button
               onClick={() => window.dispatchEvent(new CustomEvent("blueeye:assistant"))}
-              className="text-white/80 hover:text-neon-teal transition-colors duration-300 font-medium"
+              className="text-white/80 hover:text-neon-teal transition-colors duration-300 font-medium flex items-center gap-2"
             >
-              Concierge IA
+              🤖 Concierge IA
             </button>
             <Link
               to="/auth/login"
