@@ -1,3 +1,4 @@
+import { motion } from "framer-motion";
 import HeroWaveTitle from "@/components/hero/HeroWaveTitle";
 import PropertyGrid from "@/components/property/PropertyGrid";
 import { VRDemoCTA } from "@/components/modals/DemoModalUsage";
