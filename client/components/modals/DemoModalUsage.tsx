@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import DemoModal from "./DemoModal";
+import EnterARSimple from "../future/EnterARSimple";
 
 export function VRDemoCTA({ className = "" }: { className?: string }) {
   const [demoOpen, setDemoOpen] = useState(false);
