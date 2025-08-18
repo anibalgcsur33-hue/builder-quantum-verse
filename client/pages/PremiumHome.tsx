@@ -27,8 +27,8 @@ export default function PremiumHome() {
   return (
     <div className="min-h-screen bg-gradient-to-b from-blue-dark via-blue-dark/95 to-black relative overflow-x-hidden">
       {/* Neural Background Connections */}
-      <NeuroConnections />
-      
+      {/* <NeuroConnections /> */}
+
       {/* Page Header with Glass Effect */}
       <motion.div
         initial={{ opacity: 0, y: -50 }}
