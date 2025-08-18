@@ -1,4 +1,3 @@
-// components/BlueEyeLogo.tsx
 import { useRef, useState, useEffect } from "react";
 import { motion, useMotionValue, useTransform } from "framer-motion";
 
@@ -30,7 +29,8 @@ export default function BlueEyeLogo({
   // Seguimiento del cursor respecto al contenedor
   const mx = useMotionValue(0);
   const my = useMotionValue(0);
-  const rx = useTransform(my, [ -60, 60 ], [ 8, -8 ]);  // leve parallax X/Y
+  const rx = useTransform(my, [ -60, 60 ], [ 8, -8 ]);
+  // leve parallax X/Y
   const ry = useTransform(mx, [ -60, 60 ], [ -8, 8 ]);
 
   // Gradiente que "mira" al cursor (iris holográfico)

@@ -449,6 +449,17 @@ h1, h2, h3, h4, h5, h6, p {
   -webkit-backdrop-filter: blur(12px);
 }
 
+/* --- BlueEye Logo optimizations --- */
+/* Optimal PNG rendering with fine edges */
+img {
+  image-rendering: -webkit-optimize-contrast;
+}
+
+/* Prevent accidental selection in animations */
+.select-none {
+  user-select: none;
+}
+
 .mega-link {
   display:flex; align-items:center; gap:.6rem;
   padding:.7rem .9rem; border-radius:.75rem;
