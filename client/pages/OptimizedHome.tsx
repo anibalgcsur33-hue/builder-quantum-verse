@@ -128,10 +128,40 @@ export default function OptimizedHome() {
           </Suspense>
 
           {/* Canary Islands WMS Map - Official GRAFCAN */}
-          <section className="max-w-7xl mx-auto px-6 py-16">
+          {/* <section className="max-w-7xl mx-auto px-6 py-16">
             <h2 className="text-3xl md:text-4xl font-semibold mb-6">España & Canarias — Mapa WMS (texturas reales)</h2>
             <p className="text-white/70 mb-8">Ortofoto oficial GRAFCAN + sombreado de relieve. Perfecto para demos premium con calidad fotográfica real.</p>
             <CanaryWMSMapWrapper />
+            <p className="mt-4 text-sm text-white/60">
+              Servicios WMS oficiales: <strong>IDECanarias/GRAFCAN</strong> - Ortofoto territorial, modelo de sombras y topográfico integrado.
+            </p>
+          </section> */}
+
+          {/* Placeholder para el mapa WMS - activar después de instalar dependencias */}
+          <section className="max-w-7xl mx-auto px-6 py-16">
+            <h2 className="text-3xl md:text-4xl font-semibold mb-6">España & Canarias — Mapa WMS (texturas reales)</h2>
+            <p className="text-white/70 mb-8">Ortofoto oficial GRAFCAN + sombreado de relieve. Perfecto para demos premium con calidad fotográfica real.</p>
+            <div className="map-3d-container">
+              <div className="map-tilt">
+                <div className="h-[68vh] w-full bg-gradient-to-br from-slate-800 to-slate-900 rounded-2xl border border-white/10 flex items-center justify-center">
+                  <div className="text-center">
+                    <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-gradient-to-br from-cyan-500 to-blue-600 flex items-center justify-center">
+                      <svg className="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 20 20">
+                        <path fillRule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clipRule="evenodd"/>
+                      </svg>
+                    </div>
+                    <h3 className="text-xl font-semibold text-white mb-2">Mapa WMS Canarias 2.5D</h3>
+                    <p className="text-white/70 text-sm mb-4">
+                      Efectos de inclinación y parallax implementados<br/>
+                      <span className="text-cyan-300 text-xs">Instalando: npm install leaflet react-leaflet</span>
+                    </p>
+                    <div className="text-xs text-white/50">
+                      ✨ Perspective tilt • 📍 Property pins • 🌊 Parallax labels
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
             <p className="mt-4 text-sm text-white/60">
               Servicios WMS oficiales: <strong>IDECanarias/GRAFCAN</strong> - Ortofoto territorial, modelo de sombras y topográfico integrado.
             </p>
