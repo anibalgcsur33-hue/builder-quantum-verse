@@ -100,18 +100,10 @@ export default function OptimizedHome() {
           </section>
 
           {/* Neural Showcase */}
-          <LazyVisible>
-            <MotionSafe>
-              <NeuralShowcase />
-            </MotionSafe>
-          </LazyVisible>
+          <NeuralShowcase />
 
           {/* Spain Map with Animated Routes */}
-          <LazyVisible>
-            <MotionSafe>
-              <SpainMapTeaser />
-            </MotionSafe>
-          </LazyVisible>
+          <SpainMapTeaser />
 
           {/* Hologram Property Cards */}
           <section className="mx-auto max-w-6xl px-6 py-16">
