@@ -101,20 +101,29 @@ export default function OptimizedHome() {
           <MuseumCarousel />
 
           {/* Canary Islands 3D Map */}
-          <section className="mx-auto max-w-6xl px-6 py-16">
-            <div className="text-center mb-8">
-              <h3 className="text-3xl font-bold text-white mb-4">
-                España & Canarias — Mapa Interactivo
-              </h3>
-              <p className="text-white/70 max-w-2xl mx-auto">
-                Explora nuestras propiedades premium en las ubicaciones más
-                exclusivas de España y las Islas Canarias
-              </p>
-            </div>
-            <div className="glass rounded-2xl ring-glow p-4 relative overflow-hidden scanlines">
-              <CanaryMap3DFallback />
-            </div>
-          </section>
+          <Suspense
+            fallback={
+              <section className="mx-auto max-w-6xl px-6 py-16">
+                <div className="text-center mb-8">
+                  <h3 className="text-3xl font-bold text-white mb-4">
+                    España & Canarias — Mapa Interactivo
+                  </h3>
+                  <p className="text-white/70 max-w-2xl mx-auto">
+                    Explora nuestras propiedades premium en las ubicaciones más
+                    exclusivas de España y las Islas Canarias
+                  </p>
+                </div>
+                <div className="glass rounded-2xl ring-glow p-4 relative overflow-hidden scanlines h-[520px] flex items-center justify-center">
+                  <div className="text-center">
+                    <div className="animate-spin w-8 h-8 border-2 border-cyan-400 border-t-transparent rounded-full mx-auto mb-4"></div>
+                    <p className="text-white/60">Cargando mapa 3D interactivo...</p>
+                  </div>
+                </div>
+              </section>
+            }
+          >
+            <CanaryMap3D />
+          </Suspense>
 
           {/* Neural Showcase */}
           <NeuralShowcase />
