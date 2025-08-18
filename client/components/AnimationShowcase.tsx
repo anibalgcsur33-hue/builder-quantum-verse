@@ -46,12 +46,12 @@ export default function AnimationShowcase({
       y: 30,
       scale: 0.8 
     },
-    visible: { 
-      opacity: 1, 
+    visible: {
+      opacity: 1,
       y: 0,
       scale: 1,
       transition: {
-        type: "spring",
+        type: "spring" as const,
         stiffness: 120,
         damping: 10,
       }
@@ -125,7 +125,7 @@ export default function AnimationShowcase({
                 whileHover={{ 
                   scale: 1.05, 
                   y: -8,
-                  transition: { type: "spring", stiffness: 300, damping: 10 }
+                  transition: { type: "spring" as const, stiffness: 300, damping: 10 }
                 }}
                 whileTap={{ scale: 0.98 }}
                 className="glass-card p-6 rounded-2xl group hover:glow-teal transition-all duration-300 relative overflow-hidden cursor-pointer"
