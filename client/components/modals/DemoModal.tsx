@@ -43,9 +43,15 @@ export default function DemoModal({ open, onClose, title="Demo VR/AR", videoUrl,
                   <video
                     src={videoUrl} className="h-full w-full object-cover"
                     autoPlay muted playsInline loop
+                    loading="lazy"
                   />
                 ) : imgUrl ? (
-                  <img src={imgUrl} alt="demo" className="h-full w-full object-cover" />
+                  <img
+                    src={imgUrl}
+                    alt="demo"
+                    className="h-full w-full object-cover"
+                    loading="lazy"
+                  />
                 ) : (
                   <div className="grid h-full place-items-center text-white/60">
                     Demo placeholder — inserta captura VR/AR aquí
