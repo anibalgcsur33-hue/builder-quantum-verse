@@ -78,16 +78,16 @@ function TunnelGeometry() {
 
 function QuantumParticles() {
   const particlesRef = useRef<THREE.Points>(null!);
-  
+
   const particleCount = 200;
   const positions = new Float32Array(particleCount * 3);
   const colors = new Float32Array(particleCount * 3);
-  
+
   for (let i = 0; i < particleCount; i++) {
     positions[i * 3] = (Math.random() - 0.5) * 10;
     positions[i * 3 + 1] = Math.random() * 10 - 5;
     positions[i * 3 + 2] = (Math.random() - 0.5) * 10;
-    
+
     const color = new THREE.Color();
     color.setHSL(0.5 + Math.random() * 0.3, 0.8, 0.6);
     colors[i * 3] = color.r;
@@ -98,8 +98,9 @@ function QuantumParticles() {
   useFrame((state) => {
     if (particlesRef.current) {
       particlesRef.current.rotation.y = state.clock.elapsedTime * 0.2;
-      
-      const positions = particlesRef.current.geometry.attributes.position.array as Float32Array;
+
+      const positions = particlesRef.current.geometry.attributes.position
+        .array as Float32Array;
       for (let i = 0; i < particleCount; i++) {
         positions[i * 3 + 1] -= 0.02;
         if (positions[i * 3 + 1] < -5) {
@@ -160,12 +161,12 @@ export default function QuantumTunnelLoader() {
         <motion.div
           initial={{ scale: 0, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
-          transition={{ 
-            delay: 0.5, 
+          transition={{
+            delay: 0.5,
             duration: 0.8,
             type: "spring",
             stiffness: 200,
-            damping: 20
+            damping: 20,
           }}
           className="mb-8"
         >

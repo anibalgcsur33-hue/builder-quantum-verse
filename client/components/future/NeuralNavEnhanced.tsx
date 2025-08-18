@@ -12,39 +12,105 @@ interface NavNode {
 }
 
 const NEURAL_NODES: NavNode[] = [
-  { id: "home", x: 15, y: 50, label: "Inicio", href: "/", category: "primary", icon: "🏠" },
-  { id: "props", x: 35, y: 30, label: "Propiedades", href: "/propiedades", category: "primary", icon: "🏘️" },
-  { id: "vr", x: 55, y: 60, label: "VR & AR", href: "/metaverso", category: "special", icon: "🥽" },
-  { id: "3d", x: 50, y: 25, label: "Mapa 3D", href: "/mapa-canarias", category: "secondary", icon: "🌐" },
-  { id: "comm", x: 75, y: 45, label: "Comunidad", href: "/comunidad", category: "primary", icon: "👥" },
-  { id: "market", x: 65, y: 70, label: "Marketplace", href: "/marketplace", category: "secondary", icon: "🛒" },
-  { id: "inv", x: 85, y: 55, label: "Inversores", href: "#invest", category: "special", icon: "💎" },
-  { id: "ai", x: 40, y: 75, label: "IA Concierge", href: "#ai", category: "special", icon: "🤖" },
+  {
+    id: "home",
+    x: 15,
+    y: 50,
+    label: "Inicio",
+    href: "/",
+    category: "primary",
+    icon: "🏠",
+  },
+  {
+    id: "props",
+    x: 35,
+    y: 30,
+    label: "Propiedades",
+    href: "/propiedades",
+    category: "primary",
+    icon: "🏘️",
+  },
+  {
+    id: "vr",
+    x: 55,
+    y: 60,
+    label: "VR & AR",
+    href: "/metaverso",
+    category: "special",
+    icon: "🥽",
+  },
+  {
+    id: "3d",
+    x: 50,
+    y: 25,
+    label: "Mapa 3D",
+    href: "/mapa-canarias",
+    category: "secondary",
+    icon: "🌐",
+  },
+  {
+    id: "comm",
+    x: 75,
+    y: 45,
+    label: "Comunidad",
+    href: "/comunidad",
+    category: "primary",
+    icon: "👥",
+  },
+  {
+    id: "market",
+    x: 65,
+    y: 70,
+    label: "Marketplace",
+    href: "/marketplace",
+    category: "secondary",
+    icon: "🛒",
+  },
+  {
+    id: "inv",
+    x: 85,
+    y: 55,
+    label: "Inversores",
+    href: "#invest",
+    category: "special",
+    icon: "💎",
+  },
+  {
+    id: "ai",
+    x: 40,
+    y: 75,
+    label: "IA Concierge",
+    href: "#ai",
+    category: "special",
+    icon: "🤖",
+  },
 ];
 
 // Dynamic connections based on categories and proximity
 const generateConnections = (nodes: NavNode[]): [number, number][] => {
   const connections: [number, number][] = [];
-  
+
   for (let i = 0; i < nodes.length; i++) {
     for (let j = i + 1; j < nodes.length; j++) {
       const nodeA = nodes[i];
       const nodeB = nodes[j];
-      
+
       // Calculate distance
       const distance = Math.sqrt(
-        Math.pow(nodeA.x - nodeB.x, 2) + Math.pow(nodeA.y - nodeB.y, 2)
+        Math.pow(nodeA.x - nodeB.x, 2) + Math.pow(nodeA.y - nodeB.y, 2),
       );
-      
+
       // Connect close nodes or related categories
-      if (distance < 35 || 
-          (nodeA.category === "special" && nodeB.category === "special") ||
-          (nodeA.category === "primary" && nodeB.category === "primary")) {
+      if (
+        distance < 35 ||
+        (nodeA.category === "special" && nodeB.category === "special") ||
+        (nodeA.category === "primary" && nodeB.category === "primary")
+      ) {
         connections.push([i, j]);
       }
     }
   }
-  
+
   return connections;
 };
 
@@ -52,7 +118,7 @@ export default function NeuralNavEnhanced() {
   const [activeNode, setActiveNode] = useState<string | null>(null);
   const [hoveredNode, setHoveredNode] = useState<string | null>(null);
   const [pulseNodes, setPulseNodes] = useState<Set<string>>(new Set());
-  
+
   const mouseX = useMotionValue(50);
   const mouseY = useMotionValue(50);
   const springX = useSpring(mouseX, { stiffness: 100, damping: 20 });
@@ -63,11 +129,12 @@ export default function NeuralNavEnhanced() {
   useEffect(() => {
     // Create random neural activity
     const interval = setInterval(() => {
-      const randomNode = NEURAL_NODES[Math.floor(Math.random() * NEURAL_NODES.length)];
-      setPulseNodes(prev => new Set([...prev, randomNode.id]));
-      
+      const randomNode =
+        NEURAL_NODES[Math.floor(Math.random() * NEURAL_NODES.length)];
+      setPulseNodes((prev) => new Set([...prev, randomNode.id]));
+
       setTimeout(() => {
-        setPulseNodes(prev => {
+        setPulseNodes((prev) => {
           const next = new Set(prev);
           next.delete(randomNode.id);
           return next;
@@ -88,10 +155,14 @@ export default function NeuralNavEnhanced() {
 
   const getNodeVariant = (category: NavNode["category"]) => {
     switch (category) {
-      case "primary": return "fill-neon-teal";
-      case "secondary": return "fill-blue-400";
-      case "special": return "fill-neon-emerald";
-      default: return "fill-neon-teal";
+      case "primary":
+        return "fill-neon-teal";
+      case "secondary":
+        return "fill-blue-400";
+      case "special":
+        return "fill-neon-emerald";
+      default:
+        return "fill-neon-teal";
     }
   };
 
@@ -107,7 +178,7 @@ export default function NeuralNavEnhanced() {
 
   return (
     <div className="mx-auto max-w-6xl px-6 py-8">
-      <motion.div 
+      <motion.div
         className="relative rounded-3xl border border-white/10 bg-gradient-to-br from-white/[0.08] to-white/[0.02] overflow-hidden backdrop-blur-sm"
         onMouseMove={handleMouseMove}
         whileHover={{ scale: 1.02 }}
@@ -117,10 +188,29 @@ export default function NeuralNavEnhanced() {
         <div className="absolute inset-0 opacity-30">
           <svg className="w-full h-full">
             <defs>
-              <pattern id="neuralGrid" width="40" height="40" patternUnits="userSpaceOnUse">
+              <pattern
+                id="neuralGrid"
+                width="40"
+                height="40"
+                patternUnits="userSpaceOnUse"
+              >
                 <circle cx="20" cy="20" r="0.5" fill="rgba(14,231,231,0.3)" />
-                <line x1="0" y1="20" x2="40" y2="20" stroke="rgba(14,231,231,0.1)" strokeWidth="0.5" />
-                <line x1="20" y1="0" x2="20" y2="40" stroke="rgba(14,231,231,0.1)" strokeWidth="0.5" />
+                <line
+                  x1="0"
+                  y1="20"
+                  x2="40"
+                  y2="20"
+                  stroke="rgba(14,231,231,0.1)"
+                  strokeWidth="0.5"
+                />
+                <line
+                  x1="20"
+                  y1="0"
+                  x2="20"
+                  y2="40"
+                  stroke="rgba(14,231,231,0.1)"
+                  strokeWidth="0.5"
+                />
               </pattern>
             </defs>
             <rect width="100%" height="100%" fill="url(#neuralGrid)" />
@@ -133,8 +223,9 @@ export default function NeuralNavEnhanced() {
           {connections.map(([a, b], i) => {
             const nodeA = NEURAL_NODES[a];
             const nodeB = NEURAL_NODES[b];
-            const isActive = hoveredNode === nodeA.id || hoveredNode === nodeB.id;
-            
+            const isActive =
+              hoveredNode === nodeA.id || hoveredNode === nodeB.id;
+
             return (
               <motion.g key={`connection-${i}`}>
                 <motion.line
@@ -145,20 +236,20 @@ export default function NeuralNavEnhanced() {
                   className={getConnectionColor(nodeA, nodeB)}
                   strokeWidth={isActive ? "1.2" : "0.8"}
                   initial={{ pathLength: 0, opacity: 0 }}
-                  animate={{ 
-                    pathLength: 1, 
+                  animate={{
+                    pathLength: 1,
                     opacity: isActive ? 1 : 0.6,
-                    strokeWidth: isActive ? 1.2 : 0.8
+                    strokeWidth: isActive ? 1.2 : 0.8,
                   }}
-                  transition={{ 
-                    delay: 0.1 + i * 0.05, 
+                  transition={{
+                    delay: 0.1 + i * 0.05,
                     duration: 0.8,
                     pathLength: { duration: 0.8 },
                     opacity: { duration: 0.3 },
-                    strokeWidth: { duration: 0.3 }
+                    strokeWidth: { duration: 0.3 },
                   }}
                 />
-                
+
                 {/* Data flow animation on active connections */}
                 {isActive && (
                   <motion.circle
@@ -173,8 +264,13 @@ export default function NeuralNavEnhanced() {
                     </animateMotion>
                   </motion.circle>
                 )}
-                
-                <path id={`path-${i}`} d={`M${nodeA.x},${nodeA.y} L${nodeB.x},${nodeB.y}`} fill="none" opacity="0" />
+
+                <path
+                  id={`path-${i}`}
+                  d={`M${nodeA.x},${nodeA.y} L${nodeB.x},${nodeB.y}`}
+                  fill="none"
+                  opacity="0"
+                />
               </motion.g>
             );
           })}
@@ -184,7 +280,7 @@ export default function NeuralNavEnhanced() {
             const isActive = activeNode === node.id;
             const isHovered = hoveredNode === node.id;
             const isPulsing = pulseNodes.has(node.id);
-            
+
             return (
               <motion.g key={node.id}>
                 {/* Outer ring for special nodes */}
@@ -195,28 +291,28 @@ export default function NeuralNavEnhanced() {
                     r="4.5"
                     className="fill-none stroke-neon-emerald/40"
                     strokeWidth="0.5"
-                    animate={{ 
+                    animate={{
                       scale: isPulsing ? [1, 1.3, 1] : 1,
-                      opacity: isPulsing ? [0.4, 0.8, 0.4] : 0.4
+                      opacity: isPulsing ? [0.4, 0.8, 0.4] : 0.4,
                     }}
                     transition={{ duration: 1.5 }}
                   />
                 )}
-                
+
                 {/* Pulse ring */}
                 {isPulsing && (
                   <motion.circle
                     cx={node.x}
                     cy={node.y}
                     r="3"
-                    className={`fill-none ${getNodeVariant(node.category).replace('fill-', 'stroke-')}`}
+                    className={`fill-none ${getNodeVariant(node.category).replace("fill-", "stroke-")}`}
                     strokeWidth="1"
                     initial={{ scale: 1, opacity: 0.8 }}
                     animate={{ scale: 2, opacity: 0 }}
                     transition={{ duration: 1.5 }}
                   />
                 )}
-                
+
                 {/* Main Node */}
                 <motion.circle
                   cx={node.x}
@@ -224,8 +320,8 @@ export default function NeuralNavEnhanced() {
                   r={node.category === "special" ? "3.2" : "2.8"}
                   className={getNodeVariant(node.category)}
                   initial={{ scale: 0, opacity: 0 }}
-                  animate={{ 
-                    scale: isHovered ? 1.3 : 1, 
+                  animate={{
+                    scale: isHovered ? 1.3 : 1,
                     opacity: 1,
                   }}
                   transition={{
@@ -233,14 +329,14 @@ export default function NeuralNavEnhanced() {
                     type: "spring",
                     stiffness: 200,
                     damping: 20,
-                    scale: { duration: 0.2 }
+                    scale: { duration: 0.2 },
                   }}
                   onMouseEnter={() => setHoveredNode(node.id)}
                   onMouseLeave={() => setHoveredNode(null)}
                   onClick={() => setActiveNode(node.id)}
                   style={{ cursor: "pointer" }}
                 />
-                
+
                 {/* Node Label on Hover */}
                 {isHovered && (
                   <motion.g
@@ -289,9 +385,10 @@ export default function NeuralNavEnhanced() {
                 href={node.href}
                 className={`
                   px-3 py-2 rounded-lg transition-all duration-300 flex items-center gap-2
-                  ${hoveredNode === node.id 
-                    ? 'bg-white/20 text-white scale-105' 
-                    : 'bg-white/5 text-white/70 hover:text-white hover:bg-white/10'
+                  ${
+                    hoveredNode === node.id
+                      ? "bg-white/20 text-white scale-105"
+                      : "bg-white/5 text-white/70 hover:text-white hover:bg-white/10"
                   }
                 `}
                 onMouseEnter={() => setHoveredNode(node.id)}

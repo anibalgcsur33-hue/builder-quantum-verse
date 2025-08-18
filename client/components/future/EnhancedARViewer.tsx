@@ -15,28 +15,30 @@ const DEMO_PROPERTIES: ARProperty[] = [
     name: "Villa de Lujo",
     price: "€2.5M",
     model: "/models/villa.glb",
-    scale: 0.1
+    scale: 0.1,
   },
   {
     id: "penthouse",
     name: "Penthouse Moderno",
-    price: "€1.8M", 
+    price: "€1.8M",
     model: "/models/penthouse.glb",
-    scale: 0.08
+    scale: 0.08,
   },
   {
     id: "beach-house",
     name: "Casa Frente al Mar",
     price: "€3.2M",
     model: "/models/beach-house.glb",
-    scale: 0.12
-  }
+    scale: 0.12,
+  },
 ];
 
 export default function EnhancedARViewer() {
   const [isARSupported, setIsARSupported] = useState<boolean | null>(null);
   const [isARActive, setIsARActive] = useState(false);
-  const [selectedProperty, setSelectedProperty] = useState<ARProperty | null>(null);
+  const [selectedProperty, setSelectedProperty] = useState<ARProperty | null>(
+    null,
+  );
   const [showPropertySelector, setShowPropertySelector] = useState(false);
   const [arSession, setArSession] = useState<any>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -48,9 +50,9 @@ export default function EnhancedARViewer() {
 
   const checkARSupport = async () => {
     try {
-      if ('xr' in navigator) {
+      if ("xr" in navigator) {
         // @ts-ignore - WebXR types
-        const supported = await navigator.xr.isSessionSupported('immersive-ar');
+        const supported = await navigator.xr.isSessionSupported("immersive-ar");
         setIsARSupported(supported);
       } else {
         setIsARSupported(false);
@@ -70,24 +72,23 @@ export default function EnhancedARViewer() {
 
     try {
       // @ts-ignore - WebXR types
-      const session = await navigator.xr.requestSession('immersive-ar', {
-        requiredFeatures: ['local', 'hit-test'],
-        optionalFeatures: ['dom-overlay'],
-        domOverlay: { root: document.body }
+      const session = await navigator.xr.requestSession("immersive-ar", {
+        requiredFeatures: ["local", "hit-test"],
+        optionalFeatures: ["dom-overlay"],
+        domOverlay: { root: document.body },
       });
 
       setArSession(session);
       setIsARActive(true);
 
       // Set up AR session
-      session.addEventListener('end', () => {
+      session.addEventListener("end", () => {
         setIsARActive(false);
         setArSession(null);
       });
 
       // Here you would set up the WebXR rendering loop
       // For this demo, we'll use a simplified approach
-
     } catch (error) {
       console.error("Failed to start AR session:", error);
       startCameraSimulation();
@@ -97,9 +98,9 @@ export default function EnhancedARViewer() {
   const startCameraSimulation = async () => {
     try {
       const stream = await navigator.mediaDevices.getUserMedia({
-        video: { facingMode: 'environment' }
+        video: { facingMode: "environment" },
       });
-      
+
       if (videoRef.current) {
         videoRef.current.srcObject = stream;
         setIsARActive(true);
@@ -115,12 +116,12 @@ export default function EnhancedARViewer() {
     if (arSession) {
       arSession.end();
     }
-    
+
     if (videoRef.current?.srcObject) {
       const tracks = (videoRef.current.srcObject as MediaStream).getTracks();
-      tracks.forEach(track => track.stop());
+      tracks.forEach((track) => track.stop());
     }
-    
+
     setIsARActive(false);
     setSelectedProperty(null);
   };
@@ -128,32 +129,32 @@ export default function EnhancedARViewer() {
   const placeProperty = (property: ARProperty) => {
     setSelectedProperty(property);
     setShowPropertySelector(false);
-    
+
     // Simulate property placement
     if (canvasRef.current) {
-      const ctx = canvasRef.current.getContext('2d');
+      const ctx = canvasRef.current.getContext("2d");
       if (ctx) {
         // Draw simple 3D representation
         ctx.clearRect(0, 0, canvasRef.current.width, canvasRef.current.height);
-        ctx.fillStyle = 'rgba(14, 231, 231, 0.8)';
+        ctx.fillStyle = "rgba(14, 231, 231, 0.8)";
         ctx.fillRect(
           canvasRef.current.width / 2 - 50,
           canvasRef.current.height / 2 - 30,
           100,
-          60
+          60,
         );
-        ctx.fillStyle = 'white';
-        ctx.font = '12px Inter';
-        ctx.textAlign = 'center';
+        ctx.fillStyle = "white";
+        ctx.font = "12px Inter";
+        ctx.textAlign = "center";
         ctx.fillText(
           property.name,
           canvasRef.current.width / 2,
-          canvasRef.current.height / 2 + 5
+          canvasRef.current.height / 2 + 5,
         );
         ctx.fillText(
           property.price,
           canvasRef.current.width / 2,
-          canvasRef.current.height / 2 + 20
+          canvasRef.current.height / 2 + 20,
         );
       }
     }
@@ -171,18 +172,17 @@ export default function EnhancedARViewer() {
           <button
             onClick={() => setShowPropertySelector(true)}
             className={`btn-crystal flex items-center gap-2 ${
-              isARSupported ? 'ring-2 ring-neon-emerald' : ''
+              isARSupported ? "ring-2 ring-neon-emerald" : ""
             }`}
             disabled={isARSupported === null}
           >
             <span>🥽</span>
             <span>
-              {isARSupported === null 
+              {isARSupported === null
                 ? "Detectando AR..."
-                : isARSupported 
-                  ? "Entrar en AR" 
-                  : "Ver en 3D"
-              }
+                : isARSupported
+                  ? "Entrar en AR"
+                  : "Ver en 3D"}
             </span>
           </button>
         ) : (
@@ -202,7 +202,9 @@ export default function EnhancedARViewer() {
             animate={{ opacity: 1, y: 0 }}
             className="glass rounded-lg p-3 text-sm"
           >
-            <div className="text-neon-teal font-semibold">{selectedProperty.name}</div>
+            <div className="text-neon-teal font-semibold">
+              {selectedProperty.name}
+            </div>
             <div className="text-white/80">{selectedProperty.price}</div>
           </motion.div>
         )}
@@ -228,7 +230,7 @@ export default function EnhancedARViewer() {
               <h3 className="text-xl font-bold text-gradient mb-4">
                 Selecciona una Propiedad
               </h3>
-              
+
               <div className="space-y-3">
                 {DEMO_PROPERTIES.map((property) => (
                   <motion.button
@@ -241,7 +243,9 @@ export default function EnhancedARViewer() {
                       placeProperty(property);
                     }}
                   >
-                    <div className="font-semibold text-white">{property.name}</div>
+                    <div className="font-semibold text-white">
+                      {property.name}
+                    </div>
                     <div className="text-neon-teal">{property.price}</div>
                   </motion.button>
                 ))}
@@ -274,13 +278,19 @@ export default function EnhancedARViewer() {
               playsInline
               muted
               className="w-full h-full object-cover"
-              style={{ display: videoRef.current?.srcObject ? 'block' : 'none' }}
+              style={{
+                display: videoRef.current?.srcObject ? "block" : "none",
+              }}
             />
-            
+
             {/* Fallback AR Environment */}
             {!videoRef.current?.srcObject && (
               <div className="w-full h-full bg-gradient-to-b from-blue-400 via-blue-300 to-green-200 relative">
-                <div className={"absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg width=\"60\" height=\"60\" viewBox=\"0 0 60 60\" xmlns=\"http://www.w3.org/2000/svg\"%3E%3Cg fill=\"none\" fill-rule=\"evenodd\"%3E%3Cg fill=\"%23ffffff\" fill-opacity=\"0.1\"%3E%3Cpath d=\"M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z\"/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')] opacity-30"}></div>
+                <div
+                  className={
+                    'absolute inset-0 bg-[url(\'data:image/svg+xml,%3Csvg width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"%3E%3Cg fill="none" fill-rule="evenodd"%3E%3Cg fill="%23ffffff" fill-opacity="0.1"%3E%3Cpath d="M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z"/%3E%3C/g%3E%3C/g%3E%3C/svg%3E\')] opacity-30'
+                  }
+                ></div>
               </div>
             )}
 
@@ -308,10 +318,9 @@ export default function EnhancedARViewer() {
                     🏠 Modo AR Activo
                   </div>
                   <div className="text-white/80 text-sm">
-                    {selectedProperty 
+                    {selectedProperty
                       ? `Visualizando: ${selectedProperty.name}`
-                      : "Apunta hacia una superficie plana y toca para colocar la propiedad"
-                    }
+                      : "Apunta hacia una superficie plana y toca para colocar la propiedad"}
                   </div>
                 </div>
               </div>
@@ -326,8 +335,8 @@ export default function EnhancedARViewer() {
                         onClick={() => placeProperty(property)}
                         className={`flex-shrink-0 px-4 py-2 rounded-lg text-sm font-medium transition-all ${
                           selectedProperty.id === property.id
-                            ? 'bg-neon-teal text-blue-dark'
-                            : 'bg-white/20 text-white'
+                            ? "bg-neon-teal text-blue-dark"
+                            : "bg-white/20 text-white"
                         }`}
                       >
                         {property.name}

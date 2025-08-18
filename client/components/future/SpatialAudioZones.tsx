@@ -23,7 +23,7 @@ const AUDIO_ZONES: AudioZone[] = [
     frequency: 220,
     label: "Zona Principal",
     type: "ambient",
-    color: "rgba(14,231,231,0.2)"
+    color: "rgba(14,231,231,0.2)",
   },
   {
     id: "properties",
@@ -34,7 +34,7 @@ const AUDIO_ZONES: AudioZone[] = [
     frequency: 330,
     label: "Propiedades",
     type: "interactive",
-    color: "rgba(0,231,167,0.2)"
+    color: "rgba(0,231,167,0.2)",
   },
   {
     id: "navigation",
@@ -45,8 +45,8 @@ const AUDIO_ZONES: AudioZone[] = [
     frequency: 440,
     label: "Navegación",
     type: "musical",
-    color: "rgba(124,92,255,0.2)"
-  }
+    color: "rgba(124,92,255,0.2)",
+  },
 ];
 
 export default function SpatialAudioZones() {
@@ -63,7 +63,8 @@ export default function SpatialAudioZones() {
     // Initialize Web Audio API
     const initAudio = async () => {
       try {
-        const ctx = new (window.AudioContext || (window as any).webkitAudioContext)();
+        const ctx = new (window.AudioContext ||
+          (window as any).webkitAudioContext)();
         setAudioContext(ctx);
 
         // Create audio nodes for each zone
@@ -129,10 +130,10 @@ export default function SpatialAudioZones() {
     let activeZone: string | null = null;
 
     AUDIO_ZONES.forEach((zone) => {
-      const isInZone = 
-        x >= zone.x && 
-        x <= zone.x + zone.width && 
-        y >= zone.y && 
+      const isInZone =
+        x >= zone.x &&
+        x <= zone.x + zone.width &&
+        y >= zone.y &&
         y <= zone.y + zone.height;
 
       const gainNode = gainNodesRef.current.get(zone.id);
@@ -141,26 +142,32 @@ export default function SpatialAudioZones() {
       if (gainNode && pannerNode) {
         if (isInZone) {
           activeZone = zone.id;
-          
+
           // Calculate 3D position within zone
           const relativeX = ((x - zone.x) / zone.width) * 2 - 1; // -1 to 1
           const relativeY = ((y - zone.y) / zone.height) * 2 - 1; // -1 to 1
-          
+
           // Set 3D position
           pannerNode.setPosition(relativeX * 2, relativeY * 2, -1);
-          
+
           // Fade in with distance-based volume
-          const distance = Math.sqrt(relativeX * relativeX + relativeY * relativeY);
-          const volume = Math.max(0, (1 - distance)) * 0.1; // Very subtle volume
-          
+          const distance = Math.sqrt(
+            relativeX * relativeX + relativeY * relativeY,
+          );
+          const volume = Math.max(0, 1 - distance) * 0.1; // Very subtle volume
+
           gainNode.gain.setTargetAtTime(volume, audioContext.currentTime, 0.1);
-          
+
           // Modulate frequency based on position for interactive zones
           if (zone.type === "interactive") {
             const oscillator = oscillatorsRef.current.get(zone.id);
             if (oscillator) {
               const freqModulation = zone.frequency * (1 + relativeX * 0.1);
-              oscillator.frequency.setTargetAtTime(freqModulation, audioContext.currentTime, 0.05);
+              oscillator.frequency.setTargetAtTime(
+                freqModulation,
+                audioContext.currentTime,
+                0.05,
+              );
             }
           }
         } else {
@@ -201,13 +208,17 @@ export default function SpatialAudioZones() {
                 top: `${zone.y}%`,
                 width: `${zone.width}%`,
                 height: `${zone.height}%`,
-                backgroundColor: currentZone === zone.id ? zone.color : "transparent",
-                borderColor: currentZone === zone.id ? zone.color.replace("0.2", "0.6") : zone.color.replace("0.2", "0.3"),
+                backgroundColor:
+                  currentZone === zone.id ? zone.color : "transparent",
+                borderColor:
+                  currentZone === zone.id
+                    ? zone.color.replace("0.2", "0.6")
+                    : zone.color.replace("0.2", "0.3"),
                 borderWidth: currentZone === zone.id ? "3px" : "2px",
               }}
               initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ 
-                opacity: 1, 
+              animate={{
+                opacity: 1,
                 scale: currentZone === zone.id ? 1.02 : 1,
               }}
               transition={{ duration: 0.3 }}
@@ -265,8 +276,8 @@ export default function SpatialAudioZones() {
             <button
               onClick={toggleAudio}
               className={`w-8 h-8 rounded-full flex items-center justify-center transition-all ${
-                isActive 
-                  ? "bg-neon-teal text-blue-dark" 
+                isActive
+                  ? "bg-neon-teal text-blue-dark"
                   : "bg-white/20 text-white/60"
               }`}
             >
@@ -283,10 +294,10 @@ export default function SpatialAudioZones() {
               <div className="text-xs text-white/60">
                 Mueve el cursor por las zonas para experimentar audio 3D
               </div>
-              
+
               {currentZone && (
                 <div className="text-xs text-neon-teal">
-                  Activo: {AUDIO_ZONES.find(z => z.id === currentZone)?.label}
+                  Activo: {AUDIO_ZONES.find((z) => z.id === currentZone)?.label}
                 </div>
               )}
 

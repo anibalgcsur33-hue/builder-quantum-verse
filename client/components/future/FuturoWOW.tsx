@@ -15,10 +15,10 @@ interface FuturoWOWProps {
   children?: React.ReactNode;
 }
 
-export default function FuturoWOW({ 
-  showLoader = true, 
+export default function FuturoWOW({
+  showLoader = true,
   enableAudio = true,
-  children 
+  children,
 }: FuturoWOWProps) {
   const [isLoaded, setIsLoaded] = useState(!showLoader);
   const [spatialAudioEnabled, setSpatialAudioEnabled] = useState(false);
@@ -46,14 +46,16 @@ export default function FuturoWOW({
       </AnimatePresence>
 
       {/* 3D Dynamic Background */}
-      <Suspense fallback={<div className="fixed inset-0 bg-gradient-to-br from-blue-dark via-blue-900 to-black" />}>
+      <Suspense
+        fallback={
+          <div className="fixed inset-0 bg-gradient-to-br from-blue-dark via-blue-900 to-black" />
+        }
+      >
         <QuantumBackground3D />
       </Suspense>
 
       {/* Spatial Audio Zones */}
-      {enableAudio && spatialAudioEnabled && (
-        <SpatialAudioZones />
-      )}
+      {enableAudio && spatialAudioEnabled && <SpatialAudioZones />}
 
       {/* Neural Navigation */}
       <motion.div
@@ -95,9 +97,9 @@ export default function FuturoWOW({
         >
           <button
             onClick={() => setSpatialAudioEnabled(!spatialAudioEnabled)}
-            className={`btn-crystal ${spatialAudioEnabled ? 'ring-2 ring-neon-teal' : ''}`}
+            className={`btn-crystal ${spatialAudioEnabled ? "ring-2 ring-neon-teal" : ""}`}
           >
-            🎧 {spatialAudioEnabled ? 'Audio 3D Activo' : 'Activar Audio 3D'}
+            🎧 {spatialAudioEnabled ? "Audio 3D Activo" : "Activar Audio 3D"}
           </button>
         </motion.div>
       )}
@@ -108,7 +110,7 @@ export default function FuturoWOW({
       {/* Quantum Particles Overlay */}
       <div className="fixed inset-0 pointer-events-none z-5">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_10%,rgba(14,231,231,0.1),transparent_40%),radial-gradient(circle_at_80%_90%,rgba(124,92,255,0.1),transparent_40%)]" />
-        
+
         {/* Floating quantum particles */}
         {Array.from({ length: 12 }).map((_, i) => (
           <motion.div
@@ -138,10 +140,29 @@ export default function FuturoWOW({
       <div className="fixed inset-0 pointer-events-none z-5 opacity-20">
         <svg className="w-full h-full">
           <defs>
-            <pattern id="neuralGrid" width="60" height="60" patternUnits="userSpaceOnUse">
+            <pattern
+              id="neuralGrid"
+              width="60"
+              height="60"
+              patternUnits="userSpaceOnUse"
+            >
               <circle cx="30" cy="30" r="1" fill="rgba(14,231,231,0.3)" />
-              <line x1="0" y1="30" x2="60" y2="30" stroke="rgba(14,231,231,0.1)" strokeWidth="0.5" />
-              <line x1="30" y1="0" x2="30" y2="60" stroke="rgba(14,231,231,0.1)" strokeWidth="0.5" />
+              <line
+                x1="0"
+                y1="30"
+                x2="60"
+                y2="30"
+                stroke="rgba(14,231,231,0.1)"
+                strokeWidth="0.5"
+              />
+              <line
+                x1="30"
+                y1="0"
+                x2="30"
+                y2="60"
+                stroke="rgba(14,231,231,0.1)"
+                strokeWidth="0.5"
+              />
             </pattern>
           </defs>
           <rect width="100%" height="100%" fill="url(#neuralGrid)" />
