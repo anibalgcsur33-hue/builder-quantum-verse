@@ -401,6 +401,34 @@
       transform: translateY(-10px);
     }
   }
+
+  /* Heartbeat animation for premium pins */
+  @keyframes heartbeat {
+    0% {
+      transform: translateX(-50%) translateY(-50%) scale(1);
+      opacity: 1;
+    }
+    14% {
+      transform: translateX(-50%) translateY(-50%) scale(1.15);
+      opacity: 0.9;
+    }
+    28% {
+      transform: translateX(-50%) translateY(-50%) scale(1);
+      opacity: 1;
+    }
+    42% {
+      transform: translateX(-50%) translateY(-50%) scale(1.25);
+      opacity: 0.8;
+    }
+    70% {
+      transform: translateX(-50%) translateY(-50%) scale(1);
+      opacity: 1;
+    }
+    100% {
+      transform: translateX(-50%) translateY(-50%) scale(1);
+      opacity: 1;
+    }
+  }
 }
 
 /* Logo effects */
