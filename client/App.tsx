@@ -8,6 +8,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Index from "./pages/Index";
 import PremiumHome from "./pages/PremiumHome";
 import OptimizedHome from "./pages/OptimizedHome";
+import LiquidHome from "./pages/LiquidHome";
 import MinimalHome from "./pages/MinimalHome";
 import NotFound from "./pages/NotFound";
 import PlaceholderPage from "./pages/PlaceholderPage";
@@ -45,7 +46,8 @@ const App = () => (
       <Sonner />
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<OptimizedHome />} />
+          <Route path="/" element={<LiquidHome />} />
+          <Route path="/optimized" element={<OptimizedHome />} />
           <Route path="/premium" element={<PremiumHome />} />
           <Route path="/minimal" element={<MinimalHome />} />
           <Route path="/original" element={<Index />} />
