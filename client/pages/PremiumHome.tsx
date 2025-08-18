@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Eye, MapPin, Star, Users, Building, Home, Sparkles } from "lucide-react";
 import PremiumHeader from "../components/header/PremiumHeader";
@@ -7,8 +8,10 @@ import AIConcierge from "../components/future/AIConcierge";
 import VoiceMeter from "../components/future/VoiceMeter";
 import ScrollTracker from "../components/ux/ScrollTracker";
 import StickyCTA from "../components/ux/StickyCTA";
+import DemoModal from "../components/modals/DemoModal";
 
 export default function PremiumHome() {
+  const [demoOpen, setDemoOpen] = useState(false);
   return (
     <>
       <ScrollTracker />
