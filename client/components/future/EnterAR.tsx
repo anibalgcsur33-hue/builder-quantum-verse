@@ -21,7 +21,9 @@ export default function EnterAR() {
     } else {
       setSupported(false);
     }
-    return () => { mounted = false; };
+    return () => {
+      mounted = false;
+    };
   }, []);
 
   if (supported === null) return null;
@@ -29,9 +31,13 @@ export default function EnterAR() {
   return (
     <>
       {supported ? (
-        <button className="btn-crystal" onClick={() => setOpen(true)}>Entrar en AR</button>
+        <button className="btn-crystal" onClick={() => setOpen(true)}>
+          Entrar en AR
+        </button>
       ) : (
-        <a className="btn-ghost" href="/metaverse">Abrir VR/3D</a>
+        <a className="btn-ghost" href="/metaverse">
+          Abrir VR/3D
+        </a>
       )}
       {open && <ARPlaceProperty />}
     </>

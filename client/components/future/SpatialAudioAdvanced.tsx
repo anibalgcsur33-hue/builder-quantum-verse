@@ -17,13 +17,14 @@ export default function SpatialAudioAdvanced() {
   async function startAudio() {
     try {
       // Try to use Tone.js if available, otherwise fallback to Web Audio API
-      if (typeof window !== 'undefined' && 'AudioContext' in window) {
-        const ctx = new (window.AudioContext || (window as any).webkitAudioContext)();
-        
+      if (typeof window !== "undefined" && "AudioContext" in window) {
+        const ctx = new (window.AudioContext ||
+          (window as any).webkitAudioContext)();
+
         // Create spatial audio setup
         const pannerNode = ctx.createPanner();
-        pannerNode.panningModel = 'HRTF';
-        pannerNode.distanceModel = 'inverse';
+        pannerNode.panningModel = "HRTF";
+        pannerNode.distanceModel = "inverse";
         pannerNode.refDistance = 1;
         pannerNode.maxDistance = 10000;
         pannerNode.rolloffFactor = 1;
@@ -36,13 +37,13 @@ export default function SpatialAudioAdvanced() {
         gain.gain.value = 0.1; // Very soft volume
 
         const osc = ctx.createOscillator();
-        osc.type = 'sine';
+        osc.type = "sine";
         osc.frequency.value = 220;
-        
+
         osc.connect(gain);
         gain.connect(pannerNode);
         pannerNode.connect(ctx.destination);
-        
+
         osc.start();
 
         setAudioContext(ctx);
@@ -52,7 +53,7 @@ export default function SpatialAudioAdvanced() {
         setReady(true);
       }
     } catch (error) {
-      console.warn('Spatial audio not supported:', error);
+      console.warn("Spatial audio not supported:", error);
     }
   }
 
@@ -62,7 +63,7 @@ export default function SpatialAudioAdvanced() {
     const onMove = (e: MouseEvent) => {
       const x = (e.clientX / window.innerWidth) * 2 - 1;
       const y = (e.clientY / window.innerHeight) * 2 - 1;
-      
+
       if (panner) {
         panner.setPosition(x * 2.0, y * 1.2, -2);
       }
@@ -71,22 +72,23 @@ export default function SpatialAudioAdvanced() {
       const now = performance.now();
       if (now - lastTRef.current > 300) {
         lastTRef.current = now;
-        
+
         if (gainNode && audioContext) {
           // Create brief tone bursts
           const tempGain = audioContext.createGain();
           const tempOsc = audioContext.createOscillator();
-          
-          const frequencies = [261.63, 329.63, 392.00, 493.88, 587.33]; // C4, E4, G4, B4, D5
-          const freq = frequencies[Math.floor(Math.random() * frequencies.length)];
-          
+
+          const frequencies = [261.63, 329.63, 392.0, 493.88, 587.33]; // C4, E4, G4, B4, D5
+          const freq =
+            frequencies[Math.floor(Math.random() * frequencies.length)];
+
           tempOsc.frequency.value = freq;
-          tempOsc.type = 'sine';
+          tempOsc.type = "sine";
           tempGain.gain.value = 0.05;
-          
+
           tempOsc.connect(tempGain);
           tempGain.connect(panner!);
-          
+
           tempOsc.start();
           tempOsc.stop(audioContext.currentTime + 0.1);
         }
@@ -100,10 +102,7 @@ export default function SpatialAudioAdvanced() {
   return (
     <div className="fixed bottom-5 right-5 z-50">
       {!ready ? (
-        <button 
-          className="btn-crystal text-sm" 
-          onClick={startAudio}
-        >
+        <button className="btn-crystal text-sm" onClick={startAudio}>
           🎧 Enable 3D Audio
         </button>
       ) : (

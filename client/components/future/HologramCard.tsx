@@ -2,9 +2,9 @@ import { motion } from "framer-motion";
 import EnterARSimple from "./EnterARSimple";
 
 export default function HologramCard({
-  title="Villa Mirador — Tenerife",
-  price="€7.9M",
-  image="https://images.unsplash.com/photo-1505691938895-1758d7feb511?q=80&w=1600&auto=format&fit=crop"
+  title = "Villa Mirador — Tenerife",
+  price = "€7.9M",
+  image = "https://images.unsplash.com/photo-1505691938895-1758d7feb511?q=80&w=1600&auto=format&fit=crop",
 }) {
   return (
     <motion.div
@@ -14,7 +14,11 @@ export default function HologramCard({
       className="relative overflow-hidden rounded-2xl border border-cyan-300/20 bg-white/5 backdrop-blur-md"
     >
       <div className="relative h-72">
-        <img src={image} alt={title} className="h-full w-full object-cover opacity-90" />
+        <img
+          src={image}
+          alt={title}
+          className="h-full w-full object-cover opacity-90"
+        />
         {/* hologram lines */}
         <div className="absolute inset-0 bg-[linear-gradient(transparent_96%,#00ffff22_100%)] bg-[length:100%_4px] mix-blend-screen pointer-events-none" />
         {/* sheen */}

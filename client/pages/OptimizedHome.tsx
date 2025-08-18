@@ -84,9 +84,12 @@ export default function OptimizedHome() {
           {/* Hologram Property Cards */}
           <section className="mx-auto max-w-6xl px-6 py-16">
             <div className="text-center mb-8">
-              <h3 className="text-3xl font-bold text-white mb-4">Propiedades Destacadas</h3>
+              <h3 className="text-3xl font-bold text-white mb-4">
+                Propiedades Destacadas
+              </h3>
               <p className="text-white/70 max-w-2xl mx-auto">
-                Experiencias holográficas premium con visualización de vanguardia
+                Experiencias holográficas premium con visualización de
+                vanguardia
               </p>
             </div>
             <div className="grid md:grid-cols-3 gap-6">

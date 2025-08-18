@@ -5,14 +5,16 @@ interface Model3DViewerProps {
   className?: string;
 }
 
-export default function Model3DViewer({ 
-  sketchfabId, 
-  title, 
+export default function Model3DViewer({
+  sketchfabId,
+  title,
   fallbackImage,
-  className = "" 
+  className = "",
 }: Model3DViewerProps) {
   return (
-    <div className={`relative w-full h-72 rounded-xl overflow-hidden bg-black/20 ${className}`}>
+    <div
+      className={`relative w-full h-72 rounded-xl overflow-hidden bg-black/20 ${className}`}
+    >
       <iframe
         title={title}
         frameBorder="0"
@@ -24,7 +26,7 @@ export default function Model3DViewer({
         className="w-full h-full"
         loading="lazy"
       />
-      
+
       {/* Overlay with holographic effect */}
       <div className="absolute inset-0 pointer-events-none">
         {/* hologram lines */}
@@ -32,16 +34,18 @@ export default function Model3DViewer({
         {/* sheen effect */}
         <div className="absolute inset-0 bg-[conic-gradient(from_210deg_at_30%_10%,#00e5ff22,transparent_30%,#7c5cff22_60%,transparent_75%)] animate-[spin_8s_linear_infinite] opacity-20" />
       </div>
-      
+
       {/* Loading fallback */}
       {fallbackImage && (
         <div className="absolute inset-0 bg-gray-900 flex items-center justify-center">
-          <img 
-            src={fallbackImage} 
+          <img
+            src={fallbackImage}
             alt={title}
             className="w-full h-full object-cover opacity-50"
-            style={{ display: 'none' }}
-            onError={(e) => { e.currentTarget.style.display = 'block'; }}
+            style={{ display: "none" }}
+            onError={(e) => {
+              e.currentTarget.style.display = "block";
+            }}
           />
         </div>
       )}

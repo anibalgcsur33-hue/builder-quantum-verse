@@ -13,21 +13,24 @@ export default function SpatialAudioHotspot() {
 
   const start = async () => {
     if (enabled) return;
-    const ctx = new (window.AudioContext || (window as any).webkitAudioContext)();
+    const ctx = new (window.AudioContext ||
+      (window as any).webkitAudioContext)();
     const osc = ctx.createOscillator();
     const gain = ctx.createGain();
-    osc.type = "sine";          // suave
-    osc.frequency.value = 220;  // tono base
-    gain.gain.value = 0.0;      // inicia muteado
+    osc.type = "sine"; // suave
+    osc.frequency.value = 220; // tono base
+    gain.gain.value = 0.0; // inicia muteado
 
     osc.connect(gain).connect(ctx.destination);
     osc.start();
 
-    ctxRef.current = ctx; oscRef.current = osc; gainRef.current = gain;
+    ctxRef.current = ctx;
+    oscRef.current = osc;
+    gainRef.current = gain;
     setEnabled(true);
   };
 
-  const fadeTo = (v:number) => {
+  const fadeTo = (v: number) => {
     if (!gainRef.current) return;
     const now = ctxRef.current!.currentTime;
     gainRef.current.gain.cancelScheduledValues(now);
@@ -37,7 +40,10 @@ export default function SpatialAudioHotspot() {
   return (
     <div className="fixed left-4 bottom-4 z-40">
       {!enabled ? (
-        <button onClick={start} className="px-4 py-2 rounded-lg border border-white/20 bg-black/40">
+        <button
+          onClick={start}
+          className="px-4 py-2 rounded-lg border border-white/20 bg-black/40"
+        >
           Enable Audio
         </button>
       ) : (

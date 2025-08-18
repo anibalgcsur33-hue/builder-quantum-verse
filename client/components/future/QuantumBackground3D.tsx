@@ -10,7 +10,8 @@ function QuantumMat() {
   const mat = useRef<THREE.ShaderMaterial>(null!);
   const start = useMemo(() => performance.now(), []);
   useFrame(() => {
-    if (mat.current) mat.current.uniforms.uTime.value = (performance.now() - start) / 1000;
+    if (mat.current)
+      mat.current.uniforms.uTime.value = (performance.now() - start) / 1000;
   });
 
   const uniforms = useMemo(
@@ -20,7 +21,7 @@ function QuantumMat() {
       uColorB: { value: new THREE.Color("#7c5cff") },
       uNoiseScale: { value: 1.5 },
     }),
-    []
+    [],
   );
 
   return (
@@ -29,13 +30,16 @@ function QuantumMat() {
       <shaderMaterial
         ref={mat}
         uniforms={uniforms}
-        vertexShader={/* glsl */`
+        vertexShader={
+          /* glsl */ `
           varying vec2 vUv;
           void main() {
             vUv = uv;
             gl_Position = vec4(position, 1.0);
-          }`}
-        fragmentShader={/* glsl */`
+          }`
+        }
+        fragmentShader={
+          /* glsl */ `
           precision highp float;
           varying vec2 vUv;
           uniform float uTime;
@@ -73,7 +77,8 @@ function QuantumMat() {
             col += n*0.12;
 
             gl_FragColor = vec4(col * vignette, 1.0);
-          }`}
+          }`
+        }
         depthWrite={false}
         transparent
         opacity={0.6}
@@ -85,25 +90,28 @@ function QuantumMat() {
 // Simple 3D stars fallback (without drei)
 function SimpleStars() {
   const starsRef = useRef<THREE.Points>(null!);
-  
+
   const { vertices, colors } = useMemo(() => {
     const vertices = [];
     const colors = [];
     const count = 1000;
-    
+
     for (let i = 0; i < count; i++) {
       vertices.push(
         (Math.random() - 0.5) * 400,
         (Math.random() - 0.5) * 400,
-        (Math.random() - 0.5) * 400
+        (Math.random() - 0.5) * 400,
       );
-      
+
       const color = new THREE.Color();
       color.setHSL(0.5 + Math.random() * 0.3, 0.7, 0.5 + Math.random() * 0.5);
       colors.push(color.r, color.g, color.b);
     }
-    
-    return { vertices: new Float32Array(vertices), colors: new Float32Array(colors) };
+
+    return {
+      vertices: new Float32Array(vertices),
+      colors: new Float32Array(colors),
+    };
   }, []);
 
   useFrame((state) => {
