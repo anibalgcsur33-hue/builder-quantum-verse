@@ -229,33 +229,47 @@ export default function PremiumHome() {
         </motion.div>
       </section>
 
-      {/* AI Concierge Section */}
-      <section className="relative py-20">
-        <motion.div
-          initial={{ opacity: 0, scale: 0.9 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.8, delay: 2.5 }}
-          className="container mx-auto px-4"
-        >
-          <AIConcierge />
-        </motion.div>
-      </section>
-
-      {/* Community Section */}
+      {/* Features Grid */}
       <section className="relative py-20">
         <motion.div
           initial={{ opacity: 0, y: 50 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 3 }}
+          transition={{ duration: 0.8, delay: 2 }}
           className="container mx-auto px-4"
         >
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-white mb-6">Comunidad BlueEye</h2>
-            <p className="text-xl text-white/80 max-w-3xl mx-auto">
-              Únete a nuestra exclusiva comunidad de propietarios de lujo
-            </p>
+          <h2 className="text-5xl font-bold text-center text-white mb-16">
+            Experiencias <span className="text-cyan-400">Revolucionarias</span>
+          </h2>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {[
+              { icon: "🌌", title: "Portal Holográfico", desc: "Entrada dimensional al metaverso inmobiliario" },
+              { icon: "🤖", title: "IA Concierge", desc: "Asistente premium personalizado 24/7" },
+              { icon: "🗺️", title: "España 3D Vivo", desc: "Mapa interactivo con animaciones en tiempo real" },
+              { icon: "🏰", title: "Galería Flotante", desc: "Propiedades como obras de arte suspendidas" },
+              { icon: "🎮", title: "NFT Gaming", desc: "Colecciona gemas y desbloquea villas secretas" },
+              { icon: "🚀", title: "VR Lounges", desc: "Networking premium en espacios virtuales exclusivos" }
+            ].map((feature, index) => (
+              <motion.div
+                key={index}
+                className="bg-white/10 backdrop-blur-md rounded-2xl p-8 border border-white/20"
+                initial={{ opacity: 0, y: 50 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 2.5 + index * 0.2 }}
+                whileHover={{ scale: 1.05, y: -10 }}
+              >
+                <motion.div
+                  className="text-5xl mb-6 text-center"
+                  animate={{ scale: [1, 1.1, 1], rotate: [0, 5, -5, 0] }}
+                  transition={{ duration: 3, repeat: Infinity, delay: index * 0.5 }}
+                >
+                  {feature.icon}
+                </motion.div>
+                <h3 className="text-xl font-bold text-white mb-4 text-center">{feature.title}</h3>
+                <p className="text-white/70 text-center">{feature.desc}</p>
+              </motion.div>
+            ))}
           </div>
-          <CommunityGroups />
         </motion.div>
       </section>
 
@@ -285,8 +299,19 @@ export default function PremiumHome() {
         </div>
       </motion.footer>
 
-      {/* AI Chat Portal - Always available */}
-      <AIChatPortal />
+      {/* Floating Chat Button */}
+      <motion.div
+        className="fixed bottom-8 right-8 z-50"
+        initial={{ opacity: 0, scale: 0 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ delay: 3 }}
+        whileHover={{ scale: 1.1 }}
+        whileTap={{ scale: 0.9 }}
+      >
+        <button className="w-16 h-16 bg-gradient-to-r from-cyan-500 to-purple-600 rounded-full flex items-center justify-center text-white text-2xl shadow-2xl">
+          💬
+        </button>
+      </motion.div>
 
       {/* Premium Badge */}
       <motion.div
