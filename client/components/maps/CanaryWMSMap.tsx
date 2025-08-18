@@ -16,7 +16,7 @@ export default function CanaryWMSMap() {
   }, []);
 
   return (
-    <div className="rounded-2xl overflow-hidden border border-white/10 shadow-[0_0_40px_rgba(0,0,0,.45)]">
+    <div className="rounded-2xl overflow-hidden border border-white/10 shadow-[0_0_40px_rgba(0,0,0,.45)] relative">
       <MapContainer
         center={CENTER}
         zoom={ZOOM}
@@ -26,6 +26,7 @@ export default function CanaryWMSMap() {
         maxBounds={BOUNDS}
         className="h-[68vh] w-full"
         preferCanvas
+        style={{ background: "#0b1220" }}
       >
         <ZoomControl position="topright" />
         <ScaleControl position="bottomleft" />
