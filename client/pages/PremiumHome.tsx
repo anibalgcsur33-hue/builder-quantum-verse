@@ -5,6 +5,8 @@ import PremiumHeader from "../components/header/PremiumHeader";
 import NeuralField from "../components/future/NeuralField";
 import AIConcierge from "../components/future/AIConcierge";
 import VoiceMeter from "../components/future/VoiceMeter";
+import ScrollTracker from "../components/ux/ScrollTracker";
+import StickyCTA from "../components/ux/StickyCTA";
 
 export default function PremiumHome() {
   return (

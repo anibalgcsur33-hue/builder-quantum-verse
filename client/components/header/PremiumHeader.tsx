@@ -2,6 +2,8 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import { Building2, Globe2, Users, BarChart3, Headset, ChevronDown, Sparkles } from "lucide-react";
 import NavIcon from "./NavIcon";
+import MegaNav from "../navigation/MegaNav";
+import MobileDrawer from "../navigation/MobileDrawer";
 
 export default function PremiumHeader() {
   const [open, setOpen] = useState(false);
@@ -22,38 +24,7 @@ export default function PremiumHeader() {
 
           {/* Nav con iconos premium */}
           <div className="relative hidden lg:flex items-center gap-2">
-            <div className="relative"
-                 onMouseEnter={() => setOpen(true)} onMouseLeave={() => setOpen(false)}>
-              <button className="flex items-center gap-2 px-3 py-2 rounded-xl hover:bg-white/5 text-white/80 hover:text-white transition-colors">
-                <Sparkles className="w-5 h-5 text-cyan-300" />
-                <span className="text-sm font-medium">Propiedades</span>
-                <ChevronDown className={`w-4 h-4 transition-transform ${open ? "rotate-180" : ""}`} />
-              </button>
-              {/* Mega simple (placeholder). Si quieres, te paso el completo luego. */}
-              {open && (
-                <div className="absolute left-1/2 -translate-x-1/2 mt-3 w-[780px] max-w-[94vw]
-                                rounded-2xl bg-[#0b1220]/95 backdrop-blur-xl border border-white/10 shadow-2xl p-6">
-                  <div className="grid grid-cols-3 gap-4">
-                    {[
-                      ["Comprar", "Villas, áticos y fincas", <Building2 className="w-5 h-5" />],
-                      ["Alquilar", "Vacacional y larga estancia", <Headset className="w-5 h-5" />],
-                      ["Obra nueva", "Promociones exclusivas", <Sparkles className="w-5 h-5" />],
-                    ].map(([name, desc, icon]) => (
-                      <a key={name as string}
-                         href={`/properties?type=${encodeURIComponent(name as string)}`}
-                         className="group flex items-start gap-3 rounded-xl px-4 py-3 hover:bg-white/5 transition-colors">
-                        <div className="p-2 rounded-lg bg-cyan-400/10 text-cyan-300">{icon as any}</div>
-                        <div>
-                          <div className="text-white font-semibold group-hover:text-cyan-200">{name as string}</div>
-                          <div className="text-white/60 text-sm">{desc as string}</div>
-                        </div>
-                      </a>
-                    ))}
-                  </div>
-                </div>
-              )}
-            </div>
-
+            <MegaNav />
             <a href="/metaverse">
               <NavIcon icon={<Globe2 className="w-5 h-5 text-violet-300" />} label="Metaverso" />
             </a>
@@ -80,6 +51,9 @@ export default function PremiumHeader() {
               Solicitar invitación
             </motion.a>
           </div>
+
+          {/* Mobile Menu */}
+          <MobileDrawer />
         </nav>
       </div>
     </header>
