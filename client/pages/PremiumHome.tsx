@@ -169,29 +169,64 @@ export default function PremiumHome() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {[
-              { title: "Villa Marbella", price: "€2.5M", location: "Costa del Sol", image: "🏖️" },
-              { title: "Penthouse Madrid", price: "€1.8M", location: "Salamanca", image: "🏙️" },
-              { title: "Casa Barcelona", price: "€3.2M", location: "Eixample", image: "🏛️" }
+              {
+                title: "Villa Atlántica — Tenerife",
+                price: "€12.8M",
+                image: "https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3",
+                location: "Santa Cruz"
+              },
+              {
+                title: "Penthouse SkyLine — Barcelona",
+                price: "€5.4M",
+                image: "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3",
+                location: "Eixample"
+              },
+              {
+                title: "Cliff Mansion — Ibiza",
+                price: "€22.0M",
+                image: "https://images.unsplash.com/photo-1582268611958-ebfd161ef9cf?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3",
+                location: "Es Vedra"
+              },
+              {
+                title: "Golden Mile Estate — Marbella",
+                price: "€7.9M",
+                image: "https://images.unsplash.com/photo-1613490493576-7fde63acd811?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3",
+                location: "Puerto Banús"
+              }
             ].map((property, index) => (
               <motion.div
                 key={index}
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.5, delay: 2 + index * 0.1 }}
-                className="bg-white/10 backdrop-blur-md rounded-2xl p-6 border border-white/20 hover:bg-white/20 cursor-pointer group transition-all duration-300"
-                whileHover={{ y: -10, scale: 1.02 }}
+                className="bg-gradient-to-b from-slate-900/90 to-slate-800/90 backdrop-blur-md rounded-2xl overflow-hidden border border-white/10 hover:border-cyan-400/50 cursor-pointer group transition-all duration-300"
+                whileHover={{ y: -5, scale: 1.02 }}
               >
-                <div className="text-4xl mb-4 group-hover:scale-110 transition-transform">
-                  {property.image}
+                <div className="relative h-48 overflow-hidden">
+                  <img
+                    src={property.image}
+                    alt={property.title}
+                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                  />
+                  <div className="absolute top-3 right-3 bg-black/50 backdrop-blur-sm rounded-full px-2 py-1 text-xs text-white">
+                    {property.location}
+                  </div>
                 </div>
-                <h3 className="text-xl font-bold text-white mb-2">{property.title}</h3>
-                <p className="text-white/70 mb-4 flex items-center gap-2">
-                  <MapPin className="w-4 h-4" />
-                  {property.location}
-                </p>
-                <p className="text-cyan-400 font-bold text-lg">{property.price}</p>
+                <div className="p-4">
+                  <h3 className="text-sm font-semibold text-white mb-2 leading-tight">{property.title}</h3>
+                  <p className="text-cyan-400 font-bold text-lg mb-4">{property.price}</p>
+
+                  <div className="flex gap-2">
+                    <button className="flex-1 bg-cyan-500/20 hover:bg-cyan-500/30 text-cyan-300 text-xs py-2 px-3 rounded-lg transition-colors">
+                      Ver en VR
+                    </button>
+                    <button className="flex-1 bg-violet-500/20 hover:bg-violet-500/30 text-violet-300 text-xs py-2 px-3 rounded-lg transition-colors">
+                      Dossier IA
+                    </button>
+                  </div>
+                </div>
               </motion.div>
             ))}
           </div>
