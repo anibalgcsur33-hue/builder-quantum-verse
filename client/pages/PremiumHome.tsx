@@ -421,11 +421,6 @@ export default function PremiumHome() {
       {/* Voice Visualizer (optional for demos) */}
       <VoiceMeter />
 
-      {/* Gradient Bar at Bottom */}
-      <div className="fixed bottom-0 left-0 right-0 z-30">
-        <div className="h-16 bg-gradient-to-r from-blue-500 via-cyan-400 to-pink-400 opacity-80"></div>
-      </div>
-
       {/* Premium Badge */}
       <motion.div
         className="fixed top-4 right-4 z-40 bg-white/10 backdrop-blur-md px-4 py-2 rounded-full border border-white/20"
