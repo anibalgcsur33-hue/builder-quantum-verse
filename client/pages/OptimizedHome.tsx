@@ -131,8 +131,26 @@ export default function OptimizedHome() {
         </main>
       </div>
 
+      {/* Premium Showcase */}
+      <PremiumShowcase />
+
+      {/* Investor Stats Alternate */}
+      <InvestorStatsAlternate />
+
+      {/* Holographic Concierge */}
+      <HolographicConcierge />
+
+      {/* VR Portal Teaser */}
+      <VRPortalTeaser />
+
+      {/* Community Strip */}
+      <CommunityStrip />
+
       {/* VR Experience Section */}
       <VRExperienceSection />
+
+      {/* Investors CTA */}
+      <InvestorsCTA />
 
       <SpatialAudioHotspot />
       <SpatialAudioAdvanced />
