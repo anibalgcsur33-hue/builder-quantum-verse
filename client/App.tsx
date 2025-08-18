@@ -38,6 +38,7 @@ import CryptoToken from "./pages/CryptoToken";
 import MetaverseMap from "./pages/MetaverseMap";
 import SkeletonDemo from "./pages/SkeletonDemo";
 import Simple from "./pages/Simple";
+import PinsDemo from "./pages/PinsDemo";
 
 const queryClient = new QueryClient();
 
