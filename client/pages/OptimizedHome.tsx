@@ -112,6 +112,9 @@ export default function OptimizedHome() {
           {/* Neural Showcase */}
           <NeuralShowcase />
 
+          {/* Ecosistema Neuronal BlueEye */}
+          <EcosistemaNeuronal />
+
           {/* Spain Map with Animated Routes */}
           <SpainMapTeaser />
 
