@@ -27,20 +27,20 @@ export default function PremiumHome() {
   return (
     <div className="min-h-screen bg-gradient-to-b from-blue-dark via-blue-dark/95 to-black relative overflow-x-hidden">
       {/* Neural Background Connections */}
-      {/* <NeuroConnections /> */}
-
+      <NeuroConnections />
+      
       {/* Page Header with Glass Effect */}
       <motion.div
         initial={{ opacity: 0, y: -50 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8 }}
-        className="relative z-20 p-8"
+        className="relative z-20"
       >
-        <h1 className="text-white text-4xl font-bold text-center">BlueEyes Portal - Testing</h1>
+        <Header />
       </motion.div>
 
       {/* Hero Section - Portal Holográfico */}
-      {/* <section className="relative">
+      <section className="relative">
         <motion.div
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
@@ -48,7 +48,7 @@ export default function PremiumHome() {
         >
           <PortalHeroes />
         </motion.div>
-      </section> */}
+      </section>
 
       {/* Luxury Hero Section */}
       <section className="relative py-20">
@@ -62,7 +62,7 @@ export default function PremiumHome() {
       </section>
 
       {/* Concierge Narrativo */}
-      {/* <section className="relative">
+      <section className="relative">
         <motion.div
           initial={{ opacity: 0, x: -100 }}
           animate={{ opacity: 1, x: 0 }}
@@ -70,10 +70,10 @@ export default function PremiumHome() {
         >
           <ConciergeNarrative />
         </motion.div>
-      </section> */}
+      </section>
 
       {/* Mapa España Premium */}
-      {/* <section className="relative">
+      <section className="relative">
         <motion.div
           initial={{ opacity: 0, rotateX: 15 }}
           animate={{ opacity: 1, rotateX: 0 }}
@@ -81,7 +81,7 @@ export default function PremiumHome() {
         >
           <PremiumSpainMap />
         </motion.div>
-      </section> */}
+      </section>
 
       {/* Properties Gallery - Domo Rotativo */}
       <section className="relative">
@@ -211,7 +211,7 @@ export default function PremiumHome() {
       </section>
 
       {/* Quantum Property States */}
-      {/* <section className="relative">
+      <section className="relative">
         <motion.div
           initial={{ opacity: 0, scale: 0.8 }}
           animate={{ opacity: 1, scale: 1 }}
@@ -219,10 +219,10 @@ export default function PremiumHome() {
         >
           <QuantumPropertyStates />
         </motion.div>
-      </section> */}
+      </section>
 
       {/* Synesthetic Property Experience */}
-      {/* <section className="relative">
+      <section className="relative">
         <motion.div
           initial={{ opacity: 0, y: 100 }}
           animate={{ opacity: 1, y: 0 }}
@@ -230,10 +230,10 @@ export default function PremiumHome() {
         >
           <SynestheticPropertyExperience />
         </motion.div>
-      </section> */}
+      </section>
 
       {/* Cinematic Drone Finale */}
-      {/* <section className="relative">
+      <section className="relative">
         <motion.div
           initial={{ opacity: 0, scale: 1.1 }}
           animate={{ opacity: 1, scale: 1 }}
@@ -241,7 +241,7 @@ export default function PremiumHome() {
         >
           <CinematicDroneFinale />
         </motion.div>
-      </section> */}
+      </section>
 
       {/* AI Concierge Section */}
       <section className="relative py-20">

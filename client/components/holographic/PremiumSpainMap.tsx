@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import * as THREE from "three";
-import { Plane, Ship, MapPin, Zap, Globe, Eye } from "lucide-react";
+import { Plane, Yacht, MapPin, Zap, Globe, Eye } from "lucide-react";
 
 interface HolographicBeacon {
   id: string;
@@ -224,7 +224,7 @@ export default function PremiumSpainMap() {
             float glow = sin(time * 2.0 + vPosition.y * 5.0) * 0.5 + 0.5;
             vec3 final_color = glow_color * (glow * intensity + 0.5);
             
-            // Pulso energ��tico
+            // Pulso energético
             float pulse = sin(time * 4.0) * 0.3 + 0.7;
             final_color *= pulse;
             
@@ -422,7 +422,7 @@ export default function PremiumSpainMap() {
             onClick={() => setShowYachts(!showYachts)}
             className={`control-btn ${showYachts ? 'active' : ''}`}
           >
-            <Ship className="w-5 h-5" />
+            <Yacht className="w-5 h-5" />
             <span>Yates de Lujo</span>
           </button>
           
@@ -506,7 +506,7 @@ export default function PremiumSpainMap() {
 
         {showYachts && (
           <div className="legend-item">
-            <Ship className="w-4 h-4 text-white" />
+            <Yacht className="w-4 h-4 text-white" />
             <span>Yates en movimiento</span>
           </div>
         )}
