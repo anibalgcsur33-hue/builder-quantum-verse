@@ -7,7 +7,7 @@ import BlueEyeLogo from "@/components/BlueEyeLogo";
 import PremiumHeader from "@/components/header/PremiumHeader";
 import NeuralField from "@/components/future/NeuralField";
 import QuantumPortalLoader from "@/components/future/QuantumPortalLoader";
-import QuantumBackgroundFallback from "@/components/future/QuantumBackgroundFallback";
+import QuantumBackground from "@/components/future/QuantumBackground";
 import CanaryMap3DFallback from "@/components/future/CanaryMap3DFallback";
 import HologramCard3DSimple from "@/components/future/HologramCard3DSimple";
 import SpatialAudioHotspot from "@/components/future/SpatialAudioHotspot";
@@ -20,8 +20,8 @@ export default function OptimizedHome() {
       <QuantumPortalLoader />
       <ScrollTracker />
       <div className="min-h-screen relative overflow-x-hidden">
-        {/* Quantum Background - Cinematic */}
-        <QuantumBackgroundFallback />
+        {/* Quantum Background - 3D Dynamic */}
+        <QuantumBackground />
 
         {/* Neural Field Overlay */}
         <NeuralField
