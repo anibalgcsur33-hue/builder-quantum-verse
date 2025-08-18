@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { Eye, MapPin, Star, Users, Building, Home, Sparkles } from "lucide-react";
 import Header from "../components/Header";
 import NeuralField from "../components/future/NeuralField";
+import AIConcierge from "../components/future/AIConcierge";
 
 export default function PremiumHome() {
   return (
@@ -289,19 +290,8 @@ export default function PremiumHome() {
         </div>
       </motion.footer>
 
-      {/* Floating Chat Button */}
-      <motion.div
-        className="fixed bottom-8 right-8 z-50"
-        initial={{ opacity: 0, scale: 0 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ delay: 3 }}
-        whileHover={{ scale: 1.1 }}
-        whileTap={{ scale: 0.9 }}
-      >
-        <button className="w-16 h-16 bg-gradient-to-r from-cyan-500 to-purple-600 rounded-full flex items-center justify-center text-white text-2xl shadow-2xl">
-          💬
-        </button>
-      </motion.div>
+      {/* AI Concierge with Voice */}
+      <AIConcierge />
 
       {/* Premium Badge */}
       <motion.div
