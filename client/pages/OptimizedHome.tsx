@@ -173,6 +173,9 @@ export default function OptimizedHome() {
       <SpatialAudioHotspot />
       <SpatialAudioAdvanced />
       <StickyCTA />
+
+      {/* Live Activity Toasts */}
+      <LiveActivityToasts />
     </>
   );
 }
