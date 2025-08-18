@@ -28,20 +28,6 @@ export default function LiquidHome() {
           {/* Liquid Hero Section */}
           <LiquidHero />
 
-          {/* BlueEye Logo Showcase */}
-          <section className="py-16">
-            <div className="flex justify-center">
-              <BlueEyeLogo
-                src="/assets/BLUEYELOGO.png"
-                size={180}
-                label="BlueEye Homes"
-                href="/"
-                glow={0.95}
-                className="transform-gpu"
-              />
-            </div>
-          </section>
-
           {/* Metrics Panel */}
           <MetricsPanel />
 
