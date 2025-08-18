@@ -34,9 +34,9 @@ export default function PremiumHome() {
         initial={{ opacity: 0, y: -50 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8 }}
-        className="relative z-20"
+        className="relative z-20 p-8"
       >
-        <Header />
+        <h1 className="text-white text-4xl font-bold text-center">BlueEyes Portal - Testing</h1>
       </motion.div>
 
       {/* Hero Section - Portal Holográfico */}
