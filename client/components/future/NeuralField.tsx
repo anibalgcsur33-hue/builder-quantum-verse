@@ -89,8 +89,14 @@ export default function NeuralField({
       ctx.fillStyle = "#67e8f9";
       for (const n of nodes) {
         ctx.beginPath();
-        ctx.arc(n.x, n.y, 1.3 * devicePixelRatio, 0, Math.PI * 2);
+        ctx.arc(n.x, n.y, 2 * devicePixelRatio, 0, Math.PI * 2);
         ctx.fill();
+        // Add glow effect
+        ctx.globalAlpha = 0.3;
+        ctx.beginPath();
+        ctx.arc(n.x, n.y, 4 * devicePixelRatio, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.globalAlpha = 1.0;
       }
 
       requestAnimationFrame(loop);
