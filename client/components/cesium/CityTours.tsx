@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import * as Cesium from "cesium";
+// import * as Cesium from "cesium"; // Temporarily disabled until Cesium is properly installed
 
 type City = {
   id: string;
