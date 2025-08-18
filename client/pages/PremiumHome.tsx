@@ -1,15 +1,36 @@
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
-import { Eye, MapPin, Star, Users, Building, Home } from "lucide-react";
+import { Eye, MapPin, Star, Users, Building, Home, Sparkles } from "lucide-react";
 import Header from "../components/Header";
-import HeroBlueEye from "../components/HeroBlueEye";
-import AIConcierge from "../components/AIConcierge";
-import AIChatPortal from "../components/AIChatPortal";
-import CommunityGroups from "../components/CommunityGroups";
 
 export default function PremiumHome() {
   return (
-    <div className="min-h-screen bg-gradient-to-b from-blue-dark via-blue-dark/95 to-black relative overflow-x-hidden">
+    <div className="min-h-screen bg-gradient-to-b from-blue-dark via-purple-900 to-black relative overflow-x-hidden">
+      {/* Animated Background */}
+      <div className="absolute inset-0 overflow-hidden">
+        {Array.from({ length: 50 }).map((_, i) => (
+          <motion.div
+            key={i}
+            className="absolute w-1 h-20 bg-gradient-to-b from-cyan-400/30 to-transparent"
+            style={{
+              left: `${Math.random() * 100}%`,
+              top: `${Math.random() * 100}%`,
+            }}
+            animate={{
+              opacity: [0, 1, 0],
+              scaleY: [0, 1, 0],
+              rotate: [0, 180, 360]
+            }}
+            transition={{
+              duration: 4,
+              repeat: Infinity,
+              delay: Math.random() * 2,
+              ease: "easeInOut"
+            }}
+          />
+        ))}
+      </div>
+
       {/* Page Header */}
       <motion.div
         initial={{ opacity: 0, y: -50 }}
@@ -20,14 +41,107 @@ export default function PremiumHome() {
         <Header />
       </motion.div>
 
-      {/* Hero Section */}
-      <section className="relative py-20">
+      {/* Portal Hero */}
+      <section className="relative min-h-screen flex items-center justify-center">
         <motion.div
-          initial={{ opacity: 0, y: 50 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.5 }}
+          initial={{ opacity: 0, scale: 0.8 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 1.5 }}
+          className="text-center z-10"
         >
-          <HeroBlueEye />
+          {/* Holographic Ring */}
+          <motion.div
+            className="relative w-64 h-64 mx-auto mb-12"
+            animate={{ rotate: 360 }}
+            transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+          >
+            <div className="absolute inset-0 rounded-full border-4 border-cyan-400/30"></div>
+            <div className="absolute inset-4 rounded-full border-2 border-purple-400/50"></div>
+            <div className="absolute inset-8 rounded-full border border-pink-400/70"></div>
+            <motion.div
+              className="absolute inset-0 rounded-full bg-gradient-to-r from-cyan-400/20 to-purple-400/20"
+              animate={{ scale: [1, 1.1, 1] }}
+              transition={{ duration: 3, repeat: Infinity }}
+            />
+            <div className="absolute inset-0 flex items-center justify-center">
+              <motion.div
+                animate={{ scale: [1, 1.2, 1], rotate: [0, 10, -10, 0] }}
+                transition={{ duration: 2, repeat: Infinity }}
+                className="text-6xl"
+              >
+                👁️
+              </motion.div>
+            </div>
+          </motion.div>
+
+          <motion.h1
+            className="text-6xl md:text-8xl font-bold mb-8"
+            animate={{
+              background: [
+                "linear-gradient(45deg, #00ffff, #ff00ff)",
+                "linear-gradient(45deg, #ff00ff, #ffff00)",
+                "linear-gradient(45deg, #ffff00, #00ffff)"
+              ]
+            }}
+            transition={{ duration: 3, repeat: Infinity }}
+            style={{
+              backgroundClip: "text",
+              WebkitBackgroundClip: "text",
+              color: "transparent"
+            }}
+          >
+            BlueEyes Portal
+          </motion.h1>
+
+          <motion.p
+            className="text-2xl text-white/80 mb-12 max-w-4xl mx-auto"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 1 }}
+          >
+            Bienvenido al futuro del metaverso inmobiliario.
+            <br />
+            Experiencia premium ultra-futurista de España.
+          </motion.p>
+
+          <motion.div
+            className="flex flex-col sm:flex-row gap-6 justify-center items-center"
+            initial={{ opacity: 0, y: 50 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 1.5 }}
+          >
+            <motion.button
+              className="px-12 py-6 bg-gradient-to-r from-cyan-500 to-purple-600 text-white font-bold text-xl rounded-2xl"
+              whileHover={{ scale: 1.05, rotateY: 5 }}
+              whileTap={{ scale: 0.95 }}
+              animate={{
+                boxShadow: [
+                  "0 0 30px rgba(0, 255, 255, 0.3)",
+                  "0 0 60px rgba(255, 0, 255, 0.3)",
+                  "0 0 30px rgba(0, 255, 255, 0.3)"
+                ]
+              }}
+              transition={{
+                boxShadow: { duration: 2, repeat: Infinity }
+              }}
+            >
+              <div className="flex items-center gap-3">
+                <Sparkles className="w-6 h-6" />
+                Entrar al Portal
+              </div>
+            </motion.button>
+
+            <motion.button
+              className="px-12 py-6 bg-white/10 backdrop-blur-md text-white font-bold text-xl rounded-2xl border border-white/20"
+              whileHover={{ scale: 1.05, backgroundColor: "rgba(255,255,255,0.2)" }}
+              whileTap={{ scale: 0.95 }}
+            >
+              <div className="flex items-center gap-3">
+                <Eye className="w-6 h-6" />
+                Explorar Propiedades
+              </div>
+            </motion.button>
+          </motion.div>
         </motion.div>
       </section>
 
