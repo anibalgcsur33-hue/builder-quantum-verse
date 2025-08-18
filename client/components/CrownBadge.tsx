@@ -26,7 +26,7 @@ export default function CrownBadge({
           aria-hidden
           className="i-lucide-crown text-cyan-300/80"
           initial={{ rotate: -8 }}
-          animate={{ rotate: [ -8, 6, -8 ] }}
+          animate={{ rotate: [-8, 6, -8] }}
           transition={{ duration: 3.6, repeat: Infinity, ease: "easeInOut" }}
         />
       </div>

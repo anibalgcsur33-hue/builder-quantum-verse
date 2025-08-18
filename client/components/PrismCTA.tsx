@@ -38,7 +38,9 @@ export default function PrismCTA({
   );
 
   return href ? (
-    <a href={href} className="inline-block">{Button}</a>
+    <a href={href} className="inline-block">
+      {Button}
+    </a>
   ) : (
     Button
   );

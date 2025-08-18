@@ -1,7 +1,9 @@
 import { useEffect, useRef } from "react";
 import { motion, useAnimation, VariantLabels } from "framer-motion";
 
-export function useInViewOnce<T extends HTMLElement>(margin = "0px 0px -15% 0px") {
+export function useInViewOnce<T extends HTMLElement>(
+  margin = "0px 0px -15% 0px",
+) {
   const ref = useRef<T | null>(null);
   const ctrl = useAnimation();
 
@@ -20,7 +22,7 @@ export function useInViewOnce<T extends HTMLElement>(margin = "0px 0px -15% 0px"
           }
         });
       },
-      { root: null, rootMargin: margin, threshold: 0.15 }
+      { root: null, rootMargin: margin, threshold: 0.15 },
     );
     io.observe(el);
     return () => io.disconnect();
@@ -42,7 +44,7 @@ export function Reveal({
   delay = 0,
   variants = {
     hidden: { opacity: 0, y: 22, filter: "blur(6px)" },
-    show:   { opacity: 1, y: 0,  filter: "blur(0px)" },
+    show: { opacity: 1, y: 0, filter: "blur(0px)" },
   },
 }: RevealProps) {
   const { ref, ctrl } = useInViewOnce<HTMLDivElement>();
