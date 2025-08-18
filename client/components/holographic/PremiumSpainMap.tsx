@@ -422,7 +422,7 @@ export default function PremiumSpainMap() {
             onClick={() => setShowYachts(!showYachts)}
             className={`control-btn ${showYachts ? 'active' : ''}`}
           >
-            <Yacht className="w-5 h-5" />
+            <Ship className="w-5 h-5" />
             <span>Yates de Lujo</span>
           </button>
           
@@ -506,7 +506,7 @@ export default function PremiumSpainMap() {
 
         {showYachts && (
           <div className="legend-item">
-            <Yacht className="w-4 h-4 text-white" />
+            <Ship className="w-4 h-4 text-white" />
             <span>Yates en movimiento</span>
           </div>
         )}
