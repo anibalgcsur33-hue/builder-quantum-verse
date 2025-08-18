@@ -6,6 +6,8 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Index from "./pages/Index";
+import PremiumHome from "./pages/PremiumHome";
+import MinimalHome from "./pages/MinimalHome";
 import NotFound from "./pages/NotFound";
 import PlaceholderPage from "./pages/PlaceholderPage";
 import Properties from "./pages/Properties";
@@ -42,7 +44,9 @@ const App = () => (
       <Sonner />
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Index />} />
+          <Route path="/" element={<PremiumHome />} />
+          <Route path="/minimal" element={<MinimalHome />} />
+          <Route path="/original" element={<Index />} />
 
           {/* Properties Routes */}
           <Route path="/propiedades" element={<Properties />} />
