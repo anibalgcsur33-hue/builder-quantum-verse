@@ -1,4 +1,6 @@
 import { useState } from "react";
+import { motion } from "framer-motion";
+import CountUp from "react-countup";
 import {
   Trophy,
   Star,
@@ -190,7 +192,7 @@ export default function GamificationSystem({
             <div>
               <div className="font-bold text-white">{currentLevel.name}</div>
               <div className="text-sm text-white/60">
-                {userStats.points} puntos
+                <CountUp end={userStats.points} duration={2} separator="," /> puntos
               </div>
             </div>
           </div>
@@ -198,7 +200,7 @@ export default function GamificationSystem({
             <div className="flex items-center space-x-1">
               <Coins className="w-4 h-4 text-yellow-400" />
               <span className="font-bold text-yellow-400">
-                {userStats.behTokens}
+                <CountUp end={userStats.behTokens} duration={2.5} separator="," />
               </span>
             </div>
             <div className="text-xs text-white/60">BEH Tokens</div>
@@ -245,13 +247,13 @@ export default function GamificationSystem({
                 <div className="flex items-center space-x-1">
                   <Star className="w-4 h-4 text-yellow-400" />
                   <span className="text-white font-medium">
-                    {userStats.points} puntos
+                    <CountUp end={userStats.points} duration={2} separator="," /> puntos
                   </span>
                 </div>
                 <div className="flex items-center space-x-1">
                   <Trophy className="w-4 h-4 text-purple-400" />
                   <span className="text-white/60">
-                    Rango #{userStats.rank} de {userStats.totalUsers}
+                    Rango #<CountUp end={userStats.rank} duration={1.5} /> de <CountUp end={userStats.totalUsers} duration={2} separator="," />
                   </span>
                 </div>
               </div>
@@ -262,7 +264,7 @@ export default function GamificationSystem({
             <div className="flex items-center space-x-2 mb-2">
               <Coins className="w-6 h-6 text-yellow-400" />
               <span className="text-2xl font-bold text-yellow-400">
-                {userStats.behTokens}
+                <CountUp end={userStats.behTokens} duration={2.5} separator="," />
               </span>
             </div>
             <div className="text-white/60">BEH Tokens</div>
@@ -274,7 +276,7 @@ export default function GamificationSystem({
             <div className="flex justify-between mb-2">
               <span className="text-white/70">Progreso a {nextLevel.name}</span>
               <span className="text-white/70">
-                {userStats.points} / {nextLevel.minPoints}
+                <CountUp end={userStats.points} duration={2} separator="," /> / <CountUp end={nextLevel.minPoints} duration={2} separator="," />
               </span>
             </div>
             <div className="w-full bg-white/10 rounded-full h-3 mb-2">
@@ -284,7 +286,7 @@ export default function GamificationSystem({
               ></div>
             </div>
             <div className="text-sm text-white/60">
-              {nextLevel.minPoints - userStats.points} puntos para el siguiente
+              <CountUp end={nextLevel.minPoints - userStats.points} duration={2} separator="," /> puntos para el siguiente
               nivel
             </div>
           </div>
@@ -355,42 +357,42 @@ export default function GamificationSystem({
               <div className="text-center p-4 bg-white/5 rounded-lg">
                 <MessageCircle className="w-8 h-8 text-blue-400 mx-auto mb-2" />
                 <div className="text-2xl font-bold text-white">
-                  {userStats.activities.posts}
+                  <CountUp end={userStats.activities.posts} duration={2} />
                 </div>
                 <div className="text-white/60 text-sm">Posts</div>
               </div>
               <div className="text-center p-4 bg-white/5 rounded-lg">
                 <MessageCircle className="w-8 h-8 text-green-400 mx-auto mb-2" />
                 <div className="text-2xl font-bold text-white">
-                  {userStats.activities.comments}
+                  <CountUp end={userStats.activities.comments} duration={2} />
                 </div>
                 <div className="text-white/60 text-sm">Comentarios</div>
               </div>
               <div className="text-center p-4 bg-white/5 rounded-lg">
                 <CheckCircle className="w-8 h-8 text-purple-400 mx-auto mb-2" />
                 <div className="text-2xl font-bold text-white">
-                  {userStats.activities.verifications}
+                  <CountUp end={userStats.activities.verifications} duration={2} />
                 </div>
                 <div className="text-white/60 text-sm">Verificaciones</div>
               </div>
               <div className="text-center p-4 bg-white/5 rounded-lg">
                 <UserPlus className="w-8 h-8 text-yellow-400 mx-auto mb-2" />
                 <div className="text-2xl font-bold text-white">
-                  {userStats.activities.invites}
+                  <CountUp end={userStats.activities.invites} duration={2} />
                 </div>
                 <div className="text-white/60 text-sm">Invitaciones</div>
               </div>
               <div className="text-center p-4 bg-white/5 rounded-lg">
                 <Home className="w-8 h-8 text-red-400 mx-auto mb-2" />
                 <div className="text-2xl font-bold text-white">
-                  {userStats.activities.operationsClosed}
+                  <CountUp end={userStats.activities.operationsClosed} duration={2} />
                 </div>
                 <div className="text-white/60 text-sm">Operaciones</div>
               </div>
               <div className="text-center p-4 bg-white/5 rounded-lg">
                 <Eye className="w-8 h-8 text-cyan-400 mx-auto mb-2" />
                 <div className="text-2xl font-bold text-white">
-                  {userStats.activities.vrToursCompleted}
+                  <CountUp end={userStats.activities.vrToursCompleted} duration={2} />
                 </div>
                 <div className="text-white/60 text-sm">Tours VR</div>
               </div>
@@ -509,7 +511,7 @@ export default function GamificationSystem({
               </div>
               <div className="mt-4 p-3 bg-purple-500/20 rounded-lg">
                 <div className="text-purple-400 font-medium">
-                  ¡Faltan solo {nextLevel.minPoints - userStats.points} puntos
+                  ¡Faltan solo <CountUp end={nextLevel.minPoints - userStats.points} duration={2} separator="," /> puntos
                   para desbloquearlo!
                 </div>
               </div>
