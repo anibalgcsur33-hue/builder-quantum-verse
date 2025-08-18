@@ -25,7 +25,8 @@ export default function HeroWaveTitle({
           willChange: "background-position",
         }}
       >
-        El futuro del <ShimmerTitle>real estate de lujo</ShimmerTitle><br />
+        El futuro del <ShimmerTitle>real estate de lujo</ShimmerTitle>
+        <br />
         empieza aquí
       </motion.h1>
 
