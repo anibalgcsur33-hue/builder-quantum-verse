@@ -211,7 +211,7 @@ export default function PremiumHome() {
       </section>
 
       {/* Quantum Property States */}
-      <section className="relative">
+      {/* <section className="relative">
         <motion.div
           initial={{ opacity: 0, scale: 0.8 }}
           animate={{ opacity: 1, scale: 1 }}
@@ -219,10 +219,10 @@ export default function PremiumHome() {
         >
           <QuantumPropertyStates />
         </motion.div>
-      </section>
+      </section> */}
 
       {/* Synesthetic Property Experience */}
-      <section className="relative">
+      {/* <section className="relative">
         <motion.div
           initial={{ opacity: 0, y: 100 }}
           animate={{ opacity: 1, y: 0 }}
@@ -230,10 +230,10 @@ export default function PremiumHome() {
         >
           <SynestheticPropertyExperience />
         </motion.div>
-      </section>
+      </section> */}
 
       {/* Cinematic Drone Finale */}
-      <section className="relative">
+      {/* <section className="relative">
         <motion.div
           initial={{ opacity: 0, scale: 1.1 }}
           animate={{ opacity: 1, scale: 1 }}
@@ -241,7 +241,7 @@ export default function PremiumHome() {
         >
           <CinematicDroneFinale />
         </motion.div>
-      </section>
+      </section> */}
 
       {/* AI Concierge Section */}
       <section className="relative py-20">
