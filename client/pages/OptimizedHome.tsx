@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Suspense } from "react";
+import { Suspense, lazy } from "react";
 import HeroWaveTitle from "@/components/hero/HeroWaveTitle";
 import PropertyGrid from "@/components/property/PropertyGrid";
 import { VRDemoCTA } from "@/components/modals/DemoModalUsage";
