@@ -32,6 +32,8 @@ import MuseumCarousel from "@/components/future/MuseumCarousel";
 import LiveActivityToasts from "@/components/future/LiveActivityToasts";
 import DemoBar from "@/components/future/DemoBar";
 import EcosistemaNeuronal from "@/components/sections/EcosistemaNeuronal";
+import PrismCTA from "@/components/PrismCTA";
+import { Reveal } from "@/components/reveal/ScrollReveal";
 
 export default function OptimizedHome() {
   return (
@@ -75,8 +77,9 @@ export default function OptimizedHome() {
               title="El futuro del real estate de lujo empieza aquí"
               subtitle="Experiencias inmersivas con VR/AR, IA concierge y mercado global verificado."
             />
-            <div className="mt-8">
+            <div className="mt-8 flex gap-4 justify-center">
               <VRDemoCTA />
+              <PrismCTA />
             </div>
 
             {/* Demo Bar */}
