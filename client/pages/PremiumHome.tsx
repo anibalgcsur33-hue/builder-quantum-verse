@@ -215,6 +215,133 @@ export default function PremiumHome() {
         </motion.div>
       </section>
 
+      {/* Neural Ecosystem Section */}
+      <section className="relative py-20">
+        <NeuralField
+          density={0.00015}
+          colorA="#67e8f9"
+          colorB="#a78bfa"
+          className="opacity-70"
+        />
+        <motion.div
+          initial={{ opacity: 0, y: 50 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 1.8 }}
+          className="relative mx-auto max-w-6xl px-6"
+        >
+          <div className="text-center mb-16">
+            <h2 className="text-5xl font-bold text-white mb-6">
+              Ecosistema <span className="text-gradient">Neural BlueEye</span>
+            </h2>
+            <p className="text-xl text-white/70 max-w-4xl mx-auto">
+              Interacción viva entre secciones, con navegación de precisión y respuesta IA contextual.
+              <br />
+              Tecnología del futuro implementada hoy para revolucionar el sector inmobiliario.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
+            <motion.div
+              className="glass-card p-8 text-center"
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ delay: 2.1 }}
+              whileHover={{ scale: 1.05, y: -10 }}
+            >
+              <div className="w-16 h-16 mx-auto mb-6 rounded-full bg-gradient-to-r from-cyan-400 to-blue-500 flex items-center justify-center text-2xl">
+                🧠
+              </div>
+              <h3 className="text-xl font-bold text-white mb-4">Campo Neuronal</h3>
+              <p className="text-white/70 text-sm leading-relaxed">
+                Canvas 2D ultra-optimizado que responde a tu movimiento.
+                Nodos inteligentes que crean conexiones dinámicas en tiempo real.
+              </p>
+            </motion.div>
+
+            <motion.div
+              className="glass-card p-8 text-center"
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ delay: 2.3 }}
+              whileHover={{ scale: 1.05, y: -10 }}
+            >
+              <div className="w-16 h-16 mx-auto mb-6 rounded-full bg-gradient-to-r from-purple-400 to-pink-500 flex items-center justify-center text-2xl">
+                🎙️
+              </div>
+              <h3 className="text-xl font-bold text-white mb-4">Voz & IA</h3>
+              <p className="text-white/70 text-sm leading-relaxed">
+                TTS/STT nativo español + WebAudio API.
+                Conversaciones naturales con inteligencia inmobiliaria especializada.
+              </p>
+            </motion.div>
+
+            <motion.div
+              className="glass-card p-8 text-center"
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ delay: 2.5 }}
+              whileHover={{ scale: 1.05, y: -10 }}
+            >
+              <div className="w-16 h-16 mx-auto mb-6 rounded-full bg-gradient-to-r from-green-400 to-cyan-500 flex items-center justify-center text-2xl">
+                📊
+              </div>
+              <h3 className="text-xl font-bold text-white mb-4">Analytics Live</h3>
+              <p className="text-white/70 text-sm leading-relaxed">
+                Visualización de voz en tiempo real.
+                VU meter premium con colores adaptativos y análisis de frecuencia.
+              </p>
+            </motion.div>
+          </div>
+
+          <motion.div
+            className="text-center space-y-6"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 2.8 }}
+          >
+            <div className="inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-black/40 to-blue-900/40 rounded-2xl border border-white/20">
+              <div className="flex items-center gap-2">
+                <div className="w-3 h-3 bg-green-400 rounded-full animate-pulse" />
+                <span className="text-sm text-white/80 font-medium">Sistema Neural Activo</span>
+              </div>
+              <div className="text-white/40">•</div>
+              <div className="flex items-center gap-2">
+                <span className="text-sm text-white/60">WebAPI Nativo</span>
+                <span className="text-xs bg-cyan-500/20 text-cyan-300 px-2 py-1 rounded">60 FPS</span>
+              </div>
+            </div>
+
+            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+              <motion.button
+                onClick={() => window.dispatchEvent(new CustomEvent("blueeye:assistant"))}
+                className="px-6 py-3 bg-gradient-to-r from-purple-500 to-cyan-500 text-white font-semibold rounded-xl hover:from-purple-400 hover:to-cyan-400 transition-all duration-300"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                <div className="flex items-center gap-2">
+                  <span>🤖</span>
+                  <span>Activar Concierge IA</span>
+                </div>
+              </motion.button>
+
+              <motion.div
+                className="text-white/50 text-sm"
+                whileHover={{ scale: 1.05 }}
+              >
+                <div className="flex items-center gap-2">
+                  <span>👈</span>
+                  <span>VU Meter disponible abajo-izquierda</span>
+                </div>
+              </motion.div>
+            </div>
+
+            <div className="text-xs text-white/40 max-w-2xl mx-auto">
+              <strong>Tecnologías implementadas:</strong> Canvas 2D • SpeechSynthesis API • SpeechRecognition API • WebAudio API • MediaDevices API • RequestAnimationFrame
+            </div>
+          </motion.div>
+        </motion.div>
+      </section>
+
       {/* Features Grid */}
       <section className="relative py-20">
         <NeuralField
@@ -226,7 +353,7 @@ export default function PremiumHome() {
         <motion.div
           initial={{ opacity: 0, y: 50 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 2 }}
+          transition={{ duration: 0.8, delay: 3.2 }}
           className="container mx-auto px-4"
         >
           <h2 className="text-5xl font-bold text-center text-white mb-16">
