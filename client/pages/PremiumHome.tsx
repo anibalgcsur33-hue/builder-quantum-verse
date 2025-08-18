@@ -10,7 +10,9 @@ import StickyCTA from "../components/ux/StickyCTA";
 
 export default function PremiumHome() {
   return (
-    <div className="min-h-screen bg-gradient-to-b from-blue-dark via-purple-900 to-black relative overflow-x-hidden">
+    <>
+      <ScrollTracker />
+      <div className="min-h-screen bg-gradient-to-b from-blue-dark via-purple-900 to-black relative overflow-x-hidden">
       {/* Neural Field Background */}
       <NeuralField
         density={0.00015}
@@ -434,6 +436,9 @@ export default function PremiumHome() {
           <span className="text-sm font-semibold">Premium Experience</span>
         </div>
       </motion.div>
-    </div>
+      </div>
+
+      <StickyCTA />
+    </>
   );
 }
