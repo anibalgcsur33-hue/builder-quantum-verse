@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { Eye, MapPin, Star, Users, Building, Home, Sparkles } from "lucide-react";
-import Header from "../components/Header";
+import PremiumHeader from "../components/header/PremiumHeader";
 import NeuralField from "../components/future/NeuralField";
 import AIConcierge from "../components/future/AIConcierge";
 import VoiceMeter from "../components/future/VoiceMeter";
@@ -17,18 +17,11 @@ export default function PremiumHome() {
         className="opacity-80"
       />
 
-      {/* Page Header */}
-      <motion.div
-        initial={{ opacity: 0, y: -50 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8 }}
-        className="relative z-20"
-      >
-        <Header />
-      </motion.div>
+      {/* Premium Header */}
+      <PremiumHeader />
 
       {/* Portal Hero */}
-      <section className="relative min-h-screen flex items-center justify-center">
+      <section className="relative min-h-screen flex items-center justify-center pt-28">
         <motion.div
           initial={{ opacity: 0, scale: 0.8 }}
           animate={{ opacity: 1, scale: 1 }}
@@ -170,7 +163,7 @@ export default function PremiumHome() {
           <div className="text-center mb-16">
             <h2 className="text-4xl font-bold text-white mb-6">Propiedades Premium</h2>
             <p className="text-xl text-white/80 max-w-3xl mx-auto">
-              Descubre nuestra exclusiva selección de propiedades de lujo en Espa��a
+              Descubre nuestra exclusiva selección de propiedades de lujo en España
             </p>
           </div>
 
