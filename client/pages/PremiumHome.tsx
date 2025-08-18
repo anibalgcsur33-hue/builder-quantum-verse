@@ -2,34 +2,18 @@ import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { Eye, MapPin, Star, Users, Building, Home, Sparkles } from "lucide-react";
 import Header from "../components/Header";
+import NeuralField from "../components/future/NeuralField";
 
 export default function PremiumHome() {
   return (
     <div className="min-h-screen bg-gradient-to-b from-blue-dark via-purple-900 to-black relative overflow-x-hidden">
-      {/* Animated Background */}
-      <div className="absolute inset-0 overflow-hidden">
-        {Array.from({ length: 50 }).map((_, i) => (
-          <motion.div
-            key={i}
-            className="absolute w-1 h-20 bg-gradient-to-b from-cyan-400/30 to-transparent"
-            style={{
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
-            }}
-            animate={{
-              opacity: [0, 1, 0],
-              scaleY: [0, 1, 0],
-              rotate: [0, 180, 360]
-            }}
-            transition={{
-              duration: 4,
-              repeat: Infinity,
-              delay: Math.random() * 2,
-              ease: "easeInOut"
-            }}
-          />
-        ))}
-      </div>
+      {/* Neural Field Background */}
+      <NeuralField
+        density={0.00015}
+        colorA="#67e8f9"
+        colorB="#a78bfa"
+        className="opacity-80"
+      />
 
       {/* Page Header */}
       <motion.div
@@ -231,6 +215,12 @@ export default function PremiumHome() {
 
       {/* Features Grid */}
       <section className="relative py-20">
+        <NeuralField
+          density={0.0001}
+          colorA="#10b981"
+          colorB="#3b82f6"
+          className="opacity-60"
+        />
         <motion.div
           initial={{ opacity: 0, y: 50 }}
           animate={{ opacity: 1, y: 0 }}
