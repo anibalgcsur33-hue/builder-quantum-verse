@@ -87,7 +87,6 @@ export default function OptimizedHome() {
             </div>
           </section>
 
-
           {/* Neural Showcase */}
           <NeuralShowcase />
 

@@ -92,14 +92,14 @@ export default function PropertyGrid() {
                     type: "spring" as const,
                     stiffness: 100,
                     damping: 12,
-                  }
+                  },
                 },
               }}
               className="bg-gradient-to-b from-slate-900/90 to-slate-800/90 backdrop-blur-md rounded-2xl overflow-hidden border border-white/10 hover:border-cyan-400/50 cursor-pointer group transition-all duration-300"
               whileHover={{
                 y: -8,
                 scale: 1.03,
-                transition: { type: "spring" as const, stiffness: 300 }
+                transition: { type: "spring" as const, stiffness: 300 },
               }}
             >
               <div className="relative h-48 overflow-hidden">
@@ -110,7 +110,11 @@ export default function PropertyGrid() {
                   className="w-full h-full object-cover rounded-xl shadow-lg"
                   whileHover={{
                     scale: 1.08,
-                    transition: { type: "spring" as const, stiffness: 200, damping: 15 }
+                    transition: {
+                      type: "spring" as const,
+                      stiffness: 200,
+                      damping: 15,
+                    },
                   }}
                   style={{ willChange: "transform" }}
                   onLoad={(e) => {

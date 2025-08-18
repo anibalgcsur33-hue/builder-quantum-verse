@@ -1,5 +1,12 @@
 import { motion } from "framer-motion";
-import { Eye, CheckCircle, Globe, FileText, Play, Calendar } from "lucide-react";
+import {
+  Eye,
+  CheckCircle,
+  Globe,
+  FileText,
+  Play,
+  Calendar,
+} from "lucide-react";
 
 const features = [
   {
@@ -13,7 +20,7 @@ const features = [
     icon: CheckCircle,
     title: "Medidas Exactas",
     description: "Dimensiones precisas al centímetro",
-    color: "text-emerald-400", 
+    color: "text-emerald-400",
     bgColor: "bg-emerald-400/20",
   },
   {
@@ -87,30 +94,35 @@ export default function VRExperienceSection() {
               >
                 <motion.div
                   className="w-20 h-20 bg-white/20 backdrop-blur-md rounded-full flex items-center justify-center border border-white/30"
-                  whileHover={{ 
+                  whileHover={{
                     backgroundColor: "rgba(255, 255, 255, 0.3)",
-                    borderColor: "rgba(255, 255, 255, 0.5)"
+                    borderColor: "rgba(255, 255, 255, 0.5)",
                   }}
                 >
-                  <Play className="w-8 h-8 text-white ml-1" fill="currentColor" />
+                  <Play
+                    className="w-8 h-8 text-white ml-1"
+                    fill="currentColor"
+                  />
                 </motion.div>
               </motion.button>
 
               {/* Background Pattern */}
               <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(14,231,231,0.1)_0%,transparent_50%)] opacity-60"></div>
-              
+
               {/* Simulated 3D Environment */}
               <div className="absolute bottom-0 left-0 right-0 h-1/3 bg-gradient-to-t from-black/50 to-transparent"></div>
-              
+
               {/* Property Title Overlay */}
               <div className="absolute bottom-4 left-4">
-                <h3 className="text-white font-bold text-lg">Tour Villa de Lujo</h3>
+                <h3 className="text-white font-bold text-lg">
+                  Tour Villa de Lujo
+                </h3>
                 <p className="text-white/70 text-sm">Click para reproducir</p>
               </div>
             </div>
 
             {/* Floating Stats */}
-            <motion.div 
+            <motion.div
               className="absolute -bottom-4 -right-4 glass-card p-4 rounded-xl"
               initial={{ opacity: 0, scale: 0.8 }}
               whileInView={{ opacity: 1, scale: 1 }}
@@ -132,7 +144,7 @@ export default function VRExperienceSection() {
           >
             {/* Title */}
             <div>
-              <motion.h2 
+              <motion.h2
                 className="heading-lg text-gradient mb-4"
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -141,16 +153,16 @@ export default function VRExperienceSection() {
               >
                 Vívela en VR antes de decidir
               </motion.h2>
-              <motion.p 
+              <motion.p
                 className="text-xl text-white/80 leading-relaxed"
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: 0.2, duration: 0.8 }}
               >
-                Cada detalle importa cuando eliges tu hogar. Nuestros tours VR te 
-                permiten explorar cada habitación, sentir el espacio y tomar decisiones 
-                informadas antes de la compra.
+                Cada detalle importa cuando eliges tu hogar. Nuestros tours VR
+                te permiten explorar cada habitación, sentir el espacio y tomar
+                decisiones informadas antes de la compra.
               </motion.p>
             </div>
 
@@ -168,10 +180,10 @@ export default function VRExperienceSection() {
                   <motion.div
                     key={index}
                     variants={itemVariants}
-                    whileHover={{ 
-                      scale: 1.05, 
+                    whileHover={{
+                      scale: 1.05,
                       y: -5,
-                      transition: { type: "spring" as const, stiffness: 300 }
+                      transition: { type: "spring" as const, stiffness: 300 },
                     }}
                     className="glass-card p-4 rounded-xl group cursor-pointer hover:glow-teal transition-all duration-300"
                   >
@@ -193,7 +205,7 @@ export default function VRExperienceSection() {
             </motion.div>
 
             {/* Action Buttons */}
-            <motion.div 
+            <motion.div
               className="flex flex-col sm:flex-row gap-4"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -202,21 +214,21 @@ export default function VRExperienceSection() {
             >
               <motion.button
                 className="flex-1 btn-primary px-6 py-4 text-lg flex items-center justify-center gap-3"
-                whileHover={{ 
+                whileHover={{
                   scale: 1.05,
-                  transition: { type: "spring" as const, stiffness: 300 }
+                  transition: { type: "spring" as const, stiffness: 300 },
                 }}
                 whileTap={{ scale: 0.98 }}
               >
                 <Play className="w-5 h-5" fill="currentColor" />
                 Explorar Villa Demo
               </motion.button>
-              
+
               <motion.button
                 className="flex-1 btn-secondary px-6 py-4 text-lg flex items-center justify-center gap-3"
-                whileHover={{ 
+                whileHover={{
                   scale: 1.05,
-                  transition: { type: "spring" as const, stiffness: 300 }
+                  transition: { type: "spring" as const, stiffness: 300 },
                 }}
                 whileTap={{ scale: 0.98 }}
               >
@@ -226,7 +238,7 @@ export default function VRExperienceSection() {
             </motion.div>
 
             {/* Additional Info */}
-            <motion.div 
+            <motion.div
               className="flex items-center gap-4 p-4 bg-white/5 backdrop-blur-sm rounded-xl border border-white/10"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -237,7 +249,9 @@ export default function VRExperienceSection() {
                 <Eye className="w-6 h-6 text-blue-dark" />
               </div>
               <div>
-                <h4 className="font-semibold text-white">Tecnología de Vanguardia</h4>
+                <h4 className="font-semibold text-white">
+                  Tecnología de Vanguardia
+                </h4>
                 <p className="text-sm text-white/70">
                   Compatible con gafas VR, móvil y navegador web
                 </p>

@@ -15,7 +15,7 @@ export default function PropertyMarqueeSimple() {
 
   return (
     <section className="relative py-12 overflow-hidden">
-      <motion.h2 
+      <motion.h2
         className="text-center text-3xl font-serif mb-8 text-cyan-300"
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -24,24 +24,28 @@ export default function PropertyMarqueeSimple() {
       >
         Propiedades Destacadas
       </motion.h2>
-      
+
       <div className="flex animate-marquee gap-8 hover:pause-animation">
         {duplicatedProperties.map((property, index) => (
           <motion.div
             key={`${property.id}-${index}`}
             className="glass min-w-[220px] p-4 rounded-xl text-center hover:bg-white/10 transition-all duration-300 group cursor-pointer"
-            whileHover={{ 
+            whileHover={{
               scale: 1.05,
               y: -5,
-              transition: { type: "spring" as const, stiffness: 300 }
+              transition: { type: "spring" as const, stiffness: 300 },
             }}
           >
             {/* Imagen placeholder con gradient animado */}
-            <motion.div 
+            <motion.div
               className="h-32 bg-gradient-to-br from-cyan-500/30 to-violet-500/30 rounded-lg mb-4 relative overflow-hidden"
               whileHover={{
                 scale: 1.08,
-                transition: { type: "spring" as const, stiffness: 200, damping: 15 }
+                transition: {
+                  type: "spring" as const,
+                  stiffness: 200,
+                  damping: 15,
+                },
               }}
             >
               {/* Efecto shimmer en hover */}
@@ -51,24 +55,20 @@ export default function PropertyMarqueeSimple() {
                 whileHover={{ x: "100%" }}
                 transition={{ duration: 0.6 }}
               />
-              
+
               {/* Badge de precio flotante */}
               <div className="absolute top-2 right-2 bg-black/50 backdrop-blur-sm text-xs px-2 py-1 rounded-full text-cyan-300 font-semibold">
                 {property.price}
               </div>
             </motion.div>
-            
+
             {/* Información de la propiedad */}
             <h3 className="font-semibold text-white group-hover:text-cyan-300 transition-colors">
               {property.name}
             </h3>
-            <p className="text-cyan-300 font-bold text-lg">
-              {property.price}
-            </p>
-            <p className="text-gray-400 text-sm mt-1">
-              {property.location}
-            </p>
-            
+            <p className="text-cyan-300 font-bold text-lg">{property.price}</p>
+            <p className="text-gray-400 text-sm mt-1">{property.location}</p>
+
             {/* Botón de acción que aparece en hover */}
             <motion.button
               className="mt-3 w-full py-2 text-xs bg-cyan-500/20 hover:bg-cyan-500/30 text-cyan-300 rounded-lg transition-all opacity-0 group-hover:opacity-100"
@@ -83,7 +83,7 @@ export default function PropertyMarqueeSimple() {
       </div>
 
       {/* Indicadores de control */}
-      <motion.div 
+      <motion.div
         className="mt-8 flex justify-center gap-4"
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}

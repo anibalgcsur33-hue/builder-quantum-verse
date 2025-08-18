@@ -8,8 +8,10 @@ const properties = [
     title: "Villa Oceánica Premium",
     price: "€3.2M",
     location: "Costa Brava, España",
-    image: "https://images.pexels.com/photos/8134750/pexels-photo-8134750.jpeg?w=600&auto=compress&cs=tinysrgb",
-    imageHD: "https://images.pexels.com/photos/8134750/pexels-photo-8134750.jpeg?w=1200&auto=compress&cs=tinysrgb",
+    image:
+      "https://images.pexels.com/photos/8134750/pexels-photo-8134750.jpeg?w=600&auto=compress&cs=tinysrgb",
+    imageHD:
+      "https://images.pexels.com/photos/8134750/pexels-photo-8134750.jpeg?w=1200&auto=compress&cs=tinysrgb",
     rating: 4.9,
     views: "2.4K",
     bedrooms: 4,
@@ -22,8 +24,10 @@ const properties = [
     title: "Penthouse Modernista",
     price: "€2.8M",
     location: "Barcelona, España",
-    image: "https://images.pexels.com/photos/8572163/pexels-photo-8572163.jpeg?w=600&auto=compress&cs=tinysrgb",
-    imageHD: "https://images.pexels.com/photos/8572163/pexels-photo-8572163.jpeg?w=1200&auto=compress&cs=tinysrgb",
+    image:
+      "https://images.pexels.com/photos/8572163/pexels-photo-8572163.jpeg?w=600&auto=compress&cs=tinysrgb",
+    imageHD:
+      "https://images.pexels.com/photos/8572163/pexels-photo-8572163.jpeg?w=1200&auto=compress&cs=tinysrgb",
     rating: 4.7,
     views: "1.8K",
     bedrooms: 3,
@@ -36,8 +40,10 @@ const properties = [
     title: "Chalet Alpino Luxury",
     price: "€4.5M",
     location: "Pirineos, España",
-    image: "https://images.pexels.com/photos/29874112/pexels-photo-29874112.jpeg?w=600&auto=compress&cs=tinysrgb",
-    imageHD: "https://images.pexels.com/photos/29874112/pexels-photo-29874112.jpeg?w=1200&auto=compress&cs=tinysrgb",
+    image:
+      "https://images.pexels.com/photos/29874112/pexels-photo-29874112.jpeg?w=600&auto=compress&cs=tinysrgb",
+    imageHD:
+      "https://images.pexels.com/photos/29874112/pexels-photo-29874112.jpeg?w=1200&auto=compress&cs=tinysrgb",
     rating: 5.0,
     views: "3.1K",
     bedrooms: 5,
@@ -50,8 +56,10 @@ const properties = [
     title: "Mansion Mediterránea",
     price: "€6.7M",
     location: "Marbella, España",
-    image: "https://images.unsplash.com/photo-1613490493576-7fde63acd811?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3",
-    imageHD: "https://images.unsplash.com/photo-1613490493576-7fde63acd811?w=1200&auto=format&fit=crop&q=80&ixlib=rb-4.0.3",
+    image:
+      "https://images.unsplash.com/photo-1613490493576-7fde63acd811?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3",
+    imageHD:
+      "https://images.unsplash.com/photo-1613490493576-7fde63acd811?w=1200&auto=format&fit=crop&q=80&ixlib=rb-4.0.3",
     rating: 4.8,
     views: "4.2K",
     bedrooms: 6,
@@ -64,8 +72,10 @@ const properties = [
     title: "Loft Industrial Chic",
     price: "€1.9M",
     location: "Madrid, España",
-    image: "https://images.pexels.com/photos/2121121/pexels-photo-2121121.jpeg?w=600&auto=compress&cs=tinysrgb",
-    imageHD: "https://images.pexels.com/photos/2121121/pexels-photo-2121121.jpeg?w=1200&auto=compress&cs=tinysrgb",
+    image:
+      "https://images.pexels.com/photos/2121121/pexels-photo-2121121.jpeg?w=600&auto=compress&cs=tinysrgb",
+    imageHD:
+      "https://images.pexels.com/photos/2121121/pexels-photo-2121121.jpeg?w=1200&auto=compress&cs=tinysrgb",
     rating: 4.6,
     views: "1.5K",
     bedrooms: 2,
@@ -78,8 +88,10 @@ const properties = [
     title: "Casa Señorial Histórica",
     price: "€5.2M",
     location: "Sevilla, España",
-    image: "https://images.pexels.com/photos/8134750/pexels-photo-8134750.jpeg?w=600&auto=compress&cs=tinysrgb",
-    imageHD: "https://images.pexels.com/photos/8134750/pexels-photo-8134750.jpeg?w=1200&auto=compress&cs=tinysrgb",
+    image:
+      "https://images.pexels.com/photos/8134750/pexels-photo-8134750.jpeg?w=600&auto=compress&cs=tinysrgb",
+    imageHD:
+      "https://images.pexels.com/photos/8134750/pexels-photo-8134750.jpeg?w=1200&auto=compress&cs=tinysrgb",
     rating: 4.9,
     views: "2.8K",
     bedrooms: 7,
@@ -102,7 +114,9 @@ export default function PropertyMarquee({
   speed = 30,
   showFilters = true,
 }: PropertyMarqueeProps) {
-  const [selectedProperty, setSelectedProperty] = useState<typeof properties[0] | null>(null);
+  const [selectedProperty, setSelectedProperty] = useState<
+    (typeof properties)[0] | null
+  >(null);
   const [filter, setFilter] = useState<"all" | "featured" | "new">("all");
 
   const filteredProperties = properties.filter((property) => {
@@ -153,7 +167,8 @@ export default function PropertyMarquee({
         >
           <h2 className="heading-lg text-gradient mb-4">{title}</h2>
           <p className="text-xl text-white/70 max-w-3xl mx-auto">
-            Descubre nuestra selección exclusiva de propiedades de lujo con tours VR inmersivos
+            Descubre nuestra selección exclusiva de propiedades de lujo con
+            tours VR inmersivos
           </p>
         </motion.div>
 
@@ -221,7 +236,7 @@ export default function PropertyMarquee({
                   variants={cardVariants}
                   whileHover={{
                     y: -10,
-                    transition: { type: "spring" as const, stiffness: 300 }
+                    transition: { type: "spring" as const, stiffness: 300 },
                   }}
                   className="property-card min-w-[350px] lg:min-w-[400px] group cursor-pointer"
                   onClick={() => setSelectedProperty(property)}
@@ -233,9 +248,13 @@ export default function PropertyMarquee({
                       src={property.image}
                       alt={property.title}
                       className="w-full h-64 object-cover rounded-xl shadow-lg"
-                      whileHover={{ 
+                      whileHover={{
                         scale: 1.08,
-                        transition: { type: "spring" as const, stiffness: 200, damping: 15 }
+                        transition: {
+                          type: "spring" as const,
+                          stiffness: 200,
+                          damping: 15,
+                        },
                       }}
                       loading="lazy"
                     />
@@ -305,7 +324,9 @@ export default function PropertyMarquee({
                       </div>
                       <div className="flex items-center gap-1">
                         <Star className="w-4 h-4 text-yellow-400 fill-current" />
-                        <span className="text-white/80 text-sm">{property.rating}</span>
+                        <span className="text-white/80 text-sm">
+                          {property.rating}
+                        </span>
                       </div>
                     </div>
 
@@ -385,8 +406,8 @@ export default function PropertyMarquee({
               {selectedProperty.price}
             </p>
             <p className="text-white/70 mb-6">
-              Esta exclusiva propiedad ofrece vistas espectaculares y acabados de lujo. 
-              Agenda una visita VR para explorar cada detalle.
+              Esta exclusiva propiedad ofrece vistas espectaculares y acabados
+              de lujo. Agenda una visita VR para explorar cada detalle.
             </p>
             <div className="flex gap-4">
               <button className="flex-1 bg-neon-teal text-blue-dark py-3 px-6 rounded-xl font-semibold">

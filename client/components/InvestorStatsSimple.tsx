@@ -39,7 +39,7 @@ export default function InvestorStatsSimple() {
 
   return (
     <section className="py-16 text-center">
-      <motion.h2 
+      <motion.h2
         className="text-3xl font-serif mb-12 bg-gradient-to-r from-cyan-400 to-violet-400 bg-clip-text text-transparent"
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -48,8 +48,8 @@ export default function InvestorStatsSimple() {
       >
         Nuestra Credibilidad
       </motion.h2>
-      
-      <motion.div 
+
+      <motion.div
         className="grid md:grid-cols-3 lg:grid-cols-6 gap-8 max-w-6xl mx-auto px-4"
         initial="hidden"
         whileInView="visible"
@@ -57,25 +57,25 @@ export default function InvestorStatsSimple() {
         variants={containerVariants}
       >
         {stats.map((stat) => (
-          <motion.div 
-            key={stat.id} 
+          <motion.div
+            key={stat.id}
             className="glass p-6 rounded-xl group hover:bg-white/10 transition-all duration-300"
             variants={itemVariants}
-            whileHover={{ 
-              scale: 1.05, 
+            whileHover={{
+              scale: 1.05,
               y: -5,
-              transition: { type: "spring" as const, stiffness: 300 }
+              transition: { type: "spring" as const, stiffness: 300 },
             }}
           >
-            <motion.p 
+            <motion.p
               className="text-4xl font-bold text-cyan-300 group-hover:text-cyan-200 transition-colors"
               whileHover={{ scale: 1.1 }}
             >
               {stat.prefix}
-              <CountUp 
-                end={stat.value} 
-                duration={2.5} 
-                separator="," 
+              <CountUp
+                end={stat.value}
+                duration={2.5}
+                separator=","
                 decimals={stat.value % 1 !== 0 ? 1 : 0}
               />
               {stat.suffix}
@@ -83,9 +83,9 @@ export default function InvestorStatsSimple() {
             <p className="mt-2 text-gray-400 group-hover:text-gray-300 transition-colors">
               {stat.label}
             </p>
-            
+
             {/* Barra de progreso animada */}
-            <motion.div 
+            <motion.div
               className="mt-4 h-1 bg-white/10 rounded-full overflow-hidden"
               initial={{ width: 0 }}
               whileInView={{ width: "100%" }}
@@ -103,7 +103,7 @@ export default function InvestorStatsSimple() {
       </motion.div>
 
       {/* Texto adicional de credibilidad */}
-      <motion.div 
+      <motion.div
         className="mt-12 max-w-2xl mx-auto px-4"
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -111,18 +111,23 @@ export default function InvestorStatsSimple() {
         transition={{ delay: 0.6, duration: 0.8 }}
       >
         <p className="text-gray-400 leading-relaxed">
-          Más de <span className="text-cyan-300 font-semibold">12,000 inversores</span> confían 
-          en nuestra plataforma para acceder a oportunidades inmobiliarias exclusivas con 
-          <span className="text-violet-300 font-semibold"> certificación notarial</span> y 
-          tecnología VR de vanguardia.
+          Más de{" "}
+          <span className="text-cyan-300 font-semibold">12,000 inversores</span>{" "}
+          confían en nuestra plataforma para acceder a oportunidades
+          inmobiliarias exclusivas con
+          <span className="text-violet-300 font-semibold">
+            {" "}
+            certificación notarial
+          </span>{" "}
+          y tecnología VR de vanguardia.
         </p>
-        
+
         <motion.button
           className="mt-6 btn-crystal px-6 py-3 rounded-xl text-white font-semibold"
-          whileHover={{ 
+          whileHover={{
             scale: 1.05,
             y: -2,
-            transition: { type: "spring" as const, stiffness: 300 }
+            transition: { type: "spring" as const, stiffness: 300 },
           }}
           whileTap={{ scale: 0.95 }}
         >
