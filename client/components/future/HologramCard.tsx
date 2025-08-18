@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import EnterARSimple from "./EnterARSimple";
 
 export default function HologramCard({
   title="Villa Mirador — Tenerife",
@@ -23,9 +24,7 @@ export default function HologramCard({
         <div className="text-white/80 text-sm">{title}</div>
         <div className="text-xl font-semibold">{price}</div>
         <div className="mt-4 flex gap-3">
-          <button className="px-4 py-2 rounded-lg bg-cyan-500/15 text-cyan-300 border border-cyan-300/30 hover:bg-cyan-500/25 transition">
-            Ver en VR
-          </button>
+          <EnterARSimple />
           <button className="px-4 py-2 rounded-lg border border-white/20 hover:bg-white/10 transition">
             Dossier IA
           </button>
