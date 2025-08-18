@@ -14,7 +14,6 @@ import SpatialAudioHotspot from "@/components/future/SpatialAudioHotspot";
 import SpatialAudioAdvanced from "@/components/future/SpatialAudioAdvanced";
 import NeuralNav from "@/components/future/NeuralNav";
 import CursorAurora from "@/components/effects/CursorAurora";
-import SpainMapTeaser from "@/components/sections/SpainMapTeaser";
 import NeuralShowcase from "@/components/sections/NeuralShowcase";
 import ScrollTracker from "@/components/ux/ScrollTracker";
 import StickyCTA from "@/components/ux/StickyCTA";
@@ -82,11 +81,11 @@ export default function OptimizedHome() {
                 exclusivas de España y las Islas Canarias
               </p>
             </div>
-            <CanaryMap3DFallback />
+            <div className="glass rounded-2xl ring-glow p-4 relative overflow-hidden scanlines">
+              <CanaryMap3DFallback />
+            </div>
           </section>
 
-          {/* Spain Map Teaser */}
-          <SpainMapTeaser />
 
           {/* Neural Showcase */}
           <NeuralShowcase />
