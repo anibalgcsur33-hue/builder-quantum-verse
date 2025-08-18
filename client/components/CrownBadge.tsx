@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { Crown } from "lucide-react";
 
 type Props = { className?: string; text?: string };
 
