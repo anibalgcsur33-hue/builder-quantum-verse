@@ -29,9 +29,15 @@ export default function PremiumShowcase() {
   return (
     <section className="section">
       <div className="container-xl">
-        <h3 className="text-2xl md:text-3xl font-bold mb-8">
-          Selección premium
-        </h3>
+        <div className="flex items-center justify-between mb-8">
+          <h3 className="text-2xl md:text-3xl font-bold">
+            Selección premium
+          </h3>
+          <div className="flex items-center gap-2 px-3 py-1 bg-green-500/20 rounded-full border border-green-500/30">
+            <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
+            <span className="text-green-300 text-sm font-medium">Demos Activas</span>
+          </div>
+        </div>
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
           {items.map((it) => (
             <article
