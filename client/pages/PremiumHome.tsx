@@ -4,9 +4,9 @@ import AIChatPortal from "../components/AIChatPortal";
 import Header from "../components/Header";
 import HeroBlueEye from "../components/HeroBlueEye";
 import AIConcierge from "../components/AIConcierge";
-import Properties from "../components/Properties";
-import CommunitySection from "../components/CommunitySection";
-import Footer from "../components/Footer";
+import CommunityGroups from "../components/CommunityGroups";
+import { Link } from "react-router-dom";
+import { Home, MapPin, Star, Users, Building, Eye } from "lucide-react";
 
 // Import the new holographic components
 import PortalHeroes from "../components/holographic/PortalHeroes";
