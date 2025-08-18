@@ -767,3 +767,12 @@ img {
   display: flex;
   animation: marquee 20s linear infinite;
 }
+
+.animate-marquee:hover {
+  animation-play-state: paused;
+}
+
+/* Mejoras para el esqueleto */
+.pause-animation:hover {
+  animation-play-state: paused;
+}
