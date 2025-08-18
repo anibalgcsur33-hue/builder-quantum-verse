@@ -52,6 +52,7 @@ const App = () => (
           <Route path="/premium" element={<PremiumHome />} />
           <Route path="/minimal" element={<MinimalHome />} />
           <Route path="/original" element={<Index />} />
+          <Route path="/skeleton" element={<SkeletonDemo />} />
 
           {/* Properties Routes */}
           <Route path="/propiedades" element={<Properties />} />
