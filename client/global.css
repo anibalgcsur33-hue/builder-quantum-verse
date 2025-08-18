@@ -426,6 +426,29 @@ img {
   transform: translateY(-1px);
 }
 
+/* --- Performance optimizations --- */
+.perf-optimized {
+  contain: layout style paint;
+  will-change: auto;
+}
+
+.perf-text {
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Remove excessive blur from text elements */
+h1, h2, h3, h4, h5, h6, p {
+  backdrop-filter: none !important;
+}
+
+/* Only apply blur to backgrounds and glass elements */
+.glass-bg {
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
 .mega-link {
   display:flex; align-items:center; gap:.6rem;
   padding:.7rem .9rem; border-radius:.75rem;
