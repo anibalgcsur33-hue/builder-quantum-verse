@@ -41,43 +41,40 @@ export default function Header({
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center space-x-8">
             <Link
-              to="/properties"
+              to="/propiedades"
               className="text-white/80 hover:text-neon-teal transition-colors duration-300 font-medium"
             >
               Propiedades
             </Link>
             <Link
-              to="/marketplace"
+              to="/metaverso"
               className="text-white/80 hover:text-neon-teal transition-colors duration-300 font-medium"
             >
-              Marketplace
+              Metaverso
             </Link>
             <Link
-              to="/community"
-              className="relative text-white/80 hover:text-neon-teal transition-colors duration-300 font-medium"
+              to="/comunidad"
+              className="text-white/80 hover:text-neon-teal transition-colors duration-300 font-medium"
             >
               Comunidad
-              <span className="absolute -top-1 -right-2 bg-purple-500 text-white text-xs px-1.5 py-0.5 rounded-full animate-pulse">
-                ¡Únete!
-              </span>
             </Link>
             <Link
-              to="/metaverse-map"
+              to="/inversion"
               className="text-white/80 hover:text-neon-teal transition-colors duration-300 font-medium"
             >
-              Mapa 3D
+              Inversión
             </Link>
-            <Link
-              to="/crypto-token"
+            <button
+              onClick={() => window.dispatchEvent(new CustomEvent("blueeye:assistant"))}
               className="text-white/80 hover:text-neon-teal transition-colors duration-300 font-medium"
             >
-              BlueEye Token
-            </Link>
+              Concierge IA
+            </button>
             <Link
               to="/auth/login"
-              className="bg-neon-teal/20 text-neon-teal border border-neon-teal/30 px-4 py-2 rounded-lg hover:bg-neon-teal hover:text-white transition-all duration-300 font-medium"
+              className="bg-cyan-500/80 text-white px-6 py-2 rounded-lg hover:bg-cyan-400 transition-all duration-300 font-medium"
             >
-              Entrar
+              Invitación
             </Link>
           </nav>
 
