@@ -1,6 +1,6 @@
 import { motion, useMotionValue, useTransform } from "framer-motion";
 import { useEffect } from "react";
-import BlueEyeLogo from "./../../BlueEyeLogo";
+import BlueEyeLogo from "../BlueEyeLogo";
 
 /**
  * Hero con:
