@@ -242,9 +242,25 @@ export default function PremiumHome() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.8, delay: 4.4 }}
-        className="relative z-20"
+        className="relative z-20 py-12 border-t border-white/10 bg-blue-dark/50"
       >
-        <Footer />
+        <div className="container mx-auto px-4 text-center">
+          <div className="text-3xl font-bold text-white mb-4">
+            BlueEye <span className="text-neon-teal">Homes</span>
+          </div>
+          <p className="text-white/60 mb-8">
+            Tu portal premium al metaverso inmobiliario de España
+          </p>
+          <div className="flex justify-center gap-8 text-sm text-white/60">
+            <Link to="/propiedades" className="hover:text-neon-teal transition-colors">Propiedades</Link>
+            <Link to="/comunidad" className="hover:text-neon-teal transition-colors">Comunidad</Link>
+            <Link to="/marketplace" className="hover:text-neon-teal transition-colors">Marketplace</Link>
+            <Link to="/contacto" className="hover:text-neon-teal transition-colors">Contacto</Link>
+          </div>
+          <div className="mt-8 text-xs text-white/40">
+            © 2024 BlueEye Homes. Experiencia metaverso inmobiliaria premium.
+          </div>
+        </div>
       </motion.footer>
 
       {/* AI Chat Portal - Always available */}
