@@ -54,71 +54,75 @@ export default function PremiumHome() {
           </motion.div>
 
           <motion.h1
-            className="text-6xl md:text-8xl font-bold mb-8"
+            className="text-5xl md:text-7xl font-bold mb-8 leading-tight"
             animate={{
               background: [
-                "linear-gradient(45deg, #00ffff, #ff00ff)",
-                "linear-gradient(45deg, #ff00ff, #ffff00)",
-                "linear-gradient(45deg, #ffff00, #00ffff)"
+                "linear-gradient(45deg, #67e8f9, #a855f7)",
+                "linear-gradient(45deg, #a855f7, #67e8f9)",
+                "linear-gradient(45deg, #67e8f9, #a855f7)"
               ]
             }}
-            transition={{ duration: 3, repeat: Infinity }}
+            transition={{ duration: 4, repeat: Infinity }}
             style={{
               backgroundClip: "text",
               WebkitBackgroundClip: "text",
               color: "transparent"
             }}
           >
-            BlueEyes Portal
+            El futuro del real estate de lujo empieza aquí
           </motion.h1>
 
           <motion.p
-            className="text-2xl text-white/80 mb-12 max-w-4xl mx-auto"
+            className="text-lg text-white/80 mb-12 max-w-4xl mx-auto leading-relaxed"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 1 }}
           >
-            Bienvenido al futuro del metaverso inmobiliario.
-            <br />
-            Experiencia premium ultra-futurista de España.
+            Experiencias inmersivas, inversión inteligente y acceso a un metaverso inmobiliario real
+            con VR, AR y Concierge IA.
           </motion.p>
 
           <motion.div
-            className="flex flex-col sm:flex-row gap-6 justify-center items-center"
+            className="flex flex-col sm:flex-row gap-4 justify-center items-center"
             initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 1.5 }}
           >
             <motion.button
-              className="px-12 py-6 bg-gradient-to-r from-cyan-500 to-purple-600 text-white font-bold text-xl rounded-2xl"
-              whileHover={{ scale: 1.05, rotateY: 5 }}
+              onClick={() => {
+                // Activar VU Meter automáticamente
+                const vuMeterButton = document.querySelector('[title="Activar visualizador de voz"]') as HTMLButtonElement;
+                if (vuMeterButton) vuMeterButton.click();
+              }}
+              className="px-6 py-3 bg-slate-800/80 backdrop-blur-md text-white font-medium rounded-xl border border-white/20 hover:bg-slate-700/80 transition-all"
+              whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              animate={{
-                boxShadow: [
-                  "0 0 30px rgba(0, 255, 255, 0.3)",
-                  "0 0 60px rgba(255, 0, 255, 0.3)",
-                  "0 0 30px rgba(0, 255, 255, 0.3)"
-                ]
-              }}
-              transition={{
-                boxShadow: { duration: 2, repeat: Infinity }
-              }}
             >
-              <div className="flex items-center gap-3">
-                <Sparkles className="w-6 h-6" />
-                Entrar al Portal
-              </div>
+              🎙️ Activar VU Meter
             </motion.button>
 
             <motion.button
-              className="px-12 py-6 bg-white/10 backdrop-blur-md text-white font-bold text-xl rounded-2xl border border-white/20"
-              whileHover={{ scale: 1.05, backgroundColor: "rgba(255,255,255,0.2)" }}
+              className="px-6 py-3 bg-cyan-600/80 backdrop-blur-md text-white font-medium rounded-xl border border-cyan-400/30 hover:bg-cyan-500/80 transition-all"
+              whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
-              <div className="flex items-center gap-3">
-                <Eye className="w-6 h-6" />
-                Explorar Propiedades
-              </div>
+              📺 Ver demo VR
+            </motion.button>
+
+            <motion.button
+              className="px-6 py-3 bg-yellow-600/80 backdrop-blur-md text-white font-medium rounded-xl border border-yellow-400/30 hover:bg-yellow-500/80 transition-all"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              ⚡ Demo rápida
+            </motion.button>
+
+            <motion.button
+              className="px-6 py-3 bg-orange-600/80 backdrop-blur-md text-white font-medium rounded-xl border border-orange-400/30 hover:bg-orange-500/80 transition-all"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              🏠 Ver propiedades
             </motion.button>
           </motion.div>
         </motion.div>
