@@ -11,6 +11,8 @@ import QuantumBackground from "@/components/future/QuantumBackground";
 import CanaryMap3DFallback from "@/components/future/CanaryMap3DFallback";
 import HologramCard3DSimple from "@/components/future/HologramCard3DSimple";
 import SpatialAudioHotspot from "@/components/future/SpatialAudioHotspot";
+import SpatialAudioAdvanced from "@/components/future/SpatialAudioAdvanced";
+import NeuralNav from "@/components/future/NeuralNav";
 import ScrollTracker from "@/components/ux/ScrollTracker";
 import StickyCTA from "@/components/ux/StickyCTA";
 
@@ -56,6 +58,11 @@ export default function OptimizedHome() {
             <div className="mt-8">
               <VRDemoCTA />
             </div>
+          </section>
+
+          {/* Neural Navigation */}
+          <section className="py-8">
+            <NeuralNav />
           </section>
 
           <PropertyGrid />
@@ -107,6 +114,7 @@ export default function OptimizedHome() {
       </div>
 
       <SpatialAudioHotspot />
+      <SpatialAudioAdvanced />
       <StickyCTA />
     </>
   );
