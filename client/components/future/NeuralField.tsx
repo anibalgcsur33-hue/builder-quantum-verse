@@ -67,7 +67,7 @@ export default function NeuralField({
       }
 
       // draw links
-      ctx.lineWidth = 0.8 * devicePixelRatio;
+      ctx.lineWidth = 1.2 * devicePixelRatio;
       ctx.strokeStyle = grad;
       for (let i = 0; i < nodes.length; i++) {
         for (let j = i + 1; j < nodes.length; j++) {
@@ -75,7 +75,7 @@ export default function NeuralField({
           const dx = a.x - b.x, dy = a.y - b.y;
           const d2 = dx * dx + dy * dy;
           if (d2 < (140 * devicePixelRatio) ** 2) {
-            ctx.globalAlpha = 1 - Math.min(1, d2 / ((140 * devicePixelRatio) ** 2));
+            ctx.globalAlpha = (1 - Math.min(1, d2 / ((140 * devicePixelRatio) ** 2))) * 0.6;
             ctx.beginPath();
             ctx.moveTo(a.x, a.y);
             ctx.lineTo(b.x, b.y);
@@ -85,8 +85,8 @@ export default function NeuralField({
       }
 
       // draw nodes
-      ctx.globalAlpha = 0.9;
-      ctx.fillStyle = "#ffffff";
+      ctx.globalAlpha = 1.0;
+      ctx.fillStyle = "#67e8f9";
       for (const n of nodes) {
         ctx.beginPath();
         ctx.arc(n.x, n.y, 1.3 * devicePixelRatio, 0, Math.PI * 2);
