@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import ShimmerTitle from "../ui/ShimmerTitle";
 
 type Props = {
   title: string;
@@ -24,7 +25,8 @@ export default function HeroWaveTitle({
           willChange: "background-position",
         }}
       >
-        {title}
+        El futuro del <ShimmerTitle>real estate de lujo</ShimmerTitle><br />
+        empieza aquí
       </motion.h1>
 
       <motion.p
