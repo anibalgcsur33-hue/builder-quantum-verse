@@ -606,3 +606,93 @@ img {
   transform-origin: 0 0;
   transition: transform 0.06s linear;
 }
+
+/* --- Aurora Cursor Effect --- */
+.aurora {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(103,232,249,0.15) 0%, rgba(167,139,250,0.08) 40%, transparent 70%);
+  pointer-events: none;
+  z-index: 5;
+  filter: blur(20px);
+}
+
+/* --- Shimmer Title Effect --- */
+.holo-shimmer {
+  background: linear-gradient(90deg, #67e8f9 0%, #00e5ff 25%, #a78bfa 50%, #00e5ff 75%, #67e8f9 100%);
+  background-size: 200% 100%;
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shimmer 3s linear infinite;
+}
+
+@keyframes shimmer {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+/* --- Glass and Ring Glow Effects --- */
+.glass {
+  background: rgba(255,255,255,0.05);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255,255,255,0.1);
+}
+
+.ring-glow {
+  box-shadow: 0 0 20px rgba(103,232,249,0.3), inset 0 1px 0 rgba(255,255,255,0.1);
+}
+
+.scanlines::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(transparent 50%, rgba(103,232,249,0.03) 51%, transparent 52%);
+  background-size: 100% 4px;
+  pointer-events: none;
+  animation: scanlines 2s linear infinite;
+}
+
+@keyframes scanlines {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(4px); }
+}
+
+/* --- Path Dash Animation --- */
+.path-dash {
+  stroke-dasharray: 10 5;
+  animation: dash 8s linear infinite;
+}
+
+@keyframes dash {
+  0% { stroke-dashoffset: 0; }
+  100% { stroke-dashoffset: 100; }
+}
+
+/* --- Float Animation --- */
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-10px) rotate(180deg); }
+}
+
+/* --- Section and Container Utilities --- */
+.section {
+  padding: 4rem 0;
+}
+
+.container-xl {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
