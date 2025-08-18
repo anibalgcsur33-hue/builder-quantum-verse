@@ -180,10 +180,10 @@ export default function InvestorStats({
               <motion.div
                 key={index}
                 variants={itemVariants}
-                whileHover={{ 
-                  scale: 1.02, 
+                whileHover={{
+                  scale: 1.02,
                   y: -8,
-                  transition: { type: "spring", stiffness: 300 }
+                  transition: { type: "spring" as const, stiffness: 300 }
                 }}
                 className="glass-card p-8 rounded-2xl group hover:glow-teal transition-all duration-300 relative overflow-hidden"
               >
