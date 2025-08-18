@@ -40,7 +40,7 @@ export default function PremiumHome() {
       </motion.div>
 
       {/* Hero Section - Portal Holográfico */}
-      <section className="relative">
+      {/* <section className="relative">
         <motion.div
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
@@ -48,7 +48,7 @@ export default function PremiumHome() {
         >
           <PortalHeroes />
         </motion.div>
-      </section>
+      </section> */}
 
       {/* Luxury Hero Section */}
       <section className="relative py-20">
@@ -62,7 +62,7 @@ export default function PremiumHome() {
       </section>
 
       {/* Concierge Narrativo */}
-      <section className="relative">
+      {/* <section className="relative">
         <motion.div
           initial={{ opacity: 0, x: -100 }}
           animate={{ opacity: 1, x: 0 }}
@@ -70,10 +70,10 @@ export default function PremiumHome() {
         >
           <ConciergeNarrative />
         </motion.div>
-      </section>
+      </section> */}
 
       {/* Mapa España Premium */}
-      <section className="relative">
+      {/* <section className="relative">
         <motion.div
           initial={{ opacity: 0, rotateX: 15 }}
           animate={{ opacity: 1, rotateX: 0 }}
@@ -81,7 +81,7 @@ export default function PremiumHome() {
         >
           <PremiumSpainMap />
         </motion.div>
-      </section>
+      </section> */}
 
       {/* Properties Gallery - Domo Rotativo */}
       <section className="relative">
