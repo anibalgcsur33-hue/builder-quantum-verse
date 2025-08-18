@@ -4,6 +4,7 @@ import { Eye, MapPin, Star, Users, Building, Home, Sparkles } from "lucide-react
 import Header from "../components/Header";
 import NeuralField from "../components/future/NeuralField";
 import AIConcierge from "../components/future/AIConcierge";
+import VoiceMeter from "../components/future/VoiceMeter";
 
 export default function PremiumHome() {
   return (
@@ -235,10 +236,10 @@ export default function PremiumHome() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {[
               { icon: "🌌", title: "Portal Holográfico", desc: "Entrada dimensional al metaverso inmobiliario" },
-              { icon: "🤖", title: "IA Concierge", desc: "Asistente premium personalizado 24/7" },
+              { icon: "🤖", title: "IA Concierge", desc: "Asistente premium con voz natural TTS/STT" },
               { icon: "🗺️", title: "España 3D Vivo", desc: "Mapa interactivo con animaciones en tiempo real" },
               { icon: "🏰", title: "Galería Flotante", desc: "Propiedades como obras de arte suspendidas" },
-              { icon: "🎮", title: "NFT Gaming", desc: "Colecciona gemas y desbloquea villas secretas" },
+              { icon: "🎙️", title: "Voice Analytics", desc: "Visualizador de voz en tiempo real con WebAudio" },
               { icon: "🚀", title: "VR Lounges", desc: "Networking premium en espacios virtuales exclusivos" }
             ].map((feature, index) => (
               <motion.div
@@ -292,6 +293,9 @@ export default function PremiumHome() {
 
       {/* AI Concierge with Voice */}
       <AIConcierge />
+
+      {/* Voice Visualizer (optional for demos) */}
+      <VoiceMeter />
 
       {/* Premium Badge */}
       <motion.div
