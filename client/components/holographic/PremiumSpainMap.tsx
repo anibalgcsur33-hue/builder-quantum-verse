@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import * as THREE from "three";
-import { Plane, Yacht, MapPin, Zap, Globe, Eye } from "lucide-react";
+import { Plane, Ship, MapPin, Zap, Globe, Eye } from "lucide-react";
 
 interface HolographicBeacon {
   id: string;
@@ -224,7 +224,7 @@ export default function PremiumSpainMap() {
             float glow = sin(time * 2.0 + vPosition.y * 5.0) * 0.5 + 0.5;
             vec3 final_color = glow_color * (glow * intensity + 0.5);
             
-            // Pulso energético
+            // Pulso energ��tico
             float pulse = sin(time * 4.0) * 0.3 + 0.7;
             final_color *= pulse;
             
