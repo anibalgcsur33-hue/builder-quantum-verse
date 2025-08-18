@@ -23,13 +23,15 @@ export default function CrownBadge({
         <span className="text-[11px] tracking-[.18em] font-semibold text-white/80">
           {text}
         </span>
-        <motion.span
+        <motion.div
           aria-hidden
-          className="i-lucide-crown text-cyan-300/80"
+          className="text-cyan-300/80"
           initial={{ rotate: -8 }}
           animate={{ rotate: [-8, 6, -8] }}
           transition={{ duration: 3.6, repeat: Infinity, ease: "easeInOut" }}
-        />
+        >
+          <Crown size={16} />
+        </motion.div>
       </div>
 
       {/* Brillo en barrido (shimmer) */}
