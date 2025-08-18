@@ -44,10 +44,44 @@ const LoadingFallback = () => (
   </div>
 );
 
+// Sample property pins for demonstration
+const PROPERTY_PINS = [
+  { id: 1, name: "Villa Oceánica", lat: 28.45, lng: -16.25, price: "€4.2M" },
+  { id: 2, name: "Penthouse Elite", lat: 28.12, lng: -15.43, price: "€3.8M" },
+  { id: 3, name: "Cliff Resort", lat: 27.98, lng: -15.60, price: "€5.1M" },
+  { id: 4, name: "Marina Loft", lat: 28.96, lng: -13.55, price: "€2.9M" },
+  { id: 5, name: "Desert Villa", lat: 28.35, lng: -14.05, price: "€3.5M" },
+];
+
 export default function CanaryWMSMapWrapper() {
   return (
-    <Suspense fallback={<LoadingFallback />}>
-      <CanaryWMSMap />
-    </Suspense>
+    <div className="map-3d-container">
+      <div className="map-tilt">
+        <Suspense fallback={<LoadingFallback />}>
+          <CanaryWMSMap />
+        </Suspense>
+
+        {/* Property pins overlay */}
+        <div className="absolute inset-0 pointer-events-none">
+          {PROPERTY_PINS.map((pin) => (
+            <div
+              key={pin.id}
+              className="property-pin pointer-events-auto"
+              style={{
+                // Convert lat/lng to approximate pixel positions (simplified)
+                left: `${((pin.lng + 18.5) / 5.4) * 100}%`,
+                top: `${((29.6 - pin.lat) / 2.2) * 100}%`,
+              }}
+              title={`${pin.name} - ${pin.price}`}
+            >
+              <div className="parallax-label absolute -top-8 left-1/2 transform -translate-x-1/2 whitespace-nowrap opacity-0 hover:opacity-100 transition-opacity">
+                {pin.name}
+                <div className="text-cyan-300 text-xs">{pin.price}</div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
   );
 }
