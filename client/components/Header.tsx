@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Menu, X, Eye } from "lucide-react";
-import BlueEyeLogo from "./BlueEyeLogo";
 
 interface HeaderProps {
   isScrolled?: boolean;
@@ -25,14 +24,19 @@ export default function Header({
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16 lg:h-20">
           {/* Logo */}
-          <BlueEyeLogo
-            src="/assets/BLUEYELOGO.png"
-            size={56}
-            label="BlueEye Homes"
-            href="/"
-            glow={0.95}
-            className="cursor-pointer"
-          />
+          <Link
+            to="/"
+            className="flex items-center gap-3 hover:opacity-90 transition-opacity duration-300"
+          >
+            <img
+              src="https://cdn.builder.io/api/v1/image/assets%2Fb022b0ef6eaa47cba6348b0a48fcb095%2F07b76a99b63c47c08e71a48ae20f587c?format=webp&width=800"
+              alt="BlueEye Homes"
+              className="h-8 w-auto object-contain"
+            />
+            <span className="text-white font-semibold text-xl tracking-tight">
+              BlueEye Homes
+            </span>
+          </Link>
 
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center space-x-8">
