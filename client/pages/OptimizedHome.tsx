@@ -6,12 +6,14 @@ import CrownBadge from "@/components/CrownBadge";
 import BlueEyeLogo from "@/components/BlueEyeLogo";
 import PremiumHeader from "@/components/header/PremiumHeader";
 import NeuralField from "@/components/future/NeuralField";
+import QuantumPortalLoader from "@/components/future/QuantumPortalLoader";
 import ScrollTracker from "@/components/ux/ScrollTracker";
 import StickyCTA from "@/components/ux/StickyCTA";
 
 export default function OptimizedHome() {
   return (
     <>
+      <QuantumPortalLoader />
       <ScrollTracker />
       <div className="min-h-screen bg-gradient-to-b from-blue-dark via-purple-900 to-black relative overflow-x-hidden">
         {/* Neural Field Background - Optimized */}
