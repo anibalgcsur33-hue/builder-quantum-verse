@@ -37,6 +37,7 @@ import AgencyDashboard from "./pages/agency/Dashboard";
 import CryptoToken from "./pages/CryptoToken";
 import MetaverseMap from "./pages/MetaverseMap";
 import SkeletonDemo from "./pages/SkeletonDemo";
+import Simple from "./pages/Simple";
 
 const queryClient = new QueryClient();
 
