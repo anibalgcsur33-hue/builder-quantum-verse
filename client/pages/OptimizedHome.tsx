@@ -31,6 +31,7 @@ import MotionSafe from "@/utils/MotionSafe";
 import MuseumCarousel from "@/components/future/MuseumCarousel";
 import LiveActivityToasts from "@/components/future/LiveActivityToasts";
 import DemoBar from "@/components/future/DemoBar";
+import EcosistemaNeuronal from "@/components/sections/EcosistemaNeuronal";
 
 export default function OptimizedHome() {
   return (
