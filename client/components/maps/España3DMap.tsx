@@ -1,10 +1,10 @@
 import React, { useEffect, useRef, useState } from "react";
-import * as Cesium from "cesium";
-import { attachCityPins, flyToCity, flyThroughRegion, showRegionClusters, CITIES } from "../cesium/CityTours";
+// import * as Cesium from "cesium"; // Temporarily disabled
+// import { attachCityPins, flyToCity, flyThroughRegion, showRegionClusters, CITIES } from "../cesium/CityTours"; // Temporarily disabled
 import { Eye, Globe, MapPin, Filter, Play, Pause, RotateCcw } from "lucide-react";
 
 // Configuración de Cesium token (debe configurarse desde env)
-Cesium.Ion.defaultAccessToken = import.meta.env.VITE_CESIUM_TOKEN || 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiJlYWE1OWUxNy1mMWZiLTQzNjItYjNkYS1kMjUyZGY0YzhlMjEiLCJpZCI6MjU5MDIsInNjb3BlcyI6WyJhc3IiLCJnYyJdLCJpYXQiOjE1NzAyNjk5Mjh9.O-8U9dT2Ns6I0aO_y5cjOYvNNxX_xWv78tPrT3Z-X8U';
+// Cesium.Ion.defaultAccessToken = import.meta.env.VITE_CESIUM_TOKEN || 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiJlYWE1OWUxNy1mMWZiLTQzNjItYjNkYS1kMjUyZGY0YzhlMjEiLCJpZCI6MjU5MDIsInNjb3BlcyI6WyJhc3IiLCJnYyJdLCJpYXQiOjE1NzAyNjY5Mjh9.O-8U9dT2Ns6I0aO_y5cjOYvNNxX_xWv78tPrT3Z-X8U'; // Temporarily disabled
 
 interface España3DMapProps {
   height?: number;
