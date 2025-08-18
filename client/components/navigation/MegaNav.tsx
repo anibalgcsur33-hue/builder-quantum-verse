@@ -105,10 +105,10 @@ export default function MegaNav() {
       onMouseLeave={() => setHover(false)}
     >
       <motion.button
-        whileHover={{ y: -2, scale: 1.06 }}
-        className="flex items-center gap-2 px-3 py-2 rounded-xl bg-white/3 hover:bg-white/6
-                   backdrop-blur-md border border-white/10 text-white/80 hover:text-white
-                   transition-colors cursor-pointer"
+        whileHover={{ y: -2, scale: 1.03 }}
+        className="flex items-center gap-3 px-4 py-2.5 rounded-lg bg-slate-700/80 hover:bg-slate-600/80
+                   border border-slate-600/50 text-white/90 hover:text-white
+                   transition-all duration-200 cursor-pointer shadow-lg"
         onClick={() => setOpen((v) => !v)}
       >
         <Building2 className="w-5 h-5 text-cyan-300" />
