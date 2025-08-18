@@ -114,7 +114,9 @@ export default function OptimizedHome() {
                 <div className="glass rounded-2xl ring-glow p-4 relative overflow-hidden scanlines h-[520px] flex items-center justify-center">
                   <div className="text-center">
                     <div className="animate-spin w-8 h-8 border-2 border-cyan-400 border-t-transparent rounded-full mx-auto mb-4"></div>
-                    <p className="text-white/60">Cargando mapa 3D interactivo...</p>
+                    <p className="text-white/60">
+                      Cargando mapa 3D interactivo...
+                    </p>
                   </div>
                 </div>
               </section>

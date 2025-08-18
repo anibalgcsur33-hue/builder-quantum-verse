@@ -110,7 +110,7 @@ const ISLANDS: IslandDef[] = [
   {
     name: "Fuerteventura",
     offset: [2.6, -0.2],
-    h: 0.30,
+    h: 0.3,
     color: "#b5a07f",
     points: [
       [-2.0, 1.1],
@@ -165,7 +165,12 @@ function WaterPlane() {
   return (
     <mesh receiveShadow rotation-x={-Math.PI / 2} position={[0, -0.02, 0]}>
       <planeGeometry args={[38, 18, 1, 1]} />
-      <meshStandardMaterial ref={mat} color={COLORS[2]} metalness={0.2} roughness={0.9} />
+      <meshStandardMaterial
+        ref={mat}
+        color={COLORS[2]}
+        metalness={0.2}
+        roughness={0.9}
+      />
     </mesh>
   );
 }
@@ -225,15 +230,19 @@ function Island({ def }: { def: IslandDef }) {
 
       {/* playa/puertos estilizados */}
       <mesh rotation-x={-Math.PI / 2} position={[0, 0.02, 0]}>
-        <shapeGeometry args={[(() => {
-          const s = new THREE.Shape();
-          s.moveTo(-0.9, 0);
-          s.lineTo(0.9, 0);
-          s.lineTo(0.7, -0.18);
-          s.lineTo(-0.7, -0.18);
-          s.closePath();
-          return s;
-        })()]} />
+        <shapeGeometry
+          args={[
+            (() => {
+              const s = new THREE.Shape();
+              s.moveTo(-0.9, 0);
+              s.lineTo(0.9, 0);
+              s.lineTo(0.7, -0.18);
+              s.lineTo(-0.7, -0.18);
+              s.closePath();
+              return s;
+            })(),
+          ]}
+        />
         <meshBasicMaterial color="#a9e7f7" opacity={0.6} transparent />
       </mesh>
 
@@ -242,14 +251,19 @@ function Island({ def }: { def: IslandDef }) {
         <group position={[0, 0.55 + (def.h ?? 0.28), 0]}>
           <mesh>
             <sphereGeometry args={[0.08, 16, 16]} />
-            <meshStandardMaterial color={COLORS[0]} emissive={COLORS[0]} emissiveIntensity={0.45} />
+            <meshStandardMaterial
+              color={COLORS[0]}
+              emissive={COLORS[0]}
+              emissiveIntensity={0.45}
+            />
           </mesh>
           <Html
             className="pointer-events-none"
             center
             distanceFactor={12}
             style={{
-              background: "linear-gradient(90deg,rgba(184,224,245,.8),rgba(137,194,217,.75))",
+              background:
+                "linear-gradient(90deg,rgba(184,224,245,.8),rgba(137,194,217,.75))",
               color: "#0b1220",
               padding: "6px 10px",
               borderRadius: 999,
@@ -280,7 +294,9 @@ function FitOnStart() {
 export default function CanaryMap3D() {
   return (
     <div className="mx-auto max-w-7xl px-4 md:px-6 py-10 rounded-3xl bg-[#0b1220] ring-1 ring-white/10">
-      <h2 className="text-3xl md:text-4xl font-bold mb-4">España & Canarias — Mapa 3D Interactivo</h2>
+      <h2 className="text-3xl md:text-4xl font-bold mb-4">
+        España & Canarias — Mapa 3D Interactivo
+      </h2>
 
       <div className="h-[520px] rounded-2xl overflow-hidden ring-1 ring-white/10">
         <Canvas
@@ -301,7 +317,11 @@ export default function CanaryMap3D() {
             shadow-mapSize-width={1024}
             shadow-mapSize-height={1024}
           />
-          <hemisphereLight skyColor={"#a1c9ff"} groundColor={COLORS[1]} intensity={0.35} />
+          <hemisphereLight
+            skyColor={"#a1c9ff"}
+            groundColor={COLORS[1]}
+            intensity={0.35}
+          />
 
           {/* mar */}
           <WaterPlane />
@@ -331,7 +351,8 @@ export default function CanaryMap3D() {
         </Canvas>
       </div>
       <p className="mt-4 text-sm text-white/70">
-        Vista estilizada low-poly con labels, pins y agua animada. Incluye <b>La Graciosa</b>.
+        Vista estilizada low-poly con labels, pins y agua animada. Incluye{" "}
+        <b>La Graciosa</b>.
       </p>
     </div>
   );
