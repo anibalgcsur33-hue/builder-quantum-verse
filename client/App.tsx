@@ -46,8 +46,8 @@ const App = () => (
       <Sonner />
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<LiquidHome />} />
-          <Route path="/optimized" element={<OptimizedHome />} />
+          <Route path="/" element={<OptimizedHome />} />
+          <Route path="/liquid" element={<LiquidHome />} />
           <Route path="/premium" element={<PremiumHome />} />
           <Route path="/minimal" element={<MinimalHome />} />
           <Route path="/original" element={<Index />} />
