@@ -7,7 +7,7 @@ import BlueEyeLogo from "@/components/BlueEyeLogo";
 import PremiumHeader from "@/components/header/PremiumHeader";
 import NeuralField from "@/components/future/NeuralField";
 import QuantumPortalLoader from "@/components/future/QuantumPortalLoader";
-import QuantumBackground from "@/components/future/QuantumBackground";
+import QuantumBackground3D from "@/components/future/QuantumBackground3D";
 import CanaryMap3DFallback from "@/components/future/CanaryMap3DFallback";
 import HologramCard3DSimple from "@/components/future/HologramCard3DSimple";
 import SpatialAudioHotspot from "@/components/future/SpatialAudioHotspot";
@@ -23,7 +23,7 @@ export default function OptimizedHome() {
       <ScrollTracker />
       <div className="min-h-screen relative overflow-x-hidden">
         {/* Quantum Background - 3D Dynamic */}
-        <QuantumBackground />
+        <QuantumBackground3D />
 
         {/* Neural Field Overlay */}
         <NeuralField
@@ -92,7 +92,7 @@ export default function OptimizedHome() {
             <div className="grid md:grid-cols-3 gap-6">
               <HologramCard3DSimple
                 title="Villa Mirador — Tenerife"
-                price="€7.9M"
+                price="��7.9M"
                 location="Santa Cruz de Tenerife"
                 image="https://images.pexels.com/photos/8134750/pexels-photo-8134750.jpeg?w=800&auto=compress&cs=tinysrgb&dpr=2"
               />
