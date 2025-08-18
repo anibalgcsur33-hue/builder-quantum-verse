@@ -50,13 +50,13 @@ export default function PremiumHome() {
               transition={{ duration: 3, repeat: Infinity }}
             />
             <div className="absolute inset-0 flex items-center justify-center">
-              <motion.div
-                animate={{ scale: [1, 1.2, 1], rotate: [0, 10, -10, 0] }}
-                transition={{ duration: 2, repeat: Infinity }}
-                className="text-6xl"
-              >
-                👁️
-              </motion.div>
+              <motion.img
+                src="/assets/BLUEYELOGO.png"
+                alt="BlueEye Logo"
+                className="w-32 h-32 object-contain"
+                animate={{ scale: [1, 1.1, 1], rotate: [0, 5, -5, 0] }}
+                transition={{ duration: 3, repeat: Infinity }}
+              />
             </div>
           </motion.div>
 
@@ -170,7 +170,7 @@ export default function PremiumHome() {
           <div className="text-center mb-16">
             <h2 className="text-4xl font-bold text-white mb-6">Propiedades Premium</h2>
             <p className="text-xl text-white/80 max-w-3xl mx-auto">
-              Descubre nuestra exclusiva selección de propiedades de lujo en España
+              Descubre nuestra exclusiva selección de propiedades de lujo en Espa��a
             </p>
           </div>
 

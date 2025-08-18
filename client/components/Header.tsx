@@ -29,7 +29,7 @@ export default function Header({
             className="flex items-center gap-3 hover:opacity-90 transition-opacity duration-300"
           >
             <img
-              src="https://cdn.builder.io/api/v1/image/assets%2Fb022b0ef6eaa47cba6348b0a48fcb095%2F07b76a99b63c47c08e71a48ae20f587c?format=webp&width=800"
+              src="/assets/BLUEYELOGO.png"
               alt="BlueEye Homes"
               className="h-8 w-auto object-contain"
             />
