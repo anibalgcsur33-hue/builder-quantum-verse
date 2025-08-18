@@ -97,6 +97,9 @@ export default function OptimizedHome() {
           {/* Neural Showcase */}
           <NeuralShowcase />
 
+          {/* Spain Map with Animated Routes */}
+          <SpainMapTeaser />
+
           {/* Hologram Property Cards */}
           <section className="mx-auto max-w-6xl px-6 py-16">
             <div className="text-center mb-8">
