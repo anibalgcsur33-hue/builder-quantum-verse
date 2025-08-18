@@ -13,12 +13,16 @@ import HologramCard3DSimple from "@/components/future/HologramCard3DSimple";
 import SpatialAudioHotspot from "@/components/future/SpatialAudioHotspot";
 import SpatialAudioAdvanced from "@/components/future/SpatialAudioAdvanced";
 import NeuralNav from "@/components/future/NeuralNav";
+import CursorAurora from "@/components/effects/CursorAurora";
+import SpainMapTeaser from "@/components/sections/SpainMapTeaser";
+import NeuralShowcase from "@/components/sections/NeuralShowcase";
 import ScrollTracker from "@/components/ux/ScrollTracker";
 import StickyCTA from "@/components/ux/StickyCTA";
 
 export default function OptimizedHome() {
   return (
     <>
+      <CursorAurora />
       <QuantumPortalLoader />
       <ScrollTracker />
       <div className="min-h-screen relative overflow-x-hidden">
@@ -80,6 +84,12 @@ export default function OptimizedHome() {
             </div>
             <CanaryMap3DFallback />
           </section>
+
+          {/* Spain Map Teaser */}
+          <SpainMapTeaser />
+
+          {/* Neural Showcase */}
+          <NeuralShowcase />
 
           {/* Hologram Property Cards */}
           <section className="mx-auto max-w-6xl px-6 py-16">
