@@ -56,6 +56,7 @@ const App = () => (
           <Route path="/original" element={<Index />} />
           <Route path="/skeleton" element={<SkeletonDemo />} />
           <Route path="/simple" element={<Simple />} />
+          <Route path="/pins-demo" element={<PinsDemo />} />
 
           {/* Properties Routes */}
           <Route path="/propiedades" element={<Properties />} />
