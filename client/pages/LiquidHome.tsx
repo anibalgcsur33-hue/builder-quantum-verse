@@ -5,7 +5,6 @@ import MetricsPanel from "../components/future/MetricsPanel";
 import NeuralNav from "../components/future/NeuralNav";
 import ARSmartButton from "../components/future/ARSmartButton";
 import PropertyGrid from "../components/property/PropertyGrid";
-import BlueEyeLogo from "../components/BlueEyeLogo";
 import ScrollTracker from "../components/ux/ScrollTracker";
 import StickyCTA from "../components/ux/StickyCTA";
 
