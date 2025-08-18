@@ -18,6 +18,12 @@ import NeuralShowcase from "@/components/sections/NeuralShowcase";
 import ScrollTracker from "@/components/ux/ScrollTracker";
 import StickyCTA from "@/components/ux/StickyCTA";
 import VRExperienceSection from "@/components/VRExperienceSection";
+import PremiumShowcase from "@/components/sections/PremiumShowcase";
+import HolographicConcierge from "@/components/sections/HolographicConcierge";
+import CommunityStrip from "@/components/sections/CommunityStrip";
+import VRPortalTeaser from "@/components/sections/VRPortalTeaser";
+import InvestorsCTA from "@/components/sections/InvestorsCTA";
+import InvestorStatsAlternate from "@/components/sections/InvestorStatsAlternate";
 
 export default function OptimizedHome() {
   return (
