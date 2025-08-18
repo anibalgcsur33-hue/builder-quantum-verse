@@ -242,6 +242,9 @@ export default function Index() {
       {/* Investor Stats */}
       <InvestorStats />
 
+      {/* Property Marquee */}
+      <PropertyMarquee />
+
       {/* Featured Properties Section */}
       <section className="section-padding" data-section="properties">
         <div className="container mx-auto container-padding">
