@@ -1,0 +1,14 @@
+BlueEyeLogo.tsx - 174 lineas
+NeuralField.tsx - 151 lineas  
+AIConcierge.tsx - 299 lineas
+CursorAurora.tsx - 35 lineas
+ShimmerTitle.tsx - 8 lineas
+NeuralShowcase.tsx - 49 lineas
+SpainMapTeaser.tsx - 91 lineas
+QuantumBackground3D.tsx - 163 lineas
+PremiumHeader.tsx
+PropertyGrid.tsx
+MegaNav.tsx
+OptimizedHome.tsx
+global.css - COMPLETO
+Y 160+ archivos mas funcionando
