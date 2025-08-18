@@ -19,6 +19,9 @@ import DreamBuilderArchitecture from "../components/holographic/DreamBuilderArch
 import DigitalPassportMetaverse from "../components/holographic/DigitalPassportMetaverse";
 import QuantumExperienceTokens from "../components/holographic/QuantumExperienceTokens";
 import NeuralInterfaceNavigation from "../components/holographic/NeuralInterfaceNavigation";
+import CinematicDroneFinale from "../components/CinematicDroneFinale";
+import QuantumPropertyStates from "../components/QuantumPropertyStates";
+import SynestheticPropertyExperience from "../components/SynestheticPropertyExperience";
 
 export default function PremiumHome() {
   return (
@@ -207,12 +210,45 @@ export default function PremiumHome() {
         </motion.div>
       </section>
 
+      {/* Quantum Property States */}
+      <section className="relative">
+        <motion.div
+          initial={{ opacity: 0, scale: 0.8 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 1, delay: 3.8 }}
+        >
+          <QuantumPropertyStates />
+        </motion.div>
+      </section>
+
+      {/* Synesthetic Property Experience */}
+      <section className="relative">
+        <motion.div
+          initial={{ opacity: 0, y: 100 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1, delay: 4.1 }}
+        >
+          <SynestheticPropertyExperience />
+        </motion.div>
+      </section>
+
+      {/* Cinematic Drone Finale */}
+      <section className="relative">
+        <motion.div
+          initial={{ opacity: 0, scale: 1.1 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 1, delay: 4.4 }}
+        >
+          <CinematicDroneFinale />
+        </motion.div>
+      </section>
+
       {/* AI Concierge Section */}
       <section className="relative py-20">
         <motion.div
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.8, delay: 3.8 }}
+          transition={{ duration: 0.8, delay: 4.7 }}
           className="container mx-auto px-4"
         >
           <AIConcierge />
@@ -224,7 +260,7 @@ export default function PremiumHome() {
         <motion.div
           initial={{ opacity: 0, y: 50 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 4.1 }}
+          transition={{ duration: 0.8, delay: 5.0 }}
           className="container mx-auto px-4"
         >
           <div className="text-center mb-16">
@@ -241,7 +277,7 @@ export default function PremiumHome() {
       <motion.footer
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ duration: 0.8, delay: 4.4 }}
+        transition={{ duration: 0.8, delay: 5.3 }}
         className="relative z-20 py-12 border-t border-white/10 bg-blue-dark/50"
       >
         <div className="container mx-auto px-4 text-center">
@@ -271,7 +307,7 @@ export default function PremiumHome() {
         className="fixed top-1/2 left-4 transform -translate-y-1/2 z-30 space-y-4"
         initial={{ opacity: 0, x: -50 }}
         animate={{ opacity: 1, x: 0 }}
-        transition={{ duration: 1, delay: 5 }}
+        transition={{ duration: 1, delay: 6 }}
       >
         {[
           { icon: "🌌", label: "Portal" },
@@ -283,7 +319,10 @@ export default function PremiumHome() {
           { icon: "🧠", label: "Dream" },
           { icon: "🌐", label: "Passport" },
           { icon: "💎", label: "Tokens" },
-          { icon: "⚡", label: "Neural" }
+          { icon: "⚡", label: "Neural" },
+          { icon: "🔮", label: "Quantum" },
+          { icon: "🌈", label: "Synesthetic" },
+          { icon: "🎬", label: "Cinematic" }
         ].map((item, index) => (
           <motion.div
             key={index}
@@ -302,7 +341,7 @@ export default function PremiumHome() {
         className="fixed top-0 left-0 right-0 h-1 bg-gradient-neural z-50 origin-left"
         style={{ scaleX: 0 }}
         animate={{ scaleX: 1 }}
-        transition={{ duration: 10, ease: "easeOut" }}
+        transition={{ duration: 15, ease: "easeOut" }}
       />
 
       {/* Premium Badge */}
