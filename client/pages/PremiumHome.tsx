@@ -224,7 +224,9 @@ export default function PremiumHome() {
                   <p className="text-cyan-400 font-bold text-lg mb-4">{property.price}</p>
 
                   <div className="flex gap-2">
-                    <button className="flex-1 bg-cyan-500/20 hover:bg-cyan-500/30 text-cyan-300 text-xs py-2 px-3 rounded-lg transition-colors">
+                    <button
+                      onClick={() => setDemoOpen(true)}
+                      className="flex-1 bg-cyan-500/20 hover:bg-cyan-500/30 text-cyan-300 text-xs py-2 px-3 rounded-lg transition-colors">
                       Ver en VR
                     </button>
                     <button className="flex-1 bg-violet-500/20 hover:bg-violet-500/30 text-violet-300 text-xs py-2 px-3 rounded-lg transition-colors">
