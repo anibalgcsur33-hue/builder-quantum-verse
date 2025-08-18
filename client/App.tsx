@@ -54,6 +54,7 @@ const App = () => (
           <Route path="/minimal" element={<MinimalHome />} />
           <Route path="/original" element={<Index />} />
           <Route path="/skeleton" element={<SkeletonDemo />} />
+          <Route path="/simple" element={<Simple />} />
 
           {/* Properties Routes */}
           <Route path="/propiedades" element={<Properties />} />
