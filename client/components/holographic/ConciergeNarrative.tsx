@@ -452,7 +452,7 @@ export default function ConciergeNarrative() {
       </div>
 
       {/* Estilos CSS ultra-avanzados */}
-      <style jsx>{`
+      <style>{`
         .luxury-info-panel {
           background: linear-gradient(
             135deg,
