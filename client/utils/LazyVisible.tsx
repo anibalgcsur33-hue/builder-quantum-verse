@@ -4,7 +4,11 @@ export default function LazyVisible({
   children,
   rootMargin = "200px",
   once = true,
-}: { children: React.ReactNode; rootMargin?: string; once?: boolean; }) {
+}: {
+  children: React.ReactNode;
+  rootMargin?: string;
+  once?: boolean;
+}) {
   const ref = useRef<HTMLDivElement | null>(null);
   const [show, setShow] = useState(false);
 
@@ -18,7 +22,7 @@ export default function LazyVisible({
           if (once) io.disconnect();
         } else if (!once) setShow(false);
       },
-      { rootMargin }
+      { rootMargin },
     );
     io.observe(el);
     return () => io.disconnect();

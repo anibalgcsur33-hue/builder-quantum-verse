@@ -782,7 +782,14 @@ img {
 /* Títulos con shimmer holográfico */
 .holo-shimmer {
   position: relative;
-  background: linear-gradient(90deg, #a78bfa 0%, #67e8f9 25%, #a78bfa 50%, #67e8f9 75%, #a78bfa 100%);
+  background: linear-gradient(
+    90deg,
+    #a78bfa 0%,
+    #67e8f9 25%,
+    #a78bfa 50%,
+    #67e8f9 75%,
+    #a78bfa 100%
+  );
   background-size: 300% 100%;
   -webkit-background-clip: text;
   background-clip: text;
@@ -790,16 +797,22 @@ img {
   animation: holoShimmer 6s ease-in-out infinite;
 }
 @keyframes holoShimmer {
-  0% { background-position: 0% 50% }
-  50% { background-position: 100% 50% }
-  100% { background-position: 0% 50% }
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
 }
 
 /* Grid holográfico sutil (overlay) */
 .holo-grid {
   background-image:
-    linear-gradient(to right, rgba(255,255,255,.06) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(255,255,255,.06) 1px, transparent 1px);
+    linear-gradient(to right, rgba(255, 255, 255, 0.06) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.06) 1px, transparent 1px);
   background-size: 26px 26px;
   mask-image: radial-gradient(60% 60% at 50% 40%, black, transparent 75%);
   pointer-events: none;
@@ -808,9 +821,14 @@ img {
 /* Scanlines suaves */
 .scanlines::after {
   content: "";
-  position: absolute; inset: 0;
+  position: absolute;
+  inset: 0;
   background: repeating-linear-gradient(
-    to bottom, rgba(255,255,255,0.04), rgba(255,255,255,0.04) 2px, transparent 2px, transparent 4px
+    to bottom,
+    rgba(255, 255, 255, 0.04),
+    rgba(255, 255, 255, 0.04) 2px,
+    transparent 2px,
+    transparent 4px
   );
   mix-blend-mode: soft-light;
   pointer-events: none;
@@ -821,23 +839,38 @@ img {
   stroke-dasharray: 8 10;
   animation: pathDash 2.2s linear infinite;
 }
-@keyframes pathDash { to { stroke-dashoffset: -18; } }
+@keyframes pathDash {
+  to {
+    stroke-dashoffset: -18;
+  }
+}
 
 /* Cursor aurora */
 .aurora {
   position: fixed;
-  top: 0; left: 0;
-  width: 240px; height: 240px;
+  top: 0;
+  left: 0;
+  width: 240px;
+  height: 240px;
   border-radius: 9999px;
   pointer-events: none;
   mix-blend-mode: screen;
-  background: radial-gradient(closest-side, rgba(103,232,249,0.35), rgba(167,139,250,0.18), transparent 70%);
+  background: radial-gradient(
+    closest-side,
+    rgba(103, 232, 249, 0.35),
+    rgba(167, 139, 250, 0.18),
+    transparent 70%
+  );
   filter: blur(12px);
-  transform: translate(-50%,-50%);
+  transform: translate(-50%, -50%);
   z-index: 60;
 }
 
 /* Accesibilidad: reducir animaciones */
 @media (prefers-reduced-motion: reduce) {
-  .marquee, .animate-float, .holo-shimmer { animation: none !important; }
+  .marquee,
+  .animate-float,
+  .holo-shimmer {
+    animation: none !important;
+  }
 }

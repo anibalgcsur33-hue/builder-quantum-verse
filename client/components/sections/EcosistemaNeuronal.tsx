@@ -4,7 +4,8 @@ const features = [
   {
     id: 1,
     title: "IA Neuronal",
-    description: "Asistente inteligente con procesamiento de voz natural y respuestas contextuales",
+    description:
+      "Asistente inteligente con procesamiento de voz natural y respuestas contextuales",
     icon: (
       <div className="relative w-16 h-16 mx-auto">
         {/* Sophisticated AI Neural Shield Icon */}
@@ -19,16 +20,27 @@ const features = [
 
           {/* Neural nodes */}
           <div className="absolute top-2 left-2 w-2 h-2 bg-white rounded-full animate-pulse"></div>
-          <div className="absolute top-2 right-2 w-2 h-2 bg-cyan-200 rounded-full animate-pulse" style={{animationDelay: '0.5s'}}></div>
-          <div className="absolute bottom-2 left-3 w-1.5 h-1.5 bg-blue-200 rounded-full animate-pulse" style={{animationDelay: '1s'}}></div>
-          <div className="absolute bottom-2 right-3 w-1.5 h-1.5 bg-white rounded-full animate-pulse" style={{animationDelay: '1.5s'}}></div>
+          <div
+            className="absolute top-2 right-2 w-2 h-2 bg-cyan-200 rounded-full animate-pulse"
+            style={{ animationDelay: "0.5s" }}
+          ></div>
+          <div
+            className="absolute bottom-2 left-3 w-1.5 h-1.5 bg-blue-200 rounded-full animate-pulse"
+            style={{ animationDelay: "1s" }}
+          ></div>
+          <div
+            className="absolute bottom-2 right-3 w-1.5 h-1.5 bg-white rounded-full animate-pulse"
+            style={{ animationDelay: "1.5s" }}
+          ></div>
 
           {/* Connection lines */}
           <svg className="absolute inset-0 w-full h-full" viewBox="0 0 40 40">
-            <path d="M8,8 Q20,15 32,8 M8,32 Q20,25 32,32 M8,8 L32,32 M32,8 L8,32"
-                  stroke="rgba(255,255,255,0.4)"
-                  strokeWidth="0.5"
-                  fill="none"/>
+            <path
+              d="M8,8 Q20,15 32,8 M8,32 Q20,25 32,32 M8,8 L32,32 M32,8 L8,32"
+              stroke="rgba(255,255,255,0.4)"
+              strokeWidth="0.5"
+              fill="none"
+            />
           </svg>
         </div>
 
@@ -43,15 +55,22 @@ const features = [
   {
     id: 2,
     title: "Red Interactiva",
-    description: "Campo neuronal que responde al movimiento y conecta toda la experiencia",
+    description:
+      "Campo neuronal que responde al movimiento y conecta toda la experiencia",
     icon: (
       <div className="relative w-16 h-16 mx-auto">
         {/* Sophisticated Interactive Network Globe */}
         <div className="absolute inset-0 rounded-full bg-gradient-to-br from-purple-500/90 to-pink-600/90 shadow-2xl"></div>
 
         {/* Orbital rings */}
-        <div className="absolute inset-1 rounded-full border-2 border-purple-300/40 animate-spin" style={{animationDuration: '20s'}}></div>
-        <div className="absolute inset-2 rounded-full border border-pink-300/60 animate-spin" style={{animationDuration: '15s', animationDirection: 'reverse'}}></div>
+        <div
+          className="absolute inset-1 rounded-full border-2 border-purple-300/40 animate-spin"
+          style={{ animationDuration: "20s" }}
+        ></div>
+        <div
+          className="absolute inset-2 rounded-full border border-pink-300/60 animate-spin"
+          style={{ animationDuration: "15s", animationDirection: "reverse" }}
+        ></div>
 
         {/* Central core */}
         <div className="absolute inset-5 rounded-full bg-gradient-to-br from-purple-300 to-pink-400 shadow-inner">
@@ -60,15 +79,36 @@ const features = [
 
         {/* Network nodes */}
         <div className="absolute top-1 left-1/2 w-2 h-2 bg-white rounded-full animate-pulse transform -translate-x-1/2"></div>
-        <div className="absolute bottom-1 left-1/2 w-2 h-2 bg-purple-200 rounded-full animate-pulse transform -translate-x-1/2" style={{animationDelay: '0.5s'}}></div>
-        <div className="absolute left-1 top-1/2 w-2 h-2 bg-pink-200 rounded-full animate-pulse transform -translate-y-1/2" style={{animationDelay: '1s'}}></div>
-        <div className="absolute right-1 top-1/2 w-2 h-2 bg-white rounded-full animate-pulse transform -translate-y-1/2" style={{animationDelay: '1.5s'}}></div>
+        <div
+          className="absolute bottom-1 left-1/2 w-2 h-2 bg-purple-200 rounded-full animate-pulse transform -translate-x-1/2"
+          style={{ animationDelay: "0.5s" }}
+        ></div>
+        <div
+          className="absolute left-1 top-1/2 w-2 h-2 bg-pink-200 rounded-full animate-pulse transform -translate-y-1/2"
+          style={{ animationDelay: "1s" }}
+        ></div>
+        <div
+          className="absolute right-1 top-1/2 w-2 h-2 bg-white rounded-full animate-pulse transform -translate-y-1/2"
+          style={{ animationDelay: "1.5s" }}
+        ></div>
 
         {/* Diagonal nodes */}
-        <div className="absolute top-2 left-2 w-1.5 h-1.5 bg-purple-100 rounded-full animate-pulse" style={{animationDelay: '2s'}}></div>
-        <div className="absolute top-2 right-2 w-1.5 h-1.5 bg-pink-100 rounded-full animate-pulse" style={{animationDelay: '2.5s'}}></div>
-        <div className="absolute bottom-2 left-2 w-1.5 h-1.5 bg-white rounded-full animate-pulse" style={{animationDelay: '3s'}}></div>
-        <div className="absolute bottom-2 right-2 w-1.5 h-1.5 bg-purple-200 rounded-full animate-pulse" style={{animationDelay: '3.5s'}}></div>
+        <div
+          className="absolute top-2 left-2 w-1.5 h-1.5 bg-purple-100 rounded-full animate-pulse"
+          style={{ animationDelay: "2s" }}
+        ></div>
+        <div
+          className="absolute top-2 right-2 w-1.5 h-1.5 bg-pink-100 rounded-full animate-pulse"
+          style={{ animationDelay: "2.5s" }}
+        ></div>
+        <div
+          className="absolute bottom-2 left-2 w-1.5 h-1.5 bg-white rounded-full animate-pulse"
+          style={{ animationDelay: "3s" }}
+        ></div>
+        <div
+          className="absolute bottom-2 right-2 w-1.5 h-1.5 bg-purple-200 rounded-full animate-pulse"
+          style={{ animationDelay: "3.5s" }}
+        ></div>
 
         {/* Pulse effect */}
         <div className="absolute -inset-3 rounded-full border border-purple-400/30 animate-ping"></div>
@@ -79,7 +119,8 @@ const features = [
   {
     id: 3,
     title: "Audio Inmersivo",
-    description: "Visualización de voz en tiempo real para interacciones premium",
+    description:
+      "Visualización de voz en tiempo real para interacciones premium",
     icon: (
       <div className="relative w-16 h-16 mx-auto">
         {/* Sophisticated Audio Waveform Visualizer */}
@@ -88,12 +129,30 @@ const features = [
         {/* Top frequency display */}
         <div className="absolute top-1 left-2 right-2 h-1">
           <div className="flex gap-0.5 h-full items-end">
-            <div className="w-1 bg-emerald-200 rounded-full animate-pulse" style={{height: '60%'}}></div>
-            <div className="w-1 bg-teal-200 rounded-full animate-pulse" style={{height: '80%', animationDelay: '0.1s'}}></div>
-            <div className="w-1 bg-emerald-300 rounded-full animate-pulse" style={{height: '40%', animationDelay: '0.2s'}}></div>
-            <div className="w-1 bg-teal-300 rounded-full animate-pulse" style={{height: '90%', animationDelay: '0.3s'}}></div>
-            <div className="w-1 bg-emerald-200 rounded-full animate-pulse" style={{height: '70%', animationDelay: '0.4s'}}></div>
-            <div className="w-1 bg-teal-200 rounded-full animate-pulse" style={{height: '50%', animationDelay: '0.5s'}}></div>
+            <div
+              className="w-1 bg-emerald-200 rounded-full animate-pulse"
+              style={{ height: "60%" }}
+            ></div>
+            <div
+              className="w-1 bg-teal-200 rounded-full animate-pulse"
+              style={{ height: "80%", animationDelay: "0.1s" }}
+            ></div>
+            <div
+              className="w-1 bg-emerald-300 rounded-full animate-pulse"
+              style={{ height: "40%", animationDelay: "0.2s" }}
+            ></div>
+            <div
+              className="w-1 bg-teal-300 rounded-full animate-pulse"
+              style={{ height: "90%", animationDelay: "0.3s" }}
+            ></div>
+            <div
+              className="w-1 bg-emerald-200 rounded-full animate-pulse"
+              style={{ height: "70%", animationDelay: "0.4s" }}
+            ></div>
+            <div
+              className="w-1 bg-teal-200 rounded-full animate-pulse"
+              style={{ height: "50%", animationDelay: "0.5s" }}
+            ></div>
           </div>
         </div>
 
@@ -112,25 +171,58 @@ const features = [
         {/* Bottom frequency display */}
         <div className="absolute bottom-1 left-2 right-2 h-1">
           <div className="flex gap-0.5 h-full items-start">
-            <div className="w-1 bg-teal-200 rounded-full animate-pulse" style={{height: '50%', animationDelay: '0.6s'}}></div>
-            <div className="w-1 bg-emerald-300 rounded-full animate-pulse" style={{height: '75%', animationDelay: '0.7s'}}></div>
-            <div className="w-1 bg-teal-300 rounded-full animate-pulse" style={{height: '35%', animationDelay: '0.8s'}}></div>
-            <div className="w-1 bg-emerald-200 rounded-full animate-pulse" style={{height: '85%', animationDelay: '0.9s'}}></div>
-            <div className="w-1 bg-teal-200 rounded-full animate-pulse" style={{height: '65%', animationDelay: '1s'}}></div>
-            <div className="w-1 bg-emerald-300 rounded-full animate-pulse" style={{height: '45%', animationDelay: '1.1s'}}></div>
+            <div
+              className="w-1 bg-teal-200 rounded-full animate-pulse"
+              style={{ height: "50%", animationDelay: "0.6s" }}
+            ></div>
+            <div
+              className="w-1 bg-emerald-300 rounded-full animate-pulse"
+              style={{ height: "75%", animationDelay: "0.7s" }}
+            ></div>
+            <div
+              className="w-1 bg-teal-300 rounded-full animate-pulse"
+              style={{ height: "35%", animationDelay: "0.8s" }}
+            ></div>
+            <div
+              className="w-1 bg-emerald-200 rounded-full animate-pulse"
+              style={{ height: "85%", animationDelay: "0.9s" }}
+            ></div>
+            <div
+              className="w-1 bg-teal-200 rounded-full animate-pulse"
+              style={{ height: "65%", animationDelay: "1s" }}
+            ></div>
+            <div
+              className="w-1 bg-emerald-300 rounded-full animate-pulse"
+              style={{ height: "45%", animationDelay: "1.1s" }}
+            ></div>
           </div>
         </div>
 
         {/* Sound wave rings */}
         <div className="absolute -inset-2 rounded-2xl border border-emerald-400/40 animate-ping"></div>
-        <div className="absolute -inset-4 rounded-2xl border border-teal-400/30 animate-ping" style={{animationDelay: '0.5s'}}></div>
-        <div className="absolute -inset-6 rounded-2xl border border-emerald-400/20 animate-ping" style={{animationDelay: '1s'}}></div>
+        <div
+          className="absolute -inset-4 rounded-2xl border border-teal-400/30 animate-ping"
+          style={{ animationDelay: "0.5s" }}
+        ></div>
+        <div
+          className="absolute -inset-6 rounded-2xl border border-emerald-400/20 animate-ping"
+          style={{ animationDelay: "1s" }}
+        ></div>
 
         {/* Corner accent lights */}
         <div className="absolute top-0 left-0 w-2 h-2 bg-emerald-300 rounded-full animate-pulse"></div>
-        <div className="absolute top-0 right-0 w-2 h-2 bg-teal-300 rounded-full animate-pulse" style={{animationDelay: '0.5s'}}></div>
-        <div className="absolute bottom-0 left-0 w-2 h-2 bg-teal-300 rounded-full animate-pulse" style={{animationDelay: '1s'}}></div>
-        <div className="absolute bottom-0 right-0 w-2 h-2 bg-emerald-300 rounded-full animate-pulse" style={{animationDelay: '1.5s'}}></div>
+        <div
+          className="absolute top-0 right-0 w-2 h-2 bg-teal-300 rounded-full animate-pulse"
+          style={{ animationDelay: "0.5s" }}
+        ></div>
+        <div
+          className="absolute bottom-0 left-0 w-2 h-2 bg-teal-300 rounded-full animate-pulse"
+          style={{ animationDelay: "1s" }}
+        ></div>
+        <div
+          className="absolute bottom-0 right-0 w-2 h-2 bg-emerald-300 rounded-full animate-pulse"
+          style={{ animationDelay: "1.5s" }}
+        ></div>
       </div>
     ),
   },
@@ -145,9 +237,9 @@ export default function EcosistemaNeuronal() {
             Ecosistema Neuronal BlueEye
           </h3>
           <p className="text-white/70 max-w-3xl mx-auto">
-            Interacción viva entre secciones, con navegación de precisión y respuesta IA
-            contextual. Una experiencia inmersiva que conecta propiedades, análisis y decisiones en
-            tiempo real.
+            Interacción viva entre secciones, con navegación de precisión y
+            respuesta IA contextual. Una experiencia inmersiva que conecta
+            propiedades, análisis y decisiones en tiempo real.
           </p>
         </div>
 
@@ -164,12 +256,10 @@ export default function EcosistemaNeuronal() {
               <div className="glass-card p-6 text-center h-full relative overflow-hidden group hover:scale-105 transition-transform duration-300">
                 {/* Background neural grid */}
                 <div className="absolute inset-0 holo-grid opacity-30"></div>
-                
+
                 {/* Icon */}
-                <div className="mb-6 relative z-10">
-                  {feature.icon}
-                </div>
-                
+                <div className="mb-6 relative z-10">{feature.icon}</div>
+
                 {/* Content */}
                 <div className="relative z-10">
                   <h4 className="text-xl font-bold text-white mb-3">
@@ -182,7 +272,7 @@ export default function EcosistemaNeuronal() {
 
                 {/* Scanlines effect */}
                 <div className="absolute inset-0 scanlines opacity-30"></div>
-                
+
                 {/* Hover glow */}
                 <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/5 to-purple-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
               </div>
@@ -200,34 +290,43 @@ export default function EcosistemaNeuronal() {
         >
           <div className="relative h-32 glass rounded-2xl overflow-hidden">
             <div className="absolute inset-0 bg-gradient-to-r from-cyan-500/10 via-purple-500/10 to-emerald-500/10"></div>
-            
+
             {/* Neural connection lines */}
-            <svg className="absolute inset-0 w-full h-full" viewBox="0 0 800 128">
+            <svg
+              className="absolute inset-0 w-full h-full"
+              viewBox="0 0 800 128"
+            >
               <defs>
-                <linearGradient id="neuralGradient" x1="0%" y1="0%" x2="100%" y2="0%">
-                  <stop offset="0%" stopColor="#06b6d4" stopOpacity="0.6"/>
-                  <stop offset="50%" stopColor="#8b5cf6" stopOpacity="0.8"/>
-                  <stop offset="100%" stopColor="#10b981" stopOpacity="0.6"/>
+                <linearGradient
+                  id="neuralGradient"
+                  x1="0%"
+                  y1="0%"
+                  x2="100%"
+                  y2="0%"
+                >
+                  <stop offset="0%" stopColor="#06b6d4" stopOpacity="0.6" />
+                  <stop offset="50%" stopColor="#8b5cf6" stopOpacity="0.8" />
+                  <stop offset="100%" stopColor="#10b981" stopOpacity="0.6" />
                 </linearGradient>
               </defs>
-              
-              <path 
-                d="M100,64 C250,20 350,108 400,64 C450,20 550,108 700,64" 
-                stroke="url(#neuralGradient)" 
-                strokeWidth="2" 
+
+              <path
+                d="M100,64 C250,20 350,108 400,64 C450,20 550,108 700,64"
+                stroke="url(#neuralGradient)"
+                strokeWidth="2"
                 fill="none"
                 className="path-dash"
               />
-              <path 
-                d="M100,64 C200,108 300,20 400,64 C500,108 600,20 700,64" 
-                stroke="url(#neuralGradient)" 
-                strokeWidth="1" 
+              <path
+                d="M100,64 C200,108 300,20 400,64 C500,108 600,20 700,64"
+                stroke="url(#neuralGradient)"
+                strokeWidth="1"
                 fill="none"
                 className="path-dash"
-                style={{animationDelay: '1s'}}
+                style={{ animationDelay: "1s" }}
               />
             </svg>
-            
+
             <div className="absolute inset-0 flex items-center justify-center">
               <div className="text-white/50 text-sm font-medium">
                 Red Neural Activa • Conexiones en tiempo real

@@ -17,7 +17,9 @@ export default function CursorAurora() {
 
     // Check if touch device or reduced motion preference
     const isTouch = "ontouchstart" in window;
-    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const prefersReducedMotion = window.matchMedia(
+      "(prefers-reduced-motion: reduce)",
+    ).matches;
 
     if (isTouch || prefersReducedMotion) {
       el.style.display = "none";

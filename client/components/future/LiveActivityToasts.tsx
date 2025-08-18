@@ -7,20 +7,22 @@ const FEED = [
   "Nuevo listado verificado en Barcelona",
 ];
 
-export default function LiveActivityToasts(){
-  const [items,setItems] = useState<string[]>([]);
-  useEffect(()=>{
-    const id = setInterval(()=>{
-      const m = FEED[Math.floor(Math.random()*FEED.length)];
-      setItems((a)=>[m, ...a].slice(0,4));
+export default function LiveActivityToasts() {
+  const [items, setItems] = useState<string[]>([]);
+  useEffect(() => {
+    const id = setInterval(() => {
+      const m = FEED[Math.floor(Math.random() * FEED.length)];
+      setItems((a) => [m, ...a].slice(0, 4));
     }, 3500);
-    return ()=>clearInterval(id);
-  },[]);
+    return () => clearInterval(id);
+  }, []);
   return (
     <div className="fixed bottom-6 right-6 z-[60] space-y-3">
-      {items.map((t,i)=>(
-        <div key={i}
-          className="rounded-xl px-4 py-3 bg-black/70 border border-white/10 shadow-xl backdrop-blur-md text-sm">
+      {items.map((t, i) => (
+        <div
+          key={i}
+          className="rounded-xl px-4 py-3 bg-black/70 border border-white/10 shadow-xl backdrop-blur-md text-sm"
+        >
           🔔 {t}
         </div>
       ))}

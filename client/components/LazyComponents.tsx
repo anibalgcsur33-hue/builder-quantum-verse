@@ -3,10 +3,18 @@ import LazyVisible from "@/utils/LazyVisible";
 import MotionSafe from "@/utils/MotionSafe";
 
 // Lazy load heavy components
-const SpainMapTeaser = lazy(() => import("@/components/sections/SpainMapTeaser"));
-const VRPortalTeaser = lazy(() => import("@/components/sections/VRPortalTeaser"));
-const HolographicConcierge = lazy(() => import("@/components/sections/HolographicConcierge"));
-const NeuralShowcase = lazy(() => import("@/components/sections/NeuralShowcase"));
+const SpainMapTeaser = lazy(
+  () => import("@/components/sections/SpainMapTeaser"),
+);
+const VRPortalTeaser = lazy(
+  () => import("@/components/sections/VRPortalTeaser"),
+);
+const HolographicConcierge = lazy(
+  () => import("@/components/sections/HolographicConcierge"),
+);
+const NeuralShowcase = lazy(
+  () => import("@/components/sections/NeuralShowcase"),
+);
 
 // Loading fallback component
 const LazyFallback = () => (
