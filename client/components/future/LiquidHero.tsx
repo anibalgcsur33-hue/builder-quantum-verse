@@ -1,5 +1,6 @@
 import { motion, useMotionValue, useTransform } from "framer-motion";
 import { useEffect } from "react";
+import BlueEyeLogo from "./../../BlueEyeLogo";
 
 /**
  * Hero con:
@@ -39,6 +40,18 @@ export default function LiquidHero() {
       </svg>
 
       <div className="mx-auto max-w-7xl px-6 pt-20 pb-16 md:pt-28 md:pb-24">
+        {/* BlueEye Logo */}
+        <div className="flex justify-center mb-8">
+          <BlueEyeLogo
+            src="/assets/BLUEYELOGO.png"
+            size={160}
+            label=""
+            href="/"
+            glow={0.95}
+            className="transform-gpu"
+          />
+        </div>
+
         <motion.h1
           style={{ rotateZ: rot, filter: "url(#liquid)" as any }}
           className="text-[clamp(2.6rem,7vw,5.6rem)] leading-[0.95] font-black tracking-tight"
