@@ -91,7 +91,7 @@ export default function PremiumHome() {
         </motion.div>
       </section>
 
-      {/* Traditional Properties Section */}
+      {/* Properties Section */}
       <section className="relative py-20">
         <motion.div
           initial={{ opacity: 0, y: 100 }}
@@ -99,7 +99,45 @@ export default function PremiumHome() {
           transition={{ duration: 0.8, delay: 1.7 }}
           className="container mx-auto px-4"
         >
-          <Properties />
+          <div className="text-center mb-16">
+            <h2 className="heading-lg text-gradient mb-6">Propiedades Premium</h2>
+            <p className="text-xl text-white/80 max-w-3xl mx-auto">
+              Descubre nuestra exclusiva selección de propiedades de lujo en España
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {[
+              { title: "Villa Marbella", price: "€2.5M", location: "Costa del Sol", image: "🏖️" },
+              { title: "Penthouse Madrid", price: "€1.8M", location: "Salamanca", image: "🏙️" },
+              { title: "Casa Barcelona", price: "€3.2M", location: "Eixample", image: "🏛️" }
+            ].map((property, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.5, delay: 1.8 + index * 0.1 }}
+                className="glass-card p-6 hover:hover-glow-teal cursor-pointer group"
+              >
+                <div className="text-4xl mb-4 group-hover:scale-110 transition-transform">
+                  {property.image}
+                </div>
+                <h3 className="text-xl font-bold text-white mb-2">{property.title}</h3>
+                <p className="text-white/70 mb-4 flex items-center gap-2">
+                  <MapPin className="w-4 h-4" />
+                  {property.location}
+                </p>
+                <p className="text-neon-teal font-bold text-lg">{property.price}</p>
+              </motion.div>
+            ))}
+          </div>
+
+          <div className="text-center mt-12">
+            <Link to="/propiedades" className="btn-primary inline-flex items-center gap-2">
+              <Eye className="w-5 h-5" />
+              Ver Todas las Propiedades
+            </Link>
+          </div>
         </motion.div>
       </section>
 
