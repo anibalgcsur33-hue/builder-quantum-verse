@@ -1,5 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
+import CountUp from "react-countup";
 import {
   User,
   Settings,
@@ -259,23 +261,61 @@ export default function Profile() {
           </div>
 
           {/* Stats */}
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mt-8 pt-8 border-t border-white/10">
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={{
+              hidden: { opacity: 0, y: 20 },
+              visible: {
+                opacity: 1,
+                y: 0,
+                transition: { staggerChildren: 0.15 },
+              },
+            }}
+            className="grid grid-cols-2 lg:grid-cols-4 gap-4 mt-8 pt-8 border-t border-white/10"
+          >
             {stats.map((stat, index) => {
               const IconComponent = stat.icon;
               return (
-                <div key={index} className="text-center">
-                  <IconComponent
-                    className={`mx-auto mb-2 ${stat.color}`}
-                    size={24}
-                  />
-                  <div className="text-2xl font-bold">
-                    {stat.value.toLocaleString()}
+                <motion.div
+                  key={index}
+                  variants={{
+                    hidden: { opacity: 0, y: 30, scale: 0.9 },
+                    visible: {
+                      opacity: 1,
+                      y: 0,
+                      scale: 1,
+                      transition: {
+                        type: "spring",
+                        stiffness: 100,
+                        damping: 12,
+                      },
+                    },
+                  }}
+                  whileHover={{
+                    scale: 1.05,
+                    y: -5,
+                    transition: { type: "spring", stiffness: 300 },
+                  }}
+                  className="text-center p-4 glass-card rounded-xl hover:glow-teal transition-all duration-300 group"
+                >
+                  <motion.div whileHover={{ scale: 1.1, rotate: 5 }}>
+                    <IconComponent
+                      className={`mx-auto mb-2 ${stat.color} group-hover:scale-110 transition-transform`}
+                      size={24}
+                    />
+                  </motion.div>
+                  <div className="text-2xl font-bold group-hover:scale-105 transition-transform">
+                    <CountUp end={stat.value} duration={2} separator="," />
                   </div>
-                  <div className="text-white/60 text-sm">{stat.label}</div>
-                </div>
+                  <div className="text-white/60 text-sm group-hover:text-white/80 transition-colors">
+                    {stat.label}
+                  </div>
+                </motion.div>
               );
             })}
-          </div>
+          </motion.div>
         </div>
 
         {/* Navigation Tabs */}

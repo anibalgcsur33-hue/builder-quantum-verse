@@ -2,10 +2,10 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import {
   Building2,
-  Globe2,
-  Users,
-  BarChart3,
-  Headset,
+  Globe,
+  Users2,
+  TrendingUp,
+  Bot,
   ChevronDown,
   Sparkles,
 } from "lucide-react";
@@ -43,19 +43,19 @@ export default function PremiumHeader() {
             <MegaNav />
             <a href="/metaverse">
               <NavIcon
-                icon={<Globe2 className="w-5 h-5 text-violet-300" />}
+                icon={<Globe className="w-5 h-5 text-violet-300" />}
                 label="Metaverso"
               />
             </a>
             <a href="/community">
               <NavIcon
-                icon={<Users className="w-5 h-5 text-emerald-300" />}
+                icon={<Users2 className="w-5 h-5 text-emerald-300" />}
                 label="Comunidad"
               />
             </a>
             <a href="/investors">
               <NavIcon
-                icon={<BarChart3 className="w-5 h-5 text-amber-300" />}
+                icon={<TrendingUp className="w-5 h-5 text-amber-300" />}
                 label="Inversión"
               />
             </a>
@@ -65,7 +65,7 @@ export default function PremiumHeader() {
               }
             >
               <NavIcon
-                icon={<Headset className="w-5 h-5 text-sky-300" />}
+                icon={<Bot className="w-5 h-5 text-sky-300" />}
                 label="Concierge IA"
               />
             </button>
@@ -74,12 +74,12 @@ export default function PremiumHeader() {
           {/* CTA */}
           <div className="hidden sm:flex">
             <motion.a
-              whileHover={{ scale: 1.03 }}
+              whileHover={{ scale: 1.03, y: -2 }}
               whileTap={{ scale: 0.98 }}
               href="/invite"
-              className="px-4 py-2 rounded-xl bg-gradient-to-tr from-cyan-400/25 to-violet-400/25
-                         text-white border border-white/15 hover:from-cyan-400/35 hover:to-violet-400/35
-                         backdrop-blur-md font-semibold"
+              className="px-4 py-2.5 rounded-lg bg-gradient-to-r from-cyan-600/90 to-blue-600/90
+                         text-white border border-cyan-500/60 hover:from-cyan-500/90 hover:to-blue-500/90
+                         shadow-lg font-semibold transition-all duration-200"
             >
               Solicitar invitación
             </motion.a>

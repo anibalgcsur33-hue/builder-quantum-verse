@@ -65,22 +65,57 @@ export default function PropertyGrid() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          variants={{
+            hidden: { opacity: 0, y: 20 },
+            visible: {
+              opacity: 1,
+              y: 0,
+              transition: { staggerChildren: 0.15 },
+            },
+          }}
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6"
+        >
           {properties.map((property, index) => (
             <motion.div
               key={index}
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
+              variants={{
+                hidden: { opacity: 0, y: 30, scale: 0.9 },
+                visible: {
+                  opacity: 1,
+                  y: 0,
+                  scale: 1,
+                  transition: {
+                    type: "spring" as const,
+                    stiffness: 100,
+                    damping: 12,
+                  },
+                },
+              }}
               className="bg-gradient-to-b from-slate-900/90 to-slate-800/90 backdrop-blur-md rounded-2xl overflow-hidden border border-white/10 hover:border-cyan-400/50 cursor-pointer group transition-all duration-300"
-              whileHover={{ y: -5, scale: 1.02, willChange: "transform" }}
+              whileHover={{
+                y: -8,
+                scale: 1.03,
+                transition: { type: "spring" as const, stiffness: 300 },
+              }}
             >
               <div className="relative h-48 overflow-hidden">
-                <img
+                <motion.img
                   src={property.image}
                   alt={property.title}
                   loading="lazy"
-                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                  className="w-full h-full object-cover rounded-xl shadow-lg"
+                  whileHover={{
+                    scale: 1.08,
+                    transition: {
+                      type: "spring" as const,
+                      stiffness: 200,
+                      damping: 15,
+                    },
+                  }}
                   style={{ willChange: "transform" }}
                   onLoad={(e) => {
                     // Switch to HD after load
@@ -114,7 +149,7 @@ export default function PropertyGrid() {
               </div>
             </motion.div>
           ))}
-        </div>
+        </motion.div>
       </div>
 
       <DemoModal

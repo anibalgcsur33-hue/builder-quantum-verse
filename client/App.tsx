@@ -36,6 +36,8 @@ import Profile from "./pages/user/Profile";
 import AgencyDashboard from "./pages/agency/Dashboard";
 import CryptoToken from "./pages/CryptoToken";
 import MetaverseMap from "./pages/MetaverseMap";
+import SkeletonDemo from "./pages/SkeletonDemo";
+import Simple from "./pages/Simple";
 
 const queryClient = new QueryClient();
 
@@ -51,6 +53,8 @@ const App = () => (
           <Route path="/premium" element={<PremiumHome />} />
           <Route path="/minimal" element={<MinimalHome />} />
           <Route path="/original" element={<Index />} />
+          <Route path="/skeleton" element={<SkeletonDemo />} />
+          <Route path="/simple" element={<Simple />} />
 
           {/* Properties Routes */}
           <Route path="/propiedades" element={<Properties />} />

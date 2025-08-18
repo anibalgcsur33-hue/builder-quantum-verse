@@ -208,23 +208,70 @@ export default function AgencyDashboard() {
         </div>
 
         {/* Stats Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          variants={{
+            hidden: { opacity: 0, y: 20 },
+            visible: {
+              opacity: 1,
+              y: 0,
+              transition: { staggerChildren: 0.15 },
+            },
+          }}
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8"
+        >
           {stats.map((stat, index) => {
             const IconComponent = stat.icon;
             return (
-              <div key={index} className="glass-card p-6 hover-glow-teal">
+              <motion.div
+                key={index}
+                variants={{
+                  hidden: { opacity: 0, y: 30, scale: 0.9 },
+                  visible: {
+                    opacity: 1,
+                    y: 0,
+                    scale: 1,
+                    transition: {
+                      type: "spring",
+                      stiffness: 100,
+                      damping: 12,
+                    },
+                  },
+                }}
+                whileHover={{
+                  scale: 1.05,
+                  y: -5,
+                  transition: { type: "spring", stiffness: 300 },
+                }}
+                className="glass-card p-6 hover-glow-teal transition-all duration-300 group"
+              >
                 <div className="flex items-center justify-between mb-4">
-                  <IconComponent className={stat.color} size={24} />
+                  <motion.div whileHover={{ scale: 1.1, rotate: 5 }}>
+                    <IconComponent
+                      className={`${stat.color} group-hover:scale-110 transition-transform`}
+                      size={24}
+                    />
+                  </motion.div>
                   <span className="text-neon-emerald text-sm font-medium">
                     {stat.change}
                   </span>
                 </div>
-                <div className="text-2xl font-bold mb-2">{stat.value}</div>
-                <div className="text-white/60 text-sm">{stat.label}</div>
-              </div>
+                <div className="text-2xl font-bold mb-2 group-hover:scale-105 transition-transform origin-left">
+                  {typeof stat.value === "number" ? (
+                    <CountUp end={stat.value} duration={2.5} separator="," />
+                  ) : (
+                    stat.value
+                  )}
+                </div>
+                <div className="text-white/60 text-sm group-hover:text-white/80 transition-colors">
+                  {stat.label}
+                </div>
+              </motion.div>
             );
           })}
-        </div>
+        </motion.div>
 
         {/* Agency Rating */}
         <div className="glass-card p-6 rounded-xl mb-8">
@@ -232,7 +279,7 @@ export default function AgencyDashboard() {
             <div className="flex items-center gap-6">
               <div className="text-center">
                 <div className="text-3xl font-bold text-neon-teal mb-1">
-                  {agencyInfo.rating}
+                  <CountUp end={agencyInfo.rating} duration={2} decimals={1} />
                 </div>
                 <div className="flex items-center gap-1 mb-1">
                   {[...Array(5)].map((_, i) => (

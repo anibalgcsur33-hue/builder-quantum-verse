@@ -11,8 +11,8 @@ export default function CanaryMap3DFallback() {
   ];
 
   return (
-    <div className="relative w-full h-[520px] rounded-2xl overflow-hidden border border-white/10 bg-black/30">
-      <div className="absolute inset-0 bg-gradient-to-br from-slate-900/50 to-blue-900/30">
+    <div className="relative w-full h-[520px] rounded-xl overflow-hidden bg-[radial-gradient(circle_at_30%_30%,rgba(57,199,255,.12),transparent_60%),radial-gradient(circle_at_70%_70%,rgba(167,139,250,.14),transparent_60%)]">
+      <div className="absolute inset-0 bg-gradient-to-br from-slate-900/20 to-blue-900/30">
         {/* SVG Map */}
         <svg viewBox="0 0 100 100" className="w-full h-full">
           {/* Background plate */}
