@@ -1,15 +1,10 @@
 import React, { useEffect, useRef } from "react";
 import * as THREE from "three";
-import { FBXLoader } from "three/examples/jsm/loaders/FBXLoader.js";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
 
-// URLs de avatar con múltiples formatos soportados
-const AVATAR_URLS = [
-  { url: "/assets/blueeye.fbx", type: "fbx", description: "FBX para VR" },
-  { url: "/assets/blueeye.glb", type: "glb", description: "GLB estándar" },
-  { url: "/assets/blueeye.gltf", type: "gltf", description: "GLTF alternativo" }
-];
+// URL del avatar local - cambiar cuando tengas el archivo
+const AVATAR_URL = "/assets/blueeye.glb";
 
 interface BlueEyeProps {
   height?: number;
@@ -253,15 +248,14 @@ export default function BlueEye({ height = 520, autoRotate = true }: BlueEyeProp
       scene.add(group);
       
       console.log("💼 Avatar placeholder profesional creado");
-      console.log("📁 Para usar tu avatar custom, coloca blueeye.fbx en /public/assets/");
-      console.log("🎮 El formato FBX es perfecto para VR y mostrar propiedades inmobiliarias");
+      console.log("📁 Para usar tu avatar custom, coloca blueeye.glb en /public/assets/");
     };
 
-    // Función para manejar la carga exitosa del avatar FBX
-    const handleFBXLoad = (fbx: any) => {
-      console.log("✅ Avatar FBX cargado exitosamente para VR");
-
-      const avatar = fbx; // FBX ya es el objeto scene directamente
+    // Función para manejar la carga exitosa del avatar GLB
+    const handleGLBLoad = (gltf: any) => {
+      console.log("✅ Avatar GLB cargado exitosamente");
+      
+      const avatar = gltf.scene;
       avatarRef.current = avatar;
 
       // Configurar materiales y sombras
@@ -324,25 +318,22 @@ export default function BlueEye({ height = 520, autoRotate = true }: BlueEyeProp
 
       scene.add(avatar);
 
-      // Configurar animaciones FBX
-      if (fbx.animations && fbx.animations.length > 0) {
+      // Configurar animaciones
+      if (gltf.animations && gltf.animations.length > 0) {
         const mixer = new THREE.AnimationMixer(avatar);
         mixerRef.current = mixer;
 
-        // Buscar animación idle o usar la primera disponible
-        let idleAnimation = fbx.animations.find((anim: THREE.AnimationClip) =>
-          anim.name.toLowerCase().includes('idle') ||
-          anim.name.toLowerCase().includes('breathing') ||
-          anim.name.toLowerCase().includes('standing')
-        ) || fbx.animations[0];
+        // Buscar animación idle
+        let idleAnimation = gltf.animations.find((anim: THREE.AnimationClip) => 
+          anim.name.toLowerCase().includes('idle')
+        ) || gltf.animations[0];
 
         const action = mixer.clipAction(idleAnimation);
         action.setLoop(THREE.LoopRepeat, Infinity);
-        action.setEffectiveWeight(0.8); // Más intenso para FBX
+        action.setEffectiveWeight(0.7);
         action.play();
 
-        console.log(`🎭 Animación FBX iniciada: ${idleAnimation.name}`);
-        console.log(`🎮 Total animaciones disponibles: ${fbx.animations.length}`);
+        console.log(`🎭 Animación iniciada: ${idleAnimation.name}`);
       }
 
       // Buscar y anclar props si existen
@@ -381,46 +372,40 @@ export default function BlueEye({ height = 520, autoRotate = true }: BlueEyeProp
       }, 1000);
     };
 
-    // Función para verificar si el archivo FBX existe
+    // Función para verificar si el archivo GLB existe
     const checkFileExists = async (url: string): Promise<boolean> => {
       try {
         const response = await fetch(url, { method: 'HEAD' });
-        return response.ok && (
-          response.headers.get('content-type')?.includes('application/octet-stream') ||
-          response.headers.get('content-type')?.includes('application/x-fbx') ||
-          response.status === 200
-        );
+        return response.ok && response.headers.get('content-type')?.includes('application/octet-stream');
       } catch {
         return false;
       }
     };
 
-    // Función principal para cargar avatar FBX
+    // Función principal para cargar avatar
     const loadAvatar = async () => {
-      console.log("🔄 Verificando archivo avatar FBX en:", AVATAR_URL);
-
+      console.log("🔄 Verificando archivo avatar en:", AVATAR_URL);
+      
       const fileExists = await checkFileExists(AVATAR_URL);
-
+      
       if (!fileExists) {
-        console.log("📁 Archivo blueeye.fbx no encontrado, usando avatar placeholder");
-        console.log("💡 Coloca tu archivo FBX en /public/assets/blueeye.fbx");
+        console.log("📁 Archivo blueeye.glb no encontrado, usando avatar placeholder");
         createPlaceholderAvatar();
         return;
       }
 
-      console.log("✅ Archivo FBX encontrado, cargando avatar...");
-      console.log("🎮 Formato FBX perfecto para VR y propiedades inmobiliarias");
-
-      const loader = new FBXLoader();
+      console.log("✅ Archivo encontrado, cargando avatar GLB...");
+      
+      const loader = new GLTFLoader();
       loader.load(
         AVATAR_URL,
-        handleFBXLoad,
+        handleGLBLoad,
         (progress) => {
           const percent = (progress.loaded / progress.total) * 100;
-          console.log(`📥 Progreso de carga FBX: ${percent.toFixed(1)}%`);
+          console.log(`📥 Progreso de carga: ${percent.toFixed(1)}%`);
         },
         (error) => {
-          console.error("❌ Error cargando avatar FBX:", error);
+          console.error("❌ Error cargando avatar GLB:", error);
           console.log("🔄 Fallback a avatar placeholder");
           createPlaceholderAvatar();
         }

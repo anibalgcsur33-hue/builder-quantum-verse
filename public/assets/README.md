@@ -1,4 +1,4 @@
-# Avatar BlueEye FBX - Perfecto para VR y Propiedades Inmobiliarias
+# Avatar BlueEye - Instrucciones de Implementación
 
 ## Pasos para crear y añadir el avatar:
 
@@ -7,45 +7,32 @@
   - Ir a https://readyplayer.me/
   - Crear avatar femenino profesional
   - Configurar como mujer de negocios
-  - Descargar en formato FBX (mejor para VR)
+  - Descargar en formato GLB
 
 - **Opción B: VRoid Studio**
   - Descargar VRoid Studio (gratuito)
   - Crear avatar femenino personalizado
-  - Exportar como FBX
-
-- **Opción C: Blender/Maya/3ds Max**
-  - Crear o modificar avatar existente
-  - Exportar como FBX con rig humanoide
+  - Exportar como VRM, luego convertir a GLB
 
 ### 2. Añadir Animación Idle en Mixamo
 - Ir a https://www.mixamo.com/
-- Subir el modelo FBX
-- Buscar animación "Idle", "Breathing Idle" o "Standing Idle"
+- Subir el modelo GLB/FBX
+- Buscar animación "Idle" o "Breathing Idle"
 - Aplicar la animación
-- Exportar como FBX con:
-  - Format: FBX for Unity (.fbx)
+- Exportar como GLB con:
+  - Format: GLB
   - Skin: With Skin
   - Keyframe Reduction: Uniform
-  - 30 FPS (perfecto para VR)
 
 ### 3. Colocar el Archivo
-- Renombrar el archivo exportado a `blueeye.fbx`
-- Colocarlo en esta carpeta: `/public/assets/blueeye.fbx`
+- Renombrar el archivo exportado a `blueeye.glb`
+- Colocarlo en esta carpeta: `/public/assets/blueeye.glb`
 
 ### 4. Verificaciones Importantes
 - **Rig Humanoide**: El modelo debe tener skeleton humanoide estándar
 - **Escala**: Altura aproximada 1.7-1.8 unidades
-- **Materiales**: PBR materials (perfecto para VR)
+- **Materiales**: Preferiblemente PBR materials
 - **Blendshapes**: Para animación facial (opcional)
-- **FBX Benefits**: Mejor compatibilidad con VR, Unity, Unreal Engine
-
-### 4.1. Ventajas del Formato FBX para VR
-- ✅ **Mejor rendimiento** en aplicaciones VR
-- ✅ **Compatibilidad total** con Unity/Unreal para VR
-- ✅ **Animaciones más fluidas** para mostrar propiedades
-- ✅ **Soporte completo** para interacciones VR
-- ✅ **Materiales optimizados** para realidad virtual
 
 ### 5. Props/Accesorios (Opcional)
 Si el modelo incluye tablet u otros props sueltos:
@@ -81,14 +68,6 @@ npm run dev
 
 ## Archivo Actual
 **Estado**: ❌ Archivo no encontrado
-**Esperando**: blueeye.fbx con avatar femenino profesional + animación idle
-**Formato**: FBX (perfecto para VR y propiedades inmobiliarias)
+**Esperando**: blueeye.glb con avatar femenino profesional + animación idle
 
-Una vez que coloques el archivo FBX aquí, el avatar funcionará automáticamente con soporte completo para VR.
-
-## Próximos Pasos VR
-Cuando tengas el avatar FBX funcionando, podremos:
-- 🥽 Integrar con WebXR para VR en el navegador
-- 🏠 Mostrar propiedades inmobiliarias en VR
-- 👋 Interacciones gestuales en realidad virtual
-- 🎮 Controles VR para navegación de propiedades
+Una vez que coloques el archivo aquí, el avatar debería funcionar automáticamente.
