@@ -5,6 +5,7 @@ import AIConcierge from "../components/AIConcierge";
 import PremiumTourism from "../components/PremiumTourism";
 import Avatar3D from "../components/Avatar3DInstant";
 import HeroBlueEye from "../components/HeroBlueEye";
+import InvestorStats from "../components/InvestorStats";
 import {
   Eye,
   MapPin,
@@ -74,7 +75,7 @@ export default function Index() {
       },
       footer: {
         legal:
-          "La visualización es virtual; la compra es de inmuebles reales. Operaciones sujetas a notaría, registro y KYC/AML.",
+          "La visualizaci��n es virtual; la compra es de inmuebles reales. Operaciones sujetas a notaría, registro y KYC/AML.",
       },
     },
     EN: {
@@ -235,6 +236,9 @@ export default function Index() {
 
       {/* AI Concierge */}
       <AIConcierge />
+
+      {/* Investor Stats */}
+      <InvestorStats />
 
       {/* Featured Properties Section */}
       <section className="section-padding" data-section="properties">
