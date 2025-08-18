@@ -11,10 +11,27 @@ export default function Simple() {
         </div>
 
         <nav className="hidden md:flex gap-6 text-sm text-slate-300">
-          <a href="/" className="hover:text-white transition cursor-pointer">Home</a>
-          <a href="/propiedades" className="hover:text-white transition cursor-pointer">Propiedades</a>
-          <a href="/metaverse" className="hover:text-white transition cursor-pointer">Metaverso</a>
-          <a href="/community" className="hover:text-white transition cursor-pointer">Comunidad</a>
+          <a href="/" className="hover:text-white transition cursor-pointer">
+            Home
+          </a>
+          <a
+            href="/propiedades"
+            className="hover:text-white transition cursor-pointer"
+          >
+            Propiedades
+          </a>
+          <a
+            href="/metaverse"
+            className="hover:text-white transition cursor-pointer"
+          >
+            Metaverso
+          </a>
+          <a
+            href="/community"
+            className="hover:text-white transition cursor-pointer"
+          >
+            Comunidad
+          </a>
         </nav>
 
         <button className="rounded-full bg-cyan-500/15 border border-cyan-400/40 px-4 py-2 text-cyan-200 hover:bg-cyan-500/25 transition">
@@ -37,8 +54,8 @@ export default function Simple() {
         </h1>
 
         <p className="mt-6 text-lg text-slate-300 max-w-2xl">
-          Explora propiedades en realidad virtual, conecta con una comunidad global
-          y descubre tu hogar ideal con la ayuda de nuestra IA avanzada.
+          Explora propiedades en realidad virtual, conecta con una comunidad
+          global y descubre tu hogar ideal con la ayuda de nuestra IA avanzada.
         </p>
 
         <div className="mt-10 flex flex-wrap gap-4">
