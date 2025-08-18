@@ -103,6 +103,7 @@ export default function PremiumHome() {
             </motion.button>
 
             <motion.button
+              onClick={() => setDemoOpen(true)}
               className="px-6 py-3 bg-cyan-600/80 backdrop-blur-md text-white font-medium rounded-xl border border-cyan-400/30 hover:bg-cyan-500/80 transition-all"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
@@ -111,6 +112,7 @@ export default function PremiumHome() {
             </motion.button>
 
             <motion.button
+              onClick={() => setDemoOpen(true)}
               className="px-6 py-3 bg-yellow-600/80 backdrop-blur-md text-white font-medium rounded-xl border border-yellow-400/30 hover:bg-yellow-500/80 transition-all"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
