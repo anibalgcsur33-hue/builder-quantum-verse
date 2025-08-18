@@ -227,7 +227,13 @@ export default function PremiumHome() {
           transition={{ duration: 0.8, delay: 4.1 }}
           className="container mx-auto px-4"
         >
-          <CommunitySection />
+          <div className="text-center mb-16">
+            <h2 className="heading-lg text-gradient mb-6">Comunidad BlueEye</h2>
+            <p className="text-xl text-white/80 max-w-3xl mx-auto">
+              Únete a nuestra exclusiva comunidad de propietarios de lujo
+            </p>
+          </div>
+          <CommunityGroups />
         </motion.div>
       </section>
 
