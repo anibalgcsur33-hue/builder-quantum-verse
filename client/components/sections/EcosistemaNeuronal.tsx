@@ -7,14 +7,36 @@ const features = [
     description: "Asistente inteligente con procesamiento de voz natural y respuestas contextuales",
     icon: (
       <div className="relative w-16 h-16 mx-auto">
-        {/* Brain/Neural icon with holographic effect */}
-        <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-cyan-400/20 to-blue-600/20 border border-cyan-400/30"></div>
-        <div className="absolute inset-2 rounded-xl bg-gradient-to-br from-cyan-500 to-blue-600 flex items-center justify-center">
-          <svg className="w-8 h-8 text-white" viewBox="0 0 24 24" fill="currentColor">
-            <path d="M12 2C13.1 2 14 2.9 14 4C14 5.1 13.1 6 12 6C10.9 6 10 5.1 10 4C10 2.9 10.9 2 12 2ZM21 9V7L15 7.5V9M15 11V16L21 15.5V14H19V12H21V10.5C19.9 10.5 18.7 10.7 17.6 11.1C16.8 11.4 16 11.7 15.3 12.1C15.1 12.2 15 12.4 15 12.6V16.5C15 17.3 15.7 18 16.5 18S18 17.3 18 16.5V15.5L21 15.5V17C21 18.1 20.1 19 19 19H5C3.9 19 3 18.1 3 17V15.5L6 15.5V16.5C6 17.3 6.7 18 7.5 18S9 17.3 9 16.5V12.6C9 12.4 8.9 12.2 8.7 12.1C8 11.7 7.2 11.4 6.4 11.1C5.3 10.7 4.1 10.5 3 10.5V12H5V14H3V15.5L9 16V11L3 7.5V9"/>
+        {/* Sophisticated AI Neural Shield Icon */}
+        <div className="absolute inset-0 rounded-xl bg-gradient-to-br from-cyan-500/90 to-blue-600/90 shadow-2xl"></div>
+
+        {/* Top geometric accent */}
+        <div className="absolute top-1 left-1/2 transform -translate-x-1/2 w-8 h-3 bg-gradient-to-r from-cyan-300 to-blue-400 rounded-full opacity-80"></div>
+
+        {/* Central neural pattern */}
+        <div className="absolute inset-3 rounded-lg overflow-hidden">
+          <div className="absolute inset-0 bg-gradient-to-br from-cyan-200/30 to-blue-300/30"></div>
+
+          {/* Neural nodes */}
+          <div className="absolute top-2 left-2 w-2 h-2 bg-white rounded-full animate-pulse"></div>
+          <div className="absolute top-2 right-2 w-2 h-2 bg-cyan-200 rounded-full animate-pulse" style={{animationDelay: '0.5s'}}></div>
+          <div className="absolute bottom-2 left-3 w-1.5 h-1.5 bg-blue-200 rounded-full animate-pulse" style={{animationDelay: '1s'}}></div>
+          <div className="absolute bottom-2 right-3 w-1.5 h-1.5 bg-white rounded-full animate-pulse" style={{animationDelay: '1.5s'}}></div>
+
+          {/* Connection lines */}
+          <svg className="absolute inset-0 w-full h-full" viewBox="0 0 40 40">
+            <path d="M8,8 Q20,15 32,8 M8,32 Q20,25 32,32 M8,8 L32,32 M32,8 L8,32"
+                  stroke="rgba(255,255,255,0.4)"
+                  strokeWidth="0.5"
+                  fill="none"/>
           </svg>
         </div>
-        <div className="absolute -inset-1 rounded-2xl bg-gradient-to-r from-cyan-400/30 to-blue-600/30 blur-sm -z-10"></div>
+
+        {/* Outer glow ring */}
+        <div className="absolute -inset-2 rounded-xl border border-cyan-400/50 bg-gradient-to-r from-cyan-400/20 via-transparent to-blue-500/20"></div>
+
+        {/* Bottom accent bar */}
+        <div className="absolute bottom-1 left-1/2 transform -translate-x-1/2 w-10 h-1 bg-gradient-to-r from-transparent via-cyan-300 to-transparent rounded-full"></div>
       </div>
     ),
   },
@@ -24,14 +46,33 @@ const features = [
     description: "Campo neuronal que responde al movimiento y conecta toda la experiencia",
     icon: (
       <div className="relative w-16 h-16 mx-auto">
-        {/* Network/Interactive icon */}
-        <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-purple-400/20 to-pink-600/20 border border-purple-400/30"></div>
-        <div className="absolute inset-2 rounded-xl bg-gradient-to-br from-purple-500 to-pink-600 flex items-center justify-center">
-          <svg className="w-8 h-8 text-white" viewBox="0 0 24 24" fill="currentColor">
-            <path d="M15,4A4,4 0 0,0 11,8A4,4 0 0,0 15,12A4,4 0 0,0 19,8A4,4 0 0,0 15,4M15,5.9A2.1,2.1 0 0,1 17.1,8A2.1,2.1 0 0,1 15,10.1A2.1,2.1 0 0,1 12.9,8A2.1,2.1 0 0,1 15,5.9M4,7V10H1V12H4V15H6V12H9V10H6V7H4M18.5,17.5C18.5,19.71 16.71,21.5 14.5,21.5C12.29,21.5 10.5,19.71 10.5,17.5C10.5,15.29 12.29,13.5 14.5,13.5C16.71,13.5 18.5,15.29 18.5,17.5M14.5,19.5A2,2 0 0,0 16.5,17.5A2,2 0 0,0 14.5,15.5A2,2 0 0,0 12.5,17.5A2,2 0 0,0 14.5,19.5M8.5,12A2.5,2.5 0 0,0 6,14.5A2.5,2.5 0 0,0 8.5,17A2.5,2.5 0 0,0 11,14.5A2.5,2.5 0 0,0 8.5,12M8.5,15A0.5,0.5 0 0,1 8,14.5A0.5,0.5 0 0,1 8.5,14A0.5,0.5 0 0,1 9,14.5A0.5,0.5 0 0,1 8.5,15Z"/>
-          </svg>
+        {/* Sophisticated Interactive Network Globe */}
+        <div className="absolute inset-0 rounded-full bg-gradient-to-br from-purple-500/90 to-pink-600/90 shadow-2xl"></div>
+
+        {/* Orbital rings */}
+        <div className="absolute inset-1 rounded-full border-2 border-purple-300/40 animate-spin" style={{animationDuration: '20s'}}></div>
+        <div className="absolute inset-2 rounded-full border border-pink-300/60 animate-spin" style={{animationDuration: '15s', animationDirection: 'reverse'}}></div>
+
+        {/* Central core */}
+        <div className="absolute inset-5 rounded-full bg-gradient-to-br from-purple-300 to-pink-400 shadow-inner">
+          <div className="absolute inset-1 rounded-full bg-gradient-to-br from-purple-200/50 to-pink-300/50"></div>
         </div>
-        <div className="absolute -inset-1 rounded-2xl bg-gradient-to-r from-purple-400/30 to-pink-600/30 blur-sm -z-10"></div>
+
+        {/* Network nodes */}
+        <div className="absolute top-1 left-1/2 w-2 h-2 bg-white rounded-full animate-pulse transform -translate-x-1/2"></div>
+        <div className="absolute bottom-1 left-1/2 w-2 h-2 bg-purple-200 rounded-full animate-pulse transform -translate-x-1/2" style={{animationDelay: '0.5s'}}></div>
+        <div className="absolute left-1 top-1/2 w-2 h-2 bg-pink-200 rounded-full animate-pulse transform -translate-y-1/2" style={{animationDelay: '1s'}}></div>
+        <div className="absolute right-1 top-1/2 w-2 h-2 bg-white rounded-full animate-pulse transform -translate-y-1/2" style={{animationDelay: '1.5s'}}></div>
+
+        {/* Diagonal nodes */}
+        <div className="absolute top-2 left-2 w-1.5 h-1.5 bg-purple-100 rounded-full animate-pulse" style={{animationDelay: '2s'}}></div>
+        <div className="absolute top-2 right-2 w-1.5 h-1.5 bg-pink-100 rounded-full animate-pulse" style={{animationDelay: '2.5s'}}></div>
+        <div className="absolute bottom-2 left-2 w-1.5 h-1.5 bg-white rounded-full animate-pulse" style={{animationDelay: '3s'}}></div>
+        <div className="absolute bottom-2 right-2 w-1.5 h-1.5 bg-purple-200 rounded-full animate-pulse" style={{animationDelay: '3.5s'}}></div>
+
+        {/* Pulse effect */}
+        <div className="absolute -inset-3 rounded-full border border-purple-400/30 animate-ping"></div>
+        <div className="absolute -inset-1 rounded-full border border-pink-400/50"></div>
       </div>
     ),
   },
@@ -41,19 +82,55 @@ const features = [
     description: "Visualización de voz en tiempo real para interacciones premium",
     icon: (
       <div className="relative w-16 h-16 mx-auto">
-        {/* Audio/Sound wave icon */}
-        <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-emerald-400/20 to-teal-600/20 border border-emerald-400/30"></div>
-        <div className="absolute inset-2 rounded-xl bg-gradient-to-br from-emerald-500 to-teal-600 flex items-center justify-center">
-          <svg className="w-8 h-8 text-white" viewBox="0 0 24 24" fill="currentColor">
-            <path d="M12,2A3,3 0 0,1 15,5V11A3,3 0 0,1 12,14A3,3 0 0,1 9,11V5A3,3 0 0,1 12,2M19,11C19,14.53 16.39,17.44 13,17.93V21H11V17.93C7.61,17.44 5,14.53 5,11H7A5,5 0 0,0 12,16A5,5 0 0,0 17,11H19Z"/>
-          </svg>
+        {/* Sophisticated Audio Waveform Visualizer */}
+        <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-emerald-500/90 to-teal-600/90 shadow-2xl"></div>
+
+        {/* Top frequency display */}
+        <div className="absolute top-1 left-2 right-2 h-1">
+          <div className="flex gap-0.5 h-full items-end">
+            <div className="w-1 bg-emerald-200 rounded-full animate-pulse" style={{height: '60%'}}></div>
+            <div className="w-1 bg-teal-200 rounded-full animate-pulse" style={{height: '80%', animationDelay: '0.1s'}}></div>
+            <div className="w-1 bg-emerald-300 rounded-full animate-pulse" style={{height: '40%', animationDelay: '0.2s'}}></div>
+            <div className="w-1 bg-teal-300 rounded-full animate-pulse" style={{height: '90%', animationDelay: '0.3s'}}></div>
+            <div className="w-1 bg-emerald-200 rounded-full animate-pulse" style={{height: '70%', animationDelay: '0.4s'}}></div>
+            <div className="w-1 bg-teal-200 rounded-full animate-pulse" style={{height: '50%', animationDelay: '0.5s'}}></div>
+          </div>
         </div>
-        <div className="absolute -inset-1 rounded-2xl bg-gradient-to-r from-emerald-400/30 to-teal-600/30 blur-sm -z-10"></div>
-        {/* Audio wave effect */}
-        <div className="absolute inset-0 flex items-center justify-center">
-          <div className="absolute w-20 h-20 rounded-full border border-emerald-400/20 animate-ping"></div>
-          <div className="absolute w-24 h-24 rounded-full border border-emerald-400/10 animate-ping" style={{animationDelay: '0.2s'}}></div>
+
+        {/* Central microphone element */}
+        <div className="absolute inset-4 bg-gradient-to-br from-emerald-300 to-teal-400 rounded-xl shadow-inner">
+          <div className="absolute inset-1 bg-gradient-to-br from-emerald-200/80 to-teal-300/80 rounded-lg">
+            {/* Mic grille lines */}
+            <div className="absolute inset-2 space-y-0.5">
+              <div className="h-0.5 bg-emerald-600/40 rounded-full"></div>
+              <div className="h-0.5 bg-teal-600/40 rounded-full"></div>
+              <div className="h-0.5 bg-emerald-600/40 rounded-full"></div>
+            </div>
+          </div>
         </div>
+
+        {/* Bottom frequency display */}
+        <div className="absolute bottom-1 left-2 right-2 h-1">
+          <div className="flex gap-0.5 h-full items-start">
+            <div className="w-1 bg-teal-200 rounded-full animate-pulse" style={{height: '50%', animationDelay: '0.6s'}}></div>
+            <div className="w-1 bg-emerald-300 rounded-full animate-pulse" style={{height: '75%', animationDelay: '0.7s'}}></div>
+            <div className="w-1 bg-teal-300 rounded-full animate-pulse" style={{height: '35%', animationDelay: '0.8s'}}></div>
+            <div className="w-1 bg-emerald-200 rounded-full animate-pulse" style={{height: '85%', animationDelay: '0.9s'}}></div>
+            <div className="w-1 bg-teal-200 rounded-full animate-pulse" style={{height: '65%', animationDelay: '1s'}}></div>
+            <div className="w-1 bg-emerald-300 rounded-full animate-pulse" style={{height: '45%', animationDelay: '1.1s'}}></div>
+          </div>
+        </div>
+
+        {/* Sound wave rings */}
+        <div className="absolute -inset-2 rounded-2xl border border-emerald-400/40 animate-ping"></div>
+        <div className="absolute -inset-4 rounded-2xl border border-teal-400/30 animate-ping" style={{animationDelay: '0.5s'}}></div>
+        <div className="absolute -inset-6 rounded-2xl border border-emerald-400/20 animate-ping" style={{animationDelay: '1s'}}></div>
+
+        {/* Corner accent lights */}
+        <div className="absolute top-0 left-0 w-2 h-2 bg-emerald-300 rounded-full animate-pulse"></div>
+        <div className="absolute top-0 right-0 w-2 h-2 bg-teal-300 rounded-full animate-pulse" style={{animationDelay: '0.5s'}}></div>
+        <div className="absolute bottom-0 left-0 w-2 h-2 bg-teal-300 rounded-full animate-pulse" style={{animationDelay: '1s'}}></div>
+        <div className="absolute bottom-0 right-0 w-2 h-2 bg-emerald-300 rounded-full animate-pulse" style={{animationDelay: '1.5s'}}></div>
       </div>
     ),
   },
