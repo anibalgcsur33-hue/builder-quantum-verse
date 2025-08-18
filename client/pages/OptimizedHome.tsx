@@ -88,24 +88,20 @@ export default function OptimizedHome() {
           <PropertyGrid />
 
           {/* Canary Islands 3D Map */}
-          <LazyVisible>
-            <section className="mx-auto max-w-6xl px-6 py-16">
-              <div className="text-center mb-8">
-                <h3 className="text-3xl font-bold text-white mb-4">
-                  España & Canarias — Mapa Interactivo
-                </h3>
-                <p className="text-white/70 max-w-2xl mx-auto">
-                  Explora nuestras propiedades premium en las ubicaciones más
-                  exclusivas de España y las Islas Canarias
-                </p>
-              </div>
-              <div className="glass rounded-2xl ring-glow p-4 relative overflow-hidden scanlines">
-                <MotionSafe>
-                  <CanaryMap3DFallback />
-                </MotionSafe>
-              </div>
-            </section>
-          </LazyVisible>
+          <section className="mx-auto max-w-6xl px-6 py-16">
+            <div className="text-center mb-8">
+              <h3 className="text-3xl font-bold text-white mb-4">
+                España & Canarias — Mapa Interactivo
+              </h3>
+              <p className="text-white/70 max-w-2xl mx-auto">
+                Explora nuestras propiedades premium en las ubicaciones más
+                exclusivas de España y las Islas Canarias
+              </p>
+            </div>
+            <div className="glass rounded-2xl ring-glow p-4 relative overflow-hidden scanlines">
+              <CanaryMap3DFallback />
+            </div>
+          </section>
 
           {/* Neural Showcase */}
           <LazyVisible>
