@@ -16,10 +16,10 @@ export default function OptimizedHome() {
       <div className="min-h-screen bg-gradient-to-b from-blue-dark via-purple-900 to-black relative overflow-x-hidden">
         {/* Neural Field Background - Optimized */}
         <NeuralField
-          density={0.00012}
+          density={0.00025}
           colorA="#67e8f9"
           colorB="#a78bfa"
-          className="opacity-70"
+          className="opacity-90"
         />
 
         <PremiumHeader />
