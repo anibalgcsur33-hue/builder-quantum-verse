@@ -443,7 +443,7 @@ export default function MetaverseExperience({
               onClick={sendChatMessage}
               className="bg-neon-teal hover:bg-neon-emerald text-blue-dark p-2 rounded transition-colors"
             >
-              <Send className="w-4 h-4" />
+              <MessageCircle className="w-4 h-4" />
             </button>
           </div>
         </div>
