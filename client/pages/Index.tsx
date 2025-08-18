@@ -7,6 +7,7 @@ import Avatar3D from "../components/Avatar3DInstant";
 import HeroBlueEye from "../components/HeroBlueEye";
 import InvestorStats from "../components/InvestorStats";
 import AnimationShowcase from "../components/AnimationShowcase";
+import PropertyMarquee from "../components/property/PropertyMarquee";
 import {
   Eye,
   MapPin,
@@ -53,7 +54,7 @@ export default function Index() {
         properties: "Propiedades Reales",
         vr: "Tours VR",
         map: "Mapa Canarias",
-        howItWorks: "Cómo Funciona",
+        howItWorks: "C��mo Funciona",
         contact: "Contacto",
         cta: "Entrar al Metaverso",
       },
