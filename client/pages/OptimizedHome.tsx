@@ -28,6 +28,9 @@ import InvestorStatsAlternate from "@/components/sections/InvestorStatsAlternate
 import SpainMapTeaser from "@/components/sections/SpainMapTeaser";
 import LazyVisible from "@/utils/LazyVisible";
 import MotionSafe from "@/utils/MotionSafe";
+import MuseumCarousel from "@/components/future/MuseumCarousel";
+import LiveActivityToasts from "@/components/future/LiveActivityToasts";
+import DemoBar from "@/components/future/DemoBar";
 
 export default function OptimizedHome() {
   return (
@@ -74,6 +77,9 @@ export default function OptimizedHome() {
             <div className="mt-8">
               <VRDemoCTA />
             </div>
+
+            {/* Demo Bar */}
+            <DemoBar />
           </section>
 
           {/* Neural Navigation */}
@@ -82,6 +88,9 @@ export default function OptimizedHome() {
           </section>
 
           <PropertyGrid />
+
+          {/* Museum Carousel */}
+          <MuseumCarousel />
 
           {/* Canary Islands 3D Map */}
           <section className="mx-auto max-w-6xl px-6 py-16">
