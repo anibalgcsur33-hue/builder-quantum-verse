@@ -7,27 +7,27 @@ const properties = [
     title: "Villa Atlántica — Tenerife",
     price: "€12.8M",
     image:
-      "https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.0.3",
+      "https://images.pexels.com/photos/8134750/pexels-photo-8134750.jpeg?w=400&auto=compress&cs=tinysrgb",
     imageHD:
-      "https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=800&auto=format&fit=crop&q=80&ixlib=rb-4.0.3",
+      "https://images.pexels.com/photos/8134750/pexels-photo-8134750.jpeg?w=800&auto=compress&cs=tinysrgb",
     location: "Santa Cruz",
   },
   {
     title: "Penthouse SkyLine — Barcelona",
     price: "€5.4M",
     image:
-      "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.0.3",
+      "https://images.pexels.com/photos/8572163/pexels-photo-8572163.jpeg?w=400&auto=compress&cs=tinysrgb",
     imageHD:
-      "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=800&auto=format&fit=crop&q=80&ixlib=rb-4.0.3",
+      "https://images.pexels.com/photos/8572163/pexels-photo-8572163.jpeg?w=800&auto=compress&cs=tinysrgb",
     location: "Eixample",
   },
   {
     title: "Cliff Mansion — Ibiza",
     price: "€22.0M",
     image:
-      "https://images.unsplash.com/photo-1582268611958-ebfd161ef9cf?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.0.3",
+      "https://images.pexels.com/photos/29874112/pexels-photo-29874112.jpeg?w=400&auto=compress&cs=tinysrgb",
     imageHD:
-      "https://images.unsplash.com/photo-1582268611958-ebfd161ef9cf?w=800&auto=format&fit=crop&q=80&ixlib=rb-4.0.3",
+      "https://images.pexels.com/photos/29874112/pexels-photo-29874112.jpeg?w=800&auto=compress&cs=tinysrgb",
     location: "Es Vedra",
   },
   {
