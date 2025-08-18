@@ -1,4 +1,6 @@
 import { useState, useRef, useEffect } from "react";
+import { motion } from "framer-motion";
+import { Building2, ChevronDown } from "lucide-react";
 
 type Item = { name: string; href: string; desc: string; emoji?: string };
 type Group = { title: string; items: Item[] };
@@ -102,12 +104,17 @@ export default function MegaNav() {
       onMouseEnter={() => setHover(true)}
       onMouseLeave={() => setHover(false)}
     >
-      <button
-        className="px-4 py-2 rounded-lg text-white/80 hover:text-white hover:bg-white/5 transition"
+      <motion.button
+        whileHover={{ y: -2, scale: 1.06 }}
+        className="flex items-center gap-2 px-3 py-2 rounded-xl bg-white/3 hover:bg-white/6
+                   backdrop-blur-md border border-white/10 text-white/80 hover:text-white
+                   transition-colors cursor-pointer"
         onClick={() => setOpen((v) => !v)}
       >
-        Propiedades ▾
-      </button>
+        <Building2 className="w-5 h-5 text-cyan-300" />
+        <span className="text-sm font-medium">Propiedades</span>
+        <ChevronDown className="w-4 h-4 ml-1" />
+      </motion.button>
 
       {(open || hover) && (
         <div className="absolute left-0 mt-3 w-[780px] p-4 rounded-2xl mega-glass">
