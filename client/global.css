@@ -258,4 +258,63 @@
     -webkit-text-fill-color: transparent;
     background-clip: text;
   }
+
+  /* BlueEye Homes WOW Premium Classes */
+  .btn-crystal {
+    @apply px-6 py-3 rounded-xl font-semibold transition-all;
+    background: rgba(255,255,255,0.1);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255,255,255,0.3);
+    color: white;
+  }
+
+  .btn-crystal:hover {
+    background: rgba(255,255,255,0.2);
+    border-color: rgba(0,255,255,0.5);
+    box-shadow: 0 0 20px rgba(0,255,255,0.3);
+    transform: translateY(-2px);
+  }
+
+  .ring-glow {
+    box-shadow: 0 0 20px rgba(0,255,255,0.7), 0 0 40px rgba(138,43,226,0.6);
+  }
+
+  /* Neural connections animation */
+  @keyframes neural-pulse {
+    0%, 100% { opacity: 0.3; transform: scale(1); }
+    50% { opacity: 0.8; transform: scale(1.05); }
+  }
+
+  .neural-connection {
+    animation: neural-pulse 3s ease-in-out infinite;
+  }
+
+  /* Premium gradients */
+  .gradient-premium {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  }
+
+  .gradient-neural {
+    background: linear-gradient(45deg, #00d4ff, #8a2be2, #00ffff);
+    background-size: 300% 300%;
+    animation: gradient-flow 4s ease infinite;
+  }
+
+  @keyframes gradient-flow {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+
+  /* Flowing lines animation */
+  @keyframes flow-lines {
+    0% { transform: translateY(-100vh); opacity: 0; }
+    10% { opacity: 1; }
+    90% { opacity: 1; }
+    100% { transform: translateY(100vh); opacity: 0; }
+  }
+
+  .flow-line {
+    animation: flow-lines 8s linear infinite;
+  }
 }
