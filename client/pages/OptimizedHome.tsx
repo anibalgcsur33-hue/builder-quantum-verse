@@ -9,7 +9,7 @@ import NeuralField from "@/components/future/NeuralField";
 import QuantumPortalLoader from "@/components/future/QuantumPortalLoader";
 import QuantumBackgroundFallback from "@/components/future/QuantumBackgroundFallback";
 import CanaryMap3DFallback from "@/components/future/CanaryMap3DFallback";
-import HologramCard from "@/components/future/HologramCard";
+import HologramCard3D from "@/components/future/HologramCard3D";
 import SpatialAudioHotspot from "@/components/future/SpatialAudioHotspot";
 import ScrollTracker from "@/components/ux/ScrollTracker";
 import StickyCTA from "@/components/ux/StickyCTA";
@@ -83,16 +83,26 @@ export default function OptimizedHome() {
               </p>
             </div>
             <div className="grid md:grid-cols-3 gap-6">
-              <HologramCard />
-              <HologramCard
+              <HologramCard3D
+                title="Villa Mirador — Tenerife"
+                price="€7.9M"
+                location="Santa Cruz de Tenerife"
+                sketchfabId="d729f2d7c8174bd4800182a6da28bf83"
+                fallbackImage="https://images.pexels.com/photos/8134750/pexels-photo-8134750.jpeg?w=400&auto=compress&cs=tinysrgb"
+              />
+              <HologramCard3D
                 title="Skyline Penthouse — Barcelona"
                 price="€5.2M"
-                image="https://images.unsplash.com/photo-1520256862855-398228c41684?q=80&w=1600&auto=format&fit=crop"
+                location="Eixample District"
+                sketchfabId="e30700a3565f41e3bd6c2751eccfe5f5"
+                fallbackImage="https://images.pexels.com/photos/8572163/pexels-photo-8572163.jpeg?w=400&auto=compress&cs=tinysrgb"
               />
-              <HologramCard
+              <HologramCard3D
                 title="Cliffside Estate — Lanzarote"
                 price="€9.4M"
-                image="https://images.unsplash.com/photo-1505692794403-34d4982fb635?q=80&w=1600&auto=format&fit=crop"
+                location="Puerto del Carmen"
+                sketchfabId="ba52e385eaf6407481fed1b1ede4649e"
+                fallbackImage="https://images.pexels.com/photos/29874112/pexels-photo-29874112.jpeg?w=400&auto=compress&cs=tinysrgb"
               />
             </div>
           </section>
