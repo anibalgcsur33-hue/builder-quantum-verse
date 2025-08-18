@@ -77,13 +77,9 @@ export default function OptimizedHome() {
           </section>
 
           {/* Neural Navigation */}
-          <LazyVisible>
-            <section className="py-8">
-              <MotionSafe>
-                <NeuralNav />
-              </MotionSafe>
-            </section>
-          </LazyVisible>
+          <section className="py-8">
+            <NeuralNav />
+          </section>
 
           <PropertyGrid />
 
