@@ -157,53 +157,25 @@ export default function OptimizedHome() {
       </div>
 
       {/* Premium Showcase */}
-      <LazyVisible>
-        <MotionSafe>
-          <PremiumShowcase />
-        </MotionSafe>
-      </LazyVisible>
+      <PremiumShowcase />
 
       {/* Investor Stats Alternate */}
-      <LazyVisible>
-        <MotionSafe>
-          <InvestorStatsAlternate />
-        </MotionSafe>
-      </LazyVisible>
+      <InvestorStatsAlternate />
 
       {/* Holographic Concierge */}
-      <LazyVisible>
-        <MotionSafe>
-          <HolographicConcierge />
-        </MotionSafe>
-      </LazyVisible>
+      <HolographicConcierge />
 
       {/* VR Portal Teaser */}
-      <LazyVisible>
-        <MotionSafe>
-          <VRPortalTeaser />
-        </MotionSafe>
-      </LazyVisible>
+      <VRPortalTeaser />
 
       {/* Community Strip */}
-      <LazyVisible>
-        <MotionSafe>
-          <CommunityStrip />
-        </MotionSafe>
-      </LazyVisible>
+      <CommunityStrip />
 
       {/* VR Experience Section */}
-      <LazyVisible>
-        <MotionSafe>
-          <VRExperienceSection />
-        </MotionSafe>
-      </LazyVisible>
+      <VRExperienceSection />
 
       {/* Investors CTA */}
-      <LazyVisible>
-        <MotionSafe>
-          <InvestorsCTA />
-        </MotionSafe>
-      </LazyVisible>
+      <InvestorsCTA />
 
       <SpatialAudioHotspot />
       <SpatialAudioAdvanced />
