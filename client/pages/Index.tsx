@@ -8,6 +8,7 @@ import HeroBlueEye from "../components/HeroBlueEye";
 import InvestorStats from "../components/InvestorStats";
 import AnimationShowcase from "../components/AnimationShowcase";
 import PropertyMarquee from "../components/property/PropertyMarquee";
+import VRExperienceSection from "../components/VRExperienceSection";
 import {
   Eye,
   MapPin,
@@ -875,6 +876,9 @@ export default function Index() {
       <div className="container mx-auto container-padding">
         <PremiumTourism />
       </div>
+
+      {/* VR Experience Section */}
+      <VRExperienceSection />
 
       {/* Footer */}
       <footer className="border-t border-white/10 py-16 bg-gradient-to-b from-transparent to-blue-dark/50">
