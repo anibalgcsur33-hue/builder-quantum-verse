@@ -290,19 +290,17 @@ export default function Profile() {
                         type: "spring",
                         stiffness: 100,
                         damping: 12,
-                      }
+                      },
                     },
                   }}
                   whileHover={{
                     scale: 1.05,
                     y: -5,
-                    transition: { type: "spring", stiffness: 300 }
+                    transition: { type: "spring", stiffness: 300 },
                   }}
                   className="text-center p-4 glass-card rounded-xl hover:glow-teal transition-all duration-300 group"
                 >
-                  <motion.div
-                    whileHover={{ scale: 1.1, rotate: 5 }}
-                  >
+                  <motion.div whileHover={{ scale: 1.1, rotate: 5 }}>
                     <IconComponent
                       className={`mx-auto mb-2 ${stat.color} group-hover:scale-110 transition-transform`}
                       size={24}
@@ -311,7 +309,9 @@ export default function Profile() {
                   <div className="text-2xl font-bold group-hover:scale-105 transition-transform">
                     <CountUp end={stat.value} duration={2} separator="," />
                   </div>
-                  <div className="text-white/60 text-sm group-hover:text-white/80 transition-colors">{stat.label}</div>
+                  <div className="text-white/60 text-sm group-hover:text-white/80 transition-colors">
+                    {stat.label}
+                  </div>
                 </motion.div>
               );
             })}

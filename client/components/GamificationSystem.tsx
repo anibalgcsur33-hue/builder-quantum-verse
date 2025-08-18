@@ -192,7 +192,8 @@ export default function GamificationSystem({
             <div>
               <div className="font-bold text-white">{currentLevel.name}</div>
               <div className="text-sm text-white/60">
-                <CountUp end={userStats.points} duration={2} separator="," /> puntos
+                <CountUp end={userStats.points} duration={2} separator="," />{" "}
+                puntos
               </div>
             </div>
           </div>
@@ -200,7 +201,11 @@ export default function GamificationSystem({
             <div className="flex items-center space-x-1">
               <Coins className="w-4 h-4 text-yellow-400" />
               <span className="font-bold text-yellow-400">
-                <CountUp end={userStats.behTokens} duration={2.5} separator="," />
+                <CountUp
+                  end={userStats.behTokens}
+                  duration={2.5}
+                  separator=","
+                />
               </span>
             </div>
             <div className="text-xs text-white/60">BEH Tokens</div>
@@ -247,13 +252,23 @@ export default function GamificationSystem({
                 <div className="flex items-center space-x-1">
                   <Star className="w-4 h-4 text-yellow-400" />
                   <span className="text-white font-medium">
-                    <CountUp end={userStats.points} duration={2} separator="," /> puntos
+                    <CountUp
+                      end={userStats.points}
+                      duration={2}
+                      separator=","
+                    />{" "}
+                    puntos
                   </span>
                 </div>
                 <div className="flex items-center space-x-1">
                   <Trophy className="w-4 h-4 text-purple-400" />
                   <span className="text-white/60">
-                    Rango #<CountUp end={userStats.rank} duration={1.5} /> de <CountUp end={userStats.totalUsers} duration={2} separator="," />
+                    Rango #<CountUp end={userStats.rank} duration={1.5} /> de{" "}
+                    <CountUp
+                      end={userStats.totalUsers}
+                      duration={2}
+                      separator=","
+                    />
                   </span>
                 </div>
               </div>
@@ -264,7 +279,11 @@ export default function GamificationSystem({
             <div className="flex items-center space-x-2 mb-2">
               <Coins className="w-6 h-6 text-yellow-400" />
               <span className="text-2xl font-bold text-yellow-400">
-                <CountUp end={userStats.behTokens} duration={2.5} separator="," />
+                <CountUp
+                  end={userStats.behTokens}
+                  duration={2.5}
+                  separator=","
+                />
               </span>
             </div>
             <div className="text-white/60">BEH Tokens</div>
@@ -276,7 +295,8 @@ export default function GamificationSystem({
             <div className="flex justify-between mb-2">
               <span className="text-white/70">Progreso a {nextLevel.name}</span>
               <span className="text-white/70">
-                <CountUp end={userStats.points} duration={2} separator="," /> / <CountUp end={nextLevel.minPoints} duration={2} separator="," />
+                <CountUp end={userStats.points} duration={2} separator="," /> /{" "}
+                <CountUp end={nextLevel.minPoints} duration={2} separator="," />
               </span>
             </div>
             <div className="w-full bg-white/10 rounded-full h-3 mb-2">
@@ -286,8 +306,12 @@ export default function GamificationSystem({
               ></div>
             </div>
             <div className="text-sm text-white/60">
-              <CountUp end={nextLevel.minPoints - userStats.points} duration={2} separator="," /> puntos para el siguiente
-              nivel
+              <CountUp
+                end={nextLevel.minPoints - userStats.points}
+                duration={2}
+                separator=","
+              />{" "}
+              puntos para el siguiente nivel
             </div>
           </div>
         )}
@@ -371,7 +395,10 @@ export default function GamificationSystem({
               <div className="text-center p-4 bg-white/5 rounded-lg">
                 <CheckCircle className="w-8 h-8 text-purple-400 mx-auto mb-2" />
                 <div className="text-2xl font-bold text-white">
-                  <CountUp end={userStats.activities.verifications} duration={2} />
+                  <CountUp
+                    end={userStats.activities.verifications}
+                    duration={2}
+                  />
                 </div>
                 <div className="text-white/60 text-sm">Verificaciones</div>
               </div>
@@ -385,14 +412,20 @@ export default function GamificationSystem({
               <div className="text-center p-4 bg-white/5 rounded-lg">
                 <Home className="w-8 h-8 text-red-400 mx-auto mb-2" />
                 <div className="text-2xl font-bold text-white">
-                  <CountUp end={userStats.activities.operationsClosed} duration={2} />
+                  <CountUp
+                    end={userStats.activities.operationsClosed}
+                    duration={2}
+                  />
                 </div>
                 <div className="text-white/60 text-sm">Operaciones</div>
               </div>
               <div className="text-center p-4 bg-white/5 rounded-lg">
                 <Eye className="w-8 h-8 text-cyan-400 mx-auto mb-2" />
                 <div className="text-2xl font-bold text-white">
-                  <CountUp end={userStats.activities.vrToursCompleted} duration={2} />
+                  <CountUp
+                    end={userStats.activities.vrToursCompleted}
+                    duration={2}
+                  />
                 </div>
                 <div className="text-white/60 text-sm">Tours VR</div>
               </div>
@@ -511,8 +544,13 @@ export default function GamificationSystem({
               </div>
               <div className="mt-4 p-3 bg-purple-500/20 rounded-lg">
                 <div className="text-purple-400 font-medium">
-                  ¡Faltan solo <CountUp end={nextLevel.minPoints - userStats.points} duration={2} separator="," /> puntos
-                  para desbloquearlo!
+                  ¡Faltan solo{" "}
+                  <CountUp
+                    end={nextLevel.minPoints - userStats.points}
+                    duration={2}
+                    separator=","
+                  />{" "}
+                  puntos para desbloquearlo!
                 </div>
               </div>
             </div>

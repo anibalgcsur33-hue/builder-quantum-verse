@@ -237,34 +237,37 @@ export default function AgencyDashboard() {
                       type: "spring",
                       stiffness: 100,
                       damping: 12,
-                    }
+                    },
                   },
                 }}
                 whileHover={{
                   scale: 1.05,
                   y: -5,
-                  transition: { type: "spring", stiffness: 300 }
+                  transition: { type: "spring", stiffness: 300 },
                 }}
                 className="glass-card p-6 hover-glow-teal transition-all duration-300 group"
               >
                 <div className="flex items-center justify-between mb-4">
-                  <motion.div
-                    whileHover={{ scale: 1.1, rotate: 5 }}
-                  >
-                    <IconComponent className={`${stat.color} group-hover:scale-110 transition-transform`} size={24} />
+                  <motion.div whileHover={{ scale: 1.1, rotate: 5 }}>
+                    <IconComponent
+                      className={`${stat.color} group-hover:scale-110 transition-transform`}
+                      size={24}
+                    />
                   </motion.div>
                   <span className="text-neon-emerald text-sm font-medium">
                     {stat.change}
                   </span>
                 </div>
                 <div className="text-2xl font-bold mb-2 group-hover:scale-105 transition-transform origin-left">
-                  {typeof stat.value === 'number' ? (
+                  {typeof stat.value === "number" ? (
                     <CountUp end={stat.value} duration={2.5} separator="," />
                   ) : (
                     stat.value
                   )}
                 </div>
-                <div className="text-white/60 text-sm group-hover:text-white/80 transition-colors">{stat.label}</div>
+                <div className="text-white/60 text-sm group-hover:text-white/80 transition-colors">
+                  {stat.label}
+                </div>
               </motion.div>
             );
           })}

@@ -1,6 +1,13 @@
 import { motion } from "framer-motion";
 import CountUp from "react-countup";
-import { TrendingUp, Users, DollarSign, Home, Star, Target } from "lucide-react";
+import {
+  TrendingUp,
+  Users,
+  DollarSign,
+  Home,
+  Star,
+  Target,
+} from "lucide-react";
 
 interface StatData {
   title: string;
@@ -76,10 +83,10 @@ interface InvestorStatsProps {
   compact?: boolean;
 }
 
-export default function InvestorStats({ 
+export default function InvestorStats({
   title = "Resultados que Hablan",
   subtitle = "Datos reales de nuestra plataforma de inversión inmobiliaria",
-  compact = false 
+  compact = false,
 }: InvestorStatsProps) {
   const containerVariants = {
     hidden: { opacity: 0, y: 20 },
@@ -97,7 +104,7 @@ export default function InvestorStats({
     hidden: {
       opacity: 0,
       y: 30,
-      scale: 0.9
+      scale: 0.9,
     },
     visible: {
       opacity: 1,
@@ -107,7 +114,7 @@ export default function InvestorStats({
         type: "spring" as const,
         stiffness: 100,
         damping: 12,
-      }
+      },
     },
   };
 
@@ -126,19 +133,21 @@ export default function InvestorStats({
             <motion.div
               key={index}
               variants={itemVariants}
-              whileHover={{ 
-                scale: 1.05, 
+              whileHover={{
+                scale: 1.05,
                 y: -5,
-                transition: { type: "spring", stiffness: 300 }
+                transition: { type: "spring", stiffness: 300 },
               }}
               className="glass-card p-4 rounded-xl text-center group hover:glow-teal transition-all duration-300"
             >
-              <IconComponent className={`w-6 h-6 ${stat.color} mx-auto mb-2 group-hover:scale-110 transition-transform`} />
+              <IconComponent
+                className={`w-6 h-6 ${stat.color} mx-auto mb-2 group-hover:scale-110 transition-transform`}
+              />
               <h3 className={`text-2xl font-bold ${stat.color}`}>
-                <CountUp 
-                  end={stat.value} 
-                  duration={2.5} 
-                  separator="," 
+                <CountUp
+                  end={stat.value}
+                  duration={2.5}
+                  separator=","
                   decimals={stat.value % 1 !== 0 ? 1 : 0}
                 />
                 {stat.suffix}
@@ -183,7 +192,7 @@ export default function InvestorStats({
                 whileHover={{
                   scale: 1.02,
                   y: -8,
-                  transition: { type: "spring" as const, stiffness: 300 }
+                  transition: { type: "spring" as const, stiffness: 300 },
                 }}
                 className="glass-card p-8 rounded-2xl group hover:glow-teal transition-all duration-300 relative overflow-hidden"
               >
@@ -198,25 +207,26 @@ export default function InvestorStats({
                   <div className="flex justify-between items-start mb-6">
                     <motion.div
                       whileHover={{ scale: 1.1, rotate: 5 }}
-                      className={`p-3 rounded-xl ${stat.color.replace('text-', 'bg-').replace('400', '400/20')} group-hover:shadow-lg transition-all`}
+                      className={`p-3 rounded-xl ${stat.color.replace("text-", "bg-").replace("400", "400/20")} group-hover:shadow-lg transition-all`}
                     >
                       <IconComponent className={`w-8 h-8 ${stat.color}`} />
                     </motion.div>
-                    
+
                     <div className="flex items-center gap-1 text-green-400 text-sm font-medium">
-                      <TrendingUp className="w-4 h-4" />
-                      +{stat.trend}%
+                      <TrendingUp className="w-4 h-4" />+{stat.trend}%
                     </div>
                   </div>
 
                   {/* Main Value */}
                   <div className="mb-4">
-                    <h3 className={`text-4xl lg:text-5xl font-bold ${stat.color} mb-2 group-hover:scale-105 transition-transform origin-left`}>
+                    <h3
+                      className={`text-4xl lg:text-5xl font-bold ${stat.color} mb-2 group-hover:scale-105 transition-transform origin-left`}
+                    >
                       {stat.prefix}
-                      <CountUp 
-                        end={stat.value} 
-                        duration={2.5} 
-                        separator="," 
+                      <CountUp
+                        end={stat.value}
+                        duration={2.5}
+                        separator=","
                         decimals={stat.value % 1 !== 0 ? 1 : 0}
                       />
                       {stat.suffix}

@@ -1,31 +1,55 @@
 import { motion } from "framer-motion";
 import CountUp from "react-countup";
-import { 
-  TrendingUp, 
-  Users, 
-  DollarSign, 
-  Target, 
-  Star, 
+import {
+  TrendingUp,
+  Users,
+  DollarSign,
+  Target,
+  Star,
   Award,
   Zap,
   Activity,
-  BarChart3
+  BarChart3,
 } from "lucide-react";
 
 interface AnimationShowcaseProps {
   title?: string;
 }
 
-export default function AnimationShowcase({ 
-  title = "🚀 Showcase de Animaciones Implementadas" 
+export default function AnimationShowcase({
+  title = "🚀 Showcase de Animaciones Implementadas",
 }: AnimationShowcaseProps) {
   const demoStats = [
     { title: "Usuarios", value: 15420, icon: Users, color: "text-neon-teal" },
-    { title: "Ventas", value: 2500, suffix: "K€", icon: DollarSign, color: "text-neon-emerald" },
-    { title: "ROI", value: 18.5, suffix: "%", icon: TrendingUp, color: "text-cyan-400" },
-    { title: "Rating", value: 4.9, suffix: "/5", icon: Star, color: "text-yellow-400" },
+    {
+      title: "Ventas",
+      value: 2500,
+      suffix: "K€",
+      icon: DollarSign,
+      color: "text-neon-emerald",
+    },
+    {
+      title: "ROI",
+      value: 18.5,
+      suffix: "%",
+      icon: TrendingUp,
+      color: "text-cyan-400",
+    },
+    {
+      title: "Rating",
+      value: 4.9,
+      suffix: "/5",
+      icon: Star,
+      color: "text-yellow-400",
+    },
     { title: "Tokens", value: 1247583, icon: Award, color: "text-purple-400" },
-    { title: "Eficiencia", value: 97, suffix: "%", icon: Target, color: "text-green-400" },
+    {
+      title: "Eficiencia",
+      value: 97,
+      suffix: "%",
+      icon: Target,
+      color: "text-green-400",
+    },
   ];
 
   const containerVariants = {
@@ -41,10 +65,10 @@ export default function AnimationShowcase({
   };
 
   const itemVariants = {
-    hidden: { 
-      opacity: 0, 
+    hidden: {
+      opacity: 0,
       y: 30,
-      scale: 0.8 
+      scale: 0.8,
     },
     visible: {
       opacity: 1,
@@ -54,7 +78,7 @@ export default function AnimationShowcase({
         type: "spring" as const,
         stiffness: 120,
         damping: 10,
-      }
+      },
     },
   };
 
@@ -71,7 +95,8 @@ export default function AnimationShowcase({
         >
           <h2 className="heading-lg text-gradient mb-4">{title}</h2>
           <p className="text-xl text-white/70 max-w-4xl mx-auto">
-            Demostración de animaciones <strong>CountUp</strong> y <strong>Staggered Animations</strong> 
+            Demostración de animaciones <strong>CountUp</strong> y{" "}
+            <strong>Staggered Animations</strong>
             implementadas con Framer Motion + react-countup
           </p>
         </motion.div>
@@ -91,19 +116,27 @@ export default function AnimationShowcase({
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div className="flex items-center gap-3">
               <div className="w-2 h-2 bg-neon-teal rounded-full"></div>
-              <span className="text-white/80">✅ <strong>CountUp</strong> con react-countup</span>
+              <span className="text-white/80">
+                ✅ <strong>CountUp</strong> con react-countup
+              </span>
             </div>
             <div className="flex items-center gap-3">
               <div className="w-2 h-2 bg-neon-emerald rounded-full"></div>
-              <span className="text-white/80">✅ <strong>Staggered Animation</strong> con delay escalonado</span>
+              <span className="text-white/80">
+                ✅ <strong>Staggered Animation</strong> con delay escalonado
+              </span>
             </div>
             <div className="flex items-center gap-3">
               <div className="w-2 h-2 bg-cyan-400 rounded-full"></div>
-              <span className="text-white/80">✅ <strong>Hover Effects</strong> con scale y rotación</span>
+              <span className="text-white/80">
+                ✅ <strong>Hover Effects</strong> con scale y rotación
+              </span>
             </div>
             <div className="flex items-center gap-3">
               <div className="w-2 h-2 bg-purple-400 rounded-full"></div>
-              <span className="text-white/80">✅ <strong>Spring Animations</strong> con física realista</span>
+              <span className="text-white/80">
+                ✅ <strong>Spring Animations</strong> con física realista
+              </span>
             </div>
           </div>
         </motion.div>
@@ -122,10 +155,14 @@ export default function AnimationShowcase({
               <motion.div
                 key={index}
                 variants={itemVariants}
-                whileHover={{ 
-                  scale: 1.05, 
+                whileHover={{
+                  scale: 1.05,
                   y: -8,
-                  transition: { type: "spring" as const, stiffness: 300, damping: 10 }
+                  transition: {
+                    type: "spring" as const,
+                    stiffness: 300,
+                    damping: 10,
+                  },
                 }}
                 whileTap={{ scale: 0.98 }}
                 className="glass-card p-6 rounded-2xl group hover:glow-teal transition-all duration-300 relative overflow-hidden cursor-pointer"
@@ -140,18 +177,20 @@ export default function AnimationShowcase({
                   {/* Icon */}
                   <motion.div
                     whileHover={{ scale: 1.2, rotate: 10 }}
-                    className={`inline-flex p-3 rounded-xl ${stat.color.replace('text-', 'bg-').replace('400', '400/20')} mb-4 group-hover:shadow-lg transition-all`}
+                    className={`inline-flex p-3 rounded-xl ${stat.color.replace("text-", "bg-").replace("400", "400/20")} mb-4 group-hover:shadow-lg transition-all`}
                   >
                     <IconComponent className={`w-6 h-6 ${stat.color}`} />
                   </motion.div>
 
                   {/* Value with CountUp */}
                   <div className="mb-2">
-                    <h3 className={`text-3xl font-bold ${stat.color} group-hover:scale-105 transition-transform origin-left`}>
-                      <CountUp 
-                        end={stat.value} 
-                        duration={2.5 + (index * 0.2)} 
-                        separator="," 
+                    <h3
+                      className={`text-3xl font-bold ${stat.color} group-hover:scale-105 transition-transform origin-left`}
+                    >
+                      <CountUp
+                        end={stat.value}
+                        duration={2.5 + index * 0.2}
+                        separator=","
                         decimals={stat.value % 1 !== 0 ? 1 : 0}
                       />
                       {stat.suffix}
@@ -164,17 +203,17 @@ export default function AnimationShowcase({
                   </p>
 
                   {/* Animated Progress Bar */}
-                  <motion.div 
+                  <motion.div
                     className="mt-4 h-1 bg-white/10 rounded-full overflow-hidden"
                     initial={{ width: 0 }}
                     whileInView={{ width: "100%" }}
                     transition={{ duration: 1, delay: index * 0.1 }}
                   >
                     <motion.div
-                      className={`h-full bg-gradient-to-r from-${stat.color.split('-')[1]}-400 to-${stat.color.split('-')[1]}-600`}
+                      className={`h-full bg-gradient-to-r from-${stat.color.split("-")[1]}-400 to-${stat.color.split("-")[1]}-600`}
                       initial={{ x: "-100%" }}
                       whileInView={{ x: "0%" }}
-                      transition={{ duration: 1.5, delay: (index * 0.1) + 0.5 }}
+                      transition={{ duration: 1.5, delay: index * 0.1 + 0.5 }}
                     />
                   </motion.div>
                 </div>
@@ -246,7 +285,9 @@ import { motion } from "framer-motion";
               <p className="text-white/60 mt-1">Nuevo componente completo</p>
             </div>
             <div className="p-3 bg-neon-emerald/10 rounded-lg">
-              <strong className="text-neon-emerald">✅ GamificationSystem.tsx</strong>
+              <strong className="text-neon-emerald">
+                ✅ GamificationSystem.tsx
+              </strong>
               <p className="text-white/60 mt-1">Números animados</p>
             </div>
             <div className="p-3 bg-cyan-400/10 rounded-lg">

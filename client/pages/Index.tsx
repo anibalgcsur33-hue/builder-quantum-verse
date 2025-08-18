@@ -366,7 +366,9 @@ export default function Index() {
                   <div className="w-24 h-24 bg-neon-teal/20 rounded-full flex items-center justify-center mb-4 mx-auto">
                     <Play className="text-neon-teal" size={40} />
                   </div>
-                  <h3 className="text-white text-xl font-bold mb-2">Tour VR Villa de Lujo</h3>
+                  <h3 className="text-white text-xl font-bold mb-2">
+                    Tour VR Villa de Lujo
+                  </h3>
                   <p className="text-white/60">Click para reproducir</p>
                 </div>
               </div>
@@ -571,18 +573,29 @@ export default function Index() {
                     <div className="absolute -top-4 -right-4 w-8 h-8 bg-neon-teal/80 rounded-full flex items-center justify-center animate-bounce">
                       <Brain className="w-4 h-4 text-white" />
                     </div>
-                    <div className="absolute -bottom-4 -left-4 w-6 h-6 bg-neon-emerald/80 rounded-full flex items-center justify-center animate-bounce" style={{ animationDelay: '0.5s' }}>
+                    <div
+                      className="absolute -bottom-4 -left-4 w-6 h-6 bg-neon-emerald/80 rounded-full flex items-center justify-center animate-bounce"
+                      style={{ animationDelay: "0.5s" }}
+                    >
                       <MessageCircle className="w-3 h-3 text-white" />
                     </div>
-                    <div className="absolute top-1/2 -left-8 w-4 h-4 bg-blue-400/80 rounded-full animate-pulse" style={{ animationDelay: '1s' }}></div>
-                    <div className="absolute top-1/4 -right-8 w-3 h-3 bg-purple-400/80 rounded-full animate-pulse" style={{ animationDelay: '1.5s' }}></div>
+                    <div
+                      className="absolute top-1/2 -left-8 w-4 h-4 bg-blue-400/80 rounded-full animate-pulse"
+                      style={{ animationDelay: "1s" }}
+                    ></div>
+                    <div
+                      className="absolute top-1/4 -right-8 w-3 h-3 bg-purple-400/80 rounded-full animate-pulse"
+                      style={{ animationDelay: "1.5s" }}
+                    ></div>
                   </div>
 
                   {/* AI Status */}
                   <div className="mt-8 glass-card px-6 py-3 rounded-full">
                     <div className="flex items-center gap-3">
                       <div className="w-3 h-3 bg-green-400 rounded-full animate-pulse"></div>
-                      <span className="text-white font-medium">IA Asistente Activo</span>
+                      <span className="text-white font-medium">
+                        IA Asistente Activo
+                      </span>
                       <Sparkles className="w-4 h-4 text-neon-teal animate-pulse" />
                     </div>
                   </div>
@@ -597,23 +610,36 @@ export default function Index() {
                 </div>
 
                 <div className="absolute top-20 left-6">
-                  <div className="glass-card px-4 py-2 rounded-full flex items-center gap-2 animate-float" style={{ animationDelay: "0.5s" }}>
+                  <div
+                    className="glass-card px-4 py-2 rounded-full flex items-center gap-2 animate-float"
+                    style={{ animationDelay: "0.5s" }}
+                  >
                     <Clock className="text-neon-teal" size={16} />
-                    <span className="text-white font-medium">24/7 Disponible</span>
+                    <span className="text-white font-medium">
+                      24/7 Disponible
+                    </span>
                   </div>
                 </div>
 
                 <div className="absolute bottom-6 right-6">
-                  <div className="glass-card px-4 py-2 rounded-full flex items-center gap-2 animate-float" style={{ animationDelay: "1s" }}>
+                  <div
+                    className="glass-card px-4 py-2 rounded-full flex items-center gap-2 animate-float"
+                    style={{ animationDelay: "1s" }}
+                  >
                     <CheckCircle className="text-neon-emerald" size={16} />
                     <span className="text-white font-medium">Verificado</span>
                   </div>
                 </div>
 
                 <div className="absolute bottom-20 left-6">
-                  <div className="glass-card px-4 py-2 rounded-full flex items-center gap-2 animate-float" style={{ animationDelay: "1.5s" }}>
+                  <div
+                    className="glass-card px-4 py-2 rounded-full flex items-center gap-2 animate-float"
+                    style={{ animationDelay: "1.5s" }}
+                  >
                     <Users className="text-neon-teal" size={16} />
-                    <span className="text-white font-medium">Equipo Experto</span>
+                    <span className="text-white font-medium">
+                      Equipo Experto
+                    </span>
                   </div>
                 </div>
               </div>
@@ -626,12 +652,11 @@ export default function Index() {
       <section className="section-padding">
         <div className="container mx-auto container-padding">
           <div className="text-center mb-12">
-            <h2 className="heading-lg text-gradient mb-6">
-              Conoce a BlueEye
-            </h2>
+            <h2 className="heading-lg text-gradient mb-6">Conoce a BlueEye</h2>
             <p className="text-xl text-white/70 max-w-3xl mx-auto">
               Tu asesora virtual inmobiliaria con inteligencia artificial.
-              Conversa con ella sobre propiedades, procesos legales y visitas programadas.
+              Conversa con ella sobre propiedades, procesos legales y visitas
+              programadas.
             </p>
           </div>
 
@@ -711,7 +736,9 @@ export default function Index() {
                   <div className="w-24 h-24 bg-neon-emerald/20 rounded-full flex items-center justify-center mb-4 mx-auto">
                     <Users className="text-neon-emerald" size={40} />
                   </div>
-                  <h3 className="text-white text-xl font-bold mb-2">Comunidad Digital</h3>
+                  <h3 className="text-white text-xl font-bold mb-2">
+                    Comunidad Digital
+                  </h3>
                   <p className="text-white/60">Red de inversores conectados</p>
                 </div>
               </div>
