@@ -12,20 +12,20 @@ interface MapPinProps {
   className?: string;
 }
 
-export function MapPin({ 
-  lat, 
-  lng, 
-  label, 
+export function MapPin({
+  lat,
+  lng,
+  label,
   type = "property",
   price,
   onClick,
   isActive = false,
-  className 
+  className,
 }: MapPinProps) {
   // Convert lat/lng to percentage positions (simplified for demo)
   const position: [number, number] = [
     ((lng + 180) / 360) * 100,
-    ((90 - lat) / 180) * 100
+    ((90 - lat) / 180) * 100,
   ];
 
   const handleClick = () => {
@@ -61,17 +61,17 @@ export function MapPin({
 
   if (type === "premium" || type === "exclusive") {
     return (
-      <div 
+      <div
         className={cn("cursor-pointer", isActive && "z-30", className)}
         onClick={handleClick}
       >
-        <PremiumGlowPin 
+        <PremiumGlowPin
           position={position}
           label={displayLabel}
           isPulsing={!isActive} // Stop pulsing when active
         />
         {isActive && (
-          <div 
+          <div
             className="absolute pointer-events-none z-40"
             style={{ left: `${position[0]}%`, top: `${position[1]}%` }}
           >
@@ -88,11 +88,11 @@ export function MapPin({
   }
 
   return (
-    <div 
+    <div
       className={cn("cursor-pointer", isActive && "z-30", className)}
       onClick={handleClick}
     >
-      <GlowPin 
+      <GlowPin
         position={position}
         label={displayLabel}
         variant={getVariant()}
@@ -100,15 +100,13 @@ export function MapPin({
         isPulsing={!isActive}
       />
       {isActive && (
-        <div 
+        <div
           className="absolute pointer-events-none z-40"
           style={{ left: `${position[0]}%`, top: `${position[1]}%` }}
         >
           <div className="absolute -translate-x-1/2 translate-y-8 glass rounded-lg p-3 min-w-48 text-sm text-white/90">
             <div className="font-semibold mb-1">{label}</div>
-            {price && (
-              <div className="text-neon-teal font-bold">{price}</div>
-            )}
+            {price && <div className="text-neon-teal font-bold">{price}</div>}
           </div>
         </div>
       )}
@@ -130,11 +128,11 @@ interface MapPinClusterProps {
   className?: string;
 }
 
-export function MapPinCluster({ 
-  pins, 
-  activePinId, 
+export function MapPinCluster({
+  pins,
+  activePinId,
   onPinClick,
-  className 
+  className,
 }: MapPinClusterProps) {
   return (
     <div className={cn("relative w-full h-full", className)}>
