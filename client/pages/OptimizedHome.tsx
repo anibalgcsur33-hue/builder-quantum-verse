@@ -127,6 +127,16 @@ export default function OptimizedHome() {
             <CanaryMap3D />
           </Suspense>
 
+          {/* Canary Islands WMS Map - Official GRAFCAN */}
+          <section className="max-w-7xl mx-auto px-6 py-16">
+            <h2 className="text-3xl md:text-4xl font-semibold mb-6">España & Canarias — Mapa WMS (texturas reales)</h2>
+            <p className="text-white/70 mb-8">Ortofoto oficial GRAFCAN + sombreado de relieve. Perfecto para demos premium con calidad fotográfica real.</p>
+            <CanaryWMSMapWrapper />
+            <p className="mt-4 text-sm text-white/60">
+              Servicios WMS oficiales: <strong>IDECanarias/GRAFCAN</strong> - Ortofoto territorial, modelo de sombras y topográfico integrado.
+            </p>
+          </section>
+
           {/* Neural Showcase */}
           <NeuralShowcase />
 
