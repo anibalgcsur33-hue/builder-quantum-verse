@@ -4,8 +4,12 @@ import { FBXLoader } from "three/examples/jsm/loaders/FBXLoader.js";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
 
-// URL del avatar local FBX - perfecto para VR y propiedades
-const AVATAR_URL = "/assets/blueeye.fbx";
+// URLs de avatar con múltiples formatos soportados
+const AVATAR_URLS = [
+  { url: "/assets/blueeye.fbx", type: "fbx", description: "FBX para VR" },
+  { url: "/assets/blueeye.glb", type: "glb", description: "GLB estándar" },
+  { url: "/assets/blueeye.gltf", type: "gltf", description: "GLTF alternativo" }
+];
 
 interface BlueEyeProps {
   height?: number;
