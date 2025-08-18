@@ -28,27 +28,26 @@ export default function OptimizedHome() {
             <CrownBadge className="mb-6" />
 
             {/* Animated BlueEye Logo */}
-            <motion.div
-              className="flex justify-center mb-8"
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 1, ease: "easeOut" }}
-            >
+            <div className="flex justify-center mb-8">
               <motion.div
                 className="relative w-48 h-48 rounded-full bg-gradient-to-br from-cyan-400/20 via-blue-500/30 to-purple-600/20 border border-white/20"
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 1, ease: "easeOut" }}
                 whileHover={{ scale: 1.1 }}
                 style={{ willChange: "transform" }}
-              />
-              <div className="absolute inset-0 flex items-center justify-center">
-                <motion.img
-                  src="/assets/BLUEYELOGO.png"
-                  alt="BlueEye Logo"
-                  className="w-32 h-32 object-contain"
-                  animate={{ scale: [1, 1.1, 1], rotate: [0, 5, -5, 0] }}
-                  transition={{ duration: 3, repeat: Infinity }}
-                />
-              </div>
-            </motion.div>
+              >
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <motion.img
+                    src="/assets/BLUEYELOGO.png"
+                    alt="BlueEye Logo"
+                    className="w-32 h-32 object-contain"
+                    animate={{ scale: [1, 1.1, 1], rotate: [0, 5, -5, 0] }}
+                    transition={{ duration: 3, repeat: Infinity }}
+                  />
+                </div>
+              </motion.div>
+            </div>
 
             <HeroWaveTitle
               title="El futuro del real estate de lujo empieza aquí"
