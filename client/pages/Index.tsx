@@ -6,6 +6,7 @@ import PremiumTourism from "../components/PremiumTourism";
 import Avatar3D from "../components/Avatar3DInstant";
 import HeroBlueEye from "../components/HeroBlueEye";
 import InvestorStats from "../components/InvestorStats";
+import AnimationShowcase from "../components/AnimationShowcase";
 import {
   Eye,
   MapPin,
@@ -835,6 +836,9 @@ export default function Index() {
           </div>
         </div>
       </section>
+
+      {/* Animation Showcase */}
+      <AnimationShowcase />
 
       {/* Premium Tourism Section */}
       <div className="container mx-auto container-padding">
