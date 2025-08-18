@@ -731,3 +731,39 @@ img {
   margin: 0 auto;
   padding: 0 1.5rem;
 }
+
+/* --- Esqueleto: Utilidades personalizadas adicionales --- */
+.glass {
+  background: rgba(255, 255, 255, 0.06);
+  backdrop-filter: saturate(140%) blur(14px);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+}
+
+.btn-crystal {
+  background: linear-gradient(
+    to bottom right,
+    rgba(80, 220, 255, 0.25),
+    rgba(140, 120, 255, 0.25)
+  );
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  transition: all 0.2s ease;
+}
+
+.btn-crystal:hover {
+  transform: translateY(-2px);
+  filter: saturate(1.12);
+}
+
+@keyframes marquee {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-marquee {
+  display: flex;
+  animation: marquee 20s linear infinite;
+}
