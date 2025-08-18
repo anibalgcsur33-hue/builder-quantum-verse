@@ -39,6 +39,7 @@ import MetaverseMap from "./pages/MetaverseMap";
 import SkeletonDemo from "./pages/SkeletonDemo";
 import Simple from "./pages/Simple";
 import PinsDemo from "./pages/PinsDemo";
+import FuturoWOWDemo from "./pages/FuturoWOWDemo";
 
 const queryClient = new QueryClient();
 
