@@ -36,6 +36,8 @@ import PrismCTA from "@/components/PrismCTA";
 import { Reveal } from "@/components/reveal/ScrollReveal";
 // Lazy load the 3D map for better performance
 const CanaryMap3D = lazy(() => import("@/components/maps/CanaryMap3D"));
+// WMS Map with official GRAFCAN services
+import CanaryWMSMapWrapper from "@/components/maps/CanaryWMSMapWrapper";
 
 export default function OptimizedHome() {
   return (
