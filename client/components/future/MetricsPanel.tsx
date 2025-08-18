@@ -16,12 +16,23 @@ function useCountTo(target: number, dur = 1500) {
   return val;
 }
 
-function Stat({ label, value, suffix = "+" }: { label: string; value: number; suffix?: string }) {
+function Stat({
+  label,
+  value,
+  suffix = "+",
+}: {
+  label: string;
+  value: number;
+  suffix?: string;
+}) {
   const v = useCountTo(value);
   return (
     <div className="relative rounded-2xl border border-white/10 bg-white/5 p-6">
       <div className="absolute -inset-px rounded-2xl bg-[radial-gradient(circle_at_10%_10%,#00e5ff22,transparent_35%),radial-gradient(circle_at_90%_10%,#7c5cff22,transparent_35%)]" />
-      <div className="relative text-3xl font-semibold">{v.toLocaleString()}{suffix}</div>
+      <div className="relative text-3xl font-semibold">
+        {v.toLocaleString()}
+        {suffix}
+      </div>
       <div className="relative mt-1 text-white/60 text-sm">{label}</div>
     </div>
   );

@@ -1,10 +1,18 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { useState } from "react";
-import { MessageCircle, X, Send, Sparkles, Brain, Home, TrendingUp } from "lucide-react";
+import {
+  MessageCircle,
+  X,
+  Send,
+  Sparkles,
+  Brain,
+  Home,
+  TrendingUp,
+} from "lucide-react";
 
 interface ChatMessage {
   id: string;
-  type: 'user' | 'ai';
+  type: "user" | "ai";
   content: string;
   timestamp: Date;
 }
@@ -13,7 +21,7 @@ const suggestedQuestions = [
   "¿Qué propiedades tienen vista al mar?",
   "Opciones de inversión en Madrid",
   "Lifestyle premium en España",
-  "Tours virtuales disponibles"
+  "Tours virtuales disponibles",
 ];
 
 const aiResponses = [
@@ -21,20 +29,21 @@ const aiResponses = [
   "Tenemos increíbles propiedades con vista al mar en Costa del Sol y Baleares. ¿Te interesa alguna zona específica?",
   "Madrid ofrece excelentes oportunidades de inversión, especialmente en Salamanca y Chamberí. ¿Cuál es tu presupuesto?",
   "El lifestyle premium en España incluye golf, gastronomía Michelin y cultura. ¿Qué experiencias te interesan más?",
-  "Nuestros tours VR te permiten explorar propiedades desde cualquier parte del mundo. ¿Quieres programar uno?"
+  "Nuestros tours VR te permiten explorar propiedades desde cualquier parte del mundo. ¿Quieres programar uno?",
 ];
 
 export default function AIChatPortal() {
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState<ChatMessage[]>([
     {
-      id: '1',
-      type: 'ai',
-      content: '¡Hola! Soy BlueEye Assistant, tu experto en propiedades premium de España. ¿En qué puedo ayudarte hoy?',
-      timestamp: new Date()
-    }
+      id: "1",
+      type: "ai",
+      content:
+        "¡Hola! Soy BlueEye Assistant, tu experto en propiedades premium de España. ¿En qué puedo ayudarte hoy?",
+      timestamp: new Date(),
+    },
   ]);
-  const [inputValue, setInputValue] = useState('');
+  const [inputValue, setInputValue] = useState("");
   const [isTyping, setIsTyping] = useState(false);
 
   const handleSendMessage = async (content: string) => {
@@ -43,24 +52,24 @@ export default function AIChatPortal() {
     // Add user message
     const userMessage: ChatMessage = {
       id: Date.now().toString(),
-      type: 'user',
+      type: "user",
       content: content.trim(),
-      timestamp: new Date()
+      timestamp: new Date(),
     };
 
-    setMessages(prev => [...prev, userMessage]);
-    setInputValue('');
+    setMessages((prev) => [...prev, userMessage]);
+    setInputValue("");
     setIsTyping(true);
 
     // Simulate AI response after delay
     setTimeout(() => {
       const aiMessage: ChatMessage = {
         id: (Date.now() + 1).toString(),
-        type: 'ai',
+        type: "ai",
         content: aiResponses[Math.floor(Math.random() * aiResponses.length)],
-        timestamp: new Date()
+        timestamp: new Date(),
       };
-      setMessages(prev => [...prev, aiMessage]);
+      setMessages((prev) => [...prev, aiMessage]);
       setIsTyping(false);
     }, 1500);
   };
@@ -87,7 +96,7 @@ export default function AIChatPortal() {
         >
           <Brain className="w-8 h-8 text-white" />
         </motion.div>
-        
+
         {/* Pulse indicator */}
         <motion.div
           className="absolute inset-0 rounded-full bg-cyan-400/30"
@@ -129,8 +138,12 @@ export default function AIChatPortal() {
                       />
                     </div>
                     <div>
-                      <h3 className="text-white font-bold text-lg">BlueEye Assistant</h3>
-                      <p className="text-xs text-white/70">Tu experto inmobiliario IA</p>
+                      <h3 className="text-white font-bold text-lg">
+                        BlueEye Assistant
+                      </h3>
+                      <p className="text-xs text-white/70">
+                        Tu experto inmobiliario IA
+                      </p>
                     </div>
                   </div>
                   <button
@@ -150,19 +163,23 @@ export default function AIChatPortal() {
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.3 }}
-                    className={`flex ${message.type === 'user' ? 'justify-end' : 'justify-start'}`}
+                    className={`flex ${message.type === "user" ? "justify-end" : "justify-start"}`}
                   >
                     <div
                       className={`max-w-[80%] p-3 rounded-2xl ${
-                        message.type === 'user'
-                          ? 'bg-gradient-to-r from-cyan-500 to-blue-500 text-white'
-                          : 'glass text-white'
+                        message.type === "user"
+                          ? "bg-gradient-to-r from-cyan-500 to-blue-500 text-white"
+                          : "glass text-white"
                       }`}
                     >
                       <p className="text-sm">{message.content}</p>
-                      <p className={`text-xs mt-1 ${
-                        message.type === 'user' ? 'text-white/70' : 'text-white/50'
-                      }`}>
+                      <p
+                        className={`text-xs mt-1 ${
+                          message.type === "user"
+                            ? "text-white/70"
+                            : "text-white/50"
+                        }`}
+                      >
                         {message.timestamp.toLocaleTimeString()}
                       </p>
                     </div>
@@ -186,7 +203,7 @@ export default function AIChatPortal() {
                             transition={{
                               duration: 1.4,
                               repeat: Infinity,
-                              delay: i * 0.2
+                              delay: i * 0.2,
                             }}
                           />
                         ))}
@@ -199,7 +216,9 @@ export default function AIChatPortal() {
               {/* Suggested Questions */}
               {messages.length === 1 && (
                 <div className="p-4 border-t border-white/10">
-                  <p className="text-white/70 text-sm mb-3">Preguntas sugeridas:</p>
+                  <p className="text-white/70 text-sm mb-3">
+                    Preguntas sugeridas:
+                  </p>
                   <div className="grid grid-cols-2 gap-2">
                     {suggestedQuestions.map((question, index) => (
                       <motion.button
@@ -224,7 +243,9 @@ export default function AIChatPortal() {
                     type="text"
                     value={inputValue}
                     onChange={(e) => setInputValue(e.target.value)}
-                    onKeyPress={(e) => e.key === 'Enter' && handleSendMessage(inputValue)}
+                    onKeyPress={(e) =>
+                      e.key === "Enter" && handleSendMessage(inputValue)
+                    }
                     placeholder="Pregúntame sobre propiedades, inversión o lifestyle..."
                     className="flex-1 bg-white/5 border border-white/20 rounded-xl px-4 py-3 text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-cyan-400/50 focus:border-transparent"
                   />
@@ -246,7 +267,9 @@ export default function AIChatPortal() {
                   <motion.button
                     whileHover={{ scale: 1.1 }}
                     whileTap={{ scale: 0.95 }}
-                    onClick={() => handleSuggestedQuestion("Mostrar propiedades disponibles")}
+                    onClick={() =>
+                      handleSuggestedQuestion("Mostrar propiedades disponibles")
+                    }
                     className="flex items-center gap-2 px-3 py-2 glass rounded-lg text-xs text-white hover:bg-white/10 transition-colors"
                   >
                     <Home className="w-4 h-4" />
@@ -255,7 +278,9 @@ export default function AIChatPortal() {
                   <motion.button
                     whileHover={{ scale: 1.1 }}
                     whileTap={{ scale: 0.95 }}
-                    onClick={() => handleSuggestedQuestion("Información de inversión")}
+                    onClick={() =>
+                      handleSuggestedQuestion("Información de inversión")
+                    }
                     className="flex items-center gap-2 px-3 py-2 glass rounded-lg text-xs text-white hover:bg-white/10 transition-colors"
                   >
                     <TrendingUp className="w-4 h-4" />
@@ -264,7 +289,9 @@ export default function AIChatPortal() {
                   <motion.button
                     whileHover={{ scale: 1.1 }}
                     whileTap={{ scale: 0.95 }}
-                    onClick={() => handleSuggestedQuestion("Tours virtuales premium")}
+                    onClick={() =>
+                      handleSuggestedQuestion("Tours virtuales premium")
+                    }
                     className="flex items-center gap-2 px-3 py-2 glass rounded-lg text-xs text-white hover:bg-white/10 transition-colors"
                   >
                     <Sparkles className="w-4 h-4" />

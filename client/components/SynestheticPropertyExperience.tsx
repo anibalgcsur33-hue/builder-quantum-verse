@@ -26,7 +26,7 @@ const properties: PropertySense[] = [
     sound: "Olas susurrantes + campanas de viento",
     emotion: "Serenidad absoluta",
     price: "€3.2M",
-    location: "Marbella, Costa del Sol"
+    location: "Marbella, Costa del Sol",
   },
   {
     id: "madrid-penthouse",
@@ -38,7 +38,7 @@ const properties: PropertySense[] = [
     sound: "Jazz suave + vida urbana lejana",
     emotion: "Sofisticación energizante",
     price: "€2.8M",
-    location: "Salamanca, Madrid"
+    location: "Salamanca, Madrid",
   },
   {
     id: "barcelona-loft",
@@ -50,7 +50,7 @@ const properties: PropertySense[] = [
     sound: "Guitarra española + murmullo creativo",
     emotion: "Inspiración bohemia",
     price: "€2.5M",
-    location: "Eixample, Barcelona"
+    location: "Eixample, Barcelona",
   },
   {
     id: "ibiza-retreat",
@@ -62,8 +62,8 @@ const properties: PropertySense[] = [
     sound: "Canto de grillos + agua fluyendo",
     emotion: "Paz transformadora",
     price: "€4.1M",
-    location: "Cala Comte, Ibiza"
-  }
+    location: "Cala Comte, Ibiza",
+  },
 ];
 
 export default function SynestheticPropertyExperience() {
@@ -79,9 +79,9 @@ export default function SynestheticPropertyExperience() {
 
   useEffect(() => {
     if (isExperienceActive) {
-      const senses = ['aroma', 'temperature', 'vibration', 'sound', 'emotion'];
+      const senses = ["aroma", "temperature", "vibration", "sound", "emotion"];
       let index = 0;
-      
+
       const interval = setInterval(() => {
         setCurrentSense(senses[index % senses.length]);
         index++;
@@ -105,10 +105,34 @@ export default function SynestheticPropertyExperience() {
 
   const getSenseIntensity = (propertyId: string, sense: string) => {
     const intensities: Record<string, Record<string, number>> = {
-      'marbella-villa': { aroma: 85, temperature: 90, vibration: 70, sound: 75, emotion: 95 },
-      'madrid-penthouse': { aroma: 80, temperature: 85, vibration: 95, sound: 85, emotion: 80 },
-      'barcelona-loft': { aroma: 90, temperature: 80, vibration: 85, sound: 90, emotion: 85 },
-      'ibiza-retreat': { aroma: 95, temperature: 95, vibration: 90, sound: 80, emotion: 100 }
+      "marbella-villa": {
+        aroma: 85,
+        temperature: 90,
+        vibration: 70,
+        sound: 75,
+        emotion: 95,
+      },
+      "madrid-penthouse": {
+        aroma: 80,
+        temperature: 85,
+        vibration: 95,
+        sound: 85,
+        emotion: 80,
+      },
+      "barcelona-loft": {
+        aroma: 90,
+        temperature: 80,
+        vibration: 85,
+        sound: 90,
+        emotion: 85,
+      },
+      "ibiza-retreat": {
+        aroma: 95,
+        temperature: 95,
+        vibration: 90,
+        sound: 80,
+        emotion: 100,
+      },
     };
     return intensities[propertyId]?.[sense] || 50;
   };
@@ -126,8 +150,9 @@ export default function SynestheticPropertyExperience() {
             Experiencia Sinestésica Inmobiliaria
           </h2>
           <p className="text-xl text-white/80 max-w-4xl mx-auto mb-8">
-            Cada propiedad tiene su propia signature sensorial única. Experimenta aromas digitales,
-            temperaturas virtuales, vibraciones hápticas y sonidos inmersivos que definen el alma de cada hogar.
+            Cada propiedad tiene su propia signature sensorial única.
+            Experimenta aromas digitales, temperaturas virtuales, vibraciones
+            hápticas y sonidos inmersivos que definen el alma de cada hogar.
           </p>
 
           {/* Experience Toggle */}
@@ -135,46 +160,56 @@ export default function SynestheticPropertyExperience() {
             onClick={() => setIsExperienceActive(!isExperienceActive)}
             className={`
               relative px-10 py-5 rounded-2xl font-bold text-xl transition-all duration-500
-              ${isExperienceActive 
-                ? 'bg-gradient-to-r from-pink-500 to-purple-500 text-white shadow-2xl' 
-                : 'bg-white/10 text-white/70 backdrop-blur-md'
+              ${
+                isExperienceActive
+                  ? "bg-gradient-to-r from-pink-500 to-purple-500 text-white shadow-2xl"
+                  : "bg-white/10 text-white/70 backdrop-blur-md"
               }
             `}
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             animate={{
-              boxShadow: isExperienceActive 
+              boxShadow: isExperienceActive
                 ? [
                     "0 0 30px rgba(236, 72, 153, 0.4)",
                     "0 0 60px rgba(147, 51, 234, 0.4)",
-                    "0 0 30px rgba(236, 72, 153, 0.4)"
+                    "0 0 30px rgba(236, 72, 153, 0.4)",
                   ]
-                : "0 0 0px rgba(0,0,0,0)"
+                : "0 0 0px rgba(0,0,0,0)",
             }}
             transition={{
-              boxShadow: { duration: 2, repeat: Infinity }
+              boxShadow: { duration: 2, repeat: Infinity },
             }}
           >
             <div className="flex items-center gap-3">
               <motion.div
-                animate={{ 
+                animate={{
                   scale: isExperienceActive ? [1, 1.2, 1] : 1,
-                  rotate: isExperienceActive ? 360 : 0 
+                  rotate: isExperienceActive ? 360 : 0,
                 }}
-                transition={{ 
-                  scale: { duration: 1, repeat: isExperienceActive ? Infinity : 0 },
-                  rotate: { duration: 2, repeat: isExperienceActive ? Infinity : 0, ease: "linear" }
+                transition={{
+                  scale: {
+                    duration: 1,
+                    repeat: isExperienceActive ? Infinity : 0,
+                  },
+                  rotate: {
+                    duration: 2,
+                    repeat: isExperienceActive ? Infinity : 0,
+                    ease: "linear",
+                  },
                 }}
               >
                 <Heart className="w-6 h-6" />
               </motion.div>
-              {isExperienceActive ? "Experiencia Sensorial Activa" : "Activar Sinestesia Digital"}
+              {isExperienceActive
+                ? "Experiencia Sensorial Activa"
+                : "Activar Sinestesia Digital"}
             </div>
           </motion.button>
         </motion.div>
 
         {/* Main Experience Area */}
-        <div 
+        <div
           ref={containerRef}
           className="relative max-w-7xl mx-auto"
           onMouseMove={handleMouseMove}
@@ -182,36 +217,46 @@ export default function SynestheticPropertyExperience() {
           {/* Central Property Display */}
           <motion.div
             className="relative aspect-[16/10] rounded-3xl overflow-hidden mb-12"
-            style={{ 
-              rotateX, 
+            style={{
+              rotateX,
               rotateY,
-              transformStyle: "preserve-3d"
+              transformStyle: "preserve-3d",
             }}
           >
             {/* Property Background */}
             <motion.div
               className="absolute inset-0 rounded-3xl"
               animate={{
-                background: isExperienceActive 
+                background: isExperienceActive
                   ? [
                       `radial-gradient(circle at 30% 30%, ${selectedProperty.color}40 0%, transparent 70%)`,
                       `radial-gradient(circle at 70% 70%, ${selectedProperty.color}60 0%, transparent 70%)`,
-                      `radial-gradient(circle at 50% 50%, ${selectedProperty.color}40 0%, transparent 70%)`
+                      `radial-gradient(circle at 50% 50%, ${selectedProperty.color}40 0%, transparent 70%)`,
                     ]
-                  : `linear-gradient(135deg, ${selectedProperty.color}20, transparent)`
+                  : `linear-gradient(135deg, ${selectedProperty.color}20, transparent)`,
               }}
-              transition={{ duration: 3, repeat: isExperienceActive ? Infinity : 0 }}
+              transition={{
+                duration: 3,
+                repeat: isExperienceActive ? Infinity : 0,
+              }}
             />
 
             {/* Property Info Overlay */}
             <div className="absolute inset-0 flex items-center justify-center">
               <motion.div
                 className="text-center text-white max-w-2xl mx-auto p-8"
-                animate={isExperienceActive ? {
-                  scale: [1, 1.05, 1],
-                  opacity: [0.9, 1, 0.9]
-                } : {}}
-                transition={{ duration: 2, repeat: isExperienceActive ? Infinity : 0 }}
+                animate={
+                  isExperienceActive
+                    ? {
+                        scale: [1, 1.05, 1],
+                        opacity: [0.9, 1, 0.9],
+                      }
+                    : {}
+                }
+                transition={{
+                  duration: 2,
+                  repeat: isExperienceActive ? Infinity : 0,
+                }}
               >
                 <motion.h3
                   className="text-4xl font-bold mb-4"
@@ -219,8 +264,12 @@ export default function SynestheticPropertyExperience() {
                 >
                   {selectedProperty.name}
                 </motion.h3>
-                <p className="text-xl text-white/80 mb-2">{selectedProperty.location}</p>
-                <p className="text-3xl font-bold text-yellow-400">{selectedProperty.price}</p>
+                <p className="text-xl text-white/80 mb-2">
+                  {selectedProperty.location}
+                </p>
+                <p className="text-3xl font-bold text-yellow-400">
+                  {selectedProperty.price}
+                </p>
 
                 {/* Current Sense Highlight */}
                 {isExperienceActive && currentSense && (
@@ -232,16 +281,25 @@ export default function SynestheticPropertyExperience() {
                   >
                     <motion.div
                       className="text-2xl font-bold mb-2"
-                      animate={{ 
-                        color: [selectedProperty.color, "#ffffff", selectedProperty.color]
+                      animate={{
+                        color: [
+                          selectedProperty.color,
+                          "#ffffff",
+                          selectedProperty.color,
+                        ],
                       }}
                       transition={{ duration: 1, repeat: Infinity }}
                     >
-                      {currentSense === 'aroma' && `🌸 ${selectedProperty.aroma}`}
-                      {currentSense === 'temperature' && `🌡️ ${selectedProperty.temperature}°C`}
-                      {currentSense === 'vibration' && `〰️ ${selectedProperty.vibration}`}
-                      {currentSense === 'sound' && `🎵 ${selectedProperty.sound}`}
-                      {currentSense === 'emotion' && `💫 ${selectedProperty.emotion}`}
+                      {currentSense === "aroma" &&
+                        `🌸 ${selectedProperty.aroma}`}
+                      {currentSense === "temperature" &&
+                        `🌡️ ${selectedProperty.temperature}°C`}
+                      {currentSense === "vibration" &&
+                        `〰️ ${selectedProperty.vibration}`}
+                      {currentSense === "sound" &&
+                        `🎵 ${selectedProperty.sound}`}
+                      {currentSense === "emotion" &&
+                        `💫 ${selectedProperty.emotion}`}
                     </motion.div>
                   </motion.div>
                 )}
@@ -263,13 +321,13 @@ export default function SynestheticPropertyExperience() {
                     animate={{
                       scale: [0, 1, 0],
                       opacity: [0, 0.8, 0],
-                      y: [-20, -60, -100]
+                      y: [-20, -60, -100],
                     }}
                     transition={{
                       duration: 3,
                       repeat: Infinity,
                       delay: Math.random() * 2,
-                      ease: "easeOut"
+                      ease: "easeOut",
                     }}
                   />
                 ))}
@@ -285,13 +343,17 @@ export default function SynestheticPropertyExperience() {
                 onClick={() => setSelectedProperty(property)}
                 className={`
                   relative p-6 rounded-2xl backdrop-blur-md border transition-all duration-300
-                  ${selectedProperty.id === property.id
-                    ? 'bg-white/20 border-white/40 ring-2 ring-opacity-50'
-                    : 'bg-white/10 border-white/20 hover:bg-white/15'
+                  ${
+                    selectedProperty.id === property.id
+                      ? "bg-white/20 border-white/40 ring-2 ring-opacity-50"
+                      : "bg-white/10 border-white/20 hover:bg-white/15"
                   }
                 `}
                 style={{
-                  ringColor: selectedProperty.id === property.id ? property.color : 'transparent'
+                  ringColor:
+                    selectedProperty.id === property.id
+                      ? property.color
+                      : "transparent",
                 }}
                 whileHover={{ scale: 1.02, y: -5 }}
                 whileTap={{ scale: 0.98 }}
@@ -299,18 +361,27 @@ export default function SynestheticPropertyExperience() {
                 <div className="text-white text-center">
                   <motion.div
                     className="w-16 h-16 rounded-full mx-auto mb-4 flex items-center justify-center text-2xl"
-                    style={{ backgroundColor: property.color + '40' }}
-                    animate={selectedProperty.id === property.id && isExperienceActive ? {
-                      scale: [1, 1.1, 1],
-                      rotate: [0, 5, -5, 0]
-                    } : {}}
+                    style={{ backgroundColor: property.color + "40" }}
+                    animate={
+                      selectedProperty.id === property.id && isExperienceActive
+                        ? {
+                            scale: [1, 1.1, 1],
+                            rotate: [0, 5, -5, 0],
+                          }
+                        : {}
+                    }
                     transition={{ duration: 2, repeat: Infinity }}
                   >
                     🏠
                   </motion.div>
                   <h4 className="font-bold text-lg mb-2">{property.name}</h4>
-                  <p className="text-sm text-white/60 mb-2">{property.location}</p>
-                  <p className="text-lg font-bold" style={{ color: property.color }}>
+                  <p className="text-sm text-white/60 mb-2">
+                    {property.location}
+                  </p>
+                  <p
+                    className="text-lg font-bold"
+                    style={{ color: property.color }}
+                  >
                     {property.price}
                   </p>
                 </div>
@@ -320,7 +391,7 @@ export default function SynestheticPropertyExperience() {
                     className="absolute inset-0 rounded-2xl border-2"
                     style={{ borderColor: property.color }}
                     animate={{
-                      opacity: [0.5, 1, 0.5]
+                      opacity: [0.5, 1, 0.5],
                     }}
                     transition={{ duration: 2, repeat: Infinity }}
                   />
@@ -337,71 +408,86 @@ export default function SynestheticPropertyExperience() {
             transition={{ delay: 0.5 }}
           >
             {[
-              { 
-                key: 'aroma', 
-                icon: <Wind className="w-6 h-6" />, 
-                label: 'Aroma Digital',
+              {
+                key: "aroma",
+                icon: <Wind className="w-6 h-6" />,
+                label: "Aroma Digital",
                 value: selectedProperty.aroma,
-                color: '#10B981'
+                color: "#10B981",
               },
-              { 
-                key: 'temperature', 
-                icon: <Thermometer className="w-6 h-6" />, 
-                label: 'Temperatura Virtual',
+              {
+                key: "temperature",
+                icon: <Thermometer className="w-6 h-6" />,
+                label: "Temperatura Virtual",
                 value: `${selectedProperty.temperature}°C`,
-                color: '#F59E0B'
+                color: "#F59E0B",
               },
-              { 
-                key: 'vibration', 
-                icon: <Waves className="w-6 h-6" />, 
-                label: 'Vibración Háptica',
+              {
+                key: "vibration",
+                icon: <Waves className="w-6 h-6" />,
+                label: "Vibración Háptica",
                 value: selectedProperty.vibration,
-                color: '#8B5CF6'
+                color: "#8B5CF6",
               },
-              { 
-                key: 'sound', 
-                icon: <Volume2 className="w-6 h-6" />, 
-                label: 'Audio Espacial',
+              {
+                key: "sound",
+                icon: <Volume2 className="w-6 h-6" />,
+                label: "Audio Espacial",
                 value: selectedProperty.sound,
-                color: '#06B6D4'
+                color: "#06B6D4",
               },
-              { 
-                key: 'emotion', 
-                icon: <Heart className="w-6 h-6" />, 
-                label: 'Resonancia Emocional',
+              {
+                key: "emotion",
+                icon: <Heart className="w-6 h-6" />,
+                label: "Resonancia Emocional",
                 value: selectedProperty.emotion,
-                color: '#EC4899'
-              }
+                color: "#EC4899",
+              },
             ].map((sense, index) => (
               <motion.div
                 key={sense.key}
                 className="relative p-6 rounded-2xl bg-white/10 backdrop-blur-md border border-white/20"
-                animate={currentSense === sense.key ? {
-                  scale: [1, 1.05, 1],
-                  borderColor: [sense.color + '40', sense.color, sense.color + '40']
-                } : {}}
-                transition={{ duration: 1, repeat: currentSense === sense.key ? Infinity : 0 }}
+                animate={
+                  currentSense === sense.key
+                    ? {
+                        scale: [1, 1.05, 1],
+                        borderColor: [
+                          sense.color + "40",
+                          sense.color,
+                          sense.color + "40",
+                        ],
+                      }
+                    : {}
+                }
+                transition={{
+                  duration: 1,
+                  repeat: currentSense === sense.key ? Infinity : 0,
+                }}
               >
                 <div className="flex items-center gap-3 mb-4">
                   <motion.div
                     className="w-12 h-12 rounded-full flex items-center justify-center"
-                    style={{ backgroundColor: sense.color + '40' }}
-                    animate={isExperienceActive ? {
-                      rotate: [0, 10, -10, 0],
-                      scale: [1, 1.1, 1]
-                    } : {}}
-                    transition={{ 
-                      duration: 2, 
+                    style={{ backgroundColor: sense.color + "40" }}
+                    animate={
+                      isExperienceActive
+                        ? {
+                            rotate: [0, 10, -10, 0],
+                            scale: [1, 1.1, 1],
+                          }
+                        : {}
+                    }
+                    transition={{
+                      duration: 2,
                       repeat: isExperienceActive ? Infinity : 0,
-                      delay: index * 0.2
+                      delay: index * 0.2,
                     }}
                   >
-                    <div style={{ color: sense.color }}>
-                      {sense.icon}
-                    </div>
+                    <div style={{ color: sense.color }}>{sense.icon}</div>
                   </motion.div>
                   <div>
-                    <h4 className="text-white font-bold text-sm">{sense.label}</h4>
+                    <h4 className="text-white font-bold text-sm">
+                      {sense.label}
+                    </h4>
                   </div>
                 </div>
 
@@ -411,8 +497,8 @@ export default function SynestheticPropertyExperience() {
                     className="h-full rounded-full"
                     style={{ backgroundColor: sense.color }}
                     initial={{ width: "0%" }}
-                    animate={{ 
-                      width: `${getSenseIntensity(selectedProperty.id, sense.key)}%`
+                    animate={{
+                      width: `${getSenseIntensity(selectedProperty.id, sense.key)}%`,
                     }}
                     transition={{ duration: 1, delay: 0.5 }}
                   />
@@ -429,7 +515,7 @@ export default function SynestheticPropertyExperience() {
                     style={{ borderColor: sense.color }}
                     animate={{
                       opacity: [0, 1, 0],
-                      scale: [1, 1.02, 1]
+                      scale: [1, 1.02, 1],
                     }}
                     transition={{ duration: 1, repeat: Infinity }}
                   />
@@ -448,33 +534,37 @@ export default function SynestheticPropertyExperience() {
             <div className="flex items-start gap-4">
               <motion.div
                 className="w-12 h-12 bg-gradient-to-r from-pink-500 to-purple-500 rounded-full flex items-center justify-center flex-shrink-0"
-                animate={{ 
+                animate={{
                   scale: [1, 1.1, 1],
-                  rotate: [0, 5, -5, 0]
+                  rotate: [0, 5, -5, 0],
                 }}
                 transition={{ duration: 3, repeat: Infinity }}
               >
                 <Zap className="w-6 h-6 text-white" />
               </motion.div>
-              
+
               <div>
                 <h4 className="text-white font-bold text-xl mb-4">
                   Tecnología Sinestésica Inmobiliaria™
                 </h4>
                 <p className="text-white/80 mb-4">
-                  Cada propiedad en BlueEyes genera una signature sensorial única basada en su 
-                  arquitectura, ubicación, historia y energía. Nuestra IA analiza miles de 
-                  variables para crear experiencias multisensoriales auténticas.
+                  Cada propiedad en BlueEyes genera una signature sensorial
+                  única basada en su arquitectura, ubicación, historia y
+                  energía. Nuestra IA analiza miles de variables para crear
+                  experiencias multisensoriales auténticas.
                 </p>
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm text-white/60">
                   <div>
-                    <strong>🧠 Neuroplasticidad:</strong> Asociaciones sensoriales personalizadas
+                    <strong>🧠 Neuroplasticidad:</strong> Asociaciones
+                    sensoriales personalizadas
                   </div>
                   <div>
-                    <strong>🌊 Resonancia:</strong> Sincronización con frecuencias arquitectónicas
+                    <strong>🌊 Resonancia:</strong> Sincronización con
+                    frecuencias arquitectónicas
                   </div>
                   <div>
-                    <strong>💫 Memoria:</strong> Impronta emocional duradera del espacio
+                    <strong>💫 Memoria:</strong> Impronta emocional duradera del
+                    espacio
                   </div>
                 </div>
               </div>
@@ -485,27 +575,28 @@ export default function SynestheticPropertyExperience() {
 
       {/* Background Sensory Field */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
-        {isExperienceActive && Array.from({ length: 20 }).map((_, i) => (
-          <motion.div
-            key={i}
-            className="absolute w-1 h-40 bg-gradient-to-b from-transparent via-white/20 to-transparent"
-            style={{
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
-              transform: `rotate(${Math.random() * 360}deg)`,
-            }}
-            animate={{
-              opacity: [0, 0.5, 0],
-              scaleY: [0, 1, 0]
-            }}
-            transition={{
-              duration: 4,
-              repeat: Infinity,
-              delay: Math.random() * 2,
-              ease: "easeInOut"
-            }}
-          />
-        ))}
+        {isExperienceActive &&
+          Array.from({ length: 20 }).map((_, i) => (
+            <motion.div
+              key={i}
+              className="absolute w-1 h-40 bg-gradient-to-b from-transparent via-white/20 to-transparent"
+              style={{
+                left: `${Math.random() * 100}%`,
+                top: `${Math.random() * 100}%`,
+                transform: `rotate(${Math.random() * 360}deg)`,
+              }}
+              animate={{
+                opacity: [0, 0.5, 0],
+                scaleY: [0, 1, 0],
+              }}
+              transition={{
+                duration: 4,
+                repeat: Infinity,
+                delay: Math.random() * 2,
+                ease: "easeInOut",
+              }}
+            />
+          ))}
       </div>
     </div>
   );

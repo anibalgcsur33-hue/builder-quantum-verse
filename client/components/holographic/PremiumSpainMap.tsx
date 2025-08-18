@@ -7,25 +7,96 @@ interface HolographicBeacon {
   name: string;
   lat: number;
   lon: number;
-  type: 'madrid' | 'barcelona' | 'valencia' | 'sevilla' | 'bilbao' | 'canarias' | 'baleares';
+  type:
+    | "madrid"
+    | "barcelona"
+    | "valencia"
+    | "sevilla"
+    | "bilbao"
+    | "canarias"
+    | "baleares";
   properties: number;
-  luxury_level: 'premium' | 'ultra' | 'supreme';
+  luxury_level: "premium" | "ultra" | "supreme";
   glow_color: string;
 }
 
 const premiumBeacons: HolographicBeacon[] = [
-  { id: 'mad', name: 'Madrid Capital', lat: 40.4168, lon: -3.7038, type: 'madrid', properties: 2847, luxury_level: 'supreme', glow_color: '#FFD700' },
-  { id: 'bcn', name: 'Barcelona Premium', lat: 41.3874, lon: 2.1686, type: 'barcelona', properties: 1892, luxury_level: 'ultra', glow_color: '#0EE7E7' },
-  { id: 'val', name: 'Valencia Elite', lat: 39.4699, lon: -0.3763, type: 'valencia', properties: 1234, luxury_level: 'premium', glow_color: '#00E7A7' },
-  { id: 'sev', name: 'Sevilla Royal', lat: 37.3886, lon: -5.9823, type: 'sevilla', properties: 987, luxury_level: 'ultra', glow_color: '#A855F7' },
-  { id: 'bil', name: 'Bilbao Exclusive', lat: 43.2627, lon: -2.9253, type: 'bilbao', properties: 743, luxury_level: 'premium', glow_color: '#F59E0B' },
-  { id: 'can', name: 'Islas Canarias', lat: 28.2916, lon: -16.6291, type: 'canarias', properties: 1576, luxury_level: 'supreme', glow_color: '#06B6D4' },
-  { id: 'bal', name: 'Islas Baleares', lat: 39.6953, lon: 3.0176, type: 'baleares', properties: 1445, luxury_level: 'ultra', glow_color: '#EC4899' }
+  {
+    id: "mad",
+    name: "Madrid Capital",
+    lat: 40.4168,
+    lon: -3.7038,
+    type: "madrid",
+    properties: 2847,
+    luxury_level: "supreme",
+    glow_color: "#FFD700",
+  },
+  {
+    id: "bcn",
+    name: "Barcelona Premium",
+    lat: 41.3874,
+    lon: 2.1686,
+    type: "barcelona",
+    properties: 1892,
+    luxury_level: "ultra",
+    glow_color: "#0EE7E7",
+  },
+  {
+    id: "val",
+    name: "Valencia Elite",
+    lat: 39.4699,
+    lon: -0.3763,
+    type: "valencia",
+    properties: 1234,
+    luxury_level: "premium",
+    glow_color: "#00E7A7",
+  },
+  {
+    id: "sev",
+    name: "Sevilla Royal",
+    lat: 37.3886,
+    lon: -5.9823,
+    type: "sevilla",
+    properties: 987,
+    luxury_level: "ultra",
+    glow_color: "#A855F7",
+  },
+  {
+    id: "bil",
+    name: "Bilbao Exclusive",
+    lat: 43.2627,
+    lon: -2.9253,
+    type: "bilbao",
+    properties: 743,
+    luxury_level: "premium",
+    glow_color: "#F59E0B",
+  },
+  {
+    id: "can",
+    name: "Islas Canarias",
+    lat: 28.2916,
+    lon: -16.6291,
+    type: "canarias",
+    properties: 1576,
+    luxury_level: "supreme",
+    glow_color: "#06B6D4",
+  },
+  {
+    id: "bal",
+    name: "Islas Baleares",
+    lat: 39.6953,
+    lon: 3.0176,
+    type: "baleares",
+    properties: 1445,
+    luxury_level: "ultra",
+    glow_color: "#EC4899",
+  },
 ];
 
 export default function PremiumSpainMap() {
   const mapRef = useRef<HTMLDivElement>(null);
-  const [selectedBeacon, setSelectedBeacon] = useState<HolographicBeacon | null>(null);
+  const [selectedBeacon, setSelectedBeacon] =
+    useState<HolographicBeacon | null>(null);
   const [showYachts, setShowYachts] = useState(true);
   const [showFlights, setShowFlights] = useState(true);
   const sceneRef = useRef<THREE.Scene | null>(null);
@@ -36,11 +107,16 @@ export default function PremiumSpainMap() {
 
     // Configuración ultra-futurista para mapa 3D flotante
     const scene = new THREE.Scene();
-    const camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 1000);
-    const renderer = new THREE.WebGLRenderer({ 
-      antialias: true, 
+    const camera = new THREE.PerspectiveCamera(
+      60,
+      window.innerWidth / window.innerHeight,
+      0.1,
+      1000,
+    );
+    const renderer = new THREE.WebGLRenderer({
+      antialias: true,
       alpha: true,
-      powerPreference: "high-performance"
+      powerPreference: "high-performance",
     });
 
     renderer.setSize(window.innerWidth, window.innerHeight * 0.8);
@@ -61,7 +137,7 @@ export default function PremiumSpainMap() {
         time: { value: 0 },
         mouse: { value: new THREE.Vector2(0, 0) },
         coastlines: { value: 1.0 },
-        waves_intensity: { value: 0.5 }
+        waves_intensity: { value: 0.5 },
       },
       vertexShader: `
         varying vec2 vUv;
@@ -175,7 +251,7 @@ export default function PremiumSpainMap() {
         }
       `,
       transparent: true,
-      side: THREE.DoubleSide
+      side: THREE.DoubleSide,
     });
 
     const spainMap = new THREE.Mesh(spainGeometry, spainMaterial);
@@ -184,20 +260,28 @@ export default function PremiumSpainMap() {
     scene.add(spainMap);
 
     // Crear beacons holográficos radiant es para ciudades
-    const beaconMeshes: Array<{ mesh: THREE.Mesh, beacon: HolographicBeacon }> = [];
-    
+    const beaconMeshes: Array<{ mesh: THREE.Mesh; beacon: HolographicBeacon }> =
+      [];
+
     premiumBeacons.forEach((beacon) => {
       // Convertir coordenadas lat/lon a posición en el mapa
       const x = ((beacon.lon + 10) / 20) * 20 - 10; // Aproximación para España
-      const y = ((beacon.lat - 35) / 10) * 12 - 6;   // Aproximación para España
-      
+      const y = ((beacon.lat - 35) / 10) * 12 - 6; // Aproximación para España
+
       // Geometría del beacon
       const beaconGeometry = new THREE.ConeGeometry(0.3, 2, 8);
       const beaconMaterial = new THREE.ShaderMaterial({
         uniforms: {
           time: { value: 0 },
           glow_color: { value: new THREE.Color(beacon.glow_color) },
-          intensity: { value: beacon.luxury_level === 'supreme' ? 2.0 : beacon.luxury_level === 'ultra' ? 1.5 : 1.0 }
+          intensity: {
+            value:
+              beacon.luxury_level === "supreme"
+                ? 2.0
+                : beacon.luxury_level === "ultra"
+                  ? 1.5
+                  : 1.0,
+          },
         },
         vertexShader: `
           varying vec3 vPosition;
@@ -231,7 +315,7 @@ export default function PremiumSpainMap() {
             gl_FragColor = vec4(final_color, 0.9);
           }
         `,
-        transparent: true
+        transparent: true,
       });
 
       const beaconMesh = new THREE.Mesh(beaconGeometry, beaconMaterial);
@@ -246,7 +330,7 @@ export default function PremiumSpainMap() {
         color: beacon.glow_color,
         transparent: true,
         opacity: 0.3,
-        side: THREE.DoubleSide
+        side: THREE.DoubleSide,
       });
       const ring = new THREE.Mesh(ringGeometry, ringMaterial);
       ring.position.set(x, y, 0.1);
@@ -260,20 +344,16 @@ export default function PremiumSpainMap() {
       for (let i = 0; i < 8; i++) {
         const yachtGeometry = new THREE.BoxGeometry(0.3, 0.1, 0.8);
         const yachtMaterial = new THREE.MeshPhongMaterial({
-          color: 0xFFFFFF,
-          shininess: 100
+          color: 0xffffff,
+          shininess: 100,
         });
         const yacht = new THREE.Mesh(yachtGeometry, yachtMaterial);
-        
+
         // Posición aleatoria en las costas
         const angle = (i / 8) * Math.PI * 2;
-        yacht.position.set(
-          Math.cos(angle) * 12,
-          Math.sin(angle) * 8,
-          0.2
-        );
+        yacht.position.set(Math.cos(angle) * 12, Math.sin(angle) * 8, 0.2);
         yacht.userData = { angle, speed: 0.01 + Math.random() * 0.01 };
-        
+
         scene.add(yacht);
         yachts.push(yacht);
       }
@@ -287,28 +367,28 @@ export default function PremiumSpainMap() {
           const start = new THREE.Vector3(
             ((beacon.lon + 10) / 20) * 20 - 10,
             ((beacon.lat - 35) / 10) * 12 - 6,
-            2
+            2,
           );
           const end = new THREE.Vector3(
             ((premiumBeacons[index + 1].lon + 10) / 20) * 20 - 10,
             ((premiumBeacons[index + 1].lat - 35) / 10) * 12 - 6,
-            2
+            2,
           );
-          
+
           const curve = new THREE.QuadraticBezierCurve3(
             start,
             new THREE.Vector3((start.x + end.x) / 2, (start.y + end.y) / 2, 4),
-            end
+            end,
           );
-          
+
           const points = curve.getPoints(50);
           const geometry = new THREE.BufferGeometry().setFromPoints(points);
           const material = new THREE.LineBasicMaterial({
-            color: 0xFFD700,
+            color: 0xffd700,
             transparent: true,
-            opacity: 0.6
+            opacity: 0.6,
           });
-          
+
           const line = new THREE.Line(geometry, material);
           scene.add(line);
           flightPaths.push(line);
@@ -320,11 +400,11 @@ export default function PremiumSpainMap() {
     const ambientLight = new THREE.AmbientLight(0x404040, 1.2);
     scene.add(ambientLight);
 
-    const directionalLight = new THREE.DirectionalLight(0x0EE7E7, 2);
+    const directionalLight = new THREE.DirectionalLight(0x0ee7e7, 2);
     directionalLight.position.set(15, 15, 15);
     scene.add(directionalLight);
 
-    const pointLight = new THREE.PointLight(0x00E7A7, 3, 50);
+    const pointLight = new THREE.PointLight(0x00e7a7, 3, 50);
     pointLight.position.set(0, 0, 10);
     scene.add(pointLight);
 
@@ -342,16 +422,19 @@ export default function PremiumSpainMap() {
       mouse.y = -((event.clientY - rect.top) / rect.height) * 2 + 1;
 
       raycaster.setFromCamera(mouse, camera);
-      const intersects = raycaster.intersectObjects(beaconMeshes.map(b => b.mesh));
+      const intersects = raycaster.intersectObjects(
+        beaconMeshes.map((b) => b.mesh),
+      );
 
       if (intersects.length > 0) {
-        const clickedBeacon = intersects[0].object.userData as HolographicBeacon;
+        const clickedBeacon = intersects[0].object
+          .userData as HolographicBeacon;
         setSelectedBeacon(clickedBeacon);
         console.log(`🏙️ Beacon seleccionado: ${clickedBeacon.name}`);
       }
     };
 
-    renderer.domElement.addEventListener('click', onMouseClick);
+    renderer.domElement.addEventListener("click", onMouseClick);
 
     // Loop de animación ultra-fluido
     let time = 0;
@@ -394,7 +477,7 @@ export default function PremiumSpainMap() {
     animate();
 
     return () => {
-      renderer.domElement.removeEventListener('click', onMouseClick);
+      renderer.domElement.removeEventListener("click", onMouseClick);
       if (mapRef.current && renderer.domElement) {
         mapRef.current.removeChild(renderer.domElement);
       }
@@ -404,7 +487,6 @@ export default function PremiumSpainMap() {
 
   return (
     <section className="relative w-full h-screen bg-gradient-to-b from-black via-blue-dark to-purple-dark overflow-hidden">
-      
       {/* Header ultra-futurista */}
       <div className="absolute top-8 left-8 right-8 z-20 flex justify-between items-start">
         <div className="premium-map-title">
@@ -412,7 +494,8 @@ export default function PremiumSpainMap() {
             Atlas Holográfico España Premium
           </h1>
           <p className="text-white/80 text-lg">
-            Mapa 3D flotante con costas brillantes y rutas de lujo en tiempo real
+            Mapa 3D flotante con costas brillantes y rutas de lujo en tiempo
+            real
           </p>
         </div>
 
@@ -420,15 +503,15 @@ export default function PremiumSpainMap() {
         <div className="premium-controls">
           <button
             onClick={() => setShowYachts(!showYachts)}
-            className={`control-btn ${showYachts ? 'active' : ''}`}
+            className={`control-btn ${showYachts ? "active" : ""}`}
           >
             <Yacht className="w-5 h-5" />
             <span>Yates de Lujo</span>
           </button>
-          
+
           <button
             onClick={() => setShowFlights(!showFlights)}
-            className={`control-btn ${showFlights ? 'active' : ''}`}
+            className={`control-btn ${showFlights ? "active" : ""}`}
           >
             <Plane className="w-5 h-5" />
             <span>Jets Privados</span>
@@ -443,10 +526,17 @@ export default function PremiumSpainMap() {
       {selectedBeacon && (
         <div className="absolute bottom-8 left-8 z-20 premium-beacon-panel">
           <div className="beacon-header">
-            <div className="beacon-glow" style={{ backgroundColor: selectedBeacon.glow_color }}></div>
+            <div
+              className="beacon-glow"
+              style={{ backgroundColor: selectedBeacon.glow_color }}
+            ></div>
             <div>
-              <h3 className="text-2xl font-bold text-white">{selectedBeacon.name}</h3>
-              <p className="text-white/70 capitalize">{selectedBeacon.type} • {selectedBeacon.luxury_level}</p>
+              <h3 className="text-2xl font-bold text-white">
+                {selectedBeacon.name}
+              </h3>
+              <p className="text-white/70 capitalize">
+                {selectedBeacon.type} • {selectedBeacon.luxury_level}
+              </p>
             </div>
           </div>
 
@@ -454,7 +544,9 @@ export default function PremiumSpainMap() {
             <div className="stat-item">
               <MapPin className="w-5 h-5 text-neon-teal" />
               <div>
-                <div className="text-2xl font-bold text-neon-teal">{selectedBeacon.properties}</div>
+                <div className="text-2xl font-bold text-neon-teal">
+                  {selectedBeacon.properties}
+                </div>
                 <div className="text-white/60 text-sm">Propiedades Premium</div>
               </div>
             </div>
@@ -463,8 +555,11 @@ export default function PremiumSpainMap() {
               <Zap className="w-5 h-5 text-neon-emerald" />
               <div>
                 <div className="text-2xl font-bold text-neon-emerald">
-                  {selectedBeacon.luxury_level === 'supreme' ? '★★★' : 
-                   selectedBeacon.luxury_level === 'ultra' ? '★★' : '★'}
+                  {selectedBeacon.luxury_level === "supreme"
+                    ? "★★★"
+                    : selectedBeacon.luxury_level === "ultra"
+                      ? "★★"
+                      : "★"}
                 </div>
                 <div className="text-white/60 text-sm">Nivel de Lujo</div>
               </div>
@@ -476,7 +571,7 @@ export default function PremiumSpainMap() {
               <Eye className="w-5 h-5" />
               <span>Tour VR Exclusivo</span>
             </button>
-            
+
             <button className="premium-action-btn secondary">
               <Globe className="w-5 h-5" />
               <span>Explorar Zona</span>
@@ -488,7 +583,7 @@ export default function PremiumSpainMap() {
       {/* Leyenda del mapa */}
       <div className="absolute top-8 right-8 z-20 map-legend">
         <h4 className="text-white font-bold mb-4">Leyenda Premium</h4>
-        
+
         <div className="legend-items">
           <div className="legend-item">
             <div className="legend-color supreme"></div>
@@ -522,7 +617,11 @@ export default function PremiumSpainMap() {
       {/* Estilos CSS ultra-avanzados */}
       <style jsx>{`
         .premium-map-title {
-          background: linear-gradient(135deg, rgba(0, 0, 0, 0.8), rgba(14, 231, 231, 0.1));
+          background: linear-gradient(
+            135deg,
+            rgba(0, 0, 0, 0.8),
+            rgba(14, 231, 231, 0.1)
+          );
           backdrop-filter: blur(20px);
           border: 1px solid rgba(14, 231, 231, 0.3);
           border-radius: 20px;
@@ -531,7 +630,7 @@ export default function PremiumSpainMap() {
         }
 
         .holographic-text {
-          background: linear-gradient(45deg, #0EE7E7, #00E7A7, #FFD700);
+          background: linear-gradient(45deg, #0ee7e7, #00e7a7, #ffd700);
           background-size: 300% 300%;
           -webkit-background-clip: text;
           -webkit-text-fill-color: transparent;
@@ -574,7 +673,11 @@ export default function PremiumSpainMap() {
         }
 
         .premium-beacon-panel {
-          background: linear-gradient(135deg, rgba(0, 0, 0, 0.9), rgba(14, 231, 231, 0.1));
+          background: linear-gradient(
+            135deg,
+            rgba(0, 0, 0, 0.9),
+            rgba(14, 231, 231, 0.1)
+          );
           backdrop-filter: blur(25px);
           border: 2px solid rgba(14, 231, 231, 0.3);
           border-radius: 25px;
@@ -632,7 +735,7 @@ export default function PremiumSpainMap() {
         }
 
         .premium-action-btn.primary {
-          background: linear-gradient(45deg, #0EE7E7, #00E7A7);
+          background: linear-gradient(45deg, #0ee7e7, #00e7a7);
           color: #0a0f1a;
           border: none;
         }
@@ -684,32 +787,39 @@ export default function PremiumSpainMap() {
         }
 
         .legend-color.supreme {
-          background: linear-gradient(45deg, #FFD700, #FFA500);
-          box-shadow: 0 0 10px #FFD700;
+          background: linear-gradient(45deg, #ffd700, #ffa500);
+          box-shadow: 0 0 10px #ffd700;
         }
 
         .legend-color.ultra {
-          background: linear-gradient(45deg, #0EE7E7, #00E7A7);
-          box-shadow: 0 0 10px #0EE7E7;
+          background: linear-gradient(45deg, #0ee7e7, #00e7a7);
+          box-shadow: 0 0 10px #0ee7e7;
         }
 
         .legend-color.premium {
-          background: linear-gradient(45deg, #A855F7, #8B5CF6);
-          box-shadow: 0 0 10px #A855F7;
+          background: linear-gradient(45deg, #a855f7, #8b5cf6);
+          box-shadow: 0 0 10px #a855f7;
         }
 
         @keyframes holographic-shimmer {
-          0% { background-position: 0% 50%; }
-          50% { background-position: 100% 50%; }
-          100% { background-position: 0% 50%; }
+          0% {
+            background-position: 0% 50%;
+          }
+          50% {
+            background-position: 100% 50%;
+          }
+          100% {
+            background-position: 0% 50%;
+          }
         }
 
         @keyframes beacon-pulse {
-          0%, 100% { 
+          0%,
+          100% {
             transform: scale(1);
             opacity: 1;
           }
-          50% { 
+          50% {
             transform: scale(1.2);
             opacity: 0.8;
           }

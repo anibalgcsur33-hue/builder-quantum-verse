@@ -12,11 +12,16 @@ export default function PortalHeroes() {
 
     // Configuración ultra-futurista con WebGL
     const scene = new THREE.Scene();
-    const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-    const renderer = new THREE.WebGLRenderer({ 
-      antialias: true, 
+    const camera = new THREE.PerspectiveCamera(
+      75,
+      window.innerWidth / window.innerHeight,
+      0.1,
+      1000,
+    );
+    const renderer = new THREE.WebGLRenderer({
+      antialias: true,
       alpha: true,
-      powerPreference: "high-performance"
+      powerPreference: "high-performance",
     });
 
     renderer.setSize(window.innerWidth, window.innerHeight);
@@ -36,7 +41,9 @@ export default function PortalHeroes() {
     const portalMaterial = new THREE.ShaderMaterial({
       uniforms: {
         time: { value: 0 },
-        resolution: { value: new THREE.Vector2(window.innerWidth, window.innerHeight) }
+        resolution: {
+          value: new THREE.Vector2(window.innerWidth, window.innerHeight),
+        },
       },
       vertexShader: `
         varying vec2 vUv;
@@ -98,7 +105,7 @@ export default function PortalHeroes() {
         }
       `,
       transparent: true,
-      side: THREE.DoubleSide
+      side: THREE.DoubleSide,
     });
 
     const portal = new THREE.Mesh(portalGeometry, portalMaterial);
@@ -124,15 +131,21 @@ export default function PortalHeroes() {
       colors[i * 3 + 2] = hue < 0.3 ? 0.2 : hue < 0.6 ? 0.9 : 1; // B
     }
 
-    particleGeometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
-    particleGeometry.setAttribute('color', new THREE.BufferAttribute(colors, 3));
+    particleGeometry.setAttribute(
+      "position",
+      new THREE.BufferAttribute(positions, 3),
+    );
+    particleGeometry.setAttribute(
+      "color",
+      new THREE.BufferAttribute(colors, 3),
+    );
 
     const particleMaterial = new THREE.PointsMaterial({
       size: 0.1,
       vertexColors: true,
       transparent: true,
       opacity: 0.8,
-      blending: THREE.AdditiveBlending
+      blending: THREE.AdditiveBlending,
     });
 
     const particles = new THREE.Points(particleGeometry, particleMaterial);
@@ -142,12 +155,12 @@ export default function PortalHeroes() {
     const ambientLight = new THREE.AmbientLight(0x404040, 0.6);
     scene.add(ambientLight);
 
-    const directionalLight = new THREE.DirectionalLight(0x0EE7E7, 2);
+    const directionalLight = new THREE.DirectionalLight(0x0ee7e7, 2);
     directionalLight.position.set(10, 10, 5);
     directionalLight.castShadow = true;
     scene.add(directionalLight);
 
-    const pointLight = new THREE.PointLight(0x00E7A7, 3, 30);
+    const pointLight = new THREE.PointLight(0x00e7a7, 3, 30);
     pointLight.position.set(0, 0, 5);
     scene.add(pointLight);
 
@@ -171,7 +184,8 @@ export default function PortalHeroes() {
 
       // Movimiento de partículas
       particles.rotation.y += 0.001;
-      const positions = particles.geometry.attributes.position.array as Float32Array;
+      const positions = particles.geometry.attributes.position
+        .array as Float32Array;
       for (let i = 0; i < particleCount; i++) {
         positions[i * 3 + 1] += Math.sin(time + i * 0.01) * 0.01;
       }
@@ -193,10 +207,10 @@ export default function PortalHeroes() {
       renderer.setSize(window.innerWidth, window.innerHeight);
     };
 
-    window.addEventListener('resize', handleResize);
+    window.addEventListener("resize", handleResize);
 
     return () => {
-      window.removeEventListener('resize', handleResize);
+      window.removeEventListener("resize", handleResize);
       if (portalRef.current && renderer.domElement) {
         portalRef.current.removeChild(renderer.domElement);
       }
@@ -207,16 +221,18 @@ export default function PortalHeroes() {
   return (
     <section className="relative w-full h-screen overflow-hidden">
       {/* Portal 3D holográfico de fondo */}
-      <div 
-        ref={portalRef} 
+      <div
+        ref={portalRef}
         className="absolute inset-0 z-0"
-        style={{ background: 'linear-gradient(135deg, #0a0f1a 0%, #1a1a2e 50%, #0f1419 100%)' }}
+        style={{
+          background:
+            "linear-gradient(135deg, #0a0f1a 0%, #1a1a2e 50%, #0f1419 100%)",
+        }}
       />
 
       {/* Overlay de contenido holográfico */}
       <div className="absolute inset-0 z-10 flex items-center justify-center">
         <div className="text-center max-w-6xl mx-auto px-6">
-          
           {/* Título cinematográfico ultra-futurista */}
           <div className="mb-12 relative">
             <h1 className="text-6xl lg:text-8xl font-bold mb-6 leading-tight">
@@ -224,22 +240,32 @@ export default function PortalHeroes() {
               <br />
               <span className="quantum-text-effect">Metaverso Premium</span>
             </h1>
-            
+
             {/* Subtítulo con efectos holográficos */}
             <p className="text-2xl lg:text-3xl text-white/90 max-w-4xl mx-auto leading-relaxed mb-8">
-              <span className="liquid-crystal-text">Portal holográfico ultra-futurista</span>
+              <span className="liquid-crystal-text">
+                Portal holográfico ultra-futurista
+              </span>
               <br />
-              <span className="golden-rays-text">a la costa mediterránea del futuro</span>
+              <span className="golden-rays-text">
+                a la costa mediterránea del futuro
+              </span>
             </p>
 
             {/* Efectos de partículas flotantes */}
             <div className="absolute -top-8 -left-8 w-16 h-16 holographic-particle animate-float">
               <Sparkles className="w-full h-full text-neon-teal opacity-60" />
             </div>
-            <div className="absolute -top-4 -right-12 w-12 h-12 holographic-particle animate-float" style={{animationDelay: '1s'}}>
+            <div
+              className="absolute -top-4 -right-12 w-12 h-12 holographic-particle animate-float"
+              style={{ animationDelay: "1s" }}
+            >
               <Zap className="w-full h-full text-neon-emerald opacity-60" />
             </div>
-            <div className="absolute -bottom-6 left-1/4 w-10 h-10 holographic-particle animate-float" style={{animationDelay: '2s'}}>
+            <div
+              className="absolute -bottom-6 left-1/4 w-10 h-10 holographic-particle animate-float"
+              style={{ animationDelay: "2s" }}
+            >
               <Eye className="w-full h-full text-purple-400 opacity-60" />
             </div>
           </div>
@@ -247,9 +273,15 @@ export default function PortalHeroes() {
           {/* Invitaciones cuánticas interactivas */}
           <div className="space-y-6 mb-12">
             <p className="text-xl text-white/80 max-w-3xl mx-auto quantum-shimmer">
-              <span className="text-neon-teal font-semibold">Huéspedes caminando</span> por arcos cristalinos de vidrio cuántico.
+              <span className="text-neon-teal font-semibold">
+                Huéspedes caminando
+              </span>{" "}
+              por arcos cristalinos de vidrio cuántico.
               <br />
-              <span className="text-neon-emerald font-semibold">Siluetas de mansiones</span> flotando sobre nubes radiantes.
+              <span className="text-neon-emerald font-semibold">
+                Siluetas de mansiones
+              </span>{" "}
+              flotando sobre nubes radiantes.
             </p>
           </div>
 
@@ -260,7 +292,7 @@ export default function PortalHeroes() {
               <span>Atravesar Portal</span>
               <div className="quantum-energy-trail"></div>
             </button>
-            
+
             <button className="holographic-btn-secondary px-12 py-5 text-xl font-bold flex items-center gap-4 group">
               <Eye className="w-7 h-7 group-hover:scale-125 transition-transform duration-500" />
               <span>Visión Cuántica</span>
@@ -271,19 +303,24 @@ export default function PortalHeroes() {
           {/* Datos holográficos en tiempo real */}
           <div className="mt-16 grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto">
             <div className="holographic-data-card">
-              <div className="text-4xl font-bold holographic-number mb-2">∞</div>
+              <div className="text-4xl font-bold holographic-number mb-2">
+                ∞
+              </div>
               <p className="text-white/70">Realidades Cuánticas</p>
             </div>
             <div className="holographic-data-card">
-              <div className="text-4xl font-bold holographic-number mb-2">7.2M</div>
+              <div className="text-4xl font-bold holographic-number mb-2">
+                7.2M
+              </div>
               <p className="text-white/70">Rayos de Luz Capturados</p>
             </div>
             <div className="holographic-data-card">
-              <div className="text-4xl font-bold holographic-number mb-2">99.9%</div>
+              <div className="text-4xl font-bold holographic-number mb-2">
+                99.9%
+              </div>
               <p className="text-white/70">Pureza Cristalina</p>
             </div>
           </div>
-
         </div>
       </div>
 
@@ -298,7 +335,7 @@ export default function PortalHeroes() {
       {/* Estilos CSS avanzados embebidos */}
       <style jsx>{`
         .holographic-text-gradient {
-          background: linear-gradient(45deg, #0EE7E7, #00E7A7, #A855F7);
+          background: linear-gradient(45deg, #0ee7e7, #00e7a7, #a855f7);
           background-size: 300% 300%;
           -webkit-background-clip: text;
           -webkit-text-fill-color: transparent;
@@ -307,7 +344,7 @@ export default function PortalHeroes() {
 
         .quantum-text-effect {
           color: white;
-          text-shadow: 
+          text-shadow:
             0 0 10px rgba(14, 231, 231, 0.8),
             0 0 20px rgba(0, 231, 167, 0.6),
             0 0 30px rgba(168, 85, 247, 0.4);
@@ -315,7 +352,7 @@ export default function PortalHeroes() {
         }
 
         .liquid-crystal-text {
-          background: linear-gradient(90deg, #0EE7E7, #ffffff, #00E7A7);
+          background: linear-gradient(90deg, #0ee7e7, #ffffff, #00e7a7);
           background-size: 200% 100%;
           -webkit-background-clip: text;
           -webkit-text-fill-color: transparent;
@@ -323,7 +360,7 @@ export default function PortalHeroes() {
         }
 
         .golden-rays-text {
-          background: linear-gradient(90deg, #FFD700, #FFA500, #FF6347);
+          background: linear-gradient(90deg, #ffd700, #ffa500, #ff6347);
           background-size: 200% 100%;
           -webkit-background-clip: text;
           -webkit-text-fill-color: transparent;
@@ -340,9 +377,13 @@ export default function PortalHeroes() {
         }
 
         .holographic-btn-primary {
-          background: linear-gradient(45deg, rgba(14, 231, 231, 0.2), rgba(0, 231, 167, 0.2));
+          background: linear-gradient(
+            45deg,
+            rgba(14, 231, 231, 0.2),
+            rgba(0, 231, 167, 0.2)
+          );
           border: 2px solid transparent;
-          border-image: linear-gradient(45deg, #0EE7E7, #00E7A7) 1;
+          border-image: linear-gradient(45deg, #0ee7e7, #00e7a7) 1;
           border-radius: 15px;
           color: white;
           position: relative;
@@ -351,17 +392,25 @@ export default function PortalHeroes() {
         }
 
         .holographic-btn-primary:hover {
-          background: linear-gradient(45deg, rgba(14, 231, 231, 0.4), rgba(0, 231, 167, 0.4));
-          box-shadow: 
+          background: linear-gradient(
+            45deg,
+            rgba(14, 231, 231, 0.4),
+            rgba(0, 231, 167, 0.4)
+          );
+          box-shadow:
             0 0 30px rgba(14, 231, 231, 0.6),
             inset 0 0 20px rgba(0, 231, 167, 0.2);
           transform: translateY(-5px);
         }
 
         .holographic-btn-secondary {
-          background: linear-gradient(45deg, rgba(168, 85, 247, 0.2), rgba(59, 130, 246, 0.2));
+          background: linear-gradient(
+            45deg,
+            rgba(168, 85, 247, 0.2),
+            rgba(59, 130, 246, 0.2)
+          );
           border: 2px solid transparent;
-          border-image: linear-gradient(45deg, #A855F7, #3B82F6) 1;
+          border-image: linear-gradient(45deg, #a855f7, #3b82f6) 1;
           border-radius: 15px;
           color: white;
           position: relative;
@@ -370,15 +419,23 @@ export default function PortalHeroes() {
         }
 
         .holographic-btn-secondary:hover {
-          background: linear-gradient(45deg, rgba(168, 85, 247, 0.4), rgba(59, 130, 246, 0.4));
-          box-shadow: 
+          background: linear-gradient(
+            45deg,
+            rgba(168, 85, 247, 0.4),
+            rgba(59, 130, 246, 0.4)
+          );
+          box-shadow:
             0 0 30px rgba(168, 85, 247, 0.6),
             inset 0 0 20px rgba(59, 130, 246, 0.2);
           transform: translateY(-5px);
         }
 
         .holographic-data-card {
-          background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
+          background: linear-gradient(
+            135deg,
+            rgba(255, 255, 255, 0.1),
+            rgba(255, 255, 255, 0.05)
+          );
           backdrop-filter: blur(20px);
           border: 1px solid rgba(255, 255, 255, 0.2);
           border-radius: 20px;
@@ -393,7 +450,7 @@ export default function PortalHeroes() {
         }
 
         .holographic-number {
-          background: linear-gradient(45deg, #0EE7E7, #00E7A7);
+          background: linear-gradient(45deg, #0ee7e7, #00e7a7);
           -webkit-background-clip: text;
           -webkit-text-fill-color: transparent;
           animation: holographic-pulse 2s ease-in-out infinite;
@@ -411,7 +468,7 @@ export default function PortalHeroes() {
         .quantum-pulse-wave {
           width: 6px;
           height: 6px;
-          background: #0EE7E7;
+          background: #0ee7e7;
           border-radius: 50%;
           position: absolute;
           top: 8px;
@@ -421,50 +478,103 @@ export default function PortalHeroes() {
         }
 
         @keyframes holographic-flow {
-          0% { background-position: 0% 50%; }
-          50% { background-position: 100% 50%; }
-          100% { background-position: 0% 50%; }
+          0% {
+            background-position: 0% 50%;
+          }
+          50% {
+            background-position: 100% 50%;
+          }
+          100% {
+            background-position: 0% 50%;
+          }
         }
 
         @keyframes quantum-glow {
-          0% { text-shadow: 0 0 10px rgba(14, 231, 231, 0.8), 0 0 20px rgba(0, 231, 167, 0.6); }
-          100% { text-shadow: 0 0 20px rgba(14, 231, 231, 1), 0 0 30px rgba(0, 231, 167, 0.8); }
+          0% {
+            text-shadow:
+              0 0 10px rgba(14, 231, 231, 0.8),
+              0 0 20px rgba(0, 231, 167, 0.6);
+          }
+          100% {
+            text-shadow:
+              0 0 20px rgba(14, 231, 231, 1),
+              0 0 30px rgba(0, 231, 167, 0.8);
+          }
         }
 
         @keyframes liquid-flow {
-          0% { background-position: 0% 0%; }
-          100% { background-position: 200% 0%; }
+          0% {
+            background-position: 0% 0%;
+          }
+          100% {
+            background-position: 200% 0%;
+          }
         }
 
         @keyframes golden-shimmer {
-          0%, 100% { background-position: 0% 0%; }
-          50% { background-position: 200% 0%; }
+          0%,
+          100% {
+            background-position: 0% 0%;
+          }
+          50% {
+            background-position: 200% 0%;
+          }
         }
 
         @keyframes float {
-          0%, 100% { transform: translateY(0px) rotate(0deg); }
-          33% { transform: translateY(-20px) rotate(120deg); }
-          66% { transform: translateY(-10px) rotate(240deg); }
+          0%,
+          100% {
+            transform: translateY(0px) rotate(0deg);
+          }
+          33% {
+            transform: translateY(-20px) rotate(120deg);
+          }
+          66% {
+            transform: translateY(-10px) rotate(240deg);
+          }
         }
 
         @keyframes quantum-shimmer {
-          0%, 100% { opacity: 0.8; transform: scale(1); }
-          50% { opacity: 1; transform: scale(1.02); }
+          0%,
+          100% {
+            opacity: 0.8;
+            transform: scale(1);
+          }
+          50% {
+            opacity: 1;
+            transform: scale(1.02);
+          }
         }
 
         @keyframes holographic-pulse {
-          0%, 100% { transform: scale(1); }
-          50% { transform: scale(1.1); }
+          0%,
+          100% {
+            transform: scale(1);
+          }
+          50% {
+            transform: scale(1.1);
+          }
         }
 
         @keyframes indicator-glow {
-          0%, 100% { box-shadow: 0 0 10px rgba(14, 231, 231, 0.3); }
-          50% { box-shadow: 0 0 20px rgba(14, 231, 231, 0.8); }
+          0%,
+          100% {
+            box-shadow: 0 0 10px rgba(14, 231, 231, 0.3);
+          }
+          50% {
+            box-shadow: 0 0 20px rgba(14, 231, 231, 0.8);
+          }
         }
 
         @keyframes wave-pulse {
-          0% { top: 8px; opacity: 1; }
-          100% { top: 32px; opacity: 0; }
+          0% {
+            top: 8px;
+            opacity: 1;
+          }
+          100% {
+            top: 32px;
+            opacity: 0;
+          }
         }
       `}</style>
     </section>

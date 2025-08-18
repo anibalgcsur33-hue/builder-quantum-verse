@@ -11,110 +11,118 @@ interface LuxuryProperty {
   bedrooms: number;
   bathrooms: number;
   sqm: number;
-  luxury_tier: 'diamond' | 'platinum' | 'gold';
+  luxury_tier: "diamond" | "platinum" | "gold";
   hologram_color: string;
   rotation_speed: number;
 }
 
 const premiumProperties: LuxuryProperty[] = [
   {
-    id: 'villa-marbella-01',
-    title: 'Villa Celestial Marbella',
-    price: '€12.5M',
-    location: 'Marbella, Costa del Sol',
-    image: 'https://images.unsplash.com/photo-1613490493576-7fde63acd811?w=800',
+    id: "villa-marbella-01",
+    title: "Villa Celestial Marbella",
+    price: "€12.5M",
+    location: "Marbella, Costa del Sol",
+    image: "https://images.unsplash.com/photo-1613490493576-7fde63acd811?w=800",
     bedrooms: 8,
     bathrooms: 10,
     sqm: 1200,
-    luxury_tier: 'diamond',
-    hologram_color: '#E879F9',
-    rotation_speed: 0.02
+    luxury_tier: "diamond",
+    hologram_color: "#E879F9",
+    rotation_speed: 0.02,
   },
   {
-    id: 'penthouse-madrid-02',
-    title: 'Penthouse Quantum Madrid',
-    price: '€8.9M',
-    location: 'Madrid, Salamanca',
-    image: 'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=800',
+    id: "penthouse-madrid-02",
+    title: "Penthouse Quantum Madrid",
+    price: "€8.9M",
+    location: "Madrid, Salamanca",
+    image: "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=800",
     bedrooms: 6,
     bathrooms: 7,
     sqm: 850,
-    luxury_tier: 'platinum',
-    hologram_color: '#0EE7E7',
-    rotation_speed: 0.015
+    luxury_tier: "platinum",
+    hologram_color: "#0EE7E7",
+    rotation_speed: 0.015,
   },
   {
-    id: 'mansion-barcelona-03',
-    title: 'Mansión Holográfica Barcelona',
-    price: '€15.2M',
-    location: 'Barcelona, Eixample',
-    image: 'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=800',
+    id: "mansion-barcelona-03",
+    title: "Mansión Holográfica Barcelona",
+    price: "€15.2M",
+    location: "Barcelona, Eixample",
+    image: "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=800",
     bedrooms: 10,
     bathrooms: 12,
     sqm: 1500,
-    luxury_tier: 'diamond',
-    hologram_color: '#FFD700',
-    rotation_speed: 0.025
+    luxury_tier: "diamond",
+    hologram_color: "#FFD700",
+    rotation_speed: 0.025,
   },
   {
-    id: 'villa-ibiza-04',
-    title: 'Villa Cristal Ibiza',
-    price: '€6.7M',
-    location: 'Ibiza, Es Vedra',
-    image: 'https://images.unsplash.com/photo-1613977257363-707ba9348227?w=800',
+    id: "villa-ibiza-04",
+    title: "Villa Cristal Ibiza",
+    price: "€6.7M",
+    location: "Ibiza, Es Vedra",
+    image: "https://images.unsplash.com/photo-1613977257363-707ba9348227?w=800",
     bedrooms: 5,
     bathrooms: 6,
     sqm: 680,
-    luxury_tier: 'gold',
-    hologram_color: '#00E7A7',
-    rotation_speed: 0.018
+    luxury_tier: "gold",
+    hologram_color: "#00E7A7",
+    rotation_speed: 0.018,
   },
   {
-    id: 'castle-palma-05',
-    title: 'Castillo Futurista Palma',
-    price: '€22.1M',
-    location: 'Palma, Mallorca',
-    image: 'https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?w=800',
+    id: "castle-palma-05",
+    title: "Castillo Futurista Palma",
+    price: "€22.1M",
+    location: "Palma, Mallorca",
+    image: "https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?w=800",
     bedrooms: 12,
     bathrooms: 15,
     sqm: 2200,
-    luxury_tier: 'diamond',
-    hologram_color: '#A855F7',
-    rotation_speed: 0.01
+    luxury_tier: "diamond",
+    hologram_color: "#A855F7",
+    rotation_speed: 0.01,
   },
   {
-    id: 'loft-valencia-06',
-    title: 'Loft Cuántico Valencia',
-    price: '€4.3M',
-    location: 'Valencia, Ciudad de las Artes',
-    image: 'https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde?w=800',
+    id: "loft-valencia-06",
+    title: "Loft Cuántico Valencia",
+    price: "€4.3M",
+    location: "Valencia, Ciudad de las Artes",
+    image: "https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde?w=800",
     bedrooms: 4,
     bathrooms: 5,
     sqm: 520,
-    luxury_tier: 'gold',
-    hologram_color: '#F59E0B',
-    rotation_speed: 0.022
-  }
+    luxury_tier: "gold",
+    hologram_color: "#F59E0B",
+    rotation_speed: 0.022,
+  },
 ];
 
 export default function RotatingDomeGallery() {
   const domeRef = useRef<HTMLDivElement>(null);
-  const [selectedProperty, setSelectedProperty] = useState<LuxuryProperty | null>(null);
+  const [selectedProperty, setSelectedProperty] =
+    useState<LuxuryProperty | null>(null);
   const [isRotating, setIsRotating] = useState(true);
-  const [viewMode, setViewMode] = useState<'dome' | 'expanded'>('dome');
+  const [viewMode, setViewMode] = useState<"dome" | "expanded">("dome");
   const sceneRef = useRef<THREE.Scene | null>(null);
-  const propertyMeshes = useRef<Array<{ mesh: THREE.Mesh, property: LuxuryProperty }>>([]);
+  const propertyMeshes = useRef<
+    Array<{ mesh: THREE.Mesh; property: LuxuryProperty }>
+  >([]);
 
   useEffect(() => {
     if (!domeRef.current) return;
 
     // Configuración ultra-futurista para domo cristalino
     const scene = new THREE.Scene();
-    const camera = new THREE.PerspectiveCamera(70, window.innerWidth / window.innerHeight, 0.1, 1000);
-    const renderer = new THREE.WebGLRenderer({ 
-      antialias: true, 
+    const camera = new THREE.PerspectiveCamera(
+      70,
+      window.innerWidth / window.innerHeight,
+      0.1,
+      1000,
+    );
+    const renderer = new THREE.WebGLRenderer({
+      antialias: true,
       alpha: true,
-      powerPreference: "high-performance"
+      powerPreference: "high-performance",
     });
 
     renderer.setSize(window.innerWidth, window.innerHeight * 0.9);
@@ -129,12 +137,20 @@ export default function RotatingDomeGallery() {
     sceneRef.current = scene;
 
     // Crear domo de cristal suspendido
-    const domeGeometry = new THREE.SphereGeometry(12, 64, 32, 0, Math.PI * 2, 0, Math.PI / 2);
+    const domeGeometry = new THREE.SphereGeometry(
+      12,
+      64,
+      32,
+      0,
+      Math.PI * 2,
+      0,
+      Math.PI / 2,
+    );
     const domeMaterial = new THREE.ShaderMaterial({
       uniforms: {
         time: { value: 0 },
-        starlight: { value: new THREE.Color(0x0EE7E7) },
-        crystal_intensity: { value: 0.3 }
+        starlight: { value: new THREE.Color(0x0ee7e7) },
+        crystal_intensity: { value: 0.3 },
       },
       vertexShader: `
         varying vec3 vPosition;
@@ -186,7 +202,7 @@ export default function RotatingDomeGallery() {
         }
       `,
       transparent: true,
-      side: THREE.DoubleSide
+      side: THREE.DoubleSide,
     });
 
     const dome = new THREE.Mesh(domeGeometry, domeMaterial);
@@ -195,7 +211,7 @@ export default function RotatingDomeGallery() {
 
     // Crear miniaturas holográficas de propiedades
     propertyMeshes.current = [];
-    
+
     premiumProperties.forEach((property, index) => {
       // Geometría de la miniatura
       const houseGeometry = new THREE.BoxGeometry(2, 1.5, 2);
@@ -203,8 +219,15 @@ export default function RotatingDomeGallery() {
         uniforms: {
           time: { value: 0 },
           property_color: { value: new THREE.Color(property.hologram_color) },
-          luxury_tier: { value: property.luxury_tier === 'diamond' ? 3.0 : property.luxury_tier === 'platinum' ? 2.0 : 1.0 },
-          texture_url: { value: null }
+          luxury_tier: {
+            value:
+              property.luxury_tier === "diamond"
+                ? 3.0
+                : property.luxury_tier === "platinum"
+                  ? 2.0
+                  : 1.0,
+          },
+          texture_url: { value: null },
         },
         vertexShader: `
           varying vec3 vPosition;
@@ -248,21 +271,21 @@ export default function RotatingDomeGallery() {
             gl_FragColor = vec4(final_color, alpha);
           }
         `,
-        transparent: true
+        transparent: true,
       });
 
       const house = new THREE.Mesh(houseGeometry, houseMaterial);
-      
+
       // Posicionar en círculo dentro del domo
       const angle = (index / premiumProperties.length) * Math.PI * 2;
       const radius = 8;
       house.position.set(
         Math.cos(angle) * radius,
         3 + Math.sin(time * property.rotation_speed) * 0.5,
-        Math.sin(angle) * radius
+        Math.sin(angle) * radius,
       );
       house.userData = { property, originalAngle: angle };
-      
+
       scene.add(house);
       propertyMeshes.current.push({ mesh: house, property });
 
@@ -270,23 +293,26 @@ export default function RotatingDomeGallery() {
       const particleCount = 50;
       const particleGeometry = new THREE.BufferGeometry();
       const positions = new Float32Array(particleCount * 3);
-      
+
       for (let i = 0; i < particleCount; i++) {
         positions[i * 3] = (Math.random() - 0.5) * 4;
         positions[i * 3 + 1] = (Math.random() - 0.5) * 4;
         positions[i * 3 + 2] = (Math.random() - 0.5) * 4;
       }
-      
-      particleGeometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
-      
+
+      particleGeometry.setAttribute(
+        "position",
+        new THREE.BufferAttribute(positions, 3),
+      );
+
       const particleMaterial = new THREE.PointsMaterial({
         color: property.hologram_color,
         size: 0.05,
         transparent: true,
         opacity: 0.6,
-        blending: THREE.AdditiveBlending
+        blending: THREE.AdditiveBlending,
       });
-      
+
       const particles = new THREE.Points(particleGeometry, particleMaterial);
       particles.position.copy(house.position);
       scene.add(particles);
@@ -295,19 +321,15 @@ export default function RotatingDomeGallery() {
     // Huéspedes elegantes paseando (figuras simples)
     const guestGeometry = new THREE.CylinderGeometry(0.2, 0.2, 2, 8);
     const guestMaterial = new THREE.MeshPhongMaterial({
-      color: 0xFFFFFF,
+      color: 0xffffff,
       transparent: true,
-      opacity: 0.7
+      opacity: 0.7,
     });
 
     for (let i = 0; i < 12; i++) {
       const guest = new THREE.Mesh(guestGeometry, guestMaterial);
       const angle = (i / 12) * Math.PI * 2;
-      guest.position.set(
-        Math.cos(angle) * 15,
-        1,
-        Math.sin(angle) * 15
-      );
+      guest.position.set(Math.cos(angle) * 15, 1, Math.sin(angle) * 15);
       guest.userData = { angle, speed: 0.005 + Math.random() * 0.005 };
       scene.add(guest);
     }
@@ -315,22 +337,25 @@ export default function RotatingDomeGallery() {
     // Fondo estrellado
     const starGeometry = new THREE.BufferGeometry();
     const starPositions = new Float32Array(2000 * 3);
-    
+
     for (let i = 0; i < 2000; i++) {
       starPositions[i * 3] = (Math.random() - 0.5) * 200;
       starPositions[i * 3 + 1] = Math.random() * 100;
       starPositions[i * 3 + 2] = (Math.random() - 0.5) * 200;
     }
-    
-    starGeometry.setAttribute('position', new THREE.BufferAttribute(starPositions, 3));
-    
+
+    starGeometry.setAttribute(
+      "position",
+      new THREE.BufferAttribute(starPositions, 3),
+    );
+
     const starMaterial = new THREE.PointsMaterial({
-      color: 0xFFFFFF,
+      color: 0xffffff,
       size: 0.2,
       transparent: true,
-      opacity: 0.8
+      opacity: 0.8,
     });
-    
+
     const stars = new THREE.Points(starGeometry, starMaterial);
     scene.add(stars);
 
@@ -338,16 +363,16 @@ export default function RotatingDomeGallery() {
     const ambientLight = new THREE.AmbientLight(0x404040, 1.5);
     scene.add(ambientLight);
 
-    const mainLight = new THREE.DirectionalLight(0x0EE7E7, 2);
+    const mainLight = new THREE.DirectionalLight(0x0ee7e7, 2);
     mainLight.position.set(20, 30, 20);
     mainLight.castShadow = true;
     scene.add(mainLight);
 
-    const accentLight1 = new THREE.PointLight(0x00E7A7, 2, 30);
+    const accentLight1 = new THREE.PointLight(0x00e7a7, 2, 30);
     accentLight1.position.set(-15, 15, 15);
     scene.add(accentLight1);
 
-    const accentLight2 = new THREE.PointLight(0xFFD700, 1.5, 25);
+    const accentLight2 = new THREE.PointLight(0xffd700, 1.5, 25);
     accentLight2.position.set(15, 20, -10);
     scene.add(accentLight2);
 
@@ -365,16 +390,19 @@ export default function RotatingDomeGallery() {
       mouse.y = -((event.clientY - rect.top) / rect.height) * 2 + 1;
 
       raycaster.setFromCamera(mouse, camera);
-      const intersects = raycaster.intersectObjects(propertyMeshes.current.map(p => p.mesh));
+      const intersects = raycaster.intersectObjects(
+        propertyMeshes.current.map((p) => p.mesh),
+      );
 
       if (intersects.length > 0) {
-        const clickedProperty = intersects[0].object.userData.property as LuxuryProperty;
+        const clickedProperty = intersects[0].object.userData
+          .property as LuxuryProperty;
         setSelectedProperty(clickedProperty);
         console.log(`🏰 Propiedad seleccionada: ${clickedProperty.title}`);
       }
     };
 
-    renderer.domElement.addEventListener('click', onMouseClick);
+    renderer.domElement.addEventListener("click", onMouseClick);
 
     // Loop de animación cinematográfica
     let time = 0;
@@ -400,7 +428,8 @@ export default function RotatingDomeGallery() {
 
         // Rotación individual de propiedades
         if (isRotating) {
-          const newAngle = mesh.userData.originalAngle + time * property.rotation_speed;
+          const newAngle =
+            mesh.userData.originalAngle + time * property.rotation_speed;
           const radius = 8;
           mesh.position.x = Math.cos(newAngle) * radius;
           mesh.position.z = Math.sin(newAngle) * radius;
@@ -429,7 +458,7 @@ export default function RotatingDomeGallery() {
     animate();
 
     return () => {
-      renderer.domElement.removeEventListener('click', onMouseClick);
+      renderer.domElement.removeEventListener("click", onMouseClick);
       if (domeRef.current && renderer.domElement) {
         domeRef.current.removeChild(renderer.domElement);
       }
@@ -439,25 +468,32 @@ export default function RotatingDomeGallery() {
 
   const getTierIcon = (tier: string) => {
     switch (tier) {
-      case 'diamond': return <Gem className="w-5 h-5" />;
-      case 'platinum': return <Crown className="w-5 h-5" />;
-      case 'gold': return <Star className="w-5 h-5" />;
-      default: return <Home className="w-5 h-5" />;
+      case "diamond":
+        return <Gem className="w-5 h-5" />;
+      case "platinum":
+        return <Crown className="w-5 h-5" />;
+      case "gold":
+        return <Star className="w-5 h-5" />;
+      default:
+        return <Home className="w-5 h-5" />;
     }
   };
 
   const getTierColor = (tier: string) => {
     switch (tier) {
-      case 'diamond': return 'text-purple-400';
-      case 'platinum': return 'text-neon-teal';
-      case 'gold': return 'text-yellow-400';
-      default: return 'text-white';
+      case "diamond":
+        return "text-purple-400";
+      case "platinum":
+        return "text-neon-teal";
+      case "gold":
+        return "text-yellow-400";
+      default:
+        return "text-white";
     }
   };
 
   return (
     <section className="relative w-full h-screen bg-gradient-to-b from-black via-blue-dark to-purple-dark overflow-hidden">
-      
       {/* Header de galería ultra-futurista */}
       <div className="absolute top-8 left-8 right-8 z-20 flex justify-between items-start">
         <div className="gallery-title">
@@ -465,7 +501,8 @@ export default function RotatingDomeGallery() {
             Galería Domo Cristalino
           </h1>
           <p className="text-white/80 text-lg">
-            Miniaturas holográficas flotantes • Huéspedes elegantes • Cielo estrellado
+            Miniaturas holográficas flotantes • Huéspedes elegantes • Cielo
+            estrellado
           </p>
         </div>
 
@@ -473,18 +510,20 @@ export default function RotatingDomeGallery() {
         <div className="gallery-controls">
           <button
             onClick={() => setIsRotating(!isRotating)}
-            className={`control-btn ${isRotating ? 'active' : ''}`}
+            className={`control-btn ${isRotating ? "active" : ""}`}
           >
             <Eye className="w-5 h-5" />
-            <span>{isRotating ? 'Pausar' : 'Rotar'}</span>
+            <span>{isRotating ? "Pausar" : "Rotar"}</span>
           </button>
-          
+
           <button
-            onClick={() => setViewMode(viewMode === 'dome' ? 'expanded' : 'dome')}
+            onClick={() =>
+              setViewMode(viewMode === "dome" ? "expanded" : "dome")
+            }
             className="control-btn"
           >
             <Expand className="w-5 h-5" />
-            <span>Vista {viewMode === 'dome' ? 'Expandida' : 'Domo'}</span>
+            <span>Vista {viewMode === "dome" ? "Expandida" : "Domo"}</span>
           </button>
         </div>
       </div>
@@ -496,21 +535,25 @@ export default function RotatingDomeGallery() {
       {selectedProperty && (
         <div className="absolute bottom-8 left-8 z-20 luxury-property-panel">
           <div className="property-header">
-            <img 
-              src={selectedProperty.image} 
+            <img
+              src={selectedProperty.image}
               alt={selectedProperty.title}
               className="property-image"
             />
             <div className="property-info">
               <div className="flex items-center gap-2 mb-2">
-                <div className={`tier-icon ${getTierColor(selectedProperty.luxury_tier)}`}>
+                <div
+                  className={`tier-icon ${getTierColor(selectedProperty.luxury_tier)}`}
+                >
                   {getTierIcon(selectedProperty.luxury_tier)}
                 </div>
                 <span className={`tier-badge ${selectedProperty.luxury_tier}`}>
                   {selectedProperty.luxury_tier.toUpperCase()}
                 </span>
               </div>
-              <h3 className="text-2xl font-bold text-white">{selectedProperty.title}</h3>
+              <h3 className="text-2xl font-bold text-white">
+                {selectedProperty.title}
+              </h3>
               <p className="text-white/70">{selectedProperty.location}</p>
               <div className="price-tag">{selectedProperty.price}</div>
             </div>
@@ -538,7 +581,7 @@ export default function RotatingDomeGallery() {
               <Eye className="w-5 h-5" />
               <span>Tour VR Inmersivo</span>
             </button>
-            
+
             <button className="luxury-action-btn secondary">
               <Expand className="w-5 h-5" />
               <span>Expandir Holograma</span>
@@ -555,17 +598,19 @@ export default function RotatingDomeGallery() {
             <div
               key={property.id}
               onClick={() => setSelectedProperty(property)}
-              className={`miniature-item ${selectedProperty?.id === property.id ? 'active' : ''}`}
+              className={`miniature-item ${selectedProperty?.id === property.id ? "active" : ""}`}
               style={{ borderColor: property.hologram_color }}
             >
-              <div 
+              <div
                 className="miniature-glow"
                 style={{ backgroundColor: property.hologram_color }}
               ></div>
               <div className="miniature-info">
                 <div className="miniature-title">{property.title}</div>
                 <div className="miniature-price">{property.price}</div>
-                <div className={`miniature-tier ${getTierColor(property.luxury_tier)}`}>
+                <div
+                  className={`miniature-tier ${getTierColor(property.luxury_tier)}`}
+                >
                   {getTierIcon(property.luxury_tier)}
                 </div>
               </div>
@@ -577,7 +622,11 @@ export default function RotatingDomeGallery() {
       {/* Estilos CSS ultra-avanzados */}
       <style jsx>{`
         .gallery-title {
-          background: linear-gradient(135deg, rgba(0, 0, 0, 0.8), rgba(14, 231, 231, 0.1));
+          background: linear-gradient(
+            135deg,
+            rgba(0, 0, 0, 0.8),
+            rgba(14, 231, 231, 0.1)
+          );
           backdrop-filter: blur(20px);
           border: 1px solid rgba(14, 231, 231, 0.3);
           border-radius: 20px;
@@ -586,7 +635,7 @@ export default function RotatingDomeGallery() {
         }
 
         .holographic-text {
-          background: linear-gradient(45deg, #0EE7E7, #00E7A7, #A855F7);
+          background: linear-gradient(45deg, #0ee7e7, #00e7a7, #a855f7);
           background-size: 300% 300%;
           -webkit-background-clip: text;
           -webkit-text-fill-color: transparent;
@@ -629,7 +678,11 @@ export default function RotatingDomeGallery() {
         }
 
         .luxury-property-panel {
-          background: linear-gradient(135deg, rgba(0, 0, 0, 0.9), rgba(168, 85, 247, 0.1));
+          background: linear-gradient(
+            135deg,
+            rgba(0, 0, 0, 0.9),
+            rgba(168, 85, 247, 0.1)
+          );
           backdrop-filter: blur(25px);
           border: 2px solid rgba(168, 85, 247, 0.3);
           border-radius: 25px;
@@ -674,23 +727,23 @@ export default function RotatingDomeGallery() {
 
         .tier-badge.diamond {
           background: rgba(168, 85, 247, 0.2);
-          color: #A855F7;
+          color: #a855f7;
         }
 
         .tier-badge.platinum {
           background: rgba(14, 231, 231, 0.2);
-          color: #0EE7E7;
+          color: #0ee7e7;
         }
 
         .tier-badge.gold {
           background: rgba(245, 158, 11, 0.2);
-          color: #F59E0B;
+          color: #f59e0b;
         }
 
         .price-tag {
           font-size: 1.5rem;
           font-weight: bold;
-          color: #00E7A7;
+          color: #00e7a7;
           margin-top: 0.5rem;
         }
 
@@ -735,7 +788,7 @@ export default function RotatingDomeGallery() {
         }
 
         .luxury-action-btn.primary {
-          background: linear-gradient(45deg, #A855F7, #8B5CF6);
+          background: linear-gradient(45deg, #a855f7, #8b5cf6);
           color: white;
           border: none;
         }
@@ -815,7 +868,7 @@ export default function RotatingDomeGallery() {
 
         .miniature-price {
           font-size: 0.75rem;
-          color: #00E7A7;
+          color: #00e7a7;
           font-weight: bold;
         }
 
@@ -824,9 +877,15 @@ export default function RotatingDomeGallery() {
         }
 
         @keyframes holographic-flow {
-          0% { background-position: 0% 50%; }
-          50% { background-position: 100% 50%; }
-          100% { background-position: 0% 50%; }
+          0% {
+            background-position: 0% 50%;
+          }
+          50% {
+            background-position: 100% 50%;
+          }
+          100% {
+            background-position: 0% 50%;
+          }
         }
 
         @keyframes panel-slide-up {
@@ -841,11 +900,12 @@ export default function RotatingDomeGallery() {
         }
 
         @keyframes miniature-pulse {
-          0%, 100% { 
+          0%,
+          100% {
             transform: scale(1);
             opacity: 1;
           }
-          50% { 
+          50% {
             transform: scale(1.3);
             opacity: 0.7;
           }

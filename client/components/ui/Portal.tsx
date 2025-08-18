@@ -8,7 +8,9 @@ export default function Portal({ children }: { children: React.ReactNode }) {
   useEffect(() => {
     const el = elRef.current!;
     document.body.appendChild(el);
-    return () => { document.body.removeChild(el); };
+    return () => {
+      document.body.removeChild(el);
+    };
   }, []);
   return createPortal(children, elRef.current!);
 }

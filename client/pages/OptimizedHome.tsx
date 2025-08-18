@@ -61,9 +61,12 @@ export default function OptimizedHome() {
           {/* Canary Islands 3D Map */}
           <section className="mx-auto max-w-6xl px-6 py-16">
             <div className="text-center mb-8">
-              <h3 className="text-3xl font-bold text-white mb-4">España & Canarias — Mapa Interactivo</h3>
+              <h3 className="text-3xl font-bold text-white mb-4">
+                España & Canarias — Mapa Interactivo
+              </h3>
               <p className="text-white/70 max-w-2xl mx-auto">
-                Explora nuestras propiedades premium en las ubicaciones más exclusivas de España y las Islas Canarias
+                Explora nuestras propiedades premium en las ubicaciones más
+                exclusivas de España y las Islas Canarias
               </p>
             </div>
             <CanaryMap3DFallback />

@@ -14,10 +14,22 @@ export default function StickyCTA() {
   return (
     <div className="sticky-cta">
       <div className="wrap">
-        <a href="/tour" className="rounded-lg px-3 py-2 bg-white/10 hover:bg-white/20 text-sm">🎥 Demo rápida</a>
-        <a href="/vr" className="rounded-lg px-3 py-2 bg-cyan-500/90 hover:bg-cyan-400 text-black font-semibold text-sm">🥽 Entrar en VR</a>
-        <button 
-          onClick={() => window.dispatchEvent(new CustomEvent("blueeye:assistant"))}
+        <a
+          href="/tour"
+          className="rounded-lg px-3 py-2 bg-white/10 hover:bg-white/20 text-sm"
+        >
+          🎥 Demo rápida
+        </a>
+        <a
+          href="/vr"
+          className="rounded-lg px-3 py-2 bg-cyan-500/90 hover:bg-cyan-400 text-black font-semibold text-sm"
+        >
+          🥽 Entrar en VR
+        </a>
+        <button
+          onClick={() =>
+            window.dispatchEvent(new CustomEvent("blueeye:assistant"))
+          }
           className="rounded-lg px-3 py-2 bg-white/10 hover:bg-white/20 text-sm"
         >
           🤝 Hablar con IA

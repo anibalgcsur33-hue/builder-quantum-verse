@@ -1,6 +1,14 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { useState, useEffect } from "react";
-import { Calendar, Sun, Snowflake, Flower, Leaf, Eye, RotateCcw } from "lucide-react";
+import {
+  Calendar,
+  Sun,
+  Snowflake,
+  Flower,
+  Leaf,
+  Eye,
+  RotateCcw,
+} from "lucide-react";
 
 interface PropertyState {
   season: string;
@@ -16,9 +24,14 @@ const propertyStates: PropertyState[] = [
     season: "Primavera",
     icon: <Flower className="w-6 h-6" />,
     gradient: "from-green-400 to-pink-400",
-    description: "Jardines en plena floración, temperaturas perfectas para terrazas",
+    description:
+      "Jardines en plena floración, temperaturas perfectas para terrazas",
     price: "€2.8M",
-    features: ["Jardín botánico privado", "Terrazas floridas", "Piscina climatizada"]
+    features: [
+      "Jardín botánico privado",
+      "Terrazas floridas",
+      "Piscina climatizada",
+    ],
   },
   {
     season: "Verano",
@@ -26,7 +39,11 @@ const propertyStates: PropertyState[] = [
     gradient: "from-yellow-400 to-orange-500",
     description: "Máximo esplendor mediterráneo, ideal para entretenimiento",
     price: "€3.2M",
-    features: ["Zona chill-out exterior", "Bar de piscina", "Sistema de refrigeración"]
+    features: [
+      "Zona chill-out exterior",
+      "Bar de piscina",
+      "Sistema de refrigeración",
+    ],
   },
   {
     season: "Otoño",
@@ -34,7 +51,7 @@ const propertyStates: PropertyState[] = [
     gradient: "from-orange-400 to-red-500",
     description: "Colores dorados, ambiente acogedor para reuniones familiares",
     price: "€2.9M",
-    features: ["Chimenea exterior", "Bodega privada", "Zona de lectura"]
+    features: ["Chimenea exterior", "Bodega privada", "Zona de lectura"],
   },
   {
     season: "Invierno",
@@ -42,8 +59,8 @@ const propertyStates: PropertyState[] = [
     gradient: "from-blue-400 to-purple-500",
     description: "Refugio de lujo con calefacción radiante y spa privado",
     price: "€2.7M",
-    features: ["Spa interior", "Sauna finlandesa", "Calefacción geotérmica"]
-  }
+    features: ["Spa interior", "Sauna finlandesa", "Calefacción geotérmica"],
+  },
 ];
 
 export default function QuantumPropertyStates() {
@@ -78,8 +95,9 @@ export default function QuantumPropertyStates() {
             Realidad Cuántica de Propiedades
           </h2>
           <p className="text-xl text-white/80 max-w-3xl mx-auto mb-8">
-            Experimenta tu futura propiedad en múltiples estados temporales simultáneamente.
-            Tecnología cuántica inmobiliaria exclusiva de BlueEyes.
+            Experimenta tu futura propiedad en múltiples estados temporales
+            simultáneamente. Tecnología cuántica inmobiliaria exclusiva de
+            BlueEyes.
           </p>
 
           {/* Quantum Toggle */}
@@ -87,34 +105,41 @@ export default function QuantumPropertyStates() {
             onClick={activateQuantumMode}
             className={`
               relative px-8 py-4 rounded-xl font-bold text-lg transition-all duration-500
-              ${isQuantumMode 
-                ? 'bg-gradient-to-r from-purple-500 to-cyan-500 text-white shadow-2xl' 
-                : 'bg-white/10 text-white/70 backdrop-blur-md'
+              ${
+                isQuantumMode
+                  ? "bg-gradient-to-r from-purple-500 to-cyan-500 text-white shadow-2xl"
+                  : "bg-white/10 text-white/70 backdrop-blur-md"
               }
             `}
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             animate={{
-              boxShadow: isQuantumMode 
+              boxShadow: isQuantumMode
                 ? [
                     "0 0 30px rgba(147, 51, 234, 0.4)",
                     "0 0 60px rgba(6, 182, 212, 0.4)",
-                    "0 0 30px rgba(147, 51, 234, 0.4)"
+                    "0 0 30px rgba(147, 51, 234, 0.4)",
                   ]
-                : "0 0 0px rgba(0,0,0,0)"
+                : "0 0 0px rgba(0,0,0,0)",
             }}
             transition={{
-              boxShadow: { duration: 2, repeat: Infinity }
+              boxShadow: { duration: 2, repeat: Infinity },
             }}
           >
             <div className="flex items-center gap-3">
               <motion.div
                 animate={{ rotate: isQuantumMode ? 360 : 0 }}
-                transition={{ duration: 2, repeat: isQuantumMode ? Infinity : 0, ease: "linear" }}
+                transition={{
+                  duration: 2,
+                  repeat: isQuantumMode ? Infinity : 0,
+                  ease: "linear",
+                }}
               >
                 <RotateCcw className="w-6 h-6" />
               </motion.div>
-              {isQuantumMode ? "Modo Cuántico Activo" : "Activar Superposición Temporal"}
+              {isQuantumMode
+                ? "Modo Cuántico Activo"
+                : "Activar Superposición Temporal"}
             </div>
           </motion.button>
         </motion.div>
@@ -123,7 +148,6 @@ export default function QuantumPropertyStates() {
         <div className="relative max-w-6xl mx-auto">
           {/* Central Property Display */}
           <div className="relative aspect-video rounded-3xl overflow-hidden bg-gradient-to-br from-blue-900/50 to-purple-900/50 backdrop-blur-lg border border-white/20">
-            
             {superposition ? (
               // All states visible simultaneously in quantum superposition
               <div className="relative w-full h-full">
@@ -138,23 +162,23 @@ export default function QuantumPropertyStates() {
                       duration: 2,
                       repeat: Infinity,
                       delay: index * 0.5,
-                      ease: "easeInOut"
+                      ease: "easeInOut",
                     }}
                     style={{
-                      mixBlendMode: "screen"
+                      mixBlendMode: "screen",
                     }}
                   >
                     <div className="absolute inset-0 flex items-center justify-center">
                       <motion.div
                         className="text-white/60 text-8xl"
-                        animate={{ 
+                        animate={{
                           scale: [0.8, 1.2, 0.8],
-                          rotate: [0, 10, -10, 0]
+                          rotate: [0, 10, -10, 0],
                         }}
                         transition={{
                           duration: 2,
                           repeat: Infinity,
-                          delay: index * 0.5
+                          delay: index * 0.5,
                         }}
                       >
                         {state.icon}
@@ -162,7 +186,7 @@ export default function QuantumPropertyStates() {
                     </div>
                   </motion.div>
                 ))}
-                
+
                 {/* Quantum interference patterns */}
                 <div className="absolute inset-0">
                   {Array.from({ length: 50 }).map((_, i) => (
@@ -175,12 +199,12 @@ export default function QuantumPropertyStates() {
                       }}
                       animate={{
                         scale: [0, 1, 0],
-                        opacity: [0, 1, 0]
+                        opacity: [0, 1, 0],
                       }}
                       transition={{
                         duration: 1,
                         repeat: Infinity,
-                        delay: Math.random() * 2
+                        delay: Math.random() * 2,
                       }}
                     />
                   ))}
@@ -189,14 +213,18 @@ export default function QuantumPropertyStates() {
                 <div className="absolute inset-0 flex items-center justify-center">
                   <motion.div
                     className="text-center text-white"
-                    animate={{ 
+                    animate={{
                       scale: [1, 1.1, 1],
-                      opacity: [0.8, 1, 0.8]
+                      opacity: [0.8, 1, 0.8],
                     }}
                     transition={{ duration: 2, repeat: Infinity }}
                   >
-                    <h3 className="text-4xl font-bold mb-4">Estado de Superposición</h3>
-                    <p className="text-xl">Villa Cuántica en Múltiples Realidades</p>
+                    <h3 className="text-4xl font-bold mb-4">
+                      Estado de Superposición
+                    </h3>
+                    <p className="text-xl">
+                      Villa Cuántica en Múltiples Realidades
+                    </p>
                   </motion.div>
                 </div>
               </div>
@@ -214,9 +242,9 @@ export default function QuantumPropertyStates() {
                   <div className="absolute inset-0 flex items-center justify-center">
                     <motion.div
                       className="text-white/80 text-9xl"
-                      animate={{ 
+                      animate={{
                         scale: [1, 1.1, 1],
-                        rotate: [0, 5, -5, 0]
+                        rotate: [0, 5, -5, 0],
                       }}
                       transition={{ duration: 3, repeat: Infinity }}
                     >
@@ -263,8 +291,8 @@ export default function QuantumPropertyStates() {
                     "radial-gradient(circle at 20% 20%, rgba(147, 51, 234, 0.2) 0%, transparent 50%)",
                     "radial-gradient(circle at 80% 80%, rgba(6, 182, 212, 0.2) 0%, transparent 50%)",
                     "radial-gradient(circle at 50% 50%, rgba(236, 72, 153, 0.2) 0%, transparent 50%)",
-                    "radial-gradient(circle at 20% 20%, rgba(147, 51, 234, 0.2) 0%, transparent 50%)"
-                  ]
+                    "radial-gradient(circle at 20% 20%, rgba(147, 51, 234, 0.2) 0%, transparent 50%)",
+                  ],
                 }}
                 transition={{ duration: 4, repeat: Infinity }}
               />
@@ -279,11 +307,12 @@ export default function QuantumPropertyStates() {
                 onClick={() => !isQuantumMode && setCurrentState(index)}
                 className={`
                   relative p-6 rounded-2xl backdrop-blur-md border transition-all duration-300
-                  ${currentState === index && !superposition
-                    ? 'bg-white/20 border-white/40 ring-2 ring-cyan-400'
-                    : 'bg-white/10 border-white/20 hover:bg-white/15'
+                  ${
+                    currentState === index && !superposition
+                      ? "bg-white/20 border-white/40 ring-2 ring-cyan-400"
+                      : "bg-white/10 border-white/20 hover:bg-white/15"
                   }
-                  ${isQuantumMode ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer'}
+                  ${isQuantumMode ? "opacity-50 cursor-not-allowed" : "cursor-pointer"}
                 `}
                 whileHover={!isQuantumMode ? { scale: 1.05, y: -5 } : {}}
                 whileTap={!isQuantumMode ? { scale: 0.95 } : {}}
@@ -291,22 +320,32 @@ export default function QuantumPropertyStates() {
               >
                 <motion.div
                   className={`w-12 h-12 rounded-full bg-gradient-to-r ${state.gradient} flex items-center justify-center mb-4 mx-auto`}
-                  animate={superposition ? {
-                    scale: [1, 1.2, 1],
-                    rotate: [0, 180, 360]
-                  } : {}}
-                  transition={superposition ? {
-                    duration: 2,
-                    repeat: Infinity,
-                    delay: index * 0.3
-                  } : {}}
+                  animate={
+                    superposition
+                      ? {
+                          scale: [1, 1.2, 1],
+                          rotate: [0, 180, 360],
+                        }
+                      : {}
+                  }
+                  transition={
+                    superposition
+                      ? {
+                          duration: 2,
+                          repeat: Infinity,
+                          delay: index * 0.3,
+                        }
+                      : {}
+                  }
                 >
                   {state.icon}
                 </motion.div>
-                
-                <h4 className="text-white font-bold text-lg mb-2">{state.season}</h4>
+
+                <h4 className="text-white font-bold text-lg mb-2">
+                  {state.season}
+                </h4>
                 <p className="text-white/60 text-sm mb-3">{state.price}</p>
-                
+
                 <div className="space-y-1">
                   {state.features.map((feature, featureIndex) => (
                     <div
@@ -323,7 +362,7 @@ export default function QuantumPropertyStates() {
                   <motion.div
                     className="absolute inset-0 rounded-2xl border-2 border-cyan-400"
                     animate={{
-                      opacity: [0.5, 1, 0.5]
+                      opacity: [0.5, 1, 0.5],
                     }}
                     transition={{ duration: 2, repeat: Infinity }}
                   />
@@ -347,28 +386,33 @@ export default function QuantumPropertyStates() {
               >
                 <Eye className="w-6 h-6 text-white" />
               </motion.div>
-              
+
               <div>
                 <h4 className="text-white font-bold text-xl mb-4">
                   Tecnología de Observación Cuántica Inmobiliaria
                 </h4>
                 <p className="text-white/80 mb-4">
-                  Utilizando principios de mecánica cuántica, BlueEyes permite visualizar 
-                  propiedades en múltiples estados temporales simultáneamente. El acto de 
-                  observación colapsa la función de onda hacia el estado específico deseado.
+                  Utilizando principios de mecánica cuántica, BlueEyes permite
+                  visualizar propiedades en múltiples estados temporales
+                  simultáneamente. El acto de observación colapsa la función de
+                  onda hacia el estado específico deseado.
                 </p>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm text-white/60">
                   <div>
-                    <strong>🔬 Superposición:</strong> La propiedad existe en todos los estados estacionales
+                    <strong>🔬 Superposición:</strong> La propiedad existe en
+                    todos los estados estacionales
                   </div>
                   <div>
-                    <strong>👁️ Observación:</strong> Tu interés colapsa hacia un estado específico
+                    <strong>👁️ Observación:</strong> Tu interés colapsa hacia un
+                    estado específico
                   </div>
                   <div>
-                    <strong>🌀 Entrelazamiento:</strong> Propiedades similares muestran correlaciones
+                    <strong>🌀 Entrelazamiento:</strong> Propiedades similares
+                    muestran correlaciones
                   </div>
                   <div>
-                    <strong>⚡ Coherencia:</strong> Mantiene consistencia entre dimensiones temporales
+                    <strong>⚡ Coherencia:</strong> Mantiene consistencia entre
+                    dimensiones temporales
                   </div>
                 </div>
               </div>
@@ -390,13 +434,13 @@ export default function QuantumPropertyStates() {
             animate={{
               opacity: [0, 1, 0],
               scaleY: [0, 1, 0],
-              rotate: [0, 180, 360]
+              rotate: [0, 180, 360],
             }}
             transition={{
               duration: 3,
               repeat: Infinity,
               delay: Math.random() * 2,
-              ease: "easeInOut"
+              ease: "easeInOut",
             }}
           />
         ))}

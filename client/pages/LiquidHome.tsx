@@ -47,29 +47,46 @@ export default function LiquidHome() {
           <section className="relative py-20">
             <div className="container mx-auto px-4">
               <div className="text-center mb-16">
-                <h2 className="text-4xl font-bold text-white mb-6">Futuro Inmobiliario</h2>
+                <h2 className="text-4xl font-bold text-white mb-6">
+                  Futuro Inmobiliario
+                </h2>
                 <p className="text-xl text-white/80 max-w-3xl mx-auto">
-                  Tecnologías avanzadas que transforman la experiencia de compra y inversión inmobiliaria
+                  Tecnologías avanzadas que transforman la experiencia de compra
+                  y inversión inmobiliaria
                 </p>
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                 <div className="bg-white/5 backdrop-blur-md rounded-2xl p-6 border border-white/10">
                   <div className="text-3xl mb-4">🧠</div>
-                  <h3 className="text-xl font-bold text-white mb-2">IA Predictiva</h3>
-                  <p className="text-white/70">Algoritmos que predicen tendencias del mercado y oportunidades de inversión</p>
+                  <h3 className="text-xl font-bold text-white mb-2">
+                    IA Predictiva
+                  </h3>
+                  <p className="text-white/70">
+                    Algoritmos que predicen tendencias del mercado y
+                    oportunidades de inversión
+                  </p>
                 </div>
 
                 <div className="bg-white/5 backdrop-blur-md rounded-2xl p-6 border border-white/10">
                   <div className="text-3xl mb-4">🌐</div>
-                  <h3 className="text-xl font-bold text-white mb-2">Metaverso Inmobiliario</h3>
-                  <p className="text-white/70">Espacios virtuales donde explorar propiedades en tiempo real</p>
+                  <h3 className="text-xl font-bold text-white mb-2">
+                    Metaverso Inmobiliario
+                  </h3>
+                  <p className="text-white/70">
+                    Espacios virtuales donde explorar propiedades en tiempo real
+                  </p>
                 </div>
 
                 <div className="bg-white/5 backdrop-blur-md rounded-2xl p-6 border border-white/10">
                   <div className="text-3xl mb-4">🔗</div>
-                  <h3 className="text-xl font-bold text-white mb-2">Blockchain Verificado</h3>
-                  <p className="text-white/70">Transparencia total en transacciones y verificación de propiedades</p>
+                  <h3 className="text-xl font-bold text-white mb-2">
+                    Blockchain Verificado
+                  </h3>
+                  <p className="text-white/70">
+                    Transparencia total en transacciones y verificación de
+                    propiedades
+                  </p>
                 </div>
               </div>
             </div>

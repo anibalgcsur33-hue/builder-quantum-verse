@@ -1,13 +1,18 @@
 import { useEffect, useRef } from "react";
 
-type Node = { x: number; y: number; vx: number; vy: number; };
+type Node = { x: number; y: number; vx: number; vy: number };
 
 export default function NeuralField({
   density = 0.00018, // menos = más rápido
   colorA = "#67e8f9",
   colorB = "#a78bfa",
   className = "",
-}: { density?: number; colorA?: string; colorB?: string; className?: string; }) {
+}: {
+  density?: number;
+  colorA?: string;
+  colorB?: string;
+  className?: string;
+}) {
   const ref = useRef<HTMLCanvasElement | null>(null);
   const stopRef = useRef(false);
 
@@ -17,9 +22,14 @@ export default function NeuralField({
     let w = (c.width = c.clientWidth * devicePixelRatio);
     let h = (c.height = c.clientHeight * devicePixelRatio);
 
-    const prefersReduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const prefersReduce = window.matchMedia(
+      "(prefers-reduced-motion: reduce)",
+    ).matches;
     const nodes: Node[] = [];
-    const count = Math.max(20, Math.floor(w * h * density / (devicePixelRatio * 2)));
+    const count = Math.max(
+      20,
+      Math.floor((w * h * density) / (devicePixelRatio * 2)),
+    );
 
     for (let i = 0; i < count; i++) {
       nodes.push({
@@ -30,8 +40,14 @@ export default function NeuralField({
       });
     }
 
-    let mx = w / 2, my = h / 2, hasMouse = false;
-    const onMove = (e: MouseEvent) => { hasMouse = true; mx = e.clientX * devicePixelRatio; my = e.clientY * devicePixelRatio; };
+    let mx = w / 2,
+      my = h / 2,
+      hasMouse = false;
+    const onMove = (e: MouseEvent) => {
+      hasMouse = true;
+      mx = e.clientX * devicePixelRatio;
+      my = e.clientY * devicePixelRatio;
+    };
     window.addEventListener("mousemove", onMove);
 
     const grad = ctx.createLinearGradient(0, 0, w, 0);
@@ -57,7 +73,8 @@ export default function NeuralField({
 
         // leve atracción al mouse
         if (hasMouse) {
-          const dx = mx - n.x, dy = my - n.y;
+          const dx = mx - n.x,
+            dy = my - n.y;
           const d = Math.hypot(dx, dy);
           if (d < 220 * devicePixelRatio) {
             n.vx += (dx / (d + 1)) * 0.02;
@@ -71,11 +88,14 @@ export default function NeuralField({
       ctx.strokeStyle = grad;
       for (let i = 0; i < nodes.length; i++) {
         for (let j = i + 1; j < nodes.length; j++) {
-          const a = nodes[i], b = nodes[j];
-          const dx = a.x - b.x, dy = a.y - b.y;
+          const a = nodes[i],
+            b = nodes[j];
+          const dx = a.x - b.x,
+            dy = a.y - b.y;
           const d2 = dx * dx + dy * dy;
           if (d2 < (140 * devicePixelRatio) ** 2) {
-            ctx.globalAlpha = (1 - Math.min(1, d2 / ((140 * devicePixelRatio) ** 2))) * 0.6;
+            ctx.globalAlpha =
+              (1 - Math.min(1, d2 / (140 * devicePixelRatio) ** 2)) * 0.6;
             ctx.beginPath();
             ctx.moveTo(a.x, a.y);
             ctx.lineTo(b.x, b.y);
@@ -104,12 +124,14 @@ export default function NeuralField({
     const raf = requestAnimationFrame(loop);
 
     const onResize = () => {
-      w = (c.width = c.clientWidth * devicePixelRatio);
-      h = (c.height = c.clientHeight * devicePixelRatio);
+      w = c.width = c.clientWidth * devicePixelRatio;
+      h = c.height = c.clientHeight * devicePixelRatio;
     };
     window.addEventListener("resize", onResize);
 
-    const onVis = () => { /* pausa auto por tab inactiva si quisieras */ };
+    const onVis = () => {
+      /* pausa auto por tab inactiva si quisieras */
+    };
     document.addEventListener("visibilitychange", onVis);
 
     return () => {

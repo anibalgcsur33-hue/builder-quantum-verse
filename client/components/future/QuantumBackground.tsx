@@ -6,7 +6,8 @@ function QuantumMat() {
   const mat = useRef<THREE.ShaderMaterial>(null!);
   const start = useMemo(() => performance.now(), []);
   useFrame(() => {
-    if (mat.current) mat.current.uniforms.uTime.value = (performance.now() - start) / 1000;
+    if (mat.current)
+      mat.current.uniforms.uTime.value = (performance.now() - start) / 1000;
   });
 
   const uniforms = useMemo(
@@ -16,7 +17,7 @@ function QuantumMat() {
       uColorB: { value: new THREE.Color("#7c5cff") },
       uNoiseScale: { value: 1.5 },
     }),
-    []
+    [],
   );
 
   return (
@@ -25,13 +26,16 @@ function QuantumMat() {
       <shaderMaterial
         ref={mat}
         uniforms={uniforms}
-        vertexShader={/* glsl */`
+        vertexShader={
+          /* glsl */ `
           varying vec2 vUv;
           void main() {
             vUv = uv;
             gl_Position = vec4(position, 1.0);
-          }`}
-        fragmentShader={/* glsl */`
+          }`
+        }
+        fragmentShader={
+          /* glsl */ `
           precision highp float;
           varying vec2 vUv;
           uniform float uTime;
@@ -69,7 +73,8 @@ function QuantumMat() {
             col += n*0.12;
 
             gl_FragColor = vec4(col * vignette, 1.0);
-          }`}
+          }`
+        }
         depthWrite={false}
       />
     </mesh>
@@ -79,7 +84,7 @@ function QuantumMat() {
 export default function QuantumBackground() {
   return (
     <div className="fixed inset-0 -z-10">
-      <Canvas orthographic camera={{ position:[0,0,1], zoom:1 }}>
+      <Canvas orthographic camera={{ position: [0, 0, 1], zoom: 1 }}>
         <QuantumMat />
       </Canvas>
       {/* sutil grain + bloom fake */}

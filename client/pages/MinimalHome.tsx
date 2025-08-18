@@ -45,10 +45,7 @@ export default function MinimalHome() {
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link
-              to="/"
-              className="btn-primary inline-flex items-center gap-3"
-            >
+            <Link to="/" className="btn-primary inline-flex items-center gap-3">
               <Home className="w-5 h-5" />
               Ver Propiedades
               <ArrowRight className="w-5 h-5" />
@@ -70,14 +67,16 @@ export default function MinimalHome() {
           {[
             { number: "500+", label: "Propiedades Premium", icon: Home },
             { number: "50+", label: "Ciudades en España", icon: MapPin },
-            { number: "10K+", label: "Clientes Satisfechos", icon: Users }
+            { number: "10K+", label: "Clientes Satisfechos", icon: Users },
           ].map((stat, index) => (
             <div
               key={index}
               className="glass-card p-8 text-center hover:neon-glow-teal transition-all duration-300"
             >
               <stat.icon className="w-12 h-12 text-neon-teal mx-auto mb-4" />
-              <div className="text-3xl font-bold text-white mb-2">{stat.number}</div>
+              <div className="text-3xl font-bold text-white mb-2">
+                {stat.number}
+              </div>
               <div className="text-white/70">{stat.label}</div>
             </div>
           ))}
@@ -93,13 +92,13 @@ export default function MinimalHome() {
           <h2 className="text-3xl font-bold text-white text-center mb-12">
             Destinos Destacados
           </h2>
-          
+
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {[
               { city: "Madrid", properties: "120+", image: "🏙️" },
               { city: "Barcelona", properties: "95+", image: "🏛️" },
               { city: "Valencia", properties: "78+", image: "🌊" },
-              { city: "Marbella", properties: "65+", image: "🏖️" }
+              { city: "Marbella", properties: "65+", image: "🏖️" },
             ].map((location, index) => (
               <motion.div
                 key={index}
@@ -111,8 +110,12 @@ export default function MinimalHome() {
                 <div className="text-4xl mb-4 group-hover:scale-110 transition-transform">
                   {location.image}
                 </div>
-                <h3 className="text-xl font-bold text-white mb-2">{location.city}</h3>
-                <p className="text-neon-teal font-semibold">{location.properties} propiedades</p>
+                <h3 className="text-xl font-bold text-white mb-2">
+                  {location.city}
+                </h3>
+                <p className="text-neon-teal font-semibold">
+                  {location.properties} propiedades
+                </p>
               </motion.div>
             ))}
           </div>
@@ -130,13 +133,11 @@ export default function MinimalHome() {
               ¿Listo para encontrar tu hogar perfecto?
             </h3>
             <p className="text-white/80 mb-8">
-              Nuestro equipo de expertos está aquí para ayudarte a encontrar
-              la propiedad ideal que se adapte a tu estilo de vida.
+              Nuestro equipo de expertos está aquí para ayudarte a encontrar la
+              propiedad ideal que se adapte a tu estilo de vida.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <button className="btn-primary">
-                Contactar Asesor
-              </button>
+              <button className="btn-primary">Contactar Asesor</button>
               <Link to="/" className="btn-secondary">
                 Experiencia Premium
               </Link>
@@ -155,10 +156,18 @@ export default function MinimalHome() {
             Tu portal de propiedades premium en España
           </p>
           <div className="flex justify-center gap-8 text-sm text-white/60">
-            <a href="#" className="hover:text-neon-teal transition-colors">Propiedades</a>
-            <a href="#" className="hover:text-neon-teal transition-colors">Servicios</a>
-            <a href="#" className="hover:text-neon-teal transition-colors">Contacto</a>
-            <a href="#" className="hover:text-neon-teal transition-colors">Blog</a>
+            <a href="#" className="hover:text-neon-teal transition-colors">
+              Propiedades
+            </a>
+            <a href="#" className="hover:text-neon-teal transition-colors">
+              Servicios
+            </a>
+            <a href="#" className="hover:text-neon-teal transition-colors">
+              Contacto
+            </a>
+            <a href="#" className="hover:text-neon-teal transition-colors">
+              Blog
+            </a>
           </div>
         </div>
       </footer>
@@ -172,16 +181,16 @@ export default function MinimalHome() {
             className="absolute w-2 h-2 bg-neon-teal/20 rounded-full"
             style={{
               left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`
+              top: `${Math.random() * 100}%`,
             }}
             animate={{
               y: [0, -20, 0],
-              opacity: [0.2, 0.6, 0.2]
+              opacity: [0.2, 0.6, 0.2],
             }}
             transition={{
               duration: 4 + Math.random() * 2,
               repeat: Infinity,
-              delay: Math.random() * 2
+              delay: Math.random() * 2,
             }}
           />
         ))}
@@ -189,14 +198,16 @@ export default function MinimalHome() {
 
       {/* Simple Navigation Dots */}
       <div className="fixed right-6 top-1/2 transform -translate-y-1/2 space-y-3 z-20">
-        {['Inicio', 'Estadísticas', 'Destinos', 'Contacto'].map((section, index) => (
-          <motion.div
-            key={index}
-            className="w-3 h-3 rounded-full bg-white/30 hover:bg-neon-teal cursor-pointer transition-colors"
-            whileHover={{ scale: 1.5 }}
-            title={section}
-          />
-        ))}
+        {["Inicio", "Estadísticas", "Destinos", "Contacto"].map(
+          (section, index) => (
+            <motion.div
+              key={index}
+              className="w-3 h-3 rounded-full bg-white/30 hover:bg-neon-teal cursor-pointer transition-colors"
+              whileHover={{ scale: 1.5 }}
+              title={section}
+            />
+          ),
+        )}
       </div>
     </div>
   );

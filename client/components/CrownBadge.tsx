@@ -21,7 +21,9 @@ export default function CrownBadge({ className = "" }: Props) {
       >
         👑
       </motion.span>
-      <span className="text-amber-200 font-semibold text-sm">Portal Premium</span>
+      <span className="text-amber-200 font-semibold text-sm">
+        Portal Premium
+      </span>
     </motion.div>
   );
 }

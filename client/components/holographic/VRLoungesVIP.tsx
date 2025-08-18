@@ -1,15 +1,25 @@
 import React, { useEffect, useRef, useState } from "react";
 import * as THREE from "three";
-import { Wine, Crown, Star, Eye, Sparkles, Globe, Users, Volume2, Settings } from "lucide-react";
+import {
+  Wine,
+  Crown,
+  Star,
+  Eye,
+  Sparkles,
+  Globe,
+  Users,
+  Volume2,
+  Settings,
+} from "lucide-react";
 
 interface VIPGuest {
   id: string;
   name: string;
   avatar_color: string;
   seat_position: number;
-  vip_tier: 'diamond' | 'platinum' | 'gold';
+  vip_tier: "diamond" | "platinum" | "gold";
   current_drink: string;
-  interaction_mood: 'relaxed' | 'social' | 'contemplative';
+  interaction_mood: "relaxed" | "social" | "contemplative";
 }
 
 interface SommelierRecommendation {
@@ -24,101 +34,110 @@ interface SommelierRecommendation {
 
 const vipGuests: VIPGuest[] = [
   {
-    id: 'guest-001',
-    name: 'Alexandra Sterling',
-    avatar_color: '#A855F7',
+    id: "guest-001",
+    name: "Alexandra Sterling",
+    avatar_color: "#A855F7",
     seat_position: 0,
-    vip_tier: 'diamond',
-    current_drink: 'Dom Pérignon Cosmic Reserve 2089',
-    interaction_mood: 'contemplative'
+    vip_tier: "diamond",
+    current_drink: "Dom Pérignon Cosmic Reserve 2089",
+    interaction_mood: "contemplative",
   },
   {
-    id: 'guest-002', 
-    name: 'Marcus Quantum',
-    avatar_color: '#0EE7E7',
+    id: "guest-002",
+    name: "Marcus Quantum",
+    avatar_color: "#0EE7E7",
     seat_position: 1,
-    vip_tier: 'platinum',
-    current_drink: 'Château Margaux Stellar Edition',
-    interaction_mood: 'social'
+    vip_tier: "platinum",
+    current_drink: "Château Margaux Stellar Edition",
+    interaction_mood: "social",
   },
   {
-    id: 'guest-003',
-    name: 'Sophia Luna',
-    avatar_color: '#FFD700',
+    id: "guest-003",
+    name: "Sophia Luna",
+    avatar_color: "#FFD700",
     seat_position: 2,
-    vip_tier: 'gold',
-    current_drink: 'Krug Grande Cuvée Zero Gravity',
-    interaction_mood: 'relaxed'
+    vip_tier: "gold",
+    current_drink: "Krug Grande Cuvée Zero Gravity",
+    interaction_mood: "relaxed",
   },
   {
-    id: 'guest-004',
-    name: 'Viktor Cosmos',
-    avatar_color: '#00E7A7',
+    id: "guest-004",
+    name: "Viktor Cosmos",
+    avatar_color: "#00E7A7",
     seat_position: 3,
-    vip_tier: 'diamond',
-    current_drink: 'Romanée-Conti Nebula Reserve',
-    interaction_mood: 'social'
+    vip_tier: "diamond",
+    current_drink: "Romanée-Conti Nebula Reserve",
+    interaction_mood: "social",
   },
   {
-    id: 'guest-005',
-    name: 'Isabella Void',
-    avatar_color: '#FF6B9D',
+    id: "guest-005",
+    name: "Isabella Void",
+    avatar_color: "#FF6B9D",
     seat_position: 4,
-    vip_tier: 'platinum',
-    current_drink: 'Armand de Brignac Ace of Spades Cosmic',
-    interaction_mood: 'contemplative'
-  }
+    vip_tier: "platinum",
+    current_drink: "Armand de Brignac Ace of Spades Cosmic",
+    interaction_mood: "contemplative",
+  },
 ];
 
 const sommelierRecommendations: SommelierRecommendation[] = [
   {
-    wine_name: 'Château Pétrus Stellar',
-    vintage: '2089',
-    origin: 'Bordeaux Orbital Vineyard',
-    description: 'Aged in zero gravity for unparalleled complexity and ethereal notes',
-    mood_pairing: 'Perfect for cosmic contemplation',
+    wine_name: "Château Pétrus Stellar",
+    vintage: "2089",
+    origin: "Bordeaux Orbital Vineyard",
+    description:
+      "Aged in zero gravity for unparalleled complexity and ethereal notes",
+    mood_pairing: "Perfect for cosmic contemplation",
     price_btc: 15.5,
-    rarity_level: 5
+    rarity_level: 5,
   },
   {
-    wine_name: 'Dom Pérignon Aurora',
-    vintage: '2088',
-    origin: 'Champagne Space Station',
-    description: 'Bubbles that dance like stellar aurora, crisp and luminous',
-    mood_pairing: 'Ideal for celebration among stars',
+    wine_name: "Dom Pérignon Aurora",
+    vintage: "2088",
+    origin: "Champagne Space Station",
+    description: "Bubbles that dance like stellar aurora, crisp and luminous",
+    mood_pairing: "Ideal for celebration among stars",
     price_btc: 8.9,
-    rarity_level: 4
+    rarity_level: 4,
   },
   {
-    wine_name: 'Screaming Eagle Nebula',
-    vintage: '2087',
-    origin: 'Napa Valley Orbital',
-    description: 'Deep cosmic red with notes of dark matter and stardust',
-    mood_pairing: 'For deep conversations in the void',
+    wine_name: "Screaming Eagle Nebula",
+    vintage: "2087",
+    origin: "Napa Valley Orbital",
+    description: "Deep cosmic red with notes of dark matter and stardust",
+    mood_pairing: "For deep conversations in the void",
     price_btc: 22.1,
-    rarity_level: 5
-  }
+    rarity_level: 5,
+  },
 ];
 
 export default function VRLoungesVIP() {
   const loungeRef = useRef<HTMLDivElement>(null);
   const [selectedGuest, setSelectedGuest] = useState<VIPGuest | null>(null);
   const [sommelierActive, setSommelierActive] = useState(false);
-  const [currentRecommendation, setCurrentRecommendation] = useState<SommelierRecommendation | null>(null);
-  const [ambientMode, setAmbientMode] = useState<'aurora' | 'stellar' | 'cosmic'>('stellar');
+  const [currentRecommendation, setCurrentRecommendation] =
+    useState<SommelierRecommendation | null>(null);
+  const [ambientMode, setAmbientMode] = useState<
+    "aurora" | "stellar" | "cosmic"
+  >("stellar");
   const sceneRef = useRef<THREE.Scene | null>(null);
-  const chairMeshes = useRef<Array<{ mesh: THREE.Mesh, guest: VIPGuest }>>([]);
+  const chairMeshes = useRef<Array<{ mesh: THREE.Mesh; guest: VIPGuest }>>([]);
 
   useEffect(() => {
     if (!loungeRef.current) return;
 
     // Configuración ultra-futurista para VR Lounge espacial
     const scene = new THREE.Scene();
-    const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 2000);
-    const renderer = new THREE.WebGLRenderer({ 
-      antialias: true, 
+    const camera = new THREE.PerspectiveCamera(
+      75,
+      window.innerWidth / window.innerHeight,
+      0.1,
+      2000,
+    );
+    const renderer = new THREE.WebGLRenderer({
+      antialias: true,
       alpha: true,
-      powerPreference: "high-performance"
+      powerPreference: "high-performance",
     });
 
     renderer.setSize(window.innerWidth, window.innerHeight);
@@ -137,9 +156,9 @@ export default function VRLoungesVIP() {
     const loungeMaterial = new THREE.ShaderMaterial({
       uniforms: {
         time: { value: 0 },
-        neon_primary: { value: new THREE.Color(0x0EE7E7) },
-        neon_secondary: { value: new THREE.Color(0xA855F7) },
-        ambient_mode: { value: 1.0 } // 1.0=stellar, 2.0=aurora, 3.0=cosmic
+        neon_primary: { value: new THREE.Color(0x0ee7e7) },
+        neon_secondary: { value: new THREE.Color(0xa855f7) },
+        ambient_mode: { value: 1.0 }, // 1.0=stellar, 2.0=aurora, 3.0=cosmic
       },
       vertexShader: `
         varying vec3 vPosition;
@@ -186,7 +205,7 @@ export default function VRLoungesVIP() {
         }
       `,
       transparent: true,
-      side: THREE.DoubleSide
+      side: THREE.DoubleSide,
     });
 
     const lounge = new THREE.Mesh(loungeGeometry, loungeMaterial);
@@ -199,7 +218,7 @@ export default function VRLoungesVIP() {
       uniforms: {
         time: { value: 0 },
         earth_texture: { value: null },
-        glass_thickness: { value: 0.95 }
+        glass_thickness: { value: 0.95 },
       },
       vertexShader: `
         varying vec3 vPosition;
@@ -266,7 +285,7 @@ export default function VRLoungesVIP() {
           gl_FragColor = vec4(final_color, alpha);
         }
       `,
-      transparent: true
+      transparent: true,
     });
 
     const floor = new THREE.Mesh(floorGeometry, floorMaterial);
@@ -276,18 +295,25 @@ export default function VRLoungesVIP() {
 
     // Crear sillas de cristal levitantes
     chairMeshes.current = [];
-    
+
     vipGuests.forEach((guest, index) => {
       // Estructura de la silla cristalina
       const chairGroup = new THREE.Group();
-      
+
       // Base de la silla (cristal flotante)
       const seatGeometry = new THREE.BoxGeometry(3, 0.5, 3);
       const seatMaterial = new THREE.ShaderMaterial({
         uniforms: {
           time: { value: 0 },
           guest_color: { value: new THREE.Color(guest.avatar_color) },
-          vip_intensity: { value: guest.vip_tier === 'diamond' ? 3.0 : guest.vip_tier === 'platinum' ? 2.0 : 1.0 }
+          vip_intensity: {
+            value:
+              guest.vip_tier === "diamond"
+                ? 3.0
+                : guest.vip_tier === "platinum"
+                  ? 2.0
+                  : 1.0,
+          },
         },
         vertexShader: `
           varying vec3 vPosition;
@@ -327,28 +353,28 @@ export default function VRLoungesVIP() {
             gl_FragColor = vec4(final_color, alpha);
           }
         `,
-        transparent: true
+        transparent: true,
       });
-      
+
       const seat = new THREE.Mesh(seatGeometry, seatMaterial);
       chairGroup.add(seat);
-      
+
       // Respaldo cristalino
       const backrestGeometry = new THREE.BoxGeometry(3, 4, 0.3);
       const backrest = new THREE.Mesh(backrestGeometry, seatMaterial.clone());
       backrest.position.set(0, 2.25, -1.35);
       chairGroup.add(backrest);
-      
+
       // Posicionar sillas en círculo elegante
       const angle = (index / vipGuests.length) * Math.PI * 2;
       const radius = 15;
       chairGroup.position.set(
         Math.cos(angle) * radius,
         2 + index * 0.2, // Alturas ligeramente diferentes
-        Math.sin(angle) * radius
+        Math.sin(angle) * radius,
       );
       chairGroup.userData = { guest, floatOffset: index * 0.5 };
-      
+
       scene.add(chairGroup);
       chairMeshes.current.push({ mesh: chairGroup, guest });
 
@@ -358,7 +384,14 @@ export default function VRLoungesVIP() {
         uniforms: {
           time: { value: 0 },
           avatar_color: { value: new THREE.Color(guest.avatar_color) },
-          mood_factor: { value: guest.interaction_mood === 'social' ? 2.0 : guest.interaction_mood === 'relaxed' ? 1.0 : 1.5 }
+          mood_factor: {
+            value:
+              guest.interaction_mood === "social"
+                ? 2.0
+                : guest.interaction_mood === "relaxed"
+                  ? 1.0
+                  : 1.5,
+          },
         },
         vertexShader: `
           varying vec3 vPosition;
@@ -394,36 +427,39 @@ export default function VRLoungesVIP() {
             gl_FragColor = vec4(final_color, alpha);
           }
         `,
-        transparent: true
+        transparent: true,
       });
-      
+
       const avatar = new THREE.Mesh(avatarGeometry, avatarMaterial);
       avatar.position.copy(chairGroup.position);
       avatar.position.y += 3;
       scene.add(avatar);
 
       // Añadir partículas ambientales alrededor de cada huésped VIP
-      if (guest.vip_tier === 'diamond' || guest.vip_tier === 'platinum') {
+      if (guest.vip_tier === "diamond" || guest.vip_tier === "platinum") {
         const particleCount = 30;
         const particleGeometry = new THREE.BufferGeometry();
         const positions = new Float32Array(particleCount * 3);
-        
+
         for (let i = 0; i < particleCount; i++) {
           positions[i * 3] = (Math.random() - 0.5) * 8;
           positions[i * 3 + 1] = Math.random() * 6;
           positions[i * 3 + 2] = (Math.random() - 0.5) * 8;
         }
-        
-        particleGeometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
-        
+
+        particleGeometry.setAttribute(
+          "position",
+          new THREE.BufferAttribute(positions, 3),
+        );
+
         const particleMaterial = new THREE.PointsMaterial({
           color: guest.avatar_color,
           size: 0.1,
           transparent: true,
           opacity: 0.6,
-          blending: THREE.AdditiveBlending
+          blending: THREE.AdditiveBlending,
         });
-        
+
         const particles = new THREE.Points(particleGeometry, particleMaterial);
         particles.position.copy(chairGroup.position);
         scene.add(particles);
@@ -435,8 +471,8 @@ export default function VRLoungesVIP() {
     const sommelierMaterial = new THREE.ShaderMaterial({
       uniforms: {
         time: { value: 0 },
-        ai_color: { value: new THREE.Color(0x00E7A7) },
-        service_mode: { value: 1.0 }
+        ai_color: { value: new THREE.Color(0x00e7a7) },
+        service_mode: { value: 1.0 },
       },
       vertexShader: `
         varying vec3 vPosition;
@@ -476,7 +512,7 @@ export default function VRLoungesVIP() {
           gl_FragColor = vec4(final_color, alpha);
         }
       `,
-      transparent: true
+      transparent: true,
     });
 
     const sommelier = new THREE.Mesh(sommelierGeometry, sommelierMaterial);
@@ -487,23 +523,26 @@ export default function VRLoungesVIP() {
     const starsGeometry = new THREE.BufferGeometry();
     const starsCount = 5000;
     const starsPositions = new Float32Array(starsCount * 3);
-    
+
     for (let i = 0; i < starsCount; i++) {
       starsPositions[i * 3] = (Math.random() - 0.5) * 500;
       starsPositions[i * 3 + 1] = (Math.random() - 0.5) * 500;
       starsPositions[i * 3 + 2] = (Math.random() - 0.5) * 500;
     }
-    
-    starsGeometry.setAttribute('position', new THREE.BufferAttribute(starsPositions, 3));
-    
+
+    starsGeometry.setAttribute(
+      "position",
+      new THREE.BufferAttribute(starsPositions, 3),
+    );
+
     const starsMaterial = new THREE.PointsMaterial({
-      color: 0xFFFFFF,
+      color: 0xffffff,
       size: 0.5,
       transparent: true,
       opacity: 0.8,
-      blending: THREE.AdditiveBlending
+      blending: THREE.AdditiveBlending,
     });
-    
+
     const stars = new THREE.Points(starsGeometry, starsMaterial);
     scene.add(stars);
 
@@ -512,8 +551,8 @@ export default function VRLoungesVIP() {
     const nebulaMaterial = new THREE.ShaderMaterial({
       uniforms: {
         time: { value: 0 },
-        nebula_color1: { value: new THREE.Color(0x6B46C1) },
-        nebula_color2: { value: new THREE.Color(0x0F172A) }
+        nebula_color1: { value: new THREE.Color(0x6b46c1) },
+        nebula_color2: { value: new THREE.Color(0x0f172a) },
       },
       vertexShader: `
         varying vec2 vUv;
@@ -545,7 +584,7 @@ export default function VRLoungesVIP() {
         }
       `,
       transparent: true,
-      side: THREE.DoubleSide
+      side: THREE.DoubleSide,
     });
 
     // Añadir múltiples planos de nebulosa
@@ -554,7 +593,7 @@ export default function VRLoungesVIP() {
       nebula.position.set(
         (Math.random() - 0.5) * 400,
         (Math.random() - 0.5) * 200,
-        -100 - i * 50
+        -100 - i * 50,
       );
       nebula.rotation.z = Math.random() * Math.PI;
       scene.add(nebula);
@@ -564,20 +603,20 @@ export default function VRLoungesVIP() {
     const ambientLight = new THREE.AmbientLight(0x404040, 3);
     scene.add(ambientLight);
 
-    const mainLight = new THREE.DirectionalLight(0x0EE7E7, 4);
+    const mainLight = new THREE.DirectionalLight(0x0ee7e7, 4);
     mainLight.position.set(40, 50, 40);
     mainLight.castShadow = true;
     scene.add(mainLight);
 
-    const spaceLight1 = new THREE.PointLight(0xA855F7, 3, 60);
+    const spaceLight1 = new THREE.PointLight(0xa855f7, 3, 60);
     spaceLight1.position.set(-30, 30, 30);
     scene.add(spaceLight1);
 
-    const spaceLight2 = new THREE.PointLight(0x00E7A7, 2.5, 50);
+    const spaceLight2 = new THREE.PointLight(0x00e7a7, 2.5, 50);
     spaceLight2.position.set(30, 40, -20);
     scene.add(spaceLight2);
 
-    const earthLight = new THREE.PointLight(0x4F94CD, 2, 80);
+    const earthLight = new THREE.PointLight(0x4f94cd, 2, 80);
     earthLight.position.set(0, -20, 0); // Luz desde la Tierra
     scene.add(earthLight);
 
@@ -595,10 +634,13 @@ export default function VRLoungesVIP() {
       mouse.y = -((event.clientY - rect.top) / rect.height) * 2 + 1;
 
       raycaster.setFromCamera(mouse, camera);
-      const intersects = raycaster.intersectObjects(chairMeshes.current.map(c => c.mesh));
+      const intersects = raycaster.intersectObjects(
+        chairMeshes.current.map((c) => c.mesh),
+      );
 
       if (intersects.length > 0) {
-        const clickedGuest = intersects[0].object.parent?.userData?.guest as VIPGuest;
+        const clickedGuest = intersects[0].object.parent?.userData
+          ?.guest as VIPGuest;
         if (clickedGuest) {
           setSelectedGuest(clickedGuest);
           console.log(`👑 Huésped VIP seleccionado: ${clickedGuest.name}`);
@@ -606,7 +648,7 @@ export default function VRLoungesVIP() {
       }
     };
 
-    renderer.domElement.addEventListener('click', onMouseClick);
+    renderer.domElement.addEventListener("click", onMouseClick);
 
     // Loop de animación espacial cinematográfica
     let time = 0;
@@ -617,7 +659,12 @@ export default function VRLoungesVIP() {
       // Actualizar shaders del lounge
       if (loungeMaterial.uniforms) {
         loungeMaterial.uniforms.time.value = time;
-        loungeMaterial.uniforms.ambient_mode.value = ambientMode === 'stellar' ? 1.0 : ambientMode === 'aurora' ? 2.0 : 3.0;
+        loungeMaterial.uniforms.ambient_mode.value =
+          ambientMode === "stellar"
+            ? 1.0
+            : ambientMode === "aurora"
+              ? 2.0
+              : 3.0;
       }
 
       // Actualizar suelo de cristal con vista de la Tierra
@@ -628,11 +675,12 @@ export default function VRLoungesVIP() {
       // Actualizar sillas cristalinas levitantes
       chairMeshes.current.forEach(({ mesh, guest }, index) => {
         // Levitación suave en el espacio
-        mesh.position.y = 2 + Math.sin(time * 1.5 + mesh.userData.floatOffset) * 0.4;
-        
+        mesh.position.y =
+          2 + Math.sin(time * 1.5 + mesh.userData.floatOffset) * 0.4;
+
         // Rotación sutil
         mesh.rotation.y += 0.003;
-        
+
         // Actualizar shaders de la silla
         mesh.children.forEach((child) => {
           if (child.material instanceof THREE.ShaderMaterial) {
@@ -644,9 +692,11 @@ export default function VRLoungesVIP() {
       // Animar sommelier IA
       if (sommelierMaterial.uniforms) {
         sommelierMaterial.uniforms.time.value = time;
-        sommelierMaterial.uniforms.service_mode.value = sommelierActive ? 2.0 : 1.0;
+        sommelierMaterial.uniforms.service_mode.value = sommelierActive
+          ? 2.0
+          : 1.0;
       }
-      
+
       // Movimiento orbital del sommelier
       sommelier.position.x = Math.cos(time * 0.5) * 8;
       sommelier.position.z = Math.sin(time * 0.5) * 8;
@@ -654,14 +704,20 @@ export default function VRLoungesVIP() {
 
       // Actualizar avatares holográficos
       scene.children.forEach((child) => {
-        if (child.material instanceof THREE.ShaderMaterial && child.geometry instanceof THREE.CapsuleGeometry) {
+        if (
+          child.material instanceof THREE.ShaderMaterial &&
+          child.geometry instanceof THREE.CapsuleGeometry
+        ) {
           child.material.uniforms.time.value = time;
         }
       });
 
       // Actualizar nebulosas de fondo
       scene.children.forEach((child) => {
-        if (child.material instanceof THREE.ShaderMaterial && child.geometry instanceof THREE.PlaneGeometry) {
+        if (
+          child.material instanceof THREE.ShaderMaterial &&
+          child.geometry instanceof THREE.PlaneGeometry
+        ) {
           child.material.uniforms.time.value = time;
         }
       });
@@ -680,7 +736,7 @@ export default function VRLoungesVIP() {
     animate();
 
     return () => {
-      renderer.domElement.removeEventListener('click', onMouseClick);
+      renderer.domElement.removeEventListener("click", onMouseClick);
       if (loungeRef.current && renderer.domElement) {
         loungeRef.current.removeChild(renderer.domElement);
       }
@@ -690,25 +746,32 @@ export default function VRLoungesVIP() {
 
   const getTierIcon = (tier: string) => {
     switch (tier) {
-      case 'diamond': return <Crown className="w-5 h-5 text-purple-400" />;
-      case 'platinum': return <Star className="w-5 h-5 text-blue-400" />;
-      case 'gold': return <Sparkles className="w-5 h-5 text-yellow-400" />;
-      default: return <Users className="w-5 h-5" />;
+      case "diamond":
+        return <Crown className="w-5 h-5 text-purple-400" />;
+      case "platinum":
+        return <Star className="w-5 h-5 text-blue-400" />;
+      case "gold":
+        return <Sparkles className="w-5 h-5 text-yellow-400" />;
+      default:
+        return <Users className="w-5 h-5" />;
     }
   };
 
   const getMoodColor = (mood: string) => {
     switch (mood) {
-      case 'social': return 'text-neon-teal bg-teal-900/20';
-      case 'relaxed': return 'text-emerald-400 bg-emerald-900/20';
-      case 'contemplative': return 'text-purple-400 bg-purple-900/20';
-      default: return 'text-white bg-gray-900/20';
+      case "social":
+        return "text-neon-teal bg-teal-900/20";
+      case "relaxed":
+        return "text-emerald-400 bg-emerald-900/20";
+      case "contemplative":
+        return "text-purple-400 bg-purple-900/20";
+      default:
+        return "text-white bg-gray-900/20";
     }
   };
 
   return (
     <section className="relative w-full h-screen bg-black overflow-hidden">
-      
       {/* Header del VR Lounge espacial */}
       <div className="absolute top-6 left-6 right-6 z-20 flex justify-between items-start">
         <div className="lounge-title">
@@ -716,31 +779,32 @@ export default function VRLoungesVIP() {
             VR Lounge VIP Espacial
           </h1>
           <p className="text-white/80 text-lg">
-            Flotando en el cosmos • Vista de la Tierra • Sommelier IA • Cristales levitantes
+            Flotando en el cosmos • Vista de la Tierra • Sommelier IA •
+            Cristales levitantes
           </p>
         </div>
 
         {/* Controles de ambiente */}
         <div className="ambient-controls">
           <button
-            onClick={() => setAmbientMode('stellar')}
-            className={`ambient-btn ${ambientMode === 'stellar' ? 'active' : ''}`}
+            onClick={() => setAmbientMode("stellar")}
+            className={`ambient-btn ${ambientMode === "stellar" ? "active" : ""}`}
           >
             <Star className="w-5 h-5" />
             <span>Stellar</span>
           </button>
-          
+
           <button
-            onClick={() => setAmbientMode('aurora')}
-            className={`ambient-btn ${ambientMode === 'aurora' ? 'active' : ''}`}
+            onClick={() => setAmbientMode("aurora")}
+            className={`ambient-btn ${ambientMode === "aurora" ? "active" : ""}`}
           >
             <Eye className="w-5 h-5" />
             <span>Aurora</span>
           </button>
-          
+
           <button
-            onClick={() => setAmbientMode('cosmic')}
-            className={`ambient-btn ${ambientMode === 'cosmic' ? 'active' : ''}`}
+            onClick={() => setAmbientMode("cosmic")}
+            className={`ambient-btn ${ambientMode === "cosmic" ? "active" : ""}`}
           >
             <Globe className="w-5 h-5" />
             <span>Cosmic</span>
@@ -755,42 +819,53 @@ export default function VRLoungesVIP() {
       {selectedGuest && (
         <div className="absolute bottom-8 left-8 z-20 vip-guest-panel">
           <div className="guest-header">
-            <div 
+            <div
               className="guest-avatar"
-              style={{ backgroundColor: selectedGuest.avatar_color + '30', borderColor: selectedGuest.avatar_color }}
+              style={{
+                backgroundColor: selectedGuest.avatar_color + "30",
+                borderColor: selectedGuest.avatar_color,
+              }}
             >
               {getTierIcon(selectedGuest.vip_tier)}
             </div>
-            
+
             <div className="guest-info">
               <div className="flex items-center gap-2 mb-2">
                 <span className={`tier-badge ${selectedGuest.vip_tier}`}>
                   {selectedGuest.vip_tier.toUpperCase()}
                 </span>
-                <span className={`mood-badge ${getMoodColor(selectedGuest.interaction_mood)}`}>
+                <span
+                  className={`mood-badge ${getMoodColor(selectedGuest.interaction_mood)}`}
+                >
                   {selectedGuest.interaction_mood}
                 </span>
               </div>
-              
-              <h3 className="text-2xl font-bold text-white mb-1">{selectedGuest.name}</h3>
-              <p className="text-white/70 text-sm mb-3">Posición {selectedGuest.seat_position + 1} • Cristal Levitante</p>
-              
+
+              <h3 className="text-2xl font-bold text-white mb-1">
+                {selectedGuest.name}
+              </h3>
+              <p className="text-white/70 text-sm mb-3">
+                Posición {selectedGuest.seat_position + 1} • Cristal Levitante
+              </p>
+
               <div className="current-service">
                 <Wine className="w-4 h-4 text-amber-400" />
-                <span className="text-amber-400 font-medium">{selectedGuest.current_drink}</span>
+                <span className="text-amber-400 font-medium">
+                  {selectedGuest.current_drink}
+                </span>
               </div>
             </div>
           </div>
 
           <div className="guest-actions">
-            <button 
+            <button
               onClick={() => setSommelierActive(!sommelierActive)}
-              className={`service-btn ${sommelierActive ? 'active' : ''}`}
+              className={`service-btn ${sommelierActive ? "active" : ""}`}
             >
               <Wine className="w-5 h-5" />
               <span>Llamar Sommelier IA</span>
             </button>
-            
+
             <button className="service-btn secondary">
               <Volume2 className="w-5 h-5" />
               <span>Música Ambiental</span>
@@ -807,19 +882,25 @@ export default function VRLoungesVIP() {
               <Sparkles className="w-8 h-8 text-emerald-400" />
             </div>
             <div>
-              <h3 className="text-xl font-bold text-white">Sommelier IA Cósmico</h3>
-              <p className="text-emerald-400 text-sm">Selecciones curadas para el infinito</p>
+              <h3 className="text-xl font-bold text-white">
+                Sommelier IA Cósmico
+              </h3>
+              <p className="text-emerald-400 text-sm">
+                Selecciones curadas para el infinito
+              </p>
             </div>
           </div>
 
           <div className="wine-recommendations">
-            <h4 className="text-white font-semibold mb-3">Recomendaciones Estelares</h4>
+            <h4 className="text-white font-semibold mb-3">
+              Recomendaciones Estelares
+            </h4>
             <div className="recommendations-list">
               {sommelierRecommendations.map((wine, index) => (
                 <div
                   key={index}
                   onClick={() => setCurrentRecommendation(wine)}
-                  className={`wine-item ${currentRecommendation?.wine_name === wine.wine_name ? 'selected' : ''}`}
+                  className={`wine-item ${currentRecommendation?.wine_name === wine.wine_name ? "selected" : ""}`}
                 >
                   <div className="wine-rarity">
                     {Array.from({ length: wine.rarity_level }, (_, i) => (
@@ -828,7 +909,9 @@ export default function VRLoungesVIP() {
                   </div>
                   <div className="wine-details">
                     <h5 className="wine-name">{wine.wine_name}</h5>
-                    <p className="wine-vintage">{wine.vintage} • {wine.origin}</p>
+                    <p className="wine-vintage">
+                      {wine.vintage} • {wine.origin}
+                    </p>
                     <div className="wine-price">
                       <span className="btc-price">{wine.price_btc} BTC</span>
                     </div>
@@ -840,10 +923,16 @@ export default function VRLoungesVIP() {
 
           {currentRecommendation && (
             <div className="wine-details-panel">
-              <h4 className="text-white font-bold mb-2">{currentRecommendation.wine_name}</h4>
-              <p className="text-white/80 text-sm mb-2">{currentRecommendation.description}</p>
-              <p className="text-emerald-400 text-sm italic mb-3">{currentRecommendation.mood_pairing}</p>
-              
+              <h4 className="text-white font-bold mb-2">
+                {currentRecommendation.wine_name}
+              </h4>
+              <p className="text-white/80 text-sm mb-2">
+                {currentRecommendation.description}
+              </p>
+              <p className="text-emerald-400 text-sm italic mb-3">
+                {currentRecommendation.mood_pairing}
+              </p>
+
               <button className="order-btn">
                 <Wine className="w-5 h-5" />
                 <span>Servir a Mesa</span>
@@ -861,16 +950,20 @@ export default function VRLoungesVIP() {
             <div
               key={guest.id}
               onClick={() => setSelectedGuest(guest)}
-              className={`guest-mini ${selectedGuest?.id === guest.id ? 'active' : ''}`}
+              className={`guest-mini ${selectedGuest?.id === guest.id ? "active" : ""}`}
               style={{ borderColor: guest.avatar_color }}
             >
-              <div 
+              <div
                 className="guest-glow"
                 style={{ backgroundColor: guest.avatar_color }}
               ></div>
               <div className="guest-mini-info">
-                <div className="guest-mini-name">{guest.name.split(' ')[0]}</div>
-                <div className="guest-mini-tier">{getTierIcon(guest.vip_tier)}</div>
+                <div className="guest-mini-name">
+                  {guest.name.split(" ")[0]}
+                </div>
+                <div className="guest-mini-tier">
+                  {getTierIcon(guest.vip_tier)}
+                </div>
               </div>
             </div>
           ))}
@@ -880,7 +973,11 @@ export default function VRLoungesVIP() {
       {/* Estilos CSS ultra-futuristas para VR Lounge espacial */}
       <style jsx>{`
         .lounge-title {
-          background: linear-gradient(135deg, rgba(0, 0, 0, 0.9), rgba(0, 231, 167, 0.1));
+          background: linear-gradient(
+            135deg,
+            rgba(0, 0, 0, 0.9),
+            rgba(0, 231, 167, 0.1)
+          );
           backdrop-filter: blur(25px);
           border: 2px solid rgba(0, 231, 167, 0.3);
           border-radius: 25px;
@@ -889,7 +986,13 @@ export default function VRLoungesVIP() {
         }
 
         .space-text {
-          background: linear-gradient(45deg, #0EE7E7, #00E7A7, #A855F7, #FFD700);
+          background: linear-gradient(
+            45deg,
+            #0ee7e7,
+            #00e7a7,
+            #a855f7,
+            #ffd700
+          );
           background-size: 400% 400%;
           -webkit-background-clip: text;
           -webkit-text-fill-color: transparent;
@@ -933,7 +1036,11 @@ export default function VRLoungesVIP() {
         }
 
         .vip-guest-panel {
-          background: linear-gradient(135deg, rgba(0, 0, 0, 0.95), rgba(168, 85, 247, 0.1));
+          background: linear-gradient(
+            135deg,
+            rgba(0, 0, 0, 0.95),
+            rgba(168, 85, 247, 0.1)
+          );
           backdrop-filter: blur(30px);
           border: 2px solid rgba(168, 85, 247, 0.3);
           border-radius: 30px;
@@ -973,17 +1080,17 @@ export default function VRLoungesVIP() {
 
         .tier-badge.diamond {
           background: rgba(168, 85, 247, 0.3);
-          color: #A855F7;
+          color: #a855f7;
         }
 
         .tier-badge.platinum {
           background: rgba(59, 130, 246, 0.3);
-          color: #3B82F6;
+          color: #3b82f6;
         }
 
         .tier-badge.gold {
           background: rgba(245, 158, 11, 0.3);
-          color: #F59E0B;
+          color: #f59e0b;
         }
 
         .mood-badge {
@@ -1019,7 +1126,7 @@ export default function VRLoungesVIP() {
         }
 
         .service-btn {
-          background: linear-gradient(45deg, #00E7A7, #0EE7E7);
+          background: linear-gradient(45deg, #00e7a7, #0ee7e7);
           color: black;
           border: none;
         }
@@ -1030,7 +1137,7 @@ export default function VRLoungesVIP() {
         }
 
         .service-btn.active {
-          background: linear-gradient(45deg, #A855F7, #8B5CF6);
+          background: linear-gradient(45deg, #a855f7, #8b5cf6);
           color: white;
           box-shadow: 0 0 30px rgba(168, 85, 247, 0.6);
         }
@@ -1046,7 +1153,11 @@ export default function VRLoungesVIP() {
         }
 
         .sommelier-panel {
-          background: linear-gradient(135deg, rgba(0, 0, 0, 0.95), rgba(0, 231, 167, 0.1));
+          background: linear-gradient(
+            135deg,
+            rgba(0, 0, 0, 0.95),
+            rgba(0, 231, 167, 0.1)
+          );
           backdrop-filter: blur(30px);
           border: 2px solid rgba(0, 231, 167, 0.3);
           border-radius: 25px;
@@ -1137,7 +1248,7 @@ export default function VRLoungesVIP() {
         }
 
         .btc-price {
-          color: #F59E0B;
+          color: #f59e0b;
           font-weight: bold;
         }
 
@@ -1156,7 +1267,7 @@ export default function VRLoungesVIP() {
           justify-content: center;
           gap: 0.5rem;
           padding: 1rem;
-          background: linear-gradient(45deg, #00E7A7, #0EE7E7);
+          background: linear-gradient(45deg, #00e7a7, #0ee7e7);
           color: black;
           border: none;
           border-radius: 12px;
@@ -1231,37 +1342,46 @@ export default function VRLoungesVIP() {
         }
 
         @keyframes space-flow {
-          0% { background-position: 0% 50%; }
-          50% { background-position: 100% 50%; }
-          100% { background-position: 0% 50%; }
+          0% {
+            background-position: 0% 50%;
+          }
+          50% {
+            background-position: 100% 50%;
+          }
+          100% {
+            background-position: 0% 50%;
+          }
         }
 
         @keyframes avatar-float {
-          0%, 100% { 
+          0%,
+          100% {
             transform: translateY(0px) scale(1);
           }
-          50% { 
+          50% {
             transform: translateY(-10px) scale(1.02);
           }
         }
 
         @keyframes ai-pulse {
-          0%, 100% { 
+          0%,
+          100% {
             box-shadow: 0 0 20px rgba(0, 231, 167, 0.5);
             transform: scale(1);
           }
-          50% { 
+          50% {
             box-shadow: 0 0 35px rgba(0, 231, 167, 0.8);
             transform: scale(1.05);
           }
         }
 
         @keyframes guest-pulse {
-          0%, 100% { 
+          0%,
+          100% {
             transform: scale(1);
             opacity: 1;
           }
-          50% { 
+          50% {
             transform: scale(1.4);
             opacity: 0.7;
           }

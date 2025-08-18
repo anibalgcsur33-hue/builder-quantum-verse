@@ -7,7 +7,9 @@ export function VRDemoCTA({ className = "" }: { className?: string }) {
 
   return (
     <>
-      <div className={`flex flex-col sm:flex-row gap-4 justify-center items-center ${className}`}>
+      <div
+        className={`flex flex-col sm:flex-row gap-4 justify-center items-center ${className}`}
+      >
         <motion.button
           onClick={() => setDemoOpen(true)}
           className="px-6 py-3 bg-cyan-600/80 backdrop-blur-md text-white font-medium rounded-xl border border-cyan-400/30 hover:bg-cyan-500/80 transition-all"

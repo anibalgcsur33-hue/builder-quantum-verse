@@ -8,7 +8,7 @@ export default function CinematicDroneFinale() {
   const containerRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
     target: containerRef,
-    offset: ["start end", "end start"]
+    offset: ["start end", "end start"],
   });
 
   const y = useTransform(scrollYProgress, [0, 1], [-100, 100]);
@@ -35,19 +35,16 @@ export default function CinematicDroneFinale() {
     { name: "Gran Canaria", x: "8%", y: "88%" },
     { name: "Lanzarote", x: "12%", y: "82%" },
     { name: "Fuerteventura", x: "10%", y: "85%" },
-    { name: "La Graciosa", x: "11%", y: "80%" }
+    { name: "La Graciosa", x: "11%", y: "80%" },
   ];
 
   return (
-    <div 
+    <div
       ref={containerRef}
       className="relative h-screen overflow-hidden bg-gradient-to-b from-blue-900 via-purple-900 to-black"
     >
       {/* Cinematic Background */}
-      <motion.div
-        className="absolute inset-0"
-        style={{ y, opacity, scale }}
-      >
+      <motion.div className="absolute inset-0" style={{ y, opacity, scale }}>
         {/* Starfield */}
         <div className="absolute inset-0">
           {Array.from({ length: 100 }).map((_, i) => (
@@ -60,12 +57,12 @@ export default function CinematicDroneFinale() {
               }}
               animate={{
                 opacity: [0.3, 1, 0.3],
-                scale: [0.5, 1, 0.5]
+                scale: [0.5, 1, 0.5],
               }}
               transition={{
                 duration: 2 + Math.random() * 3,
                 repeat: Infinity,
-                delay: Math.random() * 2
+                delay: Math.random() * 2,
               }}
             />
           ))}
@@ -96,12 +93,12 @@ export default function CinematicDroneFinale() {
               style={{ left: island.x, top: island.y }}
               animate={{
                 scale: [1, 1.5, 1],
-                opacity: [0.7, 1, 0.7]
+                opacity: [0.7, 1, 0.7],
               }}
               transition={{
                 duration: 2,
                 repeat: Infinity,
-                delay: index * 0.2
+                delay: index * 0.2,
               }}
             >
               <motion.div
@@ -123,7 +120,7 @@ export default function CinematicDroneFinale() {
             initial={{ x: "0%", y: "0%" }}
             animate={{
               x: ["0%", "25%", "50%", "75%", "100%"],
-              y: ["0%", "20%", "40%", "60%", "80%"]
+              y: ["0%", "20%", "40%", "60%", "80%"],
             }}
             transition={{ duration: 8, ease: "easeInOut" }}
           >
@@ -133,8 +130,8 @@ export default function CinematicDroneFinale() {
                 boxShadow: [
                   "0 0 10px rgba(255, 255, 0, 0.5)",
                   "0 0 20px rgba(255, 255, 0, 0.8)",
-                  "0 0 10px rgba(255, 255, 0, 0.5)"
-                ]
+                  "0 0 10px rgba(255, 255, 0, 0.5)",
+                ],
               }}
               transition={{ duration: 1, repeat: Infinity }}
             />
@@ -156,14 +153,14 @@ export default function CinematicDroneFinale() {
               background: [
                 "linear-gradient(45deg, #00ffff, #ff00ff)",
                 "linear-gradient(45deg, #ff00ff, #ffff00)",
-                "linear-gradient(45deg, #ffff00, #00ffff)"
-              ]
+                "linear-gradient(45deg, #ffff00, #00ffff)",
+              ],
             }}
             transition={{ duration: 3, repeat: Infinity }}
             style={{
               backgroundClip: "text",
               WebkitBackgroundClip: "text",
-              color: "transparent"
+              color: "transparent",
             }}
           >
             Experiencia
@@ -196,11 +193,11 @@ export default function CinematicDroneFinale() {
                 className="absolute inset-0 rounded-full bg-gradient-to-r from-cyan-500 to-purple-500"
                 animate={{
                   rotate: 360,
-                  scale: [1, 1.1, 1]
+                  scale: [1, 1.1, 1],
                 }}
                 transition={{
                   rotate: { duration: 3, repeat: Infinity, ease: "linear" },
-                  scale: { duration: 2, repeat: Infinity }
+                  scale: { duration: 2, repeat: Infinity },
                 }}
               />
               <div className="relative z-10 w-28 h-28 rounded-full bg-black/50 backdrop-blur-lg flex items-center justify-center">
@@ -229,7 +226,9 @@ export default function CinematicDroneFinale() {
                   transition={{ duration: 8 }}
                 />
               </div>
-              <p className="text-white/60 text-sm mt-2">Volando sobre el paraíso español...</p>
+              <p className="text-white/60 text-sm mt-2">
+                Volando sobre el paraíso español...
+              </p>
             </motion.div>
           )}
 
@@ -238,35 +237,36 @@ export default function CinematicDroneFinale() {
             <motion.div
               initial={{ opacity: 0, y: 50, scale: 0.5 }}
               animate={{ opacity: 1, y: 0, scale: 1 }}
-              transition={{ 
+              transition={{
                 duration: 1,
                 type: "spring",
-                stiffness: 100
+                stiffness: 100,
               }}
               className="relative"
             >
               <motion.button
                 className="group relative px-12 py-6 rounded-2xl font-bold text-xl text-white overflow-hidden"
                 style={{
-                  background: "linear-gradient(45deg, rgba(255,255,255,0.1), rgba(255,255,255,0.2))",
+                  background:
+                    "linear-gradient(45deg, rgba(255,255,255,0.1), rgba(255,255,255,0.2))",
                   backdropFilter: "blur(20px)",
-                  border: "2px solid rgba(255,255,255,0.3)"
+                  border: "2px solid rgba(255,255,255,0.3)",
                 }}
-                whileHover={{ 
+                whileHover={{
                   scale: 1.05,
                   rotateY: 10,
-                  rotateX: 10
+                  rotateX: 10,
                 }}
                 whileTap={{ scale: 0.95 }}
                 animate={{
                   boxShadow: [
                     "0 0 30px rgba(0, 255, 255, 0.3)",
                     "0 0 60px rgba(255, 0, 255, 0.3)",
-                    "0 0 30px rgba(0, 255, 255, 0.3)"
-                  ]
+                    "0 0 30px rgba(0, 255, 255, 0.3)",
+                  ],
                 }}
                 transition={{
-                  boxShadow: { duration: 2, repeat: Infinity }
+                  boxShadow: { duration: 2, repeat: Infinity },
                 }}
               >
                 <motion.div
@@ -274,7 +274,7 @@ export default function CinematicDroneFinale() {
                   animate={{ x: ["-100%", "100%"] }}
                   transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
                 />
-                
+
                 <div className="relative flex items-center gap-4">
                   <motion.div
                     animate={{ rotate: [0, 10, -10, 0] }}
@@ -282,12 +282,16 @@ export default function CinematicDroneFinale() {
                   >
                     <Diamond className="w-8 h-8 text-cyan-400" />
                   </motion.div>
-                  
+
                   <span>Agendar Tour VIP Exclusivo</span>
-                  
+
                   <motion.div
                     animate={{ rotate: 360 }}
-                    transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
+                    transition={{
+                      duration: 3,
+                      repeat: Infinity,
+                      ease: "linear",
+                    }}
                   >
                     <Crown className="w-8 h-8 text-yellow-400" />
                   </motion.div>
@@ -305,12 +309,12 @@ export default function CinematicDroneFinale() {
                       }}
                       animate={{
                         y: [-10, -30, -10],
-                        opacity: [0, 1, 0]
+                        opacity: [0, 1, 0],
                       }}
                       transition={{
                         duration: 2,
                         repeat: Infinity,
-                        delay: Math.random() * 2
+                        delay: Math.random() * 2,
                       }}
                     />
                   ))}
@@ -351,7 +355,8 @@ export default function CinematicDroneFinale() {
           >
             🏆 Experiencia reservada para miembros del club privado BlueEyes.
             <br />
-            💎 Accede a propiedades exclusivas no disponibles al público general.
+            💎 Accede a propiedades exclusivas no disponibles al público
+            general.
           </motion.p>
         </motion.div>
       </div>

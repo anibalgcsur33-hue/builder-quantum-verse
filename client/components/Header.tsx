@@ -65,7 +65,9 @@ export default function Header({
               💎 Inversión
             </Link>
             <button
-              onClick={() => window.dispatchEvent(new CustomEvent("blueeye:assistant"))}
+              onClick={() =>
+                window.dispatchEvent(new CustomEvent("blueeye:assistant"))
+              }
               className="text-white/80 hover:text-neon-teal transition-colors duration-300 font-medium flex items-center gap-2"
             >
               🤖 Concierge IA

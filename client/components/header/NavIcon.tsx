@@ -1,7 +1,13 @@
 import { motion } from "framer-motion";
 import type { ReactNode } from "react";
 
-export default function NavIcon({ icon, label }: { icon: ReactNode; label: string }) {
+export default function NavIcon({
+  icon,
+  label,
+}: {
+  icon: ReactNode;
+  label: string;
+}) {
   return (
     <motion.div
       whileHover={{ y: -2, scale: 1.06 }}

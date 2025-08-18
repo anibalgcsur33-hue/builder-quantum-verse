@@ -1,12 +1,28 @@
 import React, { useEffect, useRef, useState } from "react";
 import * as THREE from "three";
-import { Shield, Key, Globe, Zap, Crown, Eye, Plane, Wallet, QrCode, Fingerprint } from "lucide-react";
+import {
+  Shield,
+  Key,
+  Globe,
+  Zap,
+  Crown,
+  Eye,
+  Plane,
+  Wallet,
+  QrCode,
+  Fingerprint,
+} from "lucide-react";
 
 interface MetaverseDestination {
   id: string;
   name: string;
-  type: 'luxury_district' | 'entertainment' | 'business' | 'exclusive_island' | 'space_station';
-  access_level: 'public' | 'premium' | 'vip' | 'ultra_exclusive';
+  type:
+    | "luxury_district"
+    | "entertainment"
+    | "business"
+    | "exclusive_island"
+    | "space_station";
+  access_level: "public" | "premium" | "vip" | "ultra_exclusive";
   description: string;
   preview_color: string;
   gateway_animation: string;
@@ -19,7 +35,7 @@ interface MetaverseDestination {
 interface DigitalIdentity {
   passport_id: string;
   holder_name: string;
-  access_tier: 'standard' | 'premium' | 'platinum' | 'diamond' | 'quantum';
+  access_tier: "standard" | "premium" | "platinum" | "diamond" | "quantum";
   verified_assets: number;
   reputation_score: number;
   quantum_signature: string;
@@ -40,118 +56,150 @@ interface QuantumCode {
 
 const metaverseDestinations: MetaverseDestination[] = [
   {
-    id: 'madrid-luxury-district',
-    name: 'Distrito de Lujo Madrid',
-    type: 'luxury_district',
-    access_level: 'premium',
-    description: 'Mansiones flotantes sobre el Retiro con salones de cristal',
-    preview_color: '#FFD700',
-    gateway_animation: 'golden_spiral_ascension',
-    required_credentials: ['Verified Income', 'Luxury Asset Portfolio'],
-    luxury_amenities: ['Michelin Star Restaurants', 'Private Art Galleries', 'Quantum Spas'],
+    id: "madrid-luxury-district",
+    name: "Distrito de Lujo Madrid",
+    type: "luxury_district",
+    access_level: "premium",
+    description: "Mansiones flotantes sobre el Retiro con salones de cristal",
+    preview_color: "#FFD700",
+    gateway_animation: "golden_spiral_ascension",
+    required_credentials: ["Verified Income", "Luxury Asset Portfolio"],
+    luxury_amenities: [
+      "Michelin Star Restaurants",
+      "Private Art Galleries",
+      "Quantum Spas",
+    ],
     entry_fee_eth: 2.5,
-    active_users: 1247
+    active_users: 1247,
   },
   {
-    id: 'barcelona-creative-hub',
-    name: 'Hub Creativo Barcelona',
-    type: 'entertainment',
-    access_level: 'public',
-    description: 'Gaudí meets cyberpunk: arquitectura imposible y arte generativo',
-    preview_color: '#A855F7',
-    gateway_animation: 'morphing_cathedral_portal',
-    required_credentials: ['Digital Identity'],
-    luxury_amenities: ['Interactive Art Studios', 'Neural Music Venues', 'Creative Workshops'],
+    id: "barcelona-creative-hub",
+    name: "Hub Creativo Barcelona",
+    type: "entertainment",
+    access_level: "public",
+    description:
+      "Gaudí meets cyberpunk: arquitectura imposible y arte generativo",
+    preview_color: "#A855F7",
+    gateway_animation: "morphing_cathedral_portal",
+    required_credentials: ["Digital Identity"],
+    luxury_amenities: [
+      "Interactive Art Studios",
+      "Neural Music Venues",
+      "Creative Workshops",
+    ],
     entry_fee_eth: 0.1,
-    active_users: 8932
+    active_users: 8932,
   },
   {
-    id: 'valencia-business-nexus',
-    name: 'Nexus de Negocios Valencia',
-    type: 'business',
-    access_level: 'vip',
-    description: 'Rascacielos holográficos para reuniones corporativas inmersivas',
-    preview_color: '#0EE7E7',
-    gateway_animation: 'corporate_tower_materialization',
-    required_credentials: ['Business Verification', 'Professional Network'],
-    luxury_amenities: ['Holographic Boardrooms', 'AI Business Analytics', 'Quantum Networking'],
+    id: "valencia-business-nexus",
+    name: "Nexus de Negocios Valencia",
+    type: "business",
+    access_level: "vip",
+    description:
+      "Rascacielos holográficos para reuniones corporativas inmersivas",
+    preview_color: "#0EE7E7",
+    gateway_animation: "corporate_tower_materialization",
+    required_credentials: ["Business Verification", "Professional Network"],
+    luxury_amenities: [
+      "Holographic Boardrooms",
+      "AI Business Analytics",
+      "Quantum Networking",
+    ],
     entry_fee_eth: 5.0,
-    active_users: 567
+    active_users: 567,
   },
   {
-    id: 'ibiza-exclusive-island',
-    name: 'Isla Exclusiva Ibiza',
-    type: 'exclusive_island',
-    access_level: 'ultra_exclusive',
-    description: 'Yates voladores, playas de cristal líquido y fiestas en gravedad cero',
-    preview_color: '#00E7A7',
-    gateway_animation: 'ocean_portal_emergence',
-    required_credentials: ['Ultra-VIP Status', 'Celebrity Endorsement', 'Luxury Asset Verification'],
-    luxury_amenities: ['Zero-G Beach Clubs', 'Flying Yacht Marina', 'Crystal Cave Spas'],
+    id: "ibiza-exclusive-island",
+    name: "Isla Exclusiva Ibiza",
+    type: "exclusive_island",
+    access_level: "ultra_exclusive",
+    description:
+      "Yates voladores, playas de cristal líquido y fiestas en gravedad cero",
+    preview_color: "#00E7A7",
+    gateway_animation: "ocean_portal_emergence",
+    required_credentials: [
+      "Ultra-VIP Status",
+      "Celebrity Endorsement",
+      "Luxury Asset Verification",
+    ],
+    luxury_amenities: [
+      "Zero-G Beach Clubs",
+      "Flying Yacht Marina",
+      "Crystal Cave Spas",
+    ],
     entry_fee_eth: 25.0,
-    active_users: 89
+    active_users: 89,
   },
   {
-    id: 'orbital-mansion-station',
-    name: 'Estación Mansión Orbital',
-    type: 'space_station',
-    access_level: 'ultra_exclusive',
-    description: 'Mansiones giratorias en el espacio con vistas a la Tierra',
-    preview_color: '#FF6B9D',
-    gateway_animation: 'space_elevator_ascension',
-    required_credentials: ['Quantum Passport', 'Space Tourism License', 'Orbital Asset Ownership'],
-    luxury_amenities: ['Earth View Suites', 'Zero-G Gardens', 'Stellar Observatory'],
+    id: "orbital-mansion-station",
+    name: "Estación Mansión Orbital",
+    type: "space_station",
+    access_level: "ultra_exclusive",
+    description: "Mansiones giratorias en el espacio con vistas a la Tierra",
+    preview_color: "#FF6B9D",
+    gateway_animation: "space_elevator_ascension",
+    required_credentials: [
+      "Quantum Passport",
+      "Space Tourism License",
+      "Orbital Asset Ownership",
+    ],
+    luxury_amenities: [
+      "Earth View Suites",
+      "Zero-G Gardens",
+      "Stellar Observatory",
+    ],
     entry_fee_eth: 100.0,
-    active_users: 23
-  }
+    active_users: 23,
+  },
 ];
 
 const quantumCodes: QuantumCode[] = [
   {
-    id: 'access-alpha',
-    data_layer: 'Biometric Authentication',
+    id: "access-alpha",
+    data_layer: "Biometric Authentication",
     encryption_level: 256,
     validity_duration: 3600,
-    access_permissions: ['Basic Navigation', 'Public Spaces'],
-    visual_pattern: 'spiral_matrix',
-    quantum_entanglement: false
+    access_permissions: ["Basic Navigation", "Public Spaces"],
+    visual_pattern: "spiral_matrix",
+    quantum_entanglement: false,
   },
   {
-    id: 'access-beta',
-    data_layer: 'Verified Asset Portfolio',
+    id: "access-beta",
+    data_layer: "Verified Asset Portfolio",
     encryption_level: 512,
     validity_duration: 7200,
-    access_permissions: ['Premium Zones', 'Luxury Services'],
-    visual_pattern: 'diamond_cascade',
-    quantum_entanglement: true
+    access_permissions: ["Premium Zones", "Luxury Services"],
+    visual_pattern: "diamond_cascade",
+    quantum_entanglement: true,
   },
   {
-    id: 'access-gamma',
-    data_layer: 'Quantum Identity Matrix',
+    id: "access-gamma",
+    data_layer: "Quantum Identity Matrix",
     encryption_level: 1024,
     validity_duration: 14400,
-    access_permissions: ['VIP Access', 'Exclusive Events', 'Private Mansions'],
-    visual_pattern: 'hypercube_rotation',
-    quantum_entanglement: true
-  }
+    access_permissions: ["VIP Access", "Exclusive Events", "Private Mansions"],
+    visual_pattern: "hypercube_rotation",
+    quantum_entanglement: true,
+  },
 ];
 
 export default function DigitalPassportMetaverse() {
   const passportRef = useRef<HTMLDivElement>(null);
-  const [selectedDestination, setSelectedDestination] = useState<MetaverseDestination | null>(null);
+  const [selectedDestination, setSelectedDestination] =
+    useState<MetaverseDestination | null>(null);
   const [isScanning, setIsScanning] = useState(false);
   const [gatewayActive, setGatewayActive] = useState(false);
   const [currentCode, setCurrentCode] = useState<QuantumCode>(quantumCodes[0]);
   const [digitalIdentity, setDigitalIdentity] = useState<DigitalIdentity>({
-    passport_id: 'QP-2089-LXRY-7834',
-    holder_name: 'Alexandra Sterling',
-    access_tier: 'diamond',
+    passport_id: "QP-2089-LXRY-7834",
+    holder_name: "Alexandra Sterling",
+    access_tier: "diamond",
     verified_assets: 12,
     reputation_score: 987,
-    quantum_signature: 'QS∅∆φ∫∑∏≈',
+    quantum_signature: "QS∅∆φ∫∑∏≈",
     biometric_locked: true,
     active_destinations: 3,
-    total_experiences: 147
+    total_experiences: 147,
   });
   const sceneRef = useRef<THREE.Scene | null>(null);
   const passportMesh = useRef<THREE.Mesh | null>(null);
@@ -162,11 +210,16 @@ export default function DigitalPassportMetaverse() {
 
     // Configuración ultra-futurista para Pasaporte Digital y Gateway Metaverso
     const scene = new THREE.Scene();
-    const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-    const renderer = new THREE.WebGLRenderer({ 
-      antialias: true, 
+    const camera = new THREE.PerspectiveCamera(
+      75,
+      window.innerWidth / window.innerHeight,
+      0.1,
+      1000,
+    );
+    const renderer = new THREE.WebGLRenderer({
+      antialias: true,
       alpha: true,
-      powerPreference: "high-performance"
+      powerPreference: "high-performance",
     });
 
     renderer.setSize(window.innerWidth, window.innerHeight);
@@ -185,10 +238,10 @@ export default function DigitalPassportMetaverse() {
     const passportMaterial = new THREE.ShaderMaterial({
       uniforms: {
         time: { value: 0 },
-        quantum_signature: { value: new THREE.Color(0x0EE7E7) },
+        quantum_signature: { value: new THREE.Color(0x0ee7e7) },
         access_tier: { value: 4.0 }, // Diamond tier
         biometric_active: { value: 1.0 },
-        scanning_mode: { value: 0.0 }
+        scanning_mode: { value: 0.0 },
       },
       vertexShader: `
         varying vec3 vPosition;
@@ -255,7 +308,7 @@ export default function DigitalPassportMetaverse() {
         }
       `,
       transparent: true,
-      side: THREE.DoubleSide
+      side: THREE.DoubleSide,
     });
 
     const passport = new THREE.Mesh(passportGeometry, passportMaterial);
@@ -268,7 +321,7 @@ export default function DigitalPassportMetaverse() {
     const createQuantumCodeSpiral = (code: QuantumCode) => {
       const spiralGroup = new THREE.Group();
       const codeCount = 24;
-      
+
       for (let i = 0; i < codeCount; i++) {
         const codeGeometry = new THREE.PlaneGeometry(1, 1);
         const codeMaterial = new THREE.ShaderMaterial({
@@ -276,7 +329,7 @@ export default function DigitalPassportMetaverse() {
             time: { value: 0 },
             code_index: { value: i },
             encryption_level: { value: code.encryption_level },
-            quantum_entangled: { value: code.quantum_entanglement ? 1.0 : 0.0 }
+            quantum_entangled: { value: code.quantum_entanglement ? 1.0 : 0.0 },
           },
           vertexShader: `
             uniform float time;
@@ -327,13 +380,13 @@ export default function DigitalPassportMetaverse() {
               gl_FragColor = vec4(final_color, alpha);
             }
           `,
-          transparent: true
+          transparent: true,
         });
-        
+
         const codeQuad = new THREE.Mesh(codeGeometry, codeMaterial);
         spiralGroup.add(codeQuad);
       }
-      
+
       return spiralGroup;
     };
 
@@ -343,19 +396,21 @@ export default function DigitalPassportMetaverse() {
 
     // Crear gateways a los destinos del metaverso
     gatewayMeshes.current = [];
-    
+
     metaverseDestinations.forEach((destination, index) => {
       const gatewayGroup = new THREE.Group();
-      
+
       // Portal principal del gateway
       const portalGeometry = new THREE.RingGeometry(6, 8, 16);
       const portalMaterial = new THREE.ShaderMaterial({
         uniforms: {
           time: { value: 0 },
           portal_color: { value: new THREE.Color(destination.preview_color) },
-          access_level: { value: getAccessLevelValue(destination.access_level) },
+          access_level: {
+            value: getAccessLevelValue(destination.access_level),
+          },
           active_users: { value: destination.active_users },
-          gateway_active: { value: 0.0 }
+          gateway_active: { value: 0.0 },
         },
         vertexShader: `
           varying vec3 vPosition;
@@ -409,19 +464,21 @@ export default function DigitalPassportMetaverse() {
           }
         `,
         transparent: true,
-        side: THREE.DoubleSide
+        side: THREE.DoubleSide,
       });
-      
+
       const portal = new THREE.Mesh(portalGeometry, portalMaterial);
       gatewayGroup.add(portal);
-      
+
       // Vista previa del destino dentro del portal
       const previewGeometry = new THREE.CircleGeometry(5, 32);
       const previewMaterial = new THREE.ShaderMaterial({
         uniforms: {
           time: { value: 0 },
-          destination_type: { value: getDestinationTypeValue(destination.type) },
-          preview_color: { value: new THREE.Color(destination.preview_color) }
+          destination_type: {
+            value: getDestinationTypeValue(destination.type),
+          },
+          preview_color: { value: new THREE.Color(destination.preview_color) },
         },
         vertexShader: `
           varying vec2 vUv;
@@ -477,24 +534,24 @@ export default function DigitalPassportMetaverse() {
             gl_FragColor = vec4(final_color, alpha);
           }
         `,
-        transparent: true
+        transparent: true,
       });
-      
+
       const preview = new THREE.Mesh(previewGeometry, previewMaterial);
       preview.position.z = -0.1;
       gatewayGroup.add(preview);
-      
+
       // Posicionar gateways en formación circular
       const angle = (index / metaverseDestinations.length) * Math.PI * 2;
       const radius = 30;
       gatewayGroup.position.set(
         Math.cos(angle) * radius,
         -5 + index * 2,
-        Math.sin(angle) * radius
+        Math.sin(angle) * radius,
       );
       gatewayGroup.rotation.y = -angle;
       gatewayGroup.userData = { destination, originalAngle: angle };
-      
+
       scene.add(gatewayGroup);
       gatewayMeshes.current.push(gatewayGroup);
     });
@@ -503,23 +560,26 @@ export default function DigitalPassportMetaverse() {
     const starsGeometry = new THREE.BufferGeometry();
     const starsCount = 3000;
     const starsPositions = new Float32Array(starsCount * 3);
-    
+
     for (let i = 0; i < starsCount; i++) {
       starsPositions[i * 3] = (Math.random() - 0.5) * 400;
       starsPositions[i * 3 + 1] = (Math.random() - 0.5) * 400;
       starsPositions[i * 3 + 2] = (Math.random() - 0.5) * 400;
     }
-    
-    starsGeometry.setAttribute('position', new THREE.BufferAttribute(starsPositions, 3));
-    
+
+    starsGeometry.setAttribute(
+      "position",
+      new THREE.BufferAttribute(starsPositions, 3),
+    );
+
     const starsMaterial = new THREE.PointsMaterial({
-      color: 0xFFFFFF,
+      color: 0xffffff,
       size: 0.8,
       transparent: true,
       opacity: 0.9,
-      blending: THREE.AdditiveBlending
+      blending: THREE.AdditiveBlending,
     });
-    
+
     const stars = new THREE.Points(starsGeometry, starsMaterial);
     scene.add(stars);
 
@@ -527,15 +587,15 @@ export default function DigitalPassportMetaverse() {
     const ambientLight = new THREE.AmbientLight(0x404040, 2.5);
     scene.add(ambientLight);
 
-    const quantumLight = new THREE.PointLight(0x0EE7E7, 5, 100);
+    const quantumLight = new THREE.PointLight(0x0ee7e7, 5, 100);
     quantumLight.position.set(0, 15, 0);
     scene.add(quantumLight);
 
-    const hologramLight1 = new THREE.DirectionalLight(0xA855F7, 3);
+    const hologramLight1 = new THREE.DirectionalLight(0xa855f7, 3);
     hologramLight1.position.set(40, 40, 40);
     scene.add(hologramLight1);
 
-    const hologramLight2 = new THREE.DirectionalLight(0x00E7A7, 2.5);
+    const hologramLight2 = new THREE.DirectionalLight(0x00e7a7, 2.5);
     hologramLight2.position.set(-40, 30, -40);
     scene.add(hologramLight2);
 
@@ -554,11 +614,12 @@ export default function DigitalPassportMetaverse() {
 
       raycaster.setFromCamera(mouse, camera);
       const intersects = raycaster.intersectObjects(
-        gatewayMeshes.current.map(g => g.children[0])
+        gatewayMeshes.current.map((g) => g.children[0]),
       );
 
       if (intersects.length > 0) {
-        const clickedGateway = intersects[0].object.parent?.userData?.destination as MetaverseDestination;
+        const clickedGateway = intersects[0].object.parent?.userData
+          ?.destination as MetaverseDestination;
         if (clickedGateway) {
           setSelectedDestination(clickedGateway);
           setGatewayActive(true);
@@ -567,27 +628,38 @@ export default function DigitalPassportMetaverse() {
       }
     };
 
-    renderer.domElement.addEventListener('click', onMouseClick);
+    renderer.domElement.addEventListener("click", onMouseClick);
 
     // Función auxiliar para obtener valores numéricos
     function getAccessLevelValue(level: string): number {
       switch (level) {
-        case 'public': return 1.0;
-        case 'premium': return 2.0;
-        case 'vip': return 3.0;
-        case 'ultra_exclusive': return 4.0;
-        default: return 1.0;
+        case "public":
+          return 1.0;
+        case "premium":
+          return 2.0;
+        case "vip":
+          return 3.0;
+        case "ultra_exclusive":
+          return 4.0;
+        default:
+          return 1.0;
       }
     }
 
     function getDestinationTypeValue(type: string): number {
       switch (type) {
-        case 'luxury_district': return 1.0;
-        case 'entertainment': return 2.0;
-        case 'business': return 3.0;
-        case 'exclusive_island': return 4.0;
-        case 'space_station': return 5.0;
-        default: return 1.0;
+        case "luxury_district":
+          return 1.0;
+        case "entertainment":
+          return 2.0;
+        case "business":
+          return 3.0;
+        case "exclusive_island":
+          return 4.0;
+        case "space_station":
+          return 5.0;
+        default:
+          return 1.0;
       }
     }
 
@@ -598,9 +670,14 @@ export default function DigitalPassportMetaverse() {
       time += 0.015;
 
       // Actualizar pasaporte holográfico
-      if (passportMesh.current && passportMesh.current.material instanceof THREE.ShaderMaterial) {
+      if (
+        passportMesh.current &&
+        passportMesh.current.material instanceof THREE.ShaderMaterial
+      ) {
         passportMesh.current.material.uniforms.time.value = time;
-        passportMesh.current.material.uniforms.scanning_mode.value = isScanning ? 1.0 : 0.0;
+        passportMesh.current.material.uniforms.scanning_mode.value = isScanning
+          ? 1.0
+          : 0.0;
       }
 
       // Rotación del pasaporte
@@ -618,11 +695,16 @@ export default function DigitalPassportMetaverse() {
 
       // Actualizar gateways del metaverso
       gatewayMeshes.current.forEach((gateway, index) => {
-        gateway.children.forEach(child => {
+        gateway.children.forEach((child) => {
           if (child.material instanceof THREE.ShaderMaterial) {
             child.material.uniforms.time.value = time;
-            if (selectedDestination && gateway.userData.destination.id === selectedDestination.id) {
-              child.material.uniforms.gateway_active.value = gatewayActive ? 1.0 : 0.0;
+            if (
+              selectedDestination &&
+              gateway.userData.destination.id === selectedDestination.id
+            ) {
+              child.material.uniforms.gateway_active.value = gatewayActive
+                ? 1.0
+                : 0.0;
             } else {
               child.material.uniforms.gateway_active.value = 0.0;
             }
@@ -631,7 +713,7 @@ export default function DigitalPassportMetaverse() {
 
         // Flotación de gateways
         gateway.position.y = -5 + index * 2 + Math.sin(time + index) * 0.6;
-        
+
         // Rotación suave
         gateway.rotation.y = gateway.userData.originalAngle + time * 0.1;
       });
@@ -649,7 +731,7 @@ export default function DigitalPassportMetaverse() {
     animate();
 
     return () => {
-      renderer.domElement.removeEventListener('click', onMouseClick);
+      renderer.domElement.removeEventListener("click", onMouseClick);
       if (passportRef.current && renderer.domElement) {
         passportRef.current.removeChild(renderer.domElement);
       }
@@ -659,38 +741,48 @@ export default function DigitalPassportMetaverse() {
 
   const startBiometricScan = () => {
     setIsScanning(true);
-    
+
     // Simular escaneo biométrico
     setTimeout(() => {
       setIsScanning(false);
-      console.log('🔒 Escaneo biométrico completado');
+      console.log("🔒 Escaneo biométrico completado");
     }, 3000);
   };
 
   const getTierIcon = (tier: string) => {
     switch (tier) {
-      case 'quantum': return <Crown className="w-5 h-5 text-purple-400" />;
-      case 'diamond': return <Crown className="w-5 h-5 text-blue-400" />;
-      case 'platinum': return <Shield className="w-5 h-5 text-gray-300" />;
-      case 'premium': return <Key className="w-5 h-5 text-yellow-400" />;
-      case 'standard': return <Globe className="w-5 h-5 text-white" />;
-      default: return <Globe className="w-5 h-5" />;
+      case "quantum":
+        return <Crown className="w-5 h-5 text-purple-400" />;
+      case "diamond":
+        return <Crown className="w-5 h-5 text-blue-400" />;
+      case "platinum":
+        return <Shield className="w-5 h-5 text-gray-300" />;
+      case "premium":
+        return <Key className="w-5 h-5 text-yellow-400" />;
+      case "standard":
+        return <Globe className="w-5 h-5 text-white" />;
+      default:
+        return <Globe className="w-5 h-5" />;
     }
   };
 
   const getAccessLevelColor = (level: string) => {
     switch (level) {
-      case 'ultra_exclusive': return 'text-purple-400 bg-purple-900/20';
-      case 'vip': return 'text-amber-400 bg-amber-900/20';
-      case 'premium': return 'text-blue-400 bg-blue-900/20';
-      case 'public': return 'text-green-400 bg-green-900/20';
-      default: return 'text-white bg-gray-900/20';
+      case "ultra_exclusive":
+        return "text-purple-400 bg-purple-900/20";
+      case "vip":
+        return "text-amber-400 bg-amber-900/20";
+      case "premium":
+        return "text-blue-400 bg-blue-900/20";
+      case "public":
+        return "text-green-400 bg-green-900/20";
+      default:
+        return "text-white bg-gray-900/20";
     }
   };
 
   return (
     <section className="relative w-full h-screen bg-black overflow-hidden">
-      
       {/* Header del Pasaporte Digital */}
       <div className="absolute top-6 left-6 right-6 z-20 flex justify-between items-start">
         <div className="passport-title">
@@ -698,7 +790,8 @@ export default function DigitalPassportMetaverse() {
             Pasaporte Digital Metaverso
           </h1>
           <p className="text-white/80 text-lg">
-            Códigos Cuánticos • Gateway Holográfico • Identidad Verificada • Acceso Universal
+            Códigos Cuánticos • Gateway Holográfico • Identidad Verificada •
+            Acceso Universal
           </p>
         </div>
 
@@ -707,18 +800,18 @@ export default function DigitalPassportMetaverse() {
           <button
             onClick={startBiometricScan}
             disabled={isScanning}
-            className={`scan-btn ${isScanning ? 'scanning' : ''}`}
+            className={`scan-btn ${isScanning ? "scanning" : ""}`}
           >
             <Fingerprint className="w-6 h-6" />
-            <span>{isScanning ? 'Escaneando...' : 'Escaneo Biométrico'}</span>
+            <span>{isScanning ? "Escaneando..." : "Escaneo Biométrico"}</span>
           </button>
-          
+
           <button
             onClick={() => setGatewayActive(!gatewayActive)}
-            className={`gateway-btn ${gatewayActive ? 'active' : ''}`}
+            className={`gateway-btn ${gatewayActive ? "active" : ""}`}
           >
             <Globe className="w-6 h-6" />
-            <span>{gatewayActive ? 'Gateway Activo' : 'Activar Gateway'}</span>
+            <span>{gatewayActive ? "Gateway Activo" : "Activar Gateway"}</span>
           </button>
         </div>
       </div>
@@ -734,7 +827,7 @@ export default function DigitalPassportMetaverse() {
               <QrCode className="w-8 h-8 text-neon-teal" />
             </div>
           </div>
-          
+
           <div className="identity-info">
             <div className="flex items-center gap-2 mb-2">
               {getTierIcon(digitalIdentity.access_tier)}
@@ -748,12 +841,18 @@ export default function DigitalPassportMetaverse() {
                 </span>
               )}
             </div>
-            
-            <h3 className="text-xl font-bold text-white mb-1">{digitalIdentity.holder_name}</h3>
-            <p className="text-white/70 text-sm mb-2">ID: {digitalIdentity.passport_id}</p>
-            
+
+            <h3 className="text-xl font-bold text-white mb-1">
+              {digitalIdentity.holder_name}
+            </h3>
+            <p className="text-white/70 text-sm mb-2">
+              ID: {digitalIdentity.passport_id}
+            </p>
+
             <div className="quantum-signature">
-              <span className="text-neon-teal font-mono text-lg">{digitalIdentity.quantum_signature}</span>
+              <span className="text-neon-teal font-mono text-lg">
+                {digitalIdentity.quantum_signature}
+              </span>
             </div>
           </div>
         </div>
@@ -762,33 +861,43 @@ export default function DigitalPassportMetaverse() {
           <div className="stat-grid">
             <div className="stat-item">
               <Shield className="w-4 h-4 text-blue-400" />
-              <span className="stat-value">{digitalIdentity.verified_assets}</span>
+              <span className="stat-value">
+                {digitalIdentity.verified_assets}
+              </span>
               <span className="stat-label">Assets Verificados</span>
             </div>
             <div className="stat-item">
               <Star className="w-4 h-4 text-amber-400" />
-              <span className="stat-value">{digitalIdentity.reputation_score}</span>
+              <span className="stat-value">
+                {digitalIdentity.reputation_score}
+              </span>
               <span className="stat-label">Reputación</span>
             </div>
             <div className="stat-item">
               <Eye className="w-4 h-4 text-purple-400" />
-              <span className="stat-value">{digitalIdentity.total_experiences}</span>
+              <span className="stat-value">
+                {digitalIdentity.total_experiences}
+              </span>
               <span className="stat-label">Experiencias</span>
             </div>
           </div>
         </div>
 
         <div className="quantum-codes">
-          <h4 className="text-white font-semibold mb-2">Códigos Cuánticos Activos</h4>
+          <h4 className="text-white font-semibold mb-2">
+            Códigos Cuánticos Activos
+          </h4>
           <div className="codes-list">
             {quantumCodes.map((code, index) => (
               <div
                 key={code.id}
                 onClick={() => setCurrentCode(code)}
-                className={`code-item ${currentCode.id === code.id ? 'active' : ''}`}
+                className={`code-item ${currentCode.id === code.id ? "active" : ""}`}
               >
                 <div className="code-encryption">
-                  <span className="encryption-level">{code.encryption_level}-bit</span>
+                  <span className="encryption-level">
+                    {code.encryption_level}-bit
+                  </span>
                   {code.quantum_entanglement && (
                     <Zap className="w-3 h-3 text-purple-400" />
                   )}
@@ -804,23 +913,37 @@ export default function DigitalPassportMetaverse() {
       {selectedDestination && (
         <div className="absolute bottom-8 right-8 z-20 destination-panel">
           <div className="destination-header">
-            <div 
+            <div
               className="destination-preview"
-              style={{ backgroundColor: selectedDestination.preview_color + '30', borderColor: selectedDestination.preview_color }}
+              style={{
+                backgroundColor: selectedDestination.preview_color + "30",
+                borderColor: selectedDestination.preview_color,
+              }}
             >
-              <Globe className="w-8 h-8" style={{ color: selectedDestination.preview_color }} />
+              <Globe
+                className="w-8 h-8"
+                style={{ color: selectedDestination.preview_color }}
+              />
             </div>
-            
+
             <div className="destination-info">
               <div className="flex items-center gap-2 mb-2">
-                <span className={`access-badge ${getAccessLevelColor(selectedDestination.access_level)}`}>
-                  {selectedDestination.access_level.replace('_', ' ').toUpperCase()}
+                <span
+                  className={`access-badge ${getAccessLevelColor(selectedDestination.access_level)}`}
+                >
+                  {selectedDestination.access_level
+                    .replace("_", " ")
+                    .toUpperCase()}
                 </span>
               </div>
-              
-              <h3 className="text-xl font-bold text-white mb-1">{selectedDestination.name}</h3>
-              <p className="text-white/70 text-sm mb-3">{selectedDestination.description}</p>
-              
+
+              <h3 className="text-xl font-bold text-white mb-1">
+                {selectedDestination.name}
+              </h3>
+              <p className="text-white/70 text-sm mb-3">
+                {selectedDestination.description}
+              </p>
+
               <div className="destination-stats">
                 <div className="stat-row">
                   <Wallet className="w-4 h-4 text-amber-400" />
@@ -828,14 +951,19 @@ export default function DigitalPassportMetaverse() {
                 </div>
                 <div className="stat-row">
                   <Users className="w-4 h-4 text-green-400" />
-                  <span>{selectedDestination.active_users.toLocaleString()} usuarios activos</span>
+                  <span>
+                    {selectedDestination.active_users.toLocaleString()} usuarios
+                    activos
+                  </span>
                 </div>
               </div>
             </div>
           </div>
 
           <div className="destination-amenities">
-            <h4 className="text-white font-semibold mb-2">Amenidades de Lujo</h4>
+            <h4 className="text-white font-semibold mb-2">
+              Amenidades de Lujo
+            </h4>
             <div className="amenities-list">
               {selectedDestination.luxury_amenities.map((amenity, index) => (
                 <div key={index} className="amenity-item">
@@ -847,14 +975,18 @@ export default function DigitalPassportMetaverse() {
           </div>
 
           <div className="destination-requirements">
-            <h4 className="text-white font-semibold mb-2">Credenciales Requeridas</h4>
+            <h4 className="text-white font-semibold mb-2">
+              Credenciales Requeridas
+            </h4>
             <div className="requirements-list">
-              {selectedDestination.required_credentials.map((credential, index) => (
-                <div key={index} className="requirement-item">
-                  <Key className="w-3 h-3 text-blue-400" />
-                  <span className="text-sm text-white/80">{credential}</span>
-                </div>
-              ))}
+              {selectedDestination.required_credentials.map(
+                (credential, index) => (
+                  <div key={index} className="requirement-item">
+                    <Key className="w-3 h-3 text-blue-400" />
+                    <span className="text-sm text-white/80">{credential}</span>
+                  </div>
+                ),
+              )}
             </div>
           </div>
 
@@ -863,7 +995,7 @@ export default function DigitalPassportMetaverse() {
               <Plane className="w-5 h-5" />
               <span>Viajar Ahora</span>
             </button>
-            
+
             <button className="travel-btn secondary">
               <Eye className="w-5 h-5" />
               <span>Vista Previa</span>
@@ -875,23 +1007,27 @@ export default function DigitalPassportMetaverse() {
       {/* Lista de destinos del metaverso */}
       <div className="absolute top-1/2 right-8 transform -translate-y-1/2 z-20 destinations-list">
         <h4 className="text-white font-bold mb-4">Destinos Metaverso</h4>
-        
+
         <div className="destinations-grid">
           {metaverseDestinations.map((destination) => (
             <div
               key={destination.id}
               onClick={() => setSelectedDestination(destination)}
-              className={`destination-mini ${selectedDestination?.id === destination.id ? 'active' : ''}`}
+              className={`destination-mini ${selectedDestination?.id === destination.id ? "active" : ""}`}
               style={{ borderColor: destination.preview_color }}
             >
-              <div 
+              <div
                 className="destination-glow"
                 style={{ backgroundColor: destination.preview_color }}
               ></div>
               <div className="destination-mini-info">
                 <div className="destination-mini-name">{destination.name}</div>
-                <div className="destination-mini-type">{destination.type.replace('_', ' ')}</div>
-                <div className="destination-mini-users">{destination.active_users} usuarios</div>
+                <div className="destination-mini-type">
+                  {destination.type.replace("_", " ")}
+                </div>
+                <div className="destination-mini-users">
+                  {destination.active_users} usuarios
+                </div>
               </div>
             </div>
           ))}
@@ -901,7 +1037,11 @@ export default function DigitalPassportMetaverse() {
       {/* Estilos CSS ultra-futuristas para Pasaporte Digital */}
       <style jsx>{`
         .passport-title {
-          background: linear-gradient(135deg, rgba(0, 0, 0, 0.9), rgba(14, 231, 231, 0.1));
+          background: linear-gradient(
+            135deg,
+            rgba(0, 0, 0, 0.9),
+            rgba(14, 231, 231, 0.1)
+          );
           backdrop-filter: blur(25px);
           border: 2px solid rgba(14, 231, 231, 0.3);
           border-radius: 25px;
@@ -910,7 +1050,13 @@ export default function DigitalPassportMetaverse() {
         }
 
         .quantum-text {
-          background: linear-gradient(45deg, #0EE7E7, #00E7A7, #A855F7, #FFD700);
+          background: linear-gradient(
+            45deg,
+            #0ee7e7,
+            #00e7a7,
+            #a855f7,
+            #ffd700
+          );
           background-size: 400% 400%;
           -webkit-background-clip: text;
           -webkit-text-fill-color: transparent;
@@ -926,7 +1072,8 @@ export default function DigitalPassportMetaverse() {
           padding: 1.5rem;
         }
 
-        .scan-btn, .gateway-btn {
+        .scan-btn,
+        .gateway-btn {
           display: flex;
           align-items: center;
           gap: 1rem;
@@ -941,7 +1088,7 @@ export default function DigitalPassportMetaverse() {
         }
 
         .scan-btn {
-          background: linear-gradient(45deg, #0EE7E7, #00E7A7);
+          background: linear-gradient(45deg, #0ee7e7, #00e7a7);
           color: black;
         }
 
@@ -955,17 +1102,23 @@ export default function DigitalPassportMetaverse() {
         }
 
         .gateway-btn.active {
-          background: linear-gradient(45deg, #A855F7, #8B5CF6);
+          background: linear-gradient(45deg, #a855f7, #8b5cf6);
           box-shadow: 0 0 30px rgba(168, 85, 247, 0.6);
         }
 
-        .scan-btn:hover:not(:disabled), .gateway-btn:hover {
+        .scan-btn:hover:not(:disabled),
+        .gateway-btn:hover {
           transform: translateY(-3px);
           box-shadow: 0 15px 30px rgba(14, 231, 231, 0.4);
         }
 
-        .identity-panel, .destination-panel {
-          background: linear-gradient(135deg, rgba(0, 0, 0, 0.95), rgba(14, 231, 231, 0.1));
+        .identity-panel,
+        .destination-panel {
+          background: linear-gradient(
+            135deg,
+            rgba(0, 0, 0, 0.95),
+            rgba(14, 231, 231, 0.1)
+          );
           backdrop-filter: blur(30px);
           border: 2px solid rgba(14, 231, 231, 0.3);
           border-radius: 25px;
@@ -974,13 +1127,15 @@ export default function DigitalPassportMetaverse() {
           animation: panel-slide-up 0.5s ease;
         }
 
-        .identity-header, .destination-header {
+        .identity-header,
+        .destination-header {
           display: flex;
           gap: 1.5rem;
           margin-bottom: 1.5rem;
         }
 
-        .passport-preview, .destination-preview {
+        .passport-preview,
+        .destination-preview {
           width: 80px;
           height: 80px;
           border: 3px solid;
@@ -995,7 +1150,8 @@ export default function DigitalPassportMetaverse() {
           animation: hologram-flicker 2s ease-in-out infinite;
         }
 
-        .identity-info, .destination-info {
+        .identity-info,
+        .destination-info {
           flex: 1;
         }
 
@@ -1009,27 +1165,27 @@ export default function DigitalPassportMetaverse() {
 
         .tier-badge.quantum {
           background: rgba(168, 85, 247, 0.3);
-          color: #A855F7;
+          color: #a855f7;
         }
 
         .tier-badge.diamond {
           background: rgba(59, 130, 246, 0.3);
-          color: #3B82F6;
+          color: #3b82f6;
         }
 
         .tier-badge.platinum {
           background: rgba(156, 163, 175, 0.3);
-          color: #9CA3AF;
+          color: #9ca3af;
         }
 
         .tier-badge.premium {
           background: rgba(245, 158, 11, 0.3);
-          color: #F59E0B;
+          color: #f59e0b;
         }
 
         .tier-badge.standard {
           background: rgba(34, 197, 94, 0.3);
-          color: #22C55E;
+          color: #22c55e;
         }
 
         .bio-badge {
@@ -1038,14 +1194,14 @@ export default function DigitalPassportMetaverse() {
           padding: 0.2rem 0.6rem;
           border-radius: 12px;
           background: rgba(0, 231, 167, 0.2);
-          color: #00E7A7;
+          color: #00e7a7;
           display: flex;
           align-items: center;
           gap: 0.25rem;
         }
 
         .quantum-signature {
-          font-family: 'Courier New', monospace;
+          font-family: "Courier New", monospace;
           padding: 0.5rem;
           background: rgba(14, 231, 231, 0.1);
           border: 1px solid rgba(14, 231, 231, 0.3);
@@ -1126,7 +1282,7 @@ export default function DigitalPassportMetaverse() {
         .encryption-level {
           font-size: 0.75rem;
           font-weight: bold;
-          color: #0EE7E7;
+          color: #0ee7e7;
         }
 
         .code-layer {
@@ -1156,17 +1312,20 @@ export default function DigitalPassportMetaverse() {
           color: white;
         }
 
-        .destination-amenities, .destination-requirements {
+        .destination-amenities,
+        .destination-requirements {
           margin-bottom: 1.5rem;
         }
 
-        .amenities-list, .requirements-list {
+        .amenities-list,
+        .requirements-list {
           display: flex;
           flex-direction: column;
           gap: 0.5rem;
         }
 
-        .amenity-item, .requirement-item {
+        .amenity-item,
+        .requirement-item {
           display: flex;
           align-items: center;
           gap: 0.5rem;
@@ -1190,7 +1349,7 @@ export default function DigitalPassportMetaverse() {
         }
 
         .travel-btn.primary {
-          background: linear-gradient(45deg, #0EE7E7, #00E7A7);
+          background: linear-gradient(45deg, #0ee7e7, #00e7a7);
           color: black;
           border: none;
         }
@@ -1278,41 +1437,59 @@ export default function DigitalPassportMetaverse() {
 
         .destination-mini-users {
           font-size: 0.7rem;
-          color: #00E7A7;
+          color: #00e7a7;
           font-weight: 500;
         }
 
         @keyframes quantum-flow {
-          0% { background-position: 0% 50%; }
-          50% { background-position: 100% 50%; }
-          100% { background-position: 0% 50%; }
+          0% {
+            background-position: 0% 50%;
+          }
+          50% {
+            background-position: 100% 50%;
+          }
+          100% {
+            background-position: 0% 50%;
+          }
         }
 
         @keyframes scanning-pulse {
-          0%, 100% { box-shadow: 0 0 20px rgba(14, 231, 231, 0.5); }
-          50% { box-shadow: 0 0 40px rgba(14, 231, 231, 0.8); }
+          0%,
+          100% {
+            box-shadow: 0 0 20px rgba(14, 231, 231, 0.5);
+          }
+          50% {
+            box-shadow: 0 0 40px rgba(14, 231, 231, 0.8);
+          }
         }
 
         @keyframes passport-float {
-          0%, 100% { 
+          0%,
+          100% {
             transform: translateY(0px) rotate(0deg);
           }
-          50% { 
+          50% {
             transform: translateY(-8px) rotate(2deg);
           }
         }
 
         @keyframes hologram-flicker {
-          0%, 100% { opacity: 1; }
-          50% { opacity: 0.8; }
+          0%,
+          100% {
+            opacity: 1;
+          }
+          50% {
+            opacity: 0.8;
+          }
         }
 
         @keyframes destination-pulse {
-          0%, 100% { 
+          0%,
+          100% {
             transform: scale(1);
             opacity: 1;
           }
-          50% { 
+          50% {
             transform: scale(1.4);
             opacity: 0.7;
           }

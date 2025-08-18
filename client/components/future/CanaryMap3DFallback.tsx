@@ -16,9 +16,18 @@ export default function CanaryMap3DFallback() {
         {/* SVG Map */}
         <svg viewBox="0 0 100 100" className="w-full h-full">
           {/* Background plate */}
-          <rect x="10" y="40" width="80" height="40" rx="4" 
-                fill="#0b1220" stroke="#1b2a41" strokeWidth="0.5" opacity="0.8" />
-          
+          <rect
+            x="10"
+            y="40"
+            width="80"
+            height="40"
+            rx="4"
+            fill="#0b1220"
+            stroke="#1b2a41"
+            strokeWidth="0.5"
+            opacity="0.8"
+          />
+
           {/* Simplified island shapes */}
           <ellipse cx="15" cy="60" rx="3" ry="2" fill="#142134" />
           <ellipse cx="35" cy="58" rx="4" ry="3" fill="#142134" />
@@ -29,7 +38,7 @@ export default function CanaryMap3DFallback() {
           <ellipse cx="48" cy="57" rx="4" ry="2.5" fill="#142134" />
           <ellipse cx="57" cy="49" rx="1" ry="1" fill="#142134" />
         </svg>
-        
+
         {/* Animated pins */}
         {pins.map((pin, i) => (
           <div
@@ -41,16 +50,18 @@ export default function CanaryMap3DFallback() {
               backgroundColor: pin.color,
               boxShadow: `0 0 10px ${pin.color}`,
               animationDelay: `${i * 0.2}s`,
-              animationDuration: '2s'
+              animationDuration: "2s",
             }}
           />
         ))}
-        
+
         {/* Glow overlay */}
         <div className="absolute inset-0 bg-gradient-to-t from-cyan-500/5 via-transparent to-purple-500/5 pointer-events-none" />
       </div>
-      
-      <div className="absolute left-4 top-4 text-white/70 text-sm">España & Canarias — demo 3D</div>
+
+      <div className="absolute left-4 top-4 text-white/70 text-sm">
+        España & Canarias — demo 3D
+      </div>
     </div>
   );
 }

@@ -29,9 +29,9 @@ export default function BlueEyeLogo({
   // Seguimiento del cursor respecto al contenedor
   const mx = useMotionValue(0);
   const my = useMotionValue(0);
-  const rx = useTransform(my, [ -60, 60 ], [ 8, -8 ]);
+  const rx = useTransform(my, [-60, 60], [8, -8]);
   // leve parallax X/Y
-  const ry = useTransform(mx, [ -60, 60 ], [ -8, 8 ]);
+  const ry = useTransform(mx, [-60, 60], [-8, 8]);
 
   // Gradiente que "mira" al cursor (iris holográfico)
   const gx = useTransform(mx, (v) => `calc(50% + ${v / 6}px)`);
@@ -52,14 +52,17 @@ export default function BlueEyeLogo({
 
   // Reset cuando el mouse sale
   const onLeave = () => {
-    mx.set(0); my.set(0);
+    mx.set(0);
+    my.set(0);
     setHover(false);
   };
 
   // Wrapper (link opcional)
   const Wrapper: React.FC<{ children: React.ReactNode }> = ({ children }) =>
     href ? (
-      <a href={href} aria-label={label} className="inline-block">{children}</a>
+      <a href={href} aria-label={label} className="inline-block">
+        {children}
+      </a>
     ) : (
       <>{children}</>
     );
@@ -98,7 +101,8 @@ export default function BlueEyeLogo({
           aria-hidden
           className="absolute -inset-2 -z-0 rounded-2xl"
           style={{
-            background: "radial-gradient(120px 120px at var(--gx) var(--gy), rgba(56,189,248,0.35), rgba(99,102,241,0.18) 45%, transparent 70%)",
+            background:
+              "radial-gradient(120px 120px at var(--gx) var(--gy), rgba(56,189,248,0.35), rgba(99,102,241,0.18) 45%, transparent 70%)",
             // @ts-ignore — definimos custom properties para el gradiente
             ["--gx" as any]: gx,
             ["--gy" as any]: gy,
@@ -126,7 +130,10 @@ export default function BlueEyeLogo({
         <motion.div
           aria-hidden
           className="pointer-events-none absolute inset-0 grid place-items-center"
-          animate={{ scale: hover ? [1, 1.08, 1] : 1, opacity: hover ? [0.65, 0.9, 0.65] : 0.55 }}
+          animate={{
+            scale: hover ? [1, 1.08, 1] : 1,
+            opacity: hover ? [0.65, 0.9, 0.65] : 0.55,
+          }}
           transition={{ duration: 1.8, repeat: Infinity, ease: "easeInOut" }}
         >
           <div

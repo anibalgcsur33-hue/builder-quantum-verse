@@ -5,57 +5,61 @@ import { MessageCircle, Sparkles, Crown, Star, Gem } from "lucide-react";
 interface NarrativeMessage {
   id: string;
   text: string;
-  timeOfDay: 'morning' | 'afternoon' | 'evening' | 'night';
-  mood: 'welcoming' | 'exclusive' | 'serene' | 'luxurious';
+  timeOfDay: "morning" | "afternoon" | "evening" | "night";
+  mood: "welcoming" | "exclusive" | "serene" | "luxurious";
 }
 
 const narrativeMessages: NarrativeMessage[] = [
   {
-    id: 'morning-welcome',
+    id: "morning-welcome",
     text: "Buenos días. Soy su concierge holográfico. Las primeras luces del amanecer revelan propiedades exclusivas esperándole en el Mediterráneo.",
-    timeOfDay: 'morning',
-    mood: 'welcoming'
+    timeOfDay: "morning",
+    mood: "welcoming",
   },
   {
-    id: 'afternoon-exclusive',
+    id: "afternoon-exclusive",
     text: "Esta tarde perfecta le invita a explorar villas donde la elegancia se encuentra con la innovación cuántica del futuro.",
-    timeOfDay: 'afternoon', 
-    mood: 'exclusive'
+    timeOfDay: "afternoon",
+    mood: "exclusive",
   },
   {
-    id: 'evening-serene',
+    id: "evening-serene",
     text: "Al atardecer, cuando las luces doradas se reflejan en cristales líquidos, descubra su hogar entre las estrellas.",
-    timeOfDay: 'evening',
-    mood: 'serene'
+    timeOfDay: "evening",
+    mood: "serene",
   },
   {
-    id: 'night-luxurious',
+    id: "night-luxurious",
     text: "En la serenidad nocturna, donde cada destello es una promesa de ultra-lujo, le espera su residencia de ensueño.",
-    timeOfDay: 'night',
-    mood: 'luxurious'
-  }
+    timeOfDay: "night",
+    mood: "luxurious",
+  },
 ];
 
 export default function ConciergeNarrative() {
   const lobbyRef = useRef<HTMLDivElement>(null);
   const conciergeRef = useRef<HTMLDivElement>(null);
-  const [currentMessage, setCurrentMessage] = useState<NarrativeMessage>(narrativeMessages[0]);
+  const [currentMessage, setCurrentMessage] = useState<NarrativeMessage>(
+    narrativeMessages[0],
+  );
   const [isActive, setIsActive] = useState(false);
   const sceneRef = useRef<THREE.Scene | null>(null);
 
   // Determinar momento del día
-  const getTimeOfDay = (): 'morning' | 'afternoon' | 'evening' | 'night' => {
+  const getTimeOfDay = (): "morning" | "afternoon" | "evening" | "night" => {
     const hour = new Date().getHours();
-    if (hour >= 6 && hour < 12) return 'morning';
-    if (hour >= 12 && hour < 18) return 'afternoon';
-    if (hour >= 18 && hour < 22) return 'evening';
-    return 'night';
+    if (hour >= 6 && hour < 12) return "morning";
+    if (hour >= 12 && hour < 18) return "afternoon";
+    if (hour >= 18 && hour < 22) return "evening";
+    return "night";
   };
 
   useEffect(() => {
     // Seleccionar mensaje según momento del día
     const timeOfDay = getTimeOfDay();
-    const relevantMessages = narrativeMessages.filter(msg => msg.timeOfDay === timeOfDay);
+    const relevantMessages = narrativeMessages.filter(
+      (msg) => msg.timeOfDay === timeOfDay,
+    );
     const selectedMessage = relevantMessages[0] || narrativeMessages[0];
     setCurrentMessage(selectedMessage);
 
@@ -63,11 +67,16 @@ export default function ConciergeNarrative() {
     if (!lobbyRef.current) return;
 
     const scene = new THREE.Scene();
-    const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-    const renderer = new THREE.WebGLRenderer({ 
-      antialias: true, 
+    const camera = new THREE.PerspectiveCamera(
+      75,
+      window.innerWidth / window.innerHeight,
+      0.1,
+      1000,
+    );
+    const renderer = new THREE.WebGLRenderer({
+      antialias: true,
       alpha: true,
-      powerPreference: "high-performance"
+      powerPreference: "high-performance",
     });
 
     renderer.setSize(window.innerWidth / 2, window.innerHeight);
@@ -86,7 +95,7 @@ export default function ConciergeNarrative() {
     const floorMaterial = new THREE.ShaderMaterial({
       uniforms: {
         time: { value: 0 },
-        starlight: { value: new THREE.Color(0x0EE7E7) }
+        starlight: { value: new THREE.Color(0x0ee7e7) },
       },
       vertexShader: `
         varying vec2 vUv;
@@ -116,7 +125,7 @@ export default function ConciergeNarrative() {
           
           gl_FragColor = vec4(marbleColor + starReflection, 1.0);
         }
-      `
+      `,
     });
 
     const floor = new THREE.Mesh(floorGeometry, floorMaterial);
@@ -129,7 +138,7 @@ export default function ConciergeNarrative() {
     const wallMaterial = new THREE.ShaderMaterial({
       uniforms: {
         time: { value: 0 },
-        narrative_mood: { value: 0.5 }
+        narrative_mood: { value: 0.5 },
       },
       vertexShader: `
         varying vec2 vUv;
@@ -160,7 +169,7 @@ export default function ConciergeNarrative() {
           gl_FragColor = vec4(base_color * light_wave, 0.8);
         }
       `,
-      transparent: true
+      transparent: true,
     });
 
     // Múltiples paredes
@@ -182,14 +191,14 @@ export default function ConciergeNarrative() {
     for (let i = 0; i < 6; i++) {
       const columnGeometry = new THREE.CylinderGeometry(1, 1, 15, 16);
       const columnMaterial = new THREE.MeshPhysicalMaterial({
-        color: 0x87CEEB,
+        color: 0x87ceeb,
         metalness: 0.1,
         roughness: 0.1,
         transmission: 0.9,
         thickness: 0.5,
-        envMapIntensity: 1.5
+        envMapIntensity: 1.5,
       });
-      
+
       const column = new THREE.Mesh(columnGeometry, columnMaterial);
       column.position.x = (i - 2.5) * 8;
       column.position.y = 7.5;
@@ -202,18 +211,18 @@ export default function ConciergeNarrative() {
     const ambientLight = new THREE.AmbientLight(0x404040, 0.8);
     scene.add(ambientLight);
 
-    const keyLight = new THREE.DirectionalLight(0x0EE7E7, 2);
+    const keyLight = new THREE.DirectionalLight(0x0ee7e7, 2);
     keyLight.position.set(10, 20, 10);
     keyLight.castShadow = true;
     keyLight.shadow.mapSize.width = 2048;
     keyLight.shadow.mapSize.height = 2048;
     scene.add(keyLight);
 
-    const fillLight = new THREE.PointLight(0x00E7A7, 1.5, 30);
+    const fillLight = new THREE.PointLight(0x00e7a7, 1.5, 30);
     fillLight.position.set(-10, 15, 5);
     scene.add(fillLight);
 
-    const accentLight = new THREE.SpotLight(0xFFD700, 2, 20, Math.PI / 8, 0.1);
+    const accentLight = new THREE.SpotLight(0xffd700, 2, 20, Math.PI / 8, 0.1);
     accentLight.position.set(0, 20, 10);
     accentLight.target.position.set(0, 0, 0);
     scene.add(accentLight);
@@ -232,11 +241,16 @@ export default function ConciergeNarrative() {
       // Actualizar shaders
       floorMaterial.uniforms.time.value = time;
       wallMaterial.uniforms.time.value = time;
-      
+
       // Cambio de mood según narrativa
-      const moodValue = selectedMessage.mood === 'welcoming' ? 0.2 :
-                       selectedMessage.mood === 'exclusive' ? 0.4 :
-                       selectedMessage.mood === 'serene' ? 0.6 : 0.8;
+      const moodValue =
+        selectedMessage.mood === "welcoming"
+          ? 0.2
+          : selectedMessage.mood === "exclusive"
+            ? 0.4
+            : selectedMessage.mood === "serene"
+              ? 0.6
+              : 0.8;
       wallMaterial.uniforms.narrative_mood.value = moodValue;
 
       // Movimiento sutil de luces
@@ -261,23 +275,26 @@ export default function ConciergeNarrative() {
 
   const getGestureIcon = () => {
     switch (currentMessage.mood) {
-      case 'welcoming': return <MessageCircle className="w-8 h-8" />;
-      case 'exclusive': return <Crown className="w-8 h-8" />;
-      case 'serene': return <Star className="w-8 h-8" />;
-      case 'luxurious': return <Gem className="w-8 h-8" />;
-      default: return <Sparkles className="w-8 h-8" />;
+      case "welcoming":
+        return <MessageCircle className="w-8 h-8" />;
+      case "exclusive":
+        return <Crown className="w-8 h-8" />;
+      case "serene":
+        return <Star className="w-8 h-8" />;
+      case "luxurious":
+        return <Gem className="w-8 h-8" />;
+      default:
+        return <Sparkles className="w-8 h-8" />;
     }
   };
 
   return (
     <section className="relative w-full h-screen overflow-hidden bg-gradient-to-b from-blue-dark via-purple-dark to-blue-dark">
-      
       {/* Lobby 3D de fondo */}
       <div ref={lobbyRef} className="absolute inset-0 z-0" />
 
       {/* Overlay del concierge holográfico */}
       <div className="absolute inset-0 z-10 flex items-center justify-between px-12">
-        
         {/* Panel izquierdo - Información del lobby */}
         <div className="w-1/3 space-y-8">
           <div className="luxury-info-panel">
@@ -285,8 +302,8 @@ export default function ConciergeNarrative() {
               Lobby Futurista
             </h2>
             <p className="text-white/80 text-lg leading-relaxed">
-              Bañado en luz de cristal líquido, donde cada superficie refleja la serenidad 
-              del ultra-lujo futurista.
+              Bañado en luz de cristal líquido, donde cada superficie refleja la
+              serenidad del ultra-lujo futurista.
             </p>
           </div>
 
@@ -297,8 +314,12 @@ export default function ConciergeNarrative() {
                 <Sparkles className="w-6 h-6 text-neon-teal" />
               </div>
               <div>
-                <h4 className="text-white font-semibold">Suelos de Mármol Estelar</h4>
-                <p className="text-white/60 text-sm">Reflejos de luz estelar en tiempo real</p>
+                <h4 className="text-white font-semibold">
+                  Suelos de Mármol Estelar
+                </h4>
+                <p className="text-white/60 text-sm">
+                  Reflejos de luz estelar en tiempo real
+                </p>
               </div>
             </div>
 
@@ -307,8 +328,12 @@ export default function ConciergeNarrative() {
                 <Crown className="w-6 h-6 text-neon-emerald" />
               </div>
               <div>
-                <h4 className="text-white font-semibold">Paredes Narrativas IA</h4>
-                <p className="text-white/60 text-sm">Cambian según momento del día</p>
+                <h4 className="text-white font-semibold">
+                  Paredes Narrativas IA
+                </h4>
+                <p className="text-white/60 text-sm">
+                  Cambian según momento del día
+                </p>
               </div>
             </div>
 
@@ -317,8 +342,12 @@ export default function ConciergeNarrative() {
                 <Gem className="w-6 h-6 text-purple-400" />
               </div>
               <div>
-                <h4 className="text-white font-semibold">Columnas de Cristal Líquido</h4>
-                <p className="text-white/60 text-sm">Elegancia y serenidad ultra-futurista</p>
+                <h4 className="text-white font-semibold">
+                  Columnas de Cristal Líquido
+                </h4>
+                <p className="text-white/60 text-sm">
+                  Elegancia y serenidad ultra-futurista
+                </p>
               </div>
             </div>
           </div>
@@ -326,17 +355,15 @@ export default function ConciergeNarrative() {
 
         {/* Panel central - Concierge holográfico */}
         <div className="w-1/3 flex justify-center">
-          <div 
+          <div
             ref={conciergeRef}
-            className={`holographic-concierge ${isActive ? 'active' : ''}`}
+            className={`holographic-concierge ${isActive ? "active" : ""}`}
           >
             {/* Figura holográfica */}
             <div className="concierge-avatar">
               <div className="holographic-body">
-                <div className="energy-core">
-                  {getGestureIcon()}
-                </div>
-                
+                <div className="energy-core">{getGestureIcon()}</div>
+
                 {/* Ojos azules brillantes */}
                 <div className="concierge-eyes">
                   <div className="eye left-eye"></div>
@@ -346,8 +373,14 @@ export default function ConciergeNarrative() {
                 {/* Gestos de bienvenida en el aire */}
                 <div className="welcome-gestures">
                   <div className="gesture-trail"></div>
-                  <div className="gesture-trail" style={{animationDelay: '0.5s'}}></div>
-                  <div className="gesture-trail" style={{animationDelay: '1s'}}></div>
+                  <div
+                    className="gesture-trail"
+                    style={{ animationDelay: "0.5s" }}
+                  ></div>
+                  <div
+                    className="gesture-trail"
+                    style={{ animationDelay: "1s" }}
+                  ></div>
                 </div>
               </div>
 
@@ -361,9 +394,7 @@ export default function ConciergeNarrative() {
 
             {/* Mensaje narrativo */}
             <div className="narrative-bubble">
-              <p className="narrative-text">
-                {currentMessage.text}
-              </p>
+              <p className="narrative-text">{currentMessage.text}</p>
               <div className="bubble-indicator">
                 <span className="time-badge">{currentMessage.timeOfDay}</span>
                 <span className="mood-badge">{currentMessage.mood}</span>
@@ -375,8 +406,10 @@ export default function ConciergeNarrative() {
         {/* Panel derecho - Controles interactivos */}
         <div className="w-1/3 space-y-6">
           <div className="luxury-controls-panel">
-            <h3 className="text-xl font-bold text-white mb-4">Experiencia Personalizada</h3>
-            
+            <h3 className="text-xl font-bold text-white mb-4">
+              Experiencia Personalizada
+            </h3>
+
             <div className="space-y-4">
               <button className="luxury-control-btn">
                 <MessageCircle className="w-5 h-5" />
@@ -397,7 +430,9 @@ export default function ConciergeNarrative() {
 
           {/* Ambiente atmosférico */}
           <div className="atmospheric-controls">
-            <h4 className="text-white font-semibold mb-3">Atmósfera del Lobby</h4>
+            <h4 className="text-white font-semibold mb-3">
+              Atmósfera del Lobby
+            </h4>
             <div className="atmosphere-options">
               <div className="atmosphere-option active">
                 <div className="atmosphere-color morning"></div>
@@ -419,7 +454,11 @@ export default function ConciergeNarrative() {
       {/* Estilos CSS ultra-avanzados */}
       <style jsx>{`
         .luxury-info-panel {
-          background: linear-gradient(135deg, rgba(14, 231, 231, 0.1), rgba(0, 231, 167, 0.05));
+          background: linear-gradient(
+            135deg,
+            rgba(14, 231, 231, 0.1),
+            rgba(0, 231, 167, 0.05)
+          );
           backdrop-filter: blur(20px);
           border: 1px solid rgba(14, 231, 231, 0.3);
           border-radius: 20px;
@@ -445,7 +484,11 @@ export default function ConciergeNarrative() {
           width: 40px;
           height: 40px;
           border-radius: 50%;
-          background: linear-gradient(45deg, rgba(14, 231, 231, 0.2), rgba(0, 231, 167, 0.2));
+          background: linear-gradient(
+            45deg,
+            rgba(14, 231, 231, 0.2),
+            rgba(0, 231, 167, 0.2)
+          );
           display: flex;
           align-items: center;
           justify-content: center;
@@ -476,10 +519,12 @@ export default function ConciergeNarrative() {
         .holographic-body {
           width: 120px;
           height: 200px;
-          background: linear-gradient(180deg, 
+          background: linear-gradient(
+            180deg,
             rgba(14, 231, 231, 0.3) 0%,
             rgba(0, 231, 167, 0.2) 50%,
-            rgba(168, 85, 247, 0.1) 100%);
+            rgba(168, 85, 247, 0.1) 100%
+          );
           border-radius: 60px 60px 20px 20px;
           position: relative;
           border: 2px solid rgba(14, 231, 231, 0.5);
@@ -491,7 +536,7 @@ export default function ConciergeNarrative() {
           top: 50%;
           left: 50%;
           transform: translate(-50%, -50%);
-          color: #0EE7E7;
+          color: #0ee7e7;
           animation: energy-pulse 2s ease-in-out infinite;
         }
 
@@ -507,9 +552,9 @@ export default function ConciergeNarrative() {
         .eye {
           width: 8px;
           height: 8px;
-          background: #0EE7E7;
+          background: #0ee7e7;
           border-radius: 50%;
-          box-shadow: 0 0 15px #0EE7E7;
+          box-shadow: 0 0 15px #0ee7e7;
           animation: eye-glow 2s ease-in-out infinite alternate;
         }
 
@@ -525,7 +570,12 @@ export default function ConciergeNarrative() {
           position: absolute;
           width: 4px;
           height: 40px;
-          background: linear-gradient(180deg, transparent, #0EE7E7, transparent);
+          background: linear-gradient(
+            180deg,
+            transparent,
+            #0ee7e7,
+            transparent
+          );
           border-radius: 2px;
           animation: gesture-wave 3s ease-in-out infinite;
         }
@@ -586,7 +636,11 @@ export default function ConciergeNarrative() {
           left: 50%;
           transform: translateX(-50%);
           width: 400px;
-          background: linear-gradient(135deg, rgba(0, 0, 0, 0.8), rgba(14, 231, 231, 0.1));
+          background: linear-gradient(
+            135deg,
+            rgba(0, 0, 0, 0.8),
+            rgba(14, 231, 231, 0.1)
+          );
           backdrop-filter: blur(15px);
           border: 1px solid rgba(14, 231, 231, 0.3);
           border-radius: 20px;
@@ -607,9 +661,10 @@ export default function ConciergeNarrative() {
           align-items: center;
         }
 
-        .time-badge, .mood-badge {
+        .time-badge,
+        .mood-badge {
           background: rgba(14, 231, 231, 0.2);
-          color: #0EE7E7;
+          color: #0ee7e7;
           padding: 0.25rem 0.75rem;
           border-radius: 12px;
           font-size: 0.75rem;
@@ -618,11 +673,15 @@ export default function ConciergeNarrative() {
 
         .mood-badge {
           background: rgba(0, 231, 167, 0.2);
-          color: #00E7A7;
+          color: #00e7a7;
         }
 
         .luxury-controls-panel {
-          background: linear-gradient(135deg, rgba(168, 85, 247, 0.1), rgba(59, 130, 246, 0.05));
+          background: linear-gradient(
+            135deg,
+            rgba(168, 85, 247, 0.1),
+            rgba(59, 130, 246, 0.05)
+          );
           backdrop-filter: blur(20px);
           border: 1px solid rgba(168, 85, 247, 0.3);
           border-radius: 20px;
@@ -690,65 +749,74 @@ export default function ConciergeNarrative() {
         }
 
         .atmosphere-color.morning {
-          background: linear-gradient(45deg, #FFD700, #FFA500);
+          background: linear-gradient(45deg, #ffd700, #ffa500);
         }
 
         .atmosphere-color.evening {
-          background: linear-gradient(45deg, #0EE7E7, #00E7A7);
+          background: linear-gradient(45deg, #0ee7e7, #00e7a7);
         }
 
         .atmosphere-color.night {
-          background: linear-gradient(45deg, #A855F7, #8B5CF6);
+          background: linear-gradient(45deg, #a855f7, #8b5cf6);
         }
 
         @keyframes holographic-shimmer {
-          0%, 100% { 
+          0%,
+          100% {
             border-color: rgba(14, 231, 231, 0.5);
             box-shadow: 0 0 20px rgba(14, 231, 231, 0.3);
           }
-          50% { 
+          50% {
             border-color: rgba(0, 231, 167, 0.8);
             box-shadow: 0 0 40px rgba(0, 231, 167, 0.5);
           }
         }
 
         @keyframes energy-pulse {
-          0%, 100% { 
+          0%,
+          100% {
             transform: translate(-50%, -50%) scale(1);
             filter: drop-shadow(0 0 10px currentColor);
           }
-          50% { 
+          50% {
             transform: translate(-50%, -50%) scale(1.2);
             filter: drop-shadow(0 0 20px currentColor);
           }
         }
 
         @keyframes eye-glow {
-          0% { box-shadow: 0 0 15px #0EE7E7; }
-          100% { box-shadow: 0 0 25px #0EE7E7, 0 0 35px #00E7A7; }
+          0% {
+            box-shadow: 0 0 15px #0ee7e7;
+          }
+          100% {
+            box-shadow:
+              0 0 25px #0ee7e7,
+              0 0 35px #00e7a7;
+          }
         }
 
         @keyframes gesture-wave {
-          0%, 100% { 
+          0%,
+          100% {
             transform: translateY(0) rotate(0deg);
             opacity: 0.3;
           }
-          50% { 
+          50% {
             transform: translateY(-20px) rotate(10deg);
             opacity: 1;
           }
         }
 
         @keyframes ring-expand {
-          0% { 
+          0% {
             transform: translate(-50%, -50%) scale(0.8);
             opacity: 0;
           }
-          50% { 
+          50% {
             transform: translate(-50%, -50%) scale(1);
             opacity: 0.6;
           }
-          100% { 
+          100% {
             transform: translate(-50%, -50%) scale(1.2);
             opacity: 0;
           }

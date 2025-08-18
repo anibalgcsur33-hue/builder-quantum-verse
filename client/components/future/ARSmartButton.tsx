@@ -1,14 +1,17 @@
 import { useEffect, useState } from "react";
 
 declare global {
-  interface Window { XRSystem?: any; }
+  interface Window {
+    XRSystem?: any;
+  }
 }
 
 export default function ARSmartButton() {
   const [supported, setSupported] = useState<boolean | null>(null);
 
   useEffect(() => {
-    (navigator as any).xr?.isSessionSupported?.("immersive-ar")
+    (navigator as any).xr
+      ?.isSessionSupported?.("immersive-ar")
       .then((ok: boolean) => setSupported(ok))
       .catch(() => setSupported(false));
   }, []);
@@ -21,7 +24,11 @@ export default function ARSmartButton() {
   const base = "rounded-xl px-5 py-3 transition border";
 
   if (supported === null) {
-    return <button className={`${base} border-white/15 bg-white/5 text-white/70`}>Comprobando AR…</button>;
+    return (
+      <button className={`${base} border-white/15 bg-white/5 text-white/70`}>
+        Comprobando AR…
+      </button>
+    );
   }
 
   if (!supported) {

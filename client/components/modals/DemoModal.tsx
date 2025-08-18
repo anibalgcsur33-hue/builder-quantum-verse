@@ -10,10 +10,18 @@ type Props = {
   imgUrl?: string;
 };
 
-export default function DemoModal({ open, onClose, title="Demo VR/AR", videoUrl, imgUrl }: Props) {
+export default function DemoModal({
+  open,
+  onClose,
+  title = "Demo VR/AR",
+  videoUrl,
+  imgUrl,
+}: Props) {
   useEffect(() => {
     document.documentElement.style.overflow = open ? "hidden" : "";
-    return () => { document.documentElement.style.overflow = ""; };
+    return () => {
+      document.documentElement.style.overflow = "";
+    };
   }, [open]);
 
   return (
@@ -21,7 +29,9 @@ export default function DemoModal({ open, onClose, title="Demo VR/AR", videoUrl,
       <AnimatePresence>
         {open && (
           <motion.div
-            initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
             className="fixed inset-0 z-[999] bg-black/60 backdrop-blur-sm"
             onClick={onClose}
           >
@@ -35,14 +45,20 @@ export default function DemoModal({ open, onClose, title="Demo VR/AR", videoUrl,
             >
               <div className="flex items-center justify-between">
                 <h3 className="text-xl font-semibold">{title}</h3>
-                <button onClick={onClose} className="btn-crystal px-3 py-1">Cerrar</button>
+                <button onClick={onClose} className="btn-crystal px-3 py-1">
+                  Cerrar
+                </button>
               </div>
 
               <div className="mt-4 aspect-video overflow-hidden rounded-xl bg-black/50">
                 {videoUrl ? (
                   <video
-                    src={videoUrl} className="h-full w-full object-cover"
-                    autoPlay muted playsInline loop
+                    src={videoUrl}
+                    className="h-full w-full object-cover"
+                    autoPlay
+                    muted
+                    playsInline
+                    loop
                     loading="lazy"
                   />
                 ) : imgUrl ? (
@@ -60,7 +76,8 @@ export default function DemoModal({ open, onClose, title="Demo VR/AR", videoUrl,
               </div>
 
               <p className="mt-4 text-white/70 text-sm">
-                Esta es una vista previa funcional. La experiencia completa VR/AR se abre en visor compatible.
+                Esta es una vista previa funcional. La experiencia completa
+                VR/AR se abre en visor compatible.
               </p>
             </motion.div>
           </motion.div>
