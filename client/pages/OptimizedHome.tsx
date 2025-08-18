@@ -24,6 +24,7 @@ import CommunityStrip from "@/components/sections/CommunityStrip";
 import VRPortalTeaser from "@/components/sections/VRPortalTeaser";
 import InvestorsCTA from "@/components/sections/InvestorsCTA";
 import InvestorStatsAlternate from "@/components/sections/InvestorStatsAlternate";
+import SpainMapTeaser from "@/components/sections/SpainMapTeaser";
 
 export default function OptimizedHome() {
   return (
