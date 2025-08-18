@@ -17,6 +17,7 @@ import CursorAurora from "@/components/effects/CursorAurora";
 import NeuralShowcase from "@/components/sections/NeuralShowcase";
 import ScrollTracker from "@/components/ux/ScrollTracker";
 import StickyCTA from "@/components/ux/StickyCTA";
+import VRExperienceSection from "@/components/VRExperienceSection";
 
 export default function OptimizedHome() {
   return (
@@ -124,6 +125,9 @@ export default function OptimizedHome() {
           </section>
         </main>
       </div>
+
+      {/* VR Experience Section */}
+      <VRExperienceSection />
 
       <SpatialAudioHotspot />
       <SpatialAudioAdvanced />
