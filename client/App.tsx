@@ -58,6 +58,7 @@ const App = () => (
           <Route path="/skeleton" element={<SkeletonDemo />} />
           <Route path="/simple" element={<Simple />} />
           <Route path="/pins-demo" element={<PinsDemo />} />
+          <Route path="/futuro-wow" element={<FuturoWOWDemo />} />
 
           {/* Properties Routes */}
           <Route path="/propiedades" element={<Properties />} />
