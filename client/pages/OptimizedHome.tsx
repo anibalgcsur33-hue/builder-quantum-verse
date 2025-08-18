@@ -157,10 +157,14 @@ export default function OptimizedHome() {
       </div>
 
       {/* Premium Showcase */}
-      <PremiumShowcase />
+      <Reveal>
+        <PremiumShowcase />
+      </Reveal>
 
       {/* Investor Stats Alternate */}
-      <InvestorStatsAlternate />
+      <Reveal delay={0.1}>
+        <InvestorStatsAlternate />
+      </Reveal>
 
       {/* Holographic Concierge */}
       <HolographicConcierge />
@@ -172,7 +176,9 @@ export default function OptimizedHome() {
       <CommunityStrip />
 
       {/* VR Experience Section */}
-      <VRExperienceSection />
+      <Reveal delay={0.15}>
+        <VRExperienceSection />
+      </Reveal>
 
       {/* Investors CTA */}
       <InvestorsCTA />
