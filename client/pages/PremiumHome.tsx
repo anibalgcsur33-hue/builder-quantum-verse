@@ -481,6 +481,13 @@ export default function PremiumHome() {
       </div>
 
       <StickyCTA />
+
+      <DemoModal
+        open={demoOpen}
+        onClose={() => setDemoOpen(false)}
+        title="Tour VR — Villa Horizonte"
+        imgUrl="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3"
+      />
     </>
   );
 }
