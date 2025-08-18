@@ -34,8 +34,6 @@ import DemoBar from "@/components/future/DemoBar";
 import EcosistemaNeuronal from "@/components/sections/EcosistemaNeuronal";
 import PrismCTA from "@/components/PrismCTA";
 import { Reveal } from "@/components/reveal/ScrollReveal";
-import { lazy, Suspense } from "react";
-
 // Lazy load the 3D map for better performance
 const CanaryMap3D = lazy(() => import("@/components/maps/CanaryMap3D"));
 
