@@ -401,6 +401,79 @@
       transform: translateY(-10px);
     }
   }
+
+  /* Heartbeat animation for premium pins */
+  @keyframes heartbeat {
+    0% {
+      transform: translateX(-50%) translateY(-50%) scale(1);
+      opacity: 1;
+    }
+    14% {
+      transform: translateX(-50%) translateY(-50%) scale(1.15);
+      opacity: 0.9;
+    }
+    28% {
+      transform: translateX(-50%) translateY(-50%) scale(1);
+      opacity: 1;
+    }
+    42% {
+      transform: translateX(-50%) translateY(-50%) scale(1.25);
+      opacity: 0.8;
+    }
+    70% {
+      transform: translateX(-50%) translateY(-50%) scale(1);
+      opacity: 1;
+    }
+    100% {
+      transform: translateX(-50%) translateY(-50%) scale(1);
+      opacity: 1;
+    }
+  }
+
+  /* Quantum portal animations */
+  @keyframes quantum-tunnel {
+    0% {
+      transform: rotateY(0deg) rotateX(0deg);
+      filter: hue-rotate(0deg);
+    }
+    100% {
+      transform: rotateY(360deg) rotateX(360deg);
+      filter: hue-rotate(360deg);
+    }
+  }
+
+  @keyframes neural-pulse {
+    0%,
+    100% {
+      opacity: 0.3;
+      transform: scale(1);
+    }
+    50% {
+      opacity: 1;
+      transform: scale(1.1);
+    }
+  }
+
+  @keyframes data-flow {
+    0% {
+      stroke-dashoffset: 20;
+    }
+    100% {
+      stroke-dashoffset: 0;
+    }
+  }
+
+  @keyframes quantum-glow {
+    0%,
+    100% {
+      box-shadow: 0 0 20px rgba(14, 231, 231, 0.3);
+    }
+    50% {
+      box-shadow:
+        0 0 30px rgba(14, 231, 231, 0.6),
+        0 0 50px rgba(124, 92, 255, 0.4);
+    }
+  }
 }
 
 /* Logo effects */
