@@ -96,6 +96,7 @@ const App = () => (
 
           {/* Metaverse Map */}
           <Route path="/mapa-metaverso" element={<MetaverseMap />} />
+          <Route path="/metaverse" element={<MetaverseMap />} />
 
           {/* Marketplace Routes */}
           <Route path="/marketplace" element={<Marketplace />} />
