@@ -22,7 +22,7 @@ export const FALLBACK_AVATAR_SVG =
       `<rect width='100%' height='100%' fill='url(#g)'/>` +
       `<circle cx='48' cy='36' r='16' fill='rgba(255,255,255,0.8)'/>` +
       `<rect x='22' y='58' width='52' height='20' rx='10' fill='rgba(255,255,255,0.6)'/>` +
-    `</svg>`
+      `</svg>`,
   );
 
 // =========================================

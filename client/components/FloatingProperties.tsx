@@ -6,17 +6,46 @@ import React, { useState } from "react";
 export default function FloatingProperties() {
   const [selectedMessage, setSelectedMessage] = useState<string | null>(null);
 
-  const Icon = ({ type }: { type: "villa" | "isle" | "penthouse" | "yacht" }) => {
+  const Icon = ({
+    type,
+  }: {
+    type: "villa" | "isle" | "penthouse" | "yacht";
+  }) => {
     const base = "h-4 w-4 inline-block align-[-2px]";
     switch (type) {
       case "villa":
-        return <svg viewBox="0 0 24 24" className={base}><path fill="currentColor" d="M3 11l9-7 9 7v9a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1v-9z"/></svg>;
+        return (
+          <svg viewBox="0 0 24 24" className={base}>
+            <path
+              fill="currentColor"
+              d="M3 11l9-7 9 7v9a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1v-9z"
+            />
+          </svg>
+        );
       case "isle":
-        return <svg viewBox="0 0 24 24" className={base}><path fill="currentColor" d="M12 3c3.866 0 7 3.134 7 7 0 1.8-.67 3.444-1.77 4.69L12 21l-5.23-6.31A6.98 6.98 0 0 1 5 10c0-3.866 3.134-7 7-7z"/></svg>;
+        return (
+          <svg viewBox="0 0 24 24" className={base}>
+            <path
+              fill="currentColor"
+              d="M12 3c3.866 0 7 3.134 7 7 0 1.8-.67 3.444-1.77 4.69L12 21l-5.23-6.31A6.98 6.98 0 0 1 5 10c0-3.866 3.134-7 7-7z"
+            />
+          </svg>
+        );
       case "penthouse":
-        return <svg viewBox="0 0 24 24" className={base}><path fill="currentColor" d="M4 20V9l8-5 8 5v11h-5v-6H9v6H4z"/></svg>;
+        return (
+          <svg viewBox="0 0 24 24" className={base}>
+            <path fill="currentColor" d="M4 20V9l8-5 8 5v11h-5v-6H9v6H4z" />
+          </svg>
+        );
       default:
-        return <svg viewBox="0 0 24 24" className={base}><path fill="currentColor" d="M3 16s3-2 9-2 9 2 9 2-3 5-9 5-9-5-9-5zm9-9a4 4 0 110 8 4 4 0 010-8z"/></svg>;
+        return (
+          <svg viewBox="0 0 24 24" className={base}>
+            <path
+              fill="currentColor"
+              d="M3 16s3-2 9-2 9 2 9 2-3 5-9 5-9-5-9-5zm9-9a4 4 0 110 8 4 4 0 010-8z"
+            />
+          </svg>
+        );
     }
   };
 
@@ -63,27 +92,54 @@ export default function FloatingProperties() {
         </h2>
         <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {items.map((card, i) => (
-            <div key={i} className="group block rounded-2xl border border-white/10 bg-white/5 backdrop-blur overflow-hidden transition-transform duration-500 hover:-translate-y-2 hover:shadow-[0_30px_120px_rgba(120,225,255,0.25)]">
+            <div
+              key={i}
+              className="group block rounded-2xl border border-white/10 bg-white/5 backdrop-blur overflow-hidden transition-transform duration-500 hover:-translate-y-2 hover:shadow-[0_30px_120px_rgba(120,225,255,0.25)]"
+            >
               {/* IMAGE */}
               <div className="relative aspect-[4/5] w-full overflow-hidden">
-                <img src={card.img} alt={card.title} className="h-full w-full object-cover transition-all duration-700 group-hover:scale-[1.07] group-hover:brightness-110 group-hover:drop-shadow-[0_0_36px_rgba(120,225,255,0.45)]"/>
-                <div className="pointer-events-none absolute inset-0 opacity-25 mix-blend-screen" style={{backgroundImage:`repeating-linear-gradient(0deg, rgba(120,225,255,.1) 0 1px, transparent 1px 8px), repeating-linear-gradient(90deg, rgba(255,106,213,.1) 0 1px, transparent 1px 8px)`}}/>
+                <img
+                  src={card.img}
+                  alt={card.title}
+                  className="h-full w-full object-cover transition-all duration-700 group-hover:scale-[1.07] group-hover:brightness-110 group-hover:drop-shadow-[0_0_36px_rgba(120,225,255,0.45)]"
+                />
+                <div
+                  className="pointer-events-none absolute inset-0 opacity-25 mix-blend-screen"
+                  style={{
+                    backgroundImage: `repeating-linear-gradient(0deg, rgba(120,225,255,.1) 0 1px, transparent 1px 8px), repeating-linear-gradient(90deg, rgba(255,106,213,.1) 0 1px, transparent 1px 8px)`,
+                  }}
+                />
               </div>
               {/* TEXT BELOW */}
               <div className="p-4 border-t border-white/10">
                 <div className="inline-flex items-center gap-2 text-[11px] text-white/80">
                   <Icon type={card.icon} />
-                  <span className="rounded-full border border-white/20 bg-black/40 px-2 py-0.5">{card.tag}</span>
+                  <span className="rounded-full border border-white/20 bg-black/40 px-2 py-0.5">
+                    {card.tag}
+                  </span>
                 </div>
                 <div className="mt-2 text-lg font-semibold">{card.title}</div>
-                <div className="mt-1 text-[13px] italic text-white/85">"{card.quote}"</div>
-                <div className="mt-1 text-[12px] text-white/80">{card.desc}</div>
+                <div className="mt-1 text-[13px] italic text-white/85">
+                  "{card.quote}"
+                </div>
+                <div className="mt-1 text-[12px] text-white/80">
+                  {card.desc}
+                </div>
                 <button
-                  onClick={() => setSelectedMessage("No buscamos clientes. Buscamos elegidos.")}
+                  onClick={() =>
+                    setSelectedMessage(
+                      "No buscamos clientes. Buscamos elegidos.",
+                    )
+                  }
                   className="mt-3 inline-flex items-center gap-2 text-sm text-[#78e1ff] hover:text-[#aee7ff]"
                 >
                   <span>Ver detalles</span>
-                  <svg viewBox="0 0 24 24" className="h-4 w-4"><path fill="currentColor" d="M13.172 12 8.222 7.05l1.414-1.414L16 12l-6.364 6.364-1.414-1.414z"/></svg>
+                  <svg viewBox="0 0 24 24" className="h-4 w-4">
+                    <path
+                      fill="currentColor"
+                      d="M13.172 12 8.222 7.05l1.414-1.414L16 12l-6.364 6.364-1.414-1.414z"
+                    />
+                  </svg>
                 </button>
               </div>
             </div>

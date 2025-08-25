@@ -9,7 +9,10 @@ export default function GoldenCTA() {
       <div className="mx-auto max-w-5xl px-6">
         <div
           className="relative overflow-hidden rounded-3xl p-[2px] shadow-[0_0_40px_rgba(255,215,0,0.35)]"
-          style={{ background: "linear-gradient(90deg, rgba(255,223,128,.9), rgba(255,200,64,.9))" }}
+          style={{
+            background:
+              "linear-gradient(90deg, rgba(255,223,128,.9), rgba(255,200,64,.9))",
+          }}
         >
           <div className="rounded-3xl bg-[#0b0f24]/85 px-8 py-10 backdrop-blur">
             <h3 className="text-center text-2xl md:text-3xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-yellow-200 via-yellow-300 to-amber-400 drop-shadow-[0_0_25px_rgba(255,215,0,0.7)]">
