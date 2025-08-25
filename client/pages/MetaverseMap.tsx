@@ -80,8 +80,6 @@ export default function MetaverseMap() {
 
       {/* Golden CTA */}
       <GoldenCTA />
-
-      {/* VALUE PROPS ... sigue igual */}
     </div>
   );
 }
