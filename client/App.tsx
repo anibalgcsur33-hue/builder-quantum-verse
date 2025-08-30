@@ -38,6 +38,8 @@ import CryptoToken from "./pages/CryptoToken";
 import MetaverseMap from "./pages/MetaverseMap";
 import SkeletonDemo from "./pages/SkeletonDemo";
 import Simple from "./pages/Simple";
+import PinsDemo from "./pages/PinsDemo";
+import FuturoWOWDemo from "./pages/FuturoWOWDemo";
 
 const queryClient = new QueryClient();
 
@@ -55,6 +57,8 @@ const App = () => (
           <Route path="/original" element={<Index />} />
           <Route path="/skeleton" element={<SkeletonDemo />} />
           <Route path="/simple" element={<Simple />} />
+          <Route path="/pins-demo" element={<PinsDemo />} />
+          <Route path="/futuro-wow" element={<FuturoWOWDemo />} />
 
           {/* Properties Routes */}
           <Route path="/propiedades" element={<Properties />} />
@@ -92,6 +96,7 @@ const App = () => (
 
           {/* Metaverse Map */}
           <Route path="/mapa-metaverso" element={<MetaverseMap />} />
+          <Route path="/metaverse" element={<MetaverseMap />} />
 
           {/* Marketplace Routes */}
           <Route path="/marketplace" element={<Marketplace />} />

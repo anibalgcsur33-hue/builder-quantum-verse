@@ -1,6 +1,7 @@
 import React from "react";
 import { createRoot } from "react-dom/client";
 import App from "./App";
+import "./lib/dev-checks"; // Load dev checks
 
 // Only create root once and store it
 let root: ReturnType<typeof createRoot> | null = null;
