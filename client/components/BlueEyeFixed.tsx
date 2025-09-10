@@ -268,7 +268,7 @@ export default function BlueEyeFixed({ height = 520, autoRotate = true }: BlueEy
           console.log(`📥 Cargando modelo: ${percent.toFixed(1)}%`);
         },
         (error) => {
-          console.warn(`❌ Error cargando modelo ${currentIndex + 1}:`, error.message);
+          console.warn(`❌ Error cargando modelo ${currentIndex + 1}:`, error);
           setTimeout(() => {
             loadAvatarWithRetry(urls, currentIndex + 1);
           }, 1000);

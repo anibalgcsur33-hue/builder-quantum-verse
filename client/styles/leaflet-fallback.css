@@ -1,0 +1,27 @@
+/* Leaflet CSS básico temporal - reemplazar con oficial tras npm install */
+.leaflet-container {
+  background: #0b1220;
+}
+
+.leaflet-control-zoom {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  backdrop-filter: blur(8px);
+}
+
+.leaflet-control-zoom a {
+  background: transparent;
+  color: white;
+  border: none;
+}
+
+.leaflet-control-zoom a:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.leaflet-control-scale {
+  background: rgba(0, 0, 0, 0.5);
+  color: white;
+  padding: 4px;
+  border-radius: 4px;
+}
